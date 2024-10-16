@@ -1,6 +1,6 @@
 import sequelize from "./configDatabase";
 
-const conexioDatabase = async (): Promise<void> => {
+const conexionDatabase = async (): Promise<void> => {
   try{
     await sequelize.authenticate();
     console.log("Conexion a la base de datos establecida correctamente");
@@ -9,4 +9,4 @@ const conexioDatabase = async (): Promise<void> => {
   }
 };
 
-export default conexioDatabase;
+export default conexionDatabase;

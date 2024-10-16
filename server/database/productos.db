@@ -2,12 +2,12 @@ DROP DATABASE IF EXISTS productos;
 CREATE DATABASE productos;
 USE productos;
 
-CREATE TABLE Cargo (
+CREATE TABLE Cargos (
   id_Cargo INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   nombre_Cargo NVARCHAR (30) NOT NULL
 );
 
-CREATE TABLE Telefono (
+CREATE TABLE Telefonos (
   id_Telefono INT PRIMARY KEY AUTO_INCREMENT,
   operador_Telefono NVARCHAR (30) NOT NULL CHECK (operador_Telefono IN ('tigo', 'claro')),
   numero_Telefono NVARCHAR (8) NOT NULL UNIQUE CHECK (LENGTH(numero_Telefono) = 8),
@@ -16,12 +16,12 @@ CREATE TABLE Telefono (
   FOREIGN KEY (id_Usuario_FK) REFERENCES Usuario (id_Usuario)
 );
 
-CREATE TABLE Usuario (
+CREATE TABLE Usuarios (
   id_Usuario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   nombre_Usuario NVARCHAR (30) NOT NULL,
   apellidos_Usuario NVARCHAR (30) NOT NULL,
   sexo_Usuario CHAR(1) NOT NULL CHECK (sexo_Usuario IN ('M', 'F')),
-  cedula_Usuario NVARCHAR (100) NOT NULL UNIQUE CHECK (LENGTH(cedula_Usuario) = 11),
+  cedula_Usuario NVARCHAR (11) NOT NULL UNIQUE CHECK (LENGTH(cedula_Usuario) = 11),
   departamento_Usuario NVARCHAR (30) NOT NULL,
   direccion_Usuario NVARCHAR (30) NOT NULL,
   correo_Usuario NVARCHAR (30) NOT NULL UNIQUE,

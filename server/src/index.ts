@@ -5,7 +5,7 @@ import { config } from "dotenv";
 import express from "express";
 import morgan from "morgan";
 import validarEntorno from "./validation/variablesEntorno";
-import conexioDatabase from "./config/database";
+import conexionDatabase from "./config/database";
 
 config();
 
@@ -20,4 +20,4 @@ app.listen(SERVER_PORT, (): void => {
   console.log(`Servidor corriendo en el puerto ${SERVER_PORT}`);
 });
 
-conexioDatabase();
+conexionDatabase();
