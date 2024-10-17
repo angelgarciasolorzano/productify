@@ -13,7 +13,7 @@ CREATE TABLE Telefonos (
   numero_Telefono NVARCHAR (8) NOT NULL UNIQUE CHECK (LENGTH(numero_Telefono) = 8),
   id_Usuario_FK INT NOT NULL,
 
-  FOREIGN KEY (id_Usuario_FK) REFERENCES Usuario (id_Usuario)
+  FOREIGN KEY (id_Usuario_FK) REFERENCES Usuarios (id_Usuario)
 );
 
 CREATE TABLE Usuarios (
@@ -21,15 +21,25 @@ CREATE TABLE Usuarios (
   nombre_Usuario NVARCHAR (30) NOT NULL,
   apellidos_Usuario NVARCHAR (30) NOT NULL,
   sexo_Usuario CHAR(1) NOT NULL CHECK (sexo_Usuario IN ('M', 'F')),
-  cedula_Usuario NVARCHAR (11) NOT NULL UNIQUE CHECK (LENGTH(cedula_Usuario) = 11),
-  departamento_Usuario NVARCHAR (30) NOT NULL,
-  direccion_Usuario NVARCHAR (30) NOT NULL,
+  cedula_Usuario NVARCHAR (20) NOT NULL UNIQUE CHECK (LENGTH(cedula_Usuario) = 16),
+  departamento_Usuario NVARCHAR (30) DEFAULT 'sin ingresar',
+  direccion_Usuario NVARCHAR (100) DEFAULT 'sin ingresar',
   correo_Usuario NVARCHAR (30) NOT NULL UNIQUE,
   contra_Usuario NVARCHAR (100) NOT NULL CHECK (LENGTH(contra_Usuario) >= 8),
   estado_Usuario NVARCHAR(10) DEFAULT 'activo' CHECK (estado_Usuario IN ('activo', 'inactivo')),
   id_Cargo_FK INT NOT NULL,
 
-  FOREIGN KEY (id_Cargo_FK) REFERENCES Cargo (id_Cargo)
+  FOREIGN KEY (id_Cargo_FK) REFERENCES Cargos (id_Cargo)
+);
+
+INSERT INTO Cargos (nombre_Cargo) VALUES ('administrador');
+
+INSERT INTO Usuarios (
+  nombre_Usuario, apellidos_Usuario, sexo_Usuario, cedula_Usuario, departamento_Usuario,
+  direccion_Usuario, correo_Usuario, contra_Usuario, id_Cargo_FK
+) VALUES (
+  'Angel Noe', 'Garcia Solorzano', 'M', '001-240202-1032T', 'Managua', 
+  'De envasa 3 cuadras arribas, 20 metros al sur', 'angel@gmail.com', '1234', 1
 );
 
 DESCRIBE Cargo;

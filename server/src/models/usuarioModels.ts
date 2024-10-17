@@ -23,20 +23,22 @@ Usuario.init(
       allowNull: false,
     },
     cedula_Usuario: {
-      type: DataTypes.STRING(11),
+      type: DataTypes.STRING(20),
       allowNull: false,
       unique: true,
       validate: {
-        len: [11, 11],
+        len: [16, 16],
       },
     },
     departamento_Usuario: {
       type: DataTypes.STRING(30),
-      allowNull: false,
+      allowNull: true,
+      defaultValue: 'sin ingresar'
     },
     direccion_Usuario: {
-      type: DataTypes.STRING(30),
-      allowNull: false,
+      type: DataTypes.STRING(100),
+      allowNull: true,
+      defaultValue: 'sin ingresar'
     },
     correo_Usuario: {
       type: DataTypes.STRING(30),
