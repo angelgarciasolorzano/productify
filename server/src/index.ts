@@ -17,7 +17,7 @@ validarEntorno();
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/api/auth", authRouter);
+app.use("/api", authRouter);
 
 app.listen(SERVER_PORT, (): void => {
   console.log(`Servidor corriendo en el puerto ${SERVER_PORT}`);
