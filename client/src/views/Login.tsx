@@ -1,5 +1,4 @@
 import { HiOutlineMail, HiLockClosed } from "react-icons/hi";
-import { Button } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginTypeSchema, loginFormSchema } from "../schemas/authSchema";
@@ -48,14 +47,9 @@ function Login() {
             errors={errors.contra_Usuario}
           />
 
-          <Button 
-            type="submit" 
-            size="md" 
-            color="primary" 
-            className="mb-4"
-          >
-            Iniciar sesión
-          </Button>
+          <button>
+            Iniciar Sesion
+          </button>
         </form>
       </div>
     </div>
