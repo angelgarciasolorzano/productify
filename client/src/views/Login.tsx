@@ -1,34 +1,59 @@
 import { HiOutlineMail, HiLockClosed } from "react-icons/hi";
 import { Button } from "@nextui-org/react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginTypeSchema, loginFormSchema } from "../schemas/authSchema";
 
 import Input from "../components/Input";
 
 function Login() {
+  const {register, handleSubmit, formState: { errors }} = useForm<LoginTypeSchema>({
+    resolver: zodResolver(loginFormSchema)
+  });
+
+  const onSubmit = handleSubmit((values: LoginTypeSchema) => {
+    console.log(values);
+  });
+
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="flex flex-col items-center content-stretch w-96 pt-4 shadow-sm min-h-[20rem] 
-        rounded-2xl bg-zinc-50"
+      <div className="flex flex-col items-center content-stretch w-96 pt-4 shadow-sm 
+        min-h-[18rem] rounded-2xl bg-white"
       >
-        <h1 className="font-semibold text-sm mt-4">Inicia sesión</h1>
+        <h1 className="font-semibold text-2xl mt-2">
+          Inicia sesión
+        </h1>
 
-        <form className="flex flex-col flex-grow items-center w-72 mt-2 gap-4">
+        <form 
+          onSubmit={onSubmit} 
+          className="flex flex-col flex-grow items-center w-72 mt-4 gap-4"
+        >
           <Input
+            register={register}
             labelName="Email"
-            inputName="email"
-            type="email"
+            inputName="correo_Usuario"
+            type="text"
             placeholder="Correo electrónico"
-            icon={HiOutlineMail} 
+            icon={HiOutlineMail}
+            errors={errors.correo_Usuario}
           />
 
           <Input
+            register={register}
             labelName="Contraseña"
-            inputName="password"
+            inputName="contra_Usuario"
             type="password"
             placeholder="Contraseña"
             icon={HiLockClosed}
+            errors={errors.contra_Usuario}
           />
 
-          <Button size="md" color="primary">
+          <Button 
+            type="submit" 
+            size="md" 
+            color="primary" 
+            className="mb-4"
+          >
             Iniciar sesión
           </Button>
         </form>

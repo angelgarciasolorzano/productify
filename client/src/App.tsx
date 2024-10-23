@@ -5,9 +5,11 @@ import Login from "./views/Login";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-      </Routes>
+      <main className="w-full min-h-screen mx-auto">
+        <Routes>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </main>
     </BrowserRouter>
   )
 }
