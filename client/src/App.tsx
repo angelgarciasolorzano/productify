@@ -13,16 +13,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <main className={`w-full min-h-screen mx-auto ${darkMode && "dark"}`}>
-      <div className="text-gray-500 bg-gray-100 
-      translate-all duration-300 mt-14 dark:bg-gray-800"
-    >
-        <Navbar darkMode={toggleDarkMode}  toggleDarkMode={darkMode}/>
-        <Routes>
-          <Route path="/" element={<Login />} />
-        </Routes>
+      <div className={`${darkMode && "dark"}`}>
+        <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-800 duration-300">
+          <Navbar darkMode={toggleDarkMode}  toggleDarkMode={darkMode}/>
+          <Routes>
+            <Route path="/" element={<Login />} />
+          </Routes>
         </div>
-      </main>
+      </div>
     </BrowserRouter>
   )
 }

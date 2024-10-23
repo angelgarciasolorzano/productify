@@ -15,11 +15,11 @@ function Login() {
   });
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex flex-grow justify-center items-center">
       <div className="flex flex-col items-center content-stretch w-96 pt-4 shadow-sm 
-        min-h-[18rem] rounded-2xl bg-white"
+        min-h-[18rem] rounded-2xl bg-white dark:bg-gray-700"
       >
-        <h1 className="font-semibold text-2xl mt-2">
+        <h1 className="font-semibold text-2xl mt-2 dark:text-white">
           Inicia sesión
         </h1>
 
@@ -27,7 +27,7 @@ function Login() {
           onSubmit={onSubmit} 
           className="flex flex-col flex-grow items-center w-72 mt-4 gap-4"
         >
-          <Input
+          <Input<LoginTypeSchema>
             register={register}
             labelName="Email"
             inputName="correo_Usuario"
@@ -37,7 +37,7 @@ function Login() {
             errors={errors.correo_Usuario}
           />
 
-          <Input
+          <Input<LoginTypeSchema>
             register={register}
             labelName="Contraseña"
             inputName="contra_Usuario"
@@ -47,7 +47,8 @@ function Login() {
             errors={errors.contra_Usuario}
           />
 
-          <button>
+          <button className="bg-green-600 text-white px-4 py-2 rounded-xl transition duration-200 
+            ease-in-out hover:bg-green-700 active:bg-green-900 focus:outline-none mb-4" >
             Iniciar Sesion
           </button>
         </form>
