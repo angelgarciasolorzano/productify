@@ -14,8 +14,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className={`${darkMode && "dark"}`}>
-        <div className="flex flex-col h-screen bg-gray-100 dark:bg-gray-800 duration-300">
-          <Navbar darkMode={toggleDarkMode}  toggleDarkMode={darkMode}/>
+        <div className="flex flex-col h-screen duration-300 bg-gray-200 dark:bg-gray-800">
+          <Navbar darkMode={toggleDarkMode} toggleDarkMode={darkMode}/>
           <Routes>
             <Route path="/" element={<Login />} />
           </Routes>

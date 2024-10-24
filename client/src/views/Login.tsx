@@ -15,17 +15,17 @@ function Login() {
   });
 
   return (
-    <div className="flex flex-grow justify-center items-center">
+    <div className="flex items-center justify-center flex-grow">
       <div className="flex flex-col items-center content-stretch w-96 pt-4 shadow-sm 
         min-h-[18rem] rounded-2xl bg-white dark:bg-gray-700"
       >
-        <h1 className="font-semibold text-2xl mt-2 dark:text-white">
+        <h1 className="mt-2 text-2xl font-semibold dark:text-white">
           Inicia sesión
         </h1>
 
         <form 
           onSubmit={onSubmit} 
-          className="flex flex-col flex-grow items-center w-72 mt-4 gap-4"
+          className="flex flex-col items-center flex-grow gap-4 mt-4 w-72"
         >
           <Input<LoginTypeSchema>
             register={register}
@@ -47,8 +47,13 @@ function Login() {
             errors={errors.contra_Usuario}
           />
 
-          <button className="bg-green-600 text-white px-4 py-2 rounded-xl transition duration-200 
-            ease-in-out hover:bg-green-700 active:bg-green-900 focus:outline-none mb-4" >
+          <button 
+            type="submit"
+            className={
+              `bg-green-600 text-white text-sm px-4 py-2 rounded-xl transition duration-200 
+              ease-in-out hover:bg-green-700 active:bg-green-900 focus:outline-none mb-4`
+            }
+          >
             Iniciar Sesion
           </button>
         </form>
