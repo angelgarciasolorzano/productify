@@ -40,9 +40,11 @@ function Input<T extends FieldValues>(props: Props<T>) {
             }`
           }
         />
-        <Icon className="absolute top-0 bottom-0 w-5 h-5 m-auto text-gray-800 start-2 dark:text-gray-200"/>
+        <Icon className="absolute top-0 bottom-0 w-5 h-5 m-auto text-gray-800 start-2 
+          dark:text-gray-200"
+        />
       </div>
-      
+
       {errors && <p className="pt-1 text-sm text-red-500">{errors.message}</p>}
     </div>
   )
