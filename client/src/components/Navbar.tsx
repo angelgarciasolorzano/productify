@@ -7,7 +7,7 @@ interface Props {
 
 function Navbar({ darkMode, toggleDarkMode }: Props) {
   return (
-    <nav className='w-full fixed top-0 z-50 border-b border-gray-200 bg-white dark:bg-gray-800 
+    <nav className='w-full border-b fixed top-0 z-50 border-gray-200 bg-white dark:bg-gray-800 
       dark:border-gray-700 shadow-sm'
     >
       <div className='flex items-center justify-between font-medium px-6 py-2'>
@@ -24,13 +24,16 @@ function Navbar({ darkMode, toggleDarkMode }: Props) {
 
         <ul className="md:flex hidden items-center gap-8">
           <li>
-            <a href="#about" className="dark:text-white hover:underline">Home</a>
+            <a href="#inicio" className="dark:text-white hover:underline">Inicio</a>
           </li>
           <li>
-            <a href="#" className="dark:text-white">About</a>
+            <a href="#identidad" className="dark:text-white hover:underline">Quienes somos</a>
           </li>
           <li>
-            <a href="#" className="dark:text-white">Contact</a>
+            <a href="#servicios" className="dark:text-white hover:underline">Nuestros servicios</a>
+          </li>
+          <li>
+            <a href="#comunidad" className="dark:text-white hover:underline">Comunidad</a>
           </li>
         </ul>
 

@@ -1,5 +1,9 @@
+import { useEffect } from "react";
+
+import FooterInicio from "../components/FooterInicio";
 import Navbar from "../components/Navbar";
-import Inicio from "../views/Inicio";
+import MainInicio from "../components/MainInicio";
+import Aox from "aos";
 
 interface Props {
   darkMode: () => void
@@ -7,13 +11,15 @@ interface Props {
 };
 
 function InicioLayout({darkMode, toggleDarkMode}: Props) {
+  useEffect(() => {
+    Aox.init({ duration: 1000 });
+  }, []);
+
   return (
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col min-h-screen">
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <Inicio />
-      <footer className="row-span-1 bg-gray-700">
-        <p className="text-center text-white">Todos los derechos reservados &copy; 2023</p>
-      </footer>
+      <MainInicio />
+      <FooterInicio />
     </div>
   )
 }
