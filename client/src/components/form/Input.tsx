@@ -2,7 +2,7 @@ import { IconType } from "react-icons";
 import { FieldError, FieldValues, UseFormRegister, Path } from "react-hook-form";
 
 interface Props<T extends FieldValues> {
-  icon: IconType;
+  icon?: IconType;
   type: string
   placeholder: string;
   labelName: string;
@@ -18,7 +18,7 @@ function Input<T extends FieldValues>(props: Props<T>) {
     <div className="w-full">
       <label
         htmlFor={inputName}
-        className="block text-sm font-semibold text-gray-800 dark:text-white"
+        className="block text-sm font-semibold mb-2 text-gray-800 dark:text-white"
       >
         {labelName}
       </label>
@@ -30,7 +30,7 @@ function Input<T extends FieldValues>(props: Props<T>) {
           name={inputName}
           placeholder={placeholder}
           className={
-            `px-8 py-2 border w-full rounded-md shadow-sm text-sm dark:text-gray-200
+            `${Icon ? 'pl-8' : 'pl-2'} pr-4 py-2 border w-full rounded-md shadow-sm text-sm dark:text-gray-200
             dark:bg-gray-700 dark:placeholder:text-gray-200 autofill:bg-darkInputBg ${
               errors
               ? `border-red-500 focus:outline-red-500 focus:text-gray-800
@@ -40,9 +40,12 @@ function Input<T extends FieldValues>(props: Props<T>) {
             }`
           }
         />
-        <Icon className="absolute top-0 bottom-0 w-5 h-5 m-auto text-gray-800 start-2 
-          dark:text-gray-200"
-        />
+
+        {Icon &&
+          <Icon className="absolute top-0 bottom-0 w-5 h-5 m-auto text-gray-800 start-2 
+            dark:text-gray-200"
+          />
+        }
       </div>
 
       {errors && <p className="pt-1 text-sm text-red-500">{errors.message}</p>}

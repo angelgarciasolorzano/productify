@@ -1,8 +1,8 @@
 import { useEffect } from "react";
+import { FooterInicio } from "../components/footer";
+import { MainInicio } from "../components/main";
+import { NavbarInicio } from "../components/navbar";
 
-import FooterInicio from "../components/FooterInicio";
-import Navbar from "../components/Navbar";
-import MainInicio from "../components/MainInicio";
 import Aox from "aos";
 
 interface Props {
@@ -17,7 +17,7 @@ function InicioLayout({darkMode, toggleDarkMode}: Props) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <NavbarInicio darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <MainInicio />
       <FooterInicio />
     </div>
