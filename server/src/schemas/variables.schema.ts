@@ -6,6 +6,7 @@ export const variables = object({
   DB_USUARIO: string().required(),
   DB_PASSWORD: string().required(),
   DB_DATABASE: string().required(),
+  CLIENT_PORT: string().required(),
 });
 
 export type VariablesType = InferType<typeof variables>;
