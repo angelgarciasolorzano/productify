@@ -29,22 +29,25 @@ function MainInicio() {
             </p>
 
             <button className="bg-emerald-500 text-white font-bold py-2 px-4 rounded-xl 
-              hover:bg-emerald-700 transition-all duration-300 shadow-md dark:hover:bg-green-500 
-              dark:hover:shadow-sm dark:hover:shadow-green-500"
+              hover:bg-emerald-700 transition-all duration-300 shadow-md 
+              dark:hover:bg-green-500 dark:hover:shadow-sm dark:hover:shadow-green-500"
             >
               Comenzar
             </button>
 
-            <button className="border bg-transparent border-green-500 font-bold py-2 px-4 rounded-xl 
-              ml-4 hover:text-green-700 duration-300 shadow-md dark:text-white
+            <button className="border bg-transparent border-green-500 font-bold py-2 px-4 
+              rounded-xl ml-4 hover:text-green-700 duration-300 shadow-md dark:text-white
               dark:hover:shadow-sm dark:hover:shadow-green-500 dark:hover:text-green-400"
             >
               Comenzar
             </button>
           </div>
 
-          <div className="w-full max-w-lg flex justify-center items-center" data-aos="fade-left">
-            <img src={fondoPrimary} className="object-cover rounded-3xl shadow-md max-h-96" />
+          <div 
+            className="w-full max-w-lg flex justify-center items-center aspect-[16/12]" 
+            data-aos="fade-left"
+          >
+            <img src={fondoPrimary} className="object-cover rounded-3xl shadow-md" />
           </div>
         </div>
       </section>
@@ -54,10 +57,10 @@ function MainInicio() {
           max-md:text-center"
         >
           <div 
-            className="w-full max-w-lg flex justify-center max-md:max-w-md" 
+            className="w-full max-w-lg flex justify-center aspect-[16/12] max-md:max-w-md" 
             data-aos="fade-up"
           >
-            <img src={fondoSecondary} className="rounded-3xl shadow-xl max-h-96"  />
+            <img src={fondoSecondary} className="rounded-3xl shadow-xl" />
           </div>
 
           <div className="w-full max-w-xl" data-aos="fade-down">
@@ -110,12 +113,13 @@ function MainInicio() {
               En Productify, ofrecemos una gama completa de soluciones diseñadas para 
               facilitar la gestión de inventario agrícola. Desde el seguimiento preciso 
               de productos hasta la automatización de procesos, nuestro objetivo es 
-              proporcionar herramientas que optimicen la eficiencia y la rentabilidad de tu negocio. 
+              proporcionar herramientas que optimicen la 
+              eficiencia y la rentabilidad de tu negocio. 
             </p>
           </div>
 
-          <div 
-            className="flex gap-8 text-center max-md:flex-col max-md:max-w-md mt-10 w-full max-w-4xl"
+          <div className="flex gap-8 text-center max-md:flex-col max-md:max-w-md 
+            mt-10 w-full max-w-4xl"
           >
             <div data-aos="zoom-out-right">
               <MdOutlineInventory 
@@ -130,7 +134,8 @@ function MainInicio() {
               </span>
 
               <p className="mt-4 dark:text-textPrimary">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores iste ipsa voluptas 
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                Maiores iste ipsa voluptas 
                 cupiditate asperiores eius eveniet sed molestias culpa quaerat.
               </p>
             </div>
@@ -149,7 +154,8 @@ function MainInicio() {
 
               <p className="mt-4 dark:text-textPrimary">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores iste 
-                ipsa voluptas cupiditate asperiores eius eveniet sed molestias culpa quaerat.
+                ipsa voluptas cupiditate asperiores eius eveniet sed 
+                molestias culpa quaerat.
               </p>
             </div>
 
@@ -167,7 +173,8 @@ function MainInicio() {
 
               <p className="mt-4 dark:text-textPrimary">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores iste 
-                ipsa voluptas cupiditate asperiores eius eveniet sed molestias culpa quaerat.
+                ipsa voluptas cupiditate asperiores eius eveniet sed molestias culpa 
+                quaerat.
               </p>
             </div>
           </div>
@@ -200,7 +207,10 @@ function MainInicio() {
             >
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="flex-shrink-0">
-                  <img src={perfilPrimary} className="w-20 h-20 rounded-full object-cover" />
+                  <img 
+                    src={perfilPrimary} 
+                    className="w-20 h-20 rounded-full object-cover aspect-[1/1]" 
+                  />
                 </div>
 
                 <div className="flex flex-col justify-center">
@@ -234,7 +244,10 @@ function MainInicio() {
             >
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="flex-shrink-0">
-                  <img src={perfilSecondary} className="w-20 h-20 rounded-full object-cover" />
+                  <img 
+                    src={perfilSecondary} 
+                    className="w-20 h-20 rounded-full object-cover aspect-[1/1]" 
+                  />
                 </div>
 
                 <div className="flex flex-col justify-center">

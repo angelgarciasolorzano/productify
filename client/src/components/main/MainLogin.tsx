@@ -4,14 +4,24 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginTypeSchema, loginFormSchema } from "../../schemas/authSchema";
 import { motion } from "framer-motion";
 import { Input } from "../form";
+import { loginUsuario } from "../../api/authApi";
+import toast from "react-hot-toast";
 
 function MainLogin() {
   const {register, handleSubmit, formState: { errors }} = useForm<LoginTypeSchema>({
     resolver: zodResolver(loginFormSchema)
   });
 
-  const onSubmit = handleSubmit((values: LoginTypeSchema) => {
-    console.log(values);
+  const onSubmit = handleSubmit(async (values: LoginTypeSchema) => {
+    try {
+      const respuesta = await loginUsuario(values);
+
+      console.log(respuesta);
+      toast.success("Datos recuperados");
+    } catch (err) {
+      console.error("Error al iniciar sesión:", err);
+      toast.success("Error al iniciar sesión");
+    }
   });
 
   return (

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-
-import InicioLayout from "./layouts/InicioLayout";
-import LoginLayout from "./layouts/LoginLayout";
+import { InicioLayout, LoginLayout }  from "./layouts";
+import { Toaster } from "react-hot-toast";
+import toastConfig from "./config/toastConfig";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -19,6 +19,8 @@ function App() {
             <Route path="/" element={<InicioLayout darkMode={toggleDarkMode} toggleDarkMode={darkMode} />} />
             <Route path="/login" element={<LoginLayout darkMode={toggleDarkMode} toggleDarkMode={darkMode} />} />
           </Routes>
+
+          <Toaster {...toastConfig({darkMode, position:"top-right"})} />
         </div>
       </div>
     </BrowserRouter>

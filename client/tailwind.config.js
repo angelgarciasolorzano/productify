@@ -1,5 +1,3 @@
-import plugin from 'tailwindcss';
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -9,7 +7,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkInputBg: '#374151',
         textPrimary: {
           DEFAULT: '#ffffff', 
           dark: '#000000',    
@@ -32,10 +29,4 @@ export default {
     },
   },
   darkMode: "class",
-  plugins: [
-    plugin(function ({ addVarient }) {
-      addVarient('autofill', '&:-webkit-autofill');
-    })
-  ],
 }
-
