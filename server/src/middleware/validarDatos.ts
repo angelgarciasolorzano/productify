@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ValidationError } from "yup";
+import { SchemaType } from "../types";
 
-import SchemaType from "../types/schemaTypes";
 import formatoErrors from "../helpers/formatoErrors";
 
 const validarDatos = <T extends object>(schema: SchemaType<T>) => 

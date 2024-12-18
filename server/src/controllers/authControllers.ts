@@ -1,14 +1,13 @@
 import { Response } from "express";
-import { LoginType } from "../schemas/auth.schema";
+import { AuthLoginType } from "../schemas";
+import { usuarioModels } from "../models";
+import { RequestType } from "../types";
 
-import Usuario from "../models/usuarioModels";
-import RequestType from "../types/requestTypes";
-
-export const loginUsuario = async (request: RequestType<LoginType>, response: Response): Promise<any> => {
+export const loginUsuario = async (request: RequestType<AuthLoginType>, response: Response): Promise<any> => {
   const { correo_Usuario } = request.body;
 
   try {
-    const usuario = await Usuario.findOne({ where: { correo_Usuario } });
+    const usuario = await usuarioModels.findOne({ where: { correo_Usuario } });
 
     if (!usuario) {
       return response.status(404).json({ message: "El usuario no existe" });

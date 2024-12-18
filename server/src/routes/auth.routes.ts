@@ -1,12 +1,11 @@
 import { Router } from "express";
 import { loginUsuario } from "../controllers/authControllers";
-import { LoginSchema } from "../schemas/auth.schema";
-
-import validarDatos from "../middleware/validarDatos";
+import { AuthLoginSchema } from "../schemas";
+import { validarDatos } from "../middleware";
 
 const router = Router();
 
-router.post("/login", validarDatos(LoginSchema), loginUsuario);
+router.post("/login", validarDatos(AuthLoginSchema), loginUsuario);
 
 router.post("/logout");
 

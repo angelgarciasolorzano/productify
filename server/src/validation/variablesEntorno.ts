@@ -1,11 +1,11 @@
-import { variables } from "../schemas/variables.schema";
+import { variablesSchema } from "../schemas";
 import { config } from "dotenv";
 
 config();
 
-const validar = (): void => {
+const validarVariables = (): void => {
   try {
-    variables.validateSync(process.env);
+    variablesSchema.validateSync(process.env);
     console.log("Variables de entorno cargadas correctamente");
   } catch (error) {
     console.error("Error al validar variables de entorno:", error);
@@ -13,4 +13,4 @@ const validar = (): void => {
   };
 };
 
-export default validar;
+export default validarVariables;

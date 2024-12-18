@@ -1,4 +1,4 @@
-import { VariablesType } from "../schemas/variables.schema";
+import { VariablesType } from "../schemas";
 
 declare global {
   namespace NodeJS {
