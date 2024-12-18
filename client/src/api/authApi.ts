@@ -1,4 +1,4 @@
-import axios from "../config/axiosConfig";
+import { axios } from "../config";
 import Usuario from "../types/usuarioType";
 
 import { LoginTypeSchema } from "../schemas/authSchema";

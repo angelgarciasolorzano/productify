@@ -1,7 +1,7 @@
 import { FaMoon, FaSun } from "react-icons/fa";
 import { Link as LinkRouter } from "react-router-dom";
 import { motion } from "framer-motion";
-import { titleVariants, buttonVariants } from "../../animation/motionVariants";
+import { desIzquierdoVariants, desDerechoVariants } from "../../animation/motionVariants";
 
 interface Props {
   darkMode: () => void
@@ -17,7 +17,7 @@ function NavbarLogin({darkMode, toggleDarkMode}: Props) {
         <motion.div 
           initial="hidden"
           animate="visible"
-          variants={titleVariants}
+          variants={desIzquierdoVariants}
           className='flex items-center justify-between space-x-4'
         >
           <span className="text-green-600 text-xl font-bold dark:bg-text-titulo-gradient 
@@ -37,7 +37,7 @@ function NavbarLogin({darkMode, toggleDarkMode}: Props) {
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={buttonVariants}
+          variants={desDerechoVariants}
         >
 
           <LinkRouter to={"/"} className="bg-green-500 text-white px-4 py-2 rounded-xl 

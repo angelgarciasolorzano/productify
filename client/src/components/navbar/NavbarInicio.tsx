@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 import { Link as LinkRouter } from "react-router-dom";
 import { motion } from "framer-motion";
 import { 
-  titleVariants, buttonVariants, 
+  desIzquierdoVariants, desDerechoVariants, 
   containerVariants, itemVariants 
 } from "../../animation/motionVariants";
 
@@ -21,7 +21,7 @@ function NavbarInicio({ darkMode, toggleDarkMode }: Props) {
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={titleVariants} 
+          variants={desIzquierdoVariants} 
           className='flex items-center justify-between space-x-4'
         >
           <span className="text-green-600 text-xl font-bold dark:bg-text-titulo-gradient 
@@ -116,7 +116,7 @@ function NavbarInicio({ darkMode, toggleDarkMode }: Props) {
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={buttonVariants}
+          variants={desDerechoVariants}
         >
 
           <LinkRouter to={"/login"} className="bg-green-500 text-white px-4 py-2 rounded-xl 

@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { InicioLayout, LoginLayout }  from "./layouts";
 import { Toaster } from "react-hot-toast";
-import toastConfig from "./config/toastConfig";
+import { toastConfig } from "./config";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);

@@ -1,5 +1,5 @@
-//* Variantes para animar un título (desplazamiento desde la izquierda)
-export const titleVariants = {
+//* Variantes para animar desplazamiento (desplazamiento desde la izquierda)
+export const desIzquierdoVariants = {
   hidden: { opacity: 0, x: -50 }, //TODO Estado inicial: invisible y desplazado a la izquierda
   visible: { 
     opacity: 1, x: 0, 
@@ -10,8 +10,8 @@ export const titleVariants = {
   }, //? Estado final: visible y en su posición original
 };
 
-//* Variantes para animar un botón (desplazamiento desde la derecha)
-export const buttonVariants = {
+//* Variantes para animar desplazamiento (desplazamiento desde la derecha)
+export const desDerechoVariants = {
   hidden: { opacity: 0, x: 50 }, //TODO Estado inicial: invisible y desplazado a la derecha
   visible: { 
     opacity: 1, x: 0, 
