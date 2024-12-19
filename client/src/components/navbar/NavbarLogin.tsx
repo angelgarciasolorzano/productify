@@ -2,13 +2,11 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { Link as LinkRouter } from "react-router-dom";
 import { motion } from "framer-motion";
 import { desIzquierdoVariants, desDerechoVariants } from "../../animation/motionVariants";
+import useThemeStore from "../../store/themeStore";
 
-interface Props {
-  darkMode: () => void
-  toggleDarkMode: boolean;
-};
+function NavbarLogin() {
+  const { theme, updateTheme } = useThemeStore();
 
-function NavbarLogin({darkMode, toggleDarkMode}: Props) {
   return (
     <nav className='w-full border-b fixed top-0 z-50 border-borderPrimary bg-white shadow-sm 
       duration-300 dark:bg-bgPrimary-dark dark:border-borderPrimary-dark'
@@ -28,9 +26,9 @@ function NavbarLogin({darkMode, toggleDarkMode}: Props) {
           
           <button 
             className="rounded-full p-2 dark:bg-slate-50 dark:text-slate-700" 
-            onClick={darkMode}
+            onClick={updateTheme}
           >
-            {toggleDarkMode ? <FaSun /> : <FaMoon />}
+            {theme ? <FaSun /> : <FaMoon />}
           </button>
         </motion.div>
 

@@ -1,28 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import { InicioLayout, LoginLayout }  from "./layouts";
 import { Toaster } from "react-hot-toast";
 import { toastConfig } from "./config";
+import useThemeStore from "./store/themeStore";
+import Container from "./components/Container";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const theme = useThemeStore((state) => state.theme);
 
   return (
     <BrowserRouter>
-      <div className={`${darkMode && "dark"}`}>
-        <div className="flex flex-col h-screen duration-300 bg-bgPrimary dark:bg-bgPrimary-dark">
-          <Routes>
-            <Route path="/" element={<InicioLayout darkMode={toggleDarkMode} toggleDarkMode={darkMode} />} />
-            <Route path="/login" element={<LoginLayout darkMode={toggleDarkMode} toggleDarkMode={darkMode} />} />
-          </Routes>
+      <Container>
+        <Routes>
+          <Route path="/" element={<InicioLayout />} />
+          <Route path="/login" element={<LoginLayout />} />
+        </Routes>
 
-          <Toaster {...toastConfig({darkMode, position:"top-right"})} />
-        </div>
-      </div>
+        <Toaster {...toastConfig({theme, position:"top-right"})} />
+      </Container>
     </BrowserRouter>
   )
 }

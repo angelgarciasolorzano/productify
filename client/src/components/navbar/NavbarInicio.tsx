@@ -7,12 +7,11 @@ import {
   containerVariants, itemVariants 
 } from "../../animation/motionVariants";
 
-interface Props {
-  darkMode: () => void
-  toggleDarkMode: boolean;
-};
+import useThemeStore from "../../store/themeStore";
 
-function NavbarInicio({ darkMode, toggleDarkMode }: Props) {
+function NavbarInicio() {
+  const { theme, updateTheme } = useThemeStore();
+
   return (
     <nav className='w-full border-b fixed top-0 z-50 border-borderPrimary bg-white shadow-sm 
       duration-300 dark:bg-bgPrimary-dark dark:border-borderPrimary-dark'
@@ -32,9 +31,9 @@ function NavbarInicio({ darkMode, toggleDarkMode }: Props) {
           
           <button 
             className="rounded-full p-2 dark:bg-slate-50 dark:text-slate-700" 
-            onClick={darkMode}
+            onClick={updateTheme}
           >
-            {toggleDarkMode ? <FaSun /> : <FaMoon />}
+            {theme ? <FaSun /> : <FaMoon />}
           </button>
         </motion.div>
 

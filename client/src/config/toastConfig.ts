@@ -1,17 +1,17 @@
 import { ToastPosition } from "react-hot-toast";
 
 interface ToastConfigParams {
-  darkMode: boolean;
+  theme: boolean;
   position: ToastPosition;
 };
 
-const toastConfig = ({ darkMode, position }: ToastConfigParams) => ({
+const toastConfig = ({ theme, position }: ToastConfigParams) => ({
   position,
   reverseOrder: true,
   toastOptions: {
     style: {
-      background: darkMode ? '#374151' : '#FFFFFF',
-      color: darkMode ? '#F8FAFC' : '#000000',
+      background: theme ? '#374151' : '#FFFFFF',
+      color: theme ? '#F8FAFC' : '#000000',
     },
   }
 });
