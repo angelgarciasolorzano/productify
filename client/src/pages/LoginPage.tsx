@@ -1,39 +1,34 @@
 import { HiOutlineMail, HiLockClosed } from "react-icons/hi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginTypeSchema, loginFormSchema } from "../../schemas/authSchema";
+import { LoginTypeSchema, loginFormSchema } from "../schemas/authSchema";
 import { motion } from "framer-motion";
-import { Input } from "../form";
-import { loginUsuario } from "../../api/authApi";
-import toast from "react-hot-toast";
+import { Input } from "../components/form";
 
-function MainLogin() {
+import authStore from "../store/authStore";
+import Button from "../components/form/Button";
+
+function LoginPage() {
+  const { login, loading } = authStore();
   const {register, handleSubmit, formState: { errors }} = useForm<LoginTypeSchema>({
     resolver: zodResolver(loginFormSchema)
   });
 
   const onSubmit = handleSubmit(async (values: LoginTypeSchema) => {
-    try {
-      const respuesta = await loginUsuario(values);
-
-      console.log(respuesta);
-      toast.success("Datos recuperados");
-    } catch (err) {
-      console.error("Error al iniciar sesión:", err);
-      toast.success("Error al iniciar sesión");
-    }
+    await login(values);
   });
 
   return (
-    <main className="flex flex-1 items-center duration-300 justify-center flex-grow bg-slate-100
-      dark:bg-bgPrimary-dark"
+    <main className="flex flex-1 items-center duration-300 justify-center flex-grow 
+      bg-slate-100 dark:bg-bgPrimary-dark"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }} 
         className="flex flex-col items-center content-stretch w-96 pt-4 shadow-sm 
-        min-h-[18rem] rounded-2xl bg-white dark:bg-bgPrimary-darkPrimary"
+          min-h-[18rem] rounded-2xl bg-white dark:bg-bgPrimary-darkPrimary
+        "
       >
         <h1 className="mt-2 text-2xl font-semibold dark:text-white">
           Inicia sesión
@@ -63,19 +58,17 @@ function MainLogin() {
             errors={errors.contra_Usuario}
           />
 
-          <button 
+          <Button
+            loading={loading}
             type="submit"
-            className={
-              `bg-green-600 text-white text-sm px-4 py-2 rounded-xl transition duration-200 
-              ease-in-out hover:bg-green-700 active:bg-green-900 focus:outline-none mb-4`
-            }
+            disabled={loading}
           >
             Iniciar Sesion
-          </button>
+          </Button>
         </form>
       </motion.div>
     </main>
   )
 }
 
-export default MainLogin;
+export default LoginPage;

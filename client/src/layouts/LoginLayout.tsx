@@ -1,13 +1,13 @@
-import { FooterLogin } from "../components/footer";
-import { NavbarLogin } from "../components/navbar";
-import { MainLogin } from "../components/main";
+import { LoginPage } from "../pages";
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 function LoginLayout() {
   return (
     <div className="flex flex-col min-h-screen">
-      <NavbarLogin />
-      <MainLogin />
-      <FooterLogin />
+      <Navbar />
+      <LoginPage />
+      <Footer />
     </div>
   )
 }

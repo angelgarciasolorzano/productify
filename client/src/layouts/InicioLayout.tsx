@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { FooterInicio } from "../components/footer";
-import { MainInicio } from "../components/main";
-import { NavbarInicio } from "../components/navbar";
+import { InicioPage } from "../pages";
 
+import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 import Aox from "aos";
 
 function InicioLayout() {
@@ -12,9 +12,9 @@ function InicioLayout() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <NavbarInicio />
-      <MainInicio />
-      <FooterInicio />
+      <Navbar />
+      <InicioPage />
+      <Footer />
     </div>
   )
 }

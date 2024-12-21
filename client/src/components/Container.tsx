@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
-import useThemeStore from "../store/themeStore";
+import themeStore from "../store/themeStore";
 
 interface Props {
   children: ReactNode;
 };
 
 function Container({ children }: Props) {
-  const theme = useThemeStore((state) => state.theme);
+  const theme = themeStore((state) => state.theme);
 
   return (
     <main className={`${theme && "dark"}`}>

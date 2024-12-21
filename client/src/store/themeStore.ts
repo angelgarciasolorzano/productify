@@ -1,15 +1,26 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware"
 
-interface ThemeState {
+interface ThemeStoreState {
   theme: boolean;
+};
+
+interface ThemeStoreActions {
   updateTheme: () => void
 };
 
-const useThemeStore = create<ThemeState>((set) => ({
-  theme: false,
-  updateTheme: () => set((state) => ({
-    theme: !state.theme
-  })),
-}));
+const themeStore = create<ThemeStoreState & ThemeStoreActions>()(
+  persist(
+    (set) => ({
+      theme: false,
+      updateTheme: () => set((state) => ({
+        theme: !state.theme
+      })),
+    }),
+    {
+      name: "theme-store",
+    }
+  )
+);
 
-export default useThemeStore;
+export default themeStore;

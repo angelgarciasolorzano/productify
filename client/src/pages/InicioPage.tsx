@@ -1,10 +1,10 @@
-import { fondoPrimary, fondoSecondary, perfilPrimary, perfilSecondary } from "../../assets";
+import { fondoPrimary, fondoSecondary, perfilPrimary, perfilSecondary } from "../assets";
 import { MdOutlineInventory, MdManageHistory } from "react-icons/md";
 import { TbReportSearch } from "react-icons/tb";
 
 import "aos/dist/aos.css";
 
-function MainInicio() {
+function InicioPage() {
   return (
     <main className="flex-1 bg-bgPrimary duration-300 dark:bg-bgPrimary-dark">
       <section 
@@ -278,4 +278,4 @@ function MainInicio() {
   )
 }
 
-export default MainInicio;
+export default InicioPage;
