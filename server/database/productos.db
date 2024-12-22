@@ -4,13 +4,13 @@ USE productos;
 
 CREATE TABLE Cargos (
   id_Cargo INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  nombre_Cargo NVARCHAR (30) NOT NULL
+  nombre_Cargo VARCHAR (30) NOT NULL
 );
 
 CREATE TABLE Telefonos (
   id_Telefono INT PRIMARY KEY AUTO_INCREMENT,
-  operador_Telefono NVARCHAR (30) NOT NULL CHECK (operador_Telefono IN ('tigo', 'claro')),
-  numero_Telefono NVARCHAR (8) NOT NULL UNIQUE CHECK (LENGTH(numero_Telefono) = 8),
+  operador_Telefono VARCHAR (30) NOT NULL CHECK (operador_Telefono IN ('tigo', 'claro')),
+  numero_Telefono VARCHAR (8) NOT NULL UNIQUE CHECK (LENGTH(numero_Telefono) = 8),
   id_Usuario_FK INT NOT NULL,
 
   FOREIGN KEY (id_Usuario_FK) REFERENCES Usuarios (id_Usuario)
@@ -18,15 +18,15 @@ CREATE TABLE Telefonos (
 
 CREATE TABLE Usuarios (
   id_Usuario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  nombre_Usuario NVARCHAR (30) NOT NULL,
-  apellidos_Usuario NVARCHAR (30) NOT NULL,
+  nombre_Usuario VARCHAR (30) NOT NULL,
+  apellidos_Usuario VARCHAR (30) NOT NULL,
   sexo_Usuario CHAR(1) NOT NULL CHECK (sexo_Usuario IN ('M', 'F')),
-  cedula_Usuario NVARCHAR (20) NOT NULL UNIQUE CHECK (LENGTH(cedula_Usuario) = 16),
-  departamento_Usuario NVARCHAR (30) DEFAULT 'sin ingresar',
-  direccion_Usuario NVARCHAR (100) DEFAULT 'sin ingresar',
-  correo_Usuario NVARCHAR (30) NOT NULL UNIQUE,
-  contra_Usuario NVARCHAR (100) NOT NULL CHECK (LENGTH(contra_Usuario) >= 8),
-  estado_Usuario NVARCHAR(10) DEFAULT 'activo' CHECK (estado_Usuario IN ('activo', 'inactivo')),
+  cedula_Usuario VARCHAR (20) NOT NULL UNIQUE CHECK (LENGTH(cedula_Usuario) = 16),
+  departamento_Usuario VARCHAR (30) DEFAULT 'sin ingresar',
+  direccion_Usuario VARCHAR (100) DEFAULT 'sin ingresar',
+  correo_Usuario VARCHAR (30) NOT NULL UNIQUE,
+  contra_Usuario VARCHAR (100) NOT NULL CHECK (LENGTH(contra_Usuario) >= 8),
+  estado_Usuario VARCHAR(10) DEFAULT 'activo' CHECK (estado_Usuario IN ('activo', 'inactivo')),
   id_Cargo_FK INT NOT NULL,
 
   FOREIGN KEY (id_Cargo_FK) REFERENCES Cargos (id_Cargo)
@@ -42,6 +42,10 @@ INSERT INTO Usuarios (
   'De envasa 3 cuadras arribas, 20 metros al sur', 'angel@gmail.com', '1234', 1
 );
 
-DESCRIBE Cargo;
+SELECT * FROM Cargos;
+SELECT * FROM Usuarios;
+SELECT * FROM Telefonos;
+
+DESCRIBE Cargos;
 DESCRIBE Telefono;
-DESCRIBE Usuario;
+DESCRIBE Usuarios;
