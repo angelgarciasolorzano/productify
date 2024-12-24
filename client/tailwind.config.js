@@ -17,7 +17,7 @@ export default {
           darkPrimary: '#374151'
         },
         borderPrimary: {
-          DEFAULT: '#e5e7eb',  
+          DEFAULT: '#d1d5db',  
           dark: '#374151',     
         },
       },

@@ -44,23 +44,28 @@ function InicioPage() {
           </div>
 
           <div 
-            className="w-full max-w-lg flex justify-center items-center aspect-[16/12]" 
+            className="w-full max-w-lg flex justify-center items-center" 
             data-aos="fade-left"
           >
-            <img src={fondoPrimary} className="object-cover rounded-3xl shadow-md" />
+            <img 
+              src={fondoPrimary} 
+              className="object-cover rounded-3xl shadow-md h-auto aspect-[16/12]" 
+            />
           </div>
         </div>
       </section>
 
       <section id="identidad" className="flex justify-center items-center pt-14 overflow-hidden">
-        <div className="flex items-center justify-center gap-8 p-12 max-md:flex-col 
-          max-md:text-center"
+        <div className="flex items-center justify-center gap-8 p-12 max-lg:flex-col 
+          max-lg:text-center"
         >
           <div 
-            className="w-full max-w-lg flex justify-center aspect-[16/12] max-md:max-w-md" 
+            className="w-full max-w-lg flex justify-center max-md:max-w-md" 
             data-aos="fade-up"
           >
-            <img src={fondoSecondary} className="rounded-3xl shadow-xl" />
+            <img 
+              src={fondoSecondary} 
+              className="object-cover rounded-3xl shadow-x h-auto aspect-[16/12]" />
           </div>
 
           <div className="w-full max-w-xl" data-aos="fade-down">
