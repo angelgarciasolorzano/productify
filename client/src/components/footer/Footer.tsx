@@ -11,7 +11,7 @@ function Footer() {
     return (
       <footer className="py-6 bg-slate-100 duration-300 dark:bg-bgPrimary-dark">
         <motion.div
-          className="container mx-auto flex justify-center items-center space-x-6"
+          className="container mx-auto flex justify-center items-center space-x-2"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -21,7 +21,8 @@ function Footer() {
               <motion.a
                 key={index}
                 href={item.href}
-                className="dark:text-white"
+                className="p-2 rounded-full hover:bg-bgPrimary-darkPrimary 
+                dark:text-white"
                 variants={itemVariants}
               >
                 <item.icon size={24} />

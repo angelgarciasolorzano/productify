@@ -34,7 +34,8 @@ function Navbar() {
           </span>
           
           <button 
-            className="rounded-full p-2 dark:bg-slate-50 dark:text-slate-700" 
+            className="rounded-full p-2 bg-gray-200 hover:bg-gray-300 
+            dark:bg-bgPrimary-darkPrimary dark:text-textPrimary" 
             onClick={updateTheme}
           >
             {theme ? <FaSun /> : <FaMoon />}
