@@ -1,27 +1,32 @@
 import { IconType } from "react-icons";
-import { TfiBarChart } from "react-icons/tfi";
-import { GiShoppingCart } from "react-icons/gi";
-import { CiShoppingTag, CiLocationArrow1, CiBank } from "react-icons/ci";
+import { CgProfile } from "react-icons/cg";
+import { TbLogout2 } from "react-icons/tb";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { TbTruckDelivery } from "react-icons/tb";
+import { 
+  AiOutlineShoppingCart, AiOutlineSwap, 
+  AiOutlineUsergroupAdd, AiOutlinePieChart 
+} from "react-icons/ai";
 
-interface LinkItem {
+interface ItemsLinks {
   text: string;
   link: string;
   icon: IconType;
 };
 
-interface ItemsContent {
+interface Items {
   title: string;
-  items: LinkItem[];
+  items: ItemsLinks[];
 };
 
-const itemsContent: ItemsContent[] = [
+export const itemsContent: Items[] = [
   {
     title: "Home",
     items: [
       {
         text: "Dashboard",
         link: "/Dashboard",
-        icon: TfiBarChart
+        icon: LuLayoutDashboard
       }
     ]
   },
@@ -29,32 +34,48 @@ const itemsContent: ItemsContent[] = [
     title: "App",
     items: [
       {
-        text: "Dashboard",
+        text: "Productos",
         link: "/Dashboard",
-        icon: TfiBarChart
+        icon: AiOutlineShoppingCart
       },
       {
-        text: "Dashboard",
+        text: "Proveedores",
         link: "/Dashboard",
-        icon: GiShoppingCart
+        icon: TbTruckDelivery
       },
       {
-        text: "Dashboard",
+        text: "Movimientos",
         link: "/Dashboard",
-        icon: CiShoppingTag
+        icon: AiOutlineSwap
       },
       {
-        text: "Dashboard",
+        text: "Usuarios",
         link: "/Dashboard",
-        icon: CiLocationArrow1
+        icon: AiOutlineUsergroupAdd
       },
       {
-        text: "Dashboard",
+        text: "Reportes",
         link: "/Dashboard",
-        icon: CiBank
+        icon: AiOutlinePieChart
       }
     ]
   }
 ];
 
-export default itemsContent;
+export const itemsFooter: Items[] = [
+  {
+    title: "Cuenta",
+    items: [
+      {
+        text: "Perfil",
+        link: "/perfil",
+        icon: CgProfile
+      },
+      {
+        text: "Cerrar sesion",
+        link: "/",
+        icon: TbLogout2
+      }
+    ]
+  }
+];
