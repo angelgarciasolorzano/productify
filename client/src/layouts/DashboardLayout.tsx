@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { HeaderInicio } from "../components/header";
+import Header from "../components/dashboard/Header";
 import Sidebar from "../components/dashboard/Sidebar";
 
 function DashboardLayout() {
@@ -7,7 +7,7 @@ function DashboardLayout() {
     <div className="flex h-screen">
       <Sidebar />
       <div className="flex flex-col flex-1">
-        <HeaderInicio />
+        <Header />
         <main className="flex-1 overflow-y-auto">
           <Outlet />
         </main>
