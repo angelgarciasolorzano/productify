@@ -4,10 +4,23 @@ import {
   FaFacebookF, FaTwitter, FaInstagram, FaGithub,  
   FaServicestack, FaPeopleGroup, FaWhatsapp, FaLinkedin 
 } from "react-icons/fa6";
+import { IconType } from "react-icons";
 
 //TODO Footer Inicio
 
-export const links = [
+interface ItemsLinks {
+  id: string;
+  icon: IconType;
+  text: string;
+  href: string;
+};
+
+type Links = Omit<ItemsLinks, "href">;
+type SocialLinks = Omit<ItemsLinks, "id">;
+type ContactoInfo = Pick<ItemsLinks, "icon" | "text">;
+type LinksLogin = Pick<ItemsLinks, "icon" | "href">;
+
+export const links: Links[] = [
   {
     id: "inicio",
     icon: FaHome,
@@ -30,7 +43,7 @@ export const links = [
   }
 ];
 
-export const socialLinks = [
+export const socialLinks: SocialLinks[] = [
   {
     href: "https://es-la.facebook.com/",
     icon: FaFacebookF,
@@ -53,7 +66,7 @@ export const socialLinks = [
   }
 ];
 
-export const contactoInfo = [
+export const contactoInfo: ContactoInfo[] = [
   { 
     icon: MdHome, 
     text: "123 Calle Principal" 
@@ -74,7 +87,7 @@ export const contactoInfo = [
 
 //TODO Footer Login
 
-export const linksLogin = [
+export const linksLogin: LinksLogin[] = [
   {
     href: "https://github.com/",
     icon: FaGithub
