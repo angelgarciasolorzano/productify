@@ -8,11 +8,19 @@ import {
   AiOutlineUsergroupAdd, AiOutlinePieChart 
 } from "react-icons/ai";
 
-interface ItemsLinks {
+interface SubItem {
   text: string;
   link: string;
   icon: IconType;
 };
+
+interface ItemsLinks {
+  text: string;
+  link: string;
+  icon: IconType;
+  subItems?: SubItem[];
+};
+
 
 interface Items {
   title: string;
@@ -36,7 +44,24 @@ export const itemsContent: Items[] = [
       {
         text: "Productos",
         link: "/Dashboard",
-        icon: AiOutlineShoppingCart
+        icon: AiOutlineShoppingCart,
+        subItems: [
+          {
+            text: "Listar",
+            link: "/dashboard",
+            icon: AiOutlineShoppingCart
+          },
+          {
+            text: "Listar",
+            link: "/dashboard",
+            icon: AiOutlineShoppingCart
+          },
+          {
+            text: "Listar",
+            link: "/dashboard",
+            icon: AiOutlineShoppingCart
+          }
+        ]
       },
       {
         text: "Proveedores",
@@ -51,7 +76,24 @@ export const itemsContent: Items[] = [
       {
         text: "Usuarios",
         link: "/Dashboard",
-        icon: AiOutlineUsergroupAdd
+        icon: AiOutlineUsergroupAdd,
+        subItems: [
+          {
+            text: "Listar",
+            link: "/dashboard",
+            icon: AiOutlineShoppingCart
+          },
+          {
+            text: "Listar",
+            link: "/dashboard",
+            icon: AiOutlineShoppingCart
+          },
+          {
+            text: "Listar",
+            link: "/dashboard",
+            icon: AiOutlineShoppingCart
+          }
+        ]
       },
       {
         text: "Reportes",
