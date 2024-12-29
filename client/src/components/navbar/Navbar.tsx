@@ -2,9 +2,10 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { Link } from "react-scroll";
 import { Link as LinkRouter, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  desIzquierdoVariants, desDerechoVariants, 
-  containerVariants, itemVariants 
+import {  
+  createContainerVariantes,
+  createItemVariantes,
+  desplazamientoVariantes
 } from "../../animation/motionVariants";
 
 import themeStore from "../../store/themeStore";
@@ -24,7 +25,7 @@ function Navbar() {
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={desIzquierdoVariants} 
+          variants={desplazamientoVariantes("Izquierda")} 
           className='flex items-center justify-between space-x-4'
         >
           <span className="text-green-600 text-xl font-bold dark:bg-text-titulo-gradient 
@@ -47,12 +48,12 @@ function Navbar() {
             <motion.ul 
               initial="hidden"
               animate="visible"
-              variants={containerVariants}
+              variants={createContainerVariantes({ staggerChildren: 0.2 })}
               className="md:flex hidden items-center gap-8"
             >
               {
                 linksInicio.map((link) => (
-                  <motion.li key={link.id} variants={itemVariants}>
+                  <motion.li key={link.id} variants={createItemVariantes("abajo")}>
                     <Link 
                       to={link.id} 
                       smooth={true}
@@ -78,7 +79,7 @@ function Navbar() {
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={desDerechoVariants}
+          variants={desplazamientoVariantes("Derecha")}
         >
 
           <LinkRouter 

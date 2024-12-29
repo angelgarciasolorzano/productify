@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { links, socialLinks, contactoInfo, linksLogin } from "./footerItems";
 import { Link } from "react-scroll";
-import { containerVariants, itemVariants } from "../../animation/motionVariants";
+import { createContainerVariantes, createItemVariantes } from "../../animation/motionVariants";
 import { motion } from "framer-motion";
 
 function Footer() {
@@ -12,7 +12,7 @@ function Footer() {
       <footer className="py-6 bg-slate-100 duration-300 dark:bg-bgPrimary-dark">
         <motion.div
           className="container mx-auto flex justify-center items-center space-x-2"
-          variants={containerVariants}
+          variants={createContainerVariantes({ staggerChildren: 0.2})}
           initial="hidden"
           animate="visible"
         >
@@ -23,7 +23,7 @@ function Footer() {
                 href={item.href}
                 className="p-2 rounded-full hover:bg-bgPrimary-darkPrimary 
                 dark:text-white"
-                variants={itemVariants}
+                variants={createItemVariantes("abajo")}
               >
                 <item.icon size={24} />
               </motion.a>

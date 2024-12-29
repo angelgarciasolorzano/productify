@@ -65,7 +65,8 @@ function InicioPage() {
           >
             <img 
               src={fondoSecondary} 
-              className="object-cover rounded-3xl shadow-x h-auto aspect-[16/12]" />
+              className="object-cover rounded-3xl shadow-x h-auto aspect-[16/12]" 
+            />
           </div>
 
           <div className="w-full max-w-xl" data-aos="fade-down">
