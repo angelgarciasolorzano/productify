@@ -21,8 +21,9 @@ function Footer() {
               <motion.a
                 key={index}
                 href={item.href}
-                className="p-2 rounded-full hover:bg-bgPrimary-darkPrimary 
-                dark:text-white"
+                className="p-2 rounded-full hover:bg-gray-200 
+                  dark:hover:bg-bgPrimary-darkPrimary dark:text-white
+                "
                 variants={createItemVariantes("abajo")}
               >
                 <item.icon size={24} />
