@@ -1,17 +1,20 @@
 import { fondoPrimary } from "../../assets/";
-import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import menuItems from "./itemsProfile";
-import ProfileDropdown from "./ProfileDropdown";
+import HeaderDropdown from "./HeaderDropdown";
 
-function Profile() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+enum DropdownType {
+  Profile = "Profile",
+  Notificacion = "Notificacion",
+};
 
-  const toggleDropdown = (): void => {
-    setIsDropdownOpen((prev) => !prev);
-  };
+interface Props {
+  isDropdownOpen: DropdownType | null;
+  toggleDropdown: () => void;
+};
 
+function Profile({ isDropdownOpen, toggleDropdown }: Props) {
   return (
     <div className="relative">
       <div className="flex items-center space-x-4">
@@ -36,7 +39,12 @@ function Profile() {
       </div>
 
       <AnimatePresence>
-        {isDropdownOpen && <ProfileDropdown items={menuItems} />}
+        {isDropdownOpen === DropdownType.Profile && 
+          <HeaderDropdown 
+            items={menuItems} 
+            tipo={DropdownType.Profile} 
+          />
+        }
       </AnimatePresence>
     </div>
   );
