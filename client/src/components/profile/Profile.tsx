@@ -1,13 +1,9 @@
-import { fondoPrimary } from "../../assets/";
+import { fondoPrimary } from "../../assets";
 import { AnimatePresence } from "framer-motion";
+import { DropdownOverlay } from "../dropdown";
+import { DropdownType } from "../dropdown/dropdownType";
 
-import menuItems from "./itemsProfile";
-import HeaderDropdown from "./HeaderDropdown";
-
-enum DropdownType {
-  Profile = "Profile",
-  Notificacion = "Notificacion",
-};
+import subItems from "./profileItems";
 
 interface Props {
   isDropdownOpen: DropdownType | null;
@@ -40,8 +36,8 @@ function Profile({ isDropdownOpen, toggleDropdown }: Props) {
 
       <AnimatePresence>
         {isDropdownOpen === DropdownType.Profile && 
-          <HeaderDropdown 
-            items={menuItems} 
+          <DropdownOverlay
+            items={subItems} 
             tipo={DropdownType.Profile} 
           />
         }

@@ -1,4 +1,4 @@
-function HeaderInicio() {
+function HeaderHome() {
   return (
     <header className="text-center bg-green-500">
       <h1 className="font-bold text-white text-sm m-2">
@@ -8,4 +8,4 @@ function HeaderInicio() {
   )
 }
 
-export default HeaderInicio;
+export default HeaderHome;

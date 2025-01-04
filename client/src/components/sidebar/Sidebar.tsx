@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { itemsContent, itemsFooter } from "./itemsSidebar";
 import { motion } from "framer-motion";
-import Dropdown from "./Dropdown";
-import { createItemVariantes, createContainerVariantes } from "../../animation/motionVariants";
+
+import { itemsContent, itemsFooter } from "./sidebarItems";
+import { DropdownExpandable } from "../dropdown";
+
+import { 
+  createItemVariantes, 
+  createContainerVariantes 
+} from "../../animation/motionVariants";
 
 function Sidebar() {
   const [open, setOpen] = useState<boolean>(true);
@@ -66,7 +71,7 @@ function Sidebar() {
                 {
                   item.items.map((linkItem, index) => (
                     linkItem.subItems ? (
-                      <Dropdown 
+                      <DropdownExpandable
                         key={index} 
                         title={linkItem.text} 
                         icon={linkItem.icon} 
@@ -81,7 +86,8 @@ function Sidebar() {
                           to={linkItem.link} 
                           className="flex items-center px-4 py-2 mt-2 text-sm
                             hover:bg-gray-200 rounded-lg duration-200
-                            dark:text-textPrimary dark:hover:bg-bgPrimary-darkPrimary
+                            dark:hover:bg-bgPrimary-darkPrimary
+                            dark:text-textPrimary
                           "
                         >
                           <linkItem.icon 
@@ -90,7 +96,7 @@ function Sidebar() {
                           />
                           
                           <span className={`whitespace-nowrap ${!open && "opacity-0 hidden"} 
-                            opacity-100 duration-200 dark:text-textPrimary`}
+                            opacity-100 duration-200`}
                           >
                             {linkItem.text}
                           </span>
@@ -140,7 +146,7 @@ function Sidebar() {
                         />
                         
                         <span className={`whitespace-nowrap ${!open && "opacity-0 hidden"} 
-                          opacity-100 duration-200 dark:text-textPrimary`}
+                          opacity-100 duration-200`}
                         >
                           {linkItem.text}
                         </span>

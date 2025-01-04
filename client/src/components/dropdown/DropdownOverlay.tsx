@@ -1,30 +1,19 @@
 import { motion } from "framer-motion";
-import { IconType } from "react-icons";
 import { Link } from "react-router-dom";
-import { dropdownVariantsProfile } from "../../animation/motionVariants";
 import { WiStars } from "react-icons/wi";
 import { useMemo } from "react";
 
+import { DropdownType, DropdownItems } from "./dropdownType";
+import { overlayVariants } from "./dropdownVariants";
+
 import generarColor from "../../helpers/generarColor";
-
-enum DropdownType {
-  Profile = "Profile",
-  Notificacion = "Notificacion",
-};
-
-interface Items {
-  text: string;
-  icon?: IconType;
-  link: string;
-};
 
 interface Props {
   tipo: DropdownType;
-  items: Items[];
+  items: DropdownItems[];
 };
 
-
-function HeaderDropdown({ tipo, items }: Props) {
+function DropdownOverlay({ tipo, items }: Props) {
   const visibleItems = tipo === DropdownType.Notificacion ? items.slice(0, 3) : items;
 
   const iconColors = useMemo(() => {
@@ -33,13 +22,13 @@ function HeaderDropdown({ tipo, items }: Props) {
 
   return (
     <motion.div
-      className={`${tipo != DropdownType.Notificacion ? "w-48" : "w-72"} absolute right-0 mt-2 
-        origin-top-right z-50
-      `}
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={dropdownVariantsProfile}
+      variants={overlayVariants}
+      className={`${tipo != DropdownType.Notificacion ? "w-48" : "w-72"} absolute 
+        right-0 mt-2 origin-top-right z-50
+      `}
     >
       <div className="relative">
         <div className="absolute -top-1 right-4 w-2 h-2 bg-white transform rotate-45 z-50 
@@ -67,11 +56,10 @@ function HeaderDropdown({ tipo, items }: Props) {
                       className="flex-shrink-0 text-gray-600 dark:text-gray-400" 
                     />                   
                   ) : (
-                    <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center 
-                      justify-center dark:bg-gray-600 dark:text-textPrimary"
-                    >
-                      <WiStars size={24} className={`${iconColors[index]}`} />
-                    </div>
+                    <WiStars 
+                      size={24} 
+                      className={`${iconColors[index]} flex-shrink-0`} 
+                    />
                   )}
 
                   <span className="ml-3 truncate">{item.text}</span>
@@ -101,4 +89,4 @@ function HeaderDropdown({ tipo, items }: Props) {
   );
 }
 
-export default HeaderDropdown;
+export default DropdownOverlay;

@@ -7,7 +7,7 @@ interface Items {
   link: string;
 };
 
-const menuItems: Items[] = [
+const subItems: Items[] = [
   {
     text: "Perfil",
     icon: LuUser,
@@ -20,4 +20,4 @@ const menuItems: Items[] = [
   },
 ];
 
-export default menuItems;
+export default subItems;

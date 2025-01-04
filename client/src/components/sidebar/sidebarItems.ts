@@ -11,7 +11,7 @@ import {
 interface SubItem {
   text: string;
   link: string;
-  icon: IconType;
+  icon?: IconType;
 };
 
 interface ItemsLinks {
@@ -20,7 +20,6 @@ interface ItemsLinks {
   icon: IconType;
   subItems?: SubItem[];
 };
-
 
 interface Items {
   title: string;
@@ -49,17 +48,14 @@ export const itemsContent: Items[] = [
           {
             text: "Listar",
             link: "/dashboard",
-            icon: AiOutlineShoppingCart
           },
           {
             text: "Listar",
             link: "/dashboard",
-            icon: AiOutlineShoppingCart
           },
           {
             text: "Listar",
             link: "/dashboard",
-            icon: AiOutlineShoppingCart
           }
         ]
       },
@@ -81,17 +77,14 @@ export const itemsContent: Items[] = [
           {
             text: "Listar",
             link: "/dashboard",
-            icon: AiOutlineShoppingCart
           },
           {
             text: "Listar",
             link: "/dashboard",
-            icon: AiOutlineShoppingCart
           },
           {
             text: "Listar",
             link: "/dashboard",
-            icon: AiOutlineShoppingCart
           }
         ]
       },

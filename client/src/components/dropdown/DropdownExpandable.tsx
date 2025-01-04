@@ -1,26 +1,30 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { IconType } from "react-icons";
-import { dropdownVariants } from "../../animation/motionVariants";
 import { HiOutlineChevronDown } from "react-icons/hi";
+import { FaCircle } from "react-icons/fa";
+import { useMemo } from "react";
 
-interface SubItems {
-  text: string;
-  link: string;
-  icon: IconType;
-};
+import { expandableVariants } from "./dropdownVariants";
+import { DropdownItems } from "./dropdownType";
+
+import generarColor from "../../helpers/generarColor";
 
 interface DropdownProps {
   title: string;
   icon: IconType;
-  subItems: SubItems[];
+  subItems: DropdownItems[];
   isOpen: boolean;
   toggle: () => void;
   isSidebarOpen: boolean;
 };
 
-function Dropdown(props: DropdownProps) {
+function DropdownExpandable(props: DropdownProps) {
   const { title, icon: Icon, subItems, isOpen, toggle, isSidebarOpen } = props; 
+
+  const iconColors = useMemo(() => {
+    return subItems.map(() => generarColor());
+  }, [subItems]);
 
   return (
     <div>
@@ -61,8 +65,8 @@ function Dropdown(props: DropdownProps) {
       <motion.ul
         initial={false}
         animate={isOpen ? "open" : "closed"}
-        variants={dropdownVariants}
-        className={`overflow-hidden pl-6 mt-2 ${
+        variants={expandableVariants}
+        className={`overflow-hidden pl-2 mt-2 ${
           !isSidebarOpen && "opacity-0 hidden"
         }`}
       >
@@ -75,12 +79,19 @@ function Dropdown(props: DropdownProps) {
                 dark:hover:bg-bgPrimary-darkPrimary
               "
             >
-              <subItem.icon
-                size={18}
-                className="flex-shrink-0 mr-2 text-gray-600 dark:text-gray-400"
-              />
+              {subItem.icon ? (
+                <subItem.icon
+                  size={18}
+                  className="flex-shrink-0 mr-2 text-gray-600 dark:text-gray-400"
+                />
+              ) : (
+                <FaCircle 
+                  size={7}
+                  className={`${iconColors[index]} flex-shrink-0`} 
+                />
+              )}
 
-              <span>{subItem.text}</span>
+              <span className="ml-2 truncate">{subItem.text}</span>
             </Link>
           </li>
         ))}
@@ -89,4 +100,4 @@ function Dropdown(props: DropdownProps) {
   );
 }
 
-export default Dropdown;
+export default DropdownExpandable;
