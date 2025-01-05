@@ -1,13 +1,17 @@
 import { LuMoon, LuSun } from "react-icons/lu";
-import { AnimatePresence, motion } from "framer-motion";
-import { IoNotificationsOutline } from "react-icons/io5";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { IoNotificationsOutline, IoCloseOutline } from "react-icons/io5";
+import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
+import { WiStars } from "react-icons/wi";
 
-import { DropdownOverlay, DropdownType } from "../dropdown";
+import { DropdownOverlay } from "../dropdown";
 import { containerDashboardVariants, itemDashboardVariants } from "./headerVariants";
+import { fondoPrimary } from "../../assets";
 
 import themeStore from "../../store/themeStore";
-import Profile from "../profile/Profile";
+import subItems from "../profile/profileItems";
+import generarColor from "../../helpers/generarColor";
 
 const notifications = [
   {  text: "You have a new message", link: "/messages/1" },
@@ -22,12 +26,17 @@ function HeaderDashboard() {
   const theme = themeStore((state) => state.theme);
   const updateTheme = themeStore((state) => state.updateTheme);
   
-  const [isDropdownOpen, setIsDropdownOpen] = useState<DropdownType | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<string | null>(null);
+  const notificacionesVisibles = notifications.slice(0, 3);
   const notificationCount = 9;
   
-  const toggleDropdown = (dropdown: DropdownType): void => {
+  const toggleDropdown = (dropdown: string): void => {
     setIsDropdownOpen((text) => (text === dropdown ? null : dropdown));
   };
+
+  const iconColors = useMemo(() => {
+    return notifications.map(() => generarColor());
+  }, []);
 
   return (
     <motion.header 
@@ -50,49 +59,157 @@ function HeaderDashboard() {
           variants={itemDashboardVariants} 
           className="flex items-center gap-4"
         >
-          <button 
-            onClick={() => toggleDropdown(DropdownType.Notificacion)}
-            className="relative p-2 rounded-full bg-gray-200 dark:text-textPrimary
-            cursor-pointer dark:bg-bgPrimary-darkPrimary"
-          >
-            <IoNotificationsOutline />
+          <div className="relative">
+            <button 
+              onClick={() => toggleDropdown("Notificacion")}
+              className="relative p-2 rounded-full bg-gray-200 hover:bg-gray-300 
+                dark:text-textPrimary dark:bg-bgPrimary-darkPrimary
+                dark:hover:bg-gray-600
+              "
+            >
+              <IoNotificationsOutline />
 
-            {notificationCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs 
-                font-bold rounded-full h-5 min-w-5 flex items-center justify-center"
-              >
-                {notificationCount > 99 ? '99+' : notificationCount}
-              </span>
-            )}
+              {notificationCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs 
+                  font-bold rounded-full h-5 min-w-5 flex items-center justify-center"
+                >
+                  {notificationCount > 99 ? '99+' : notificationCount}
+                </span>
+              )}
+            </button>
 
-            <AnimatePresence>
-              {isDropdownOpen === DropdownType.Notificacion && 
-                <DropdownOverlay
-                  items={notifications} 
-                  tipo={DropdownType.Notificacion}
+            <DropdownOverlay 
+              isOpen={isDropdownOpen === "Notificacion"}
+              className="w-72"
+            >
+              <div className="flex items-center justify-between px-2">
+                <span className="text-sm dark:text-textPrimary">
+                  Notificaciones
+                </span>
+
+                <IoCloseOutline 
+                  size={20} 
+                  onClick={() => toggleDropdown("Notificacion")}
+                  className="cursor-pointer text-gray-600 hover:text-textPrimary-dark 
+                    dark:hover:text-textPrimary dark:text-gray-400
+                  " 
                 />
-              }
-            </AnimatePresence>
-          </button>
+              </div>
+
+              <hr className="border-t m-2 border-borderPrimary
+                dark:border-borderPrimary-dark" 
+              />
+
+              {notificacionesVisibles.map((item, index) => (
+                <Link 
+                  key={index} 
+                  to={item.link}
+                  className="flex items-center px-4 py-2 text-sm hover:bg-gray-200 
+                    rounded-md dark:text-textPrimary dark:hover:bg-bgPrimary-darkPrimary
+                  "
+                >
+                  <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center 
+                    justify-center dark:bg-gray-600 dark:text-textPrimary"
+                  >
+                    <WiStars size={24} className={`${iconColors[index]} flex-shrink-0`} />
+                  </div>
+
+                  <span className="ml-3 truncate">{item.text}</span>
+                </Link>
+              ))}
+
+              <hr className="border-t m-2 border-borderPrimary
+                dark:border-borderPrimary-dark" 
+              />
+
+              <Link
+                to="/items"
+                className="block text-center rounded-md px-4 py-1 text-sm hover:bg-gray-200
+                dark:hover:bg-bgPrimary-darkPrimary dark:text-textPrimary"
+              >
+                Mostrar todas las notificaciones
+              </Link>
+            </DropdownOverlay>
+          </div>
 
           <button
-            className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 
-            dark:bg-bgPrimary-darkPrimary dark:text-textPrimary"
             onClick={updateTheme}
+            className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 
+              dark:bg-bgPrimary-darkPrimary dark:text-textPrimary
+              dark:hover:bg-gray-600
+            "
           >
             {theme ? <LuSun /> : <LuMoon />}
           </button>
         </motion.div>
 
         <motion.div variants={itemDashboardVariants}>
-          <Profile 
-            toggleDropdown={() => toggleDropdown(DropdownType.Profile)} 
-            isDropdownOpen={isDropdownOpen}
-          />
+          <div className="relative">
+            <div className="flex items-center space-x-4">
+              <div className="flex flex-col items-end">
+                <span className="text-sm dark:text-textPrimary">
+                  Angel Garcia
+                </span>
+
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  Administrador
+                </span>
+              </div>
+
+              <div className="flex-shrink-0 cursor-pointer">
+                <img
+                  src={fondoPrimary}
+                  alt="User"
+                  className="h-10 w-10 rounded-full"
+                  onClick={() => toggleDropdown("Profile")}
+                />
+              </div>
+            </div>
+
+            <DropdownOverlay 
+              isOpen={isDropdownOpen === "Profile"}
+              className="w-48"
+            >
+              <div className="flex items-center justify-between px-2">
+                <span className="text-sm dark:text-textPrimary">
+                  Cuenta
+                </span>
+
+                <IoCloseOutline 
+                  size={20} 
+                  onClick={() => toggleDropdown("Profile")}
+                  className="cursor-pointer text-gray-600 hover:text-textPrimary-dark 
+                    dark:hover:text-textPrimary dark:text-gray-400
+                  " 
+                />
+              </div>
+
+              <hr className="border-t m-2 border-borderPrimary
+                dark:border-borderPrimary-dark" 
+              />
+
+              {subItems.map((item, index) => (
+                <Link 
+                  key={index} 
+                  to={item.link}
+                  className="flex items-center px-4 py-2 text-sm hover:bg-gray-200 
+                    rounded-md dark:text-textPrimary dark:hover:bg-bgPrimary-darkPrimary
+                  "
+                >
+                  <item.icon 
+                    size={20} 
+                    className={`flex-shrink-0 text-gray-600 dark:text-gray-400`} 
+                  />
+
+                  <span className="ml-3 truncate">{item.text}</span>
+                </Link>
+              ))}
+            </DropdownOverlay>
+          </div>
         </motion.div>
       </div>
     </motion.header>
   )
-}
+};
 
 export default HeaderDashboard;
