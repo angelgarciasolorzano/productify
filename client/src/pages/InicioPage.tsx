@@ -1,12 +1,16 @@
-import { fondoPrimary, fondoSecondary, perfilPrimary, perfilSecondary } from "../assets";
 import { MdOutlineInventory, MdManageHistory } from "react-icons/md";
 import { TbReportSearch } from "react-icons/tb";
+
+import { 
+  fondoPrimary, fondoSecondary, 
+  perfilPrimary, perfilSecondary 
+} from "../assets";
 
 import "aos/dist/aos.css";
 
 function InicioPage() {
   return (
-    <main className="flex-1 bg-bgPrimary duration-300 dark:bg-bgPrimary-dark">
+    <main className="flex-1 duration-300 bg-white-50 dark:bg-dark-700">
       <section 
         id="inicio" 
         className="flex justify-center items-center overflow-hidden"
@@ -21,7 +25,7 @@ function InicioPage() {
               Bienvenido a Productify
             </h1>
 
-            <p className="mb-6 mt-6 text-lg dark:text-textPrimary">
+            <p className="mb-6 mt-6 text-lg dark:text-white">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore 
               tempore veniam blanditiis corrupti est esse laborum exercitationem placeat 
               voluptatibus rerum corporis obcaecati, ea velit odio facere maxime 
@@ -82,14 +86,14 @@ function InicioPage() {
               Conoce nuestra identidad
             </h1>
 
-            <p className="mb-4 mt-4 text-lg dark:text-textPrimary">
+            <p className="mb-4 mt-4 text-lg dark:text-white">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore 
               tempore veniam blanditiis corrupti est esse laborum exercitationem placeat 
               voluptatibus rerum corporis obcaecati, ea velit odio facere maxime 
               soluta quam reprehenderit?
             </p>
 
-            <p className="mb-4 mt-4 text-lg dark:text-textPrimary">
+            <p className="mb-4 mt-4 text-lg dark:text-white">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore 
               tempore veniam blanditiis corrupti est esse laborum exercitationem placeat 
               voluptatibus rerum corporis obcaecati, ea velit odio facere maxime 
@@ -115,7 +119,7 @@ function InicioPage() {
               Nuestros Servicios
             </h1>
 
-            <p className="mt-4 text-lg text-center dark:text-textPrimary">
+            <p className="mt-4 text-lg text-center dark:text-white">
               En Productify, ofrecemos una gama completa de soluciones diseñadas para 
               facilitar la gestión de inventario agrícola. Desde el seguimiento preciso 
               de productos hasta la automatización de procesos, nuestro objetivo es 
@@ -139,7 +143,7 @@ function InicioPage() {
                 Control de Inventario Preciso
               </span>
 
-              <p className="mt-4 dark:text-textPrimary">
+              <p className="mt-4 dark:text-white">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                 Maiores iste ipsa voluptas 
                 cupiditate asperiores eius eveniet sed molestias culpa quaerat.
@@ -158,7 +162,7 @@ function InicioPage() {
                 Gestión de Productos Eficiente
               </span>
 
-              <p className="mt-4 dark:text-textPrimary">
+              <p className="mt-4 dark:text-white">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores iste 
                 ipsa voluptas cupiditate asperiores eius eveniet sed 
                 molestias culpa quaerat.
@@ -177,7 +181,7 @@ function InicioPage() {
                 Reportes y Análisis de Stock
               </span>
 
-              <p className="mt-4 dark:text-textPrimary">
+              <p className="mt-4 dark:text-white">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores iste 
                 ipsa voluptas cupiditate asperiores eius eveniet sed molestias culpa 
                 quaerat.
@@ -196,7 +200,7 @@ function InicioPage() {
               Comunidad
             </h1>
 
-            <p className="mt-4 text-lg text-center dark:text-textPrimary">
+            <p className="mt-4 text-lg text-center dark:text-white">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore 
               tempore veniam blanditiis corrupti est esse laborum exercitationem placeat 
               voluptatibus rerum corporis obcaecati, ea velit odio facere maxime 
@@ -206,10 +210,10 @@ function InicioPage() {
 
           <div className="flex max-md:flex-col items-center gap-4">
             <div 
-              className="bg-white shadow-md rounded-2xl p-6 max-w-lg w-full mx-4
-                dark:bg-bgPrimary-darkPrimary
-              " 
               data-aos="zoom-out-right"
+              className="bg-white shadow-md rounded-2xl p-6 max-w-lg w-full mx-4
+                dark:bg-dark-800
+              " 
             >
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="flex-shrink-0">
@@ -234,7 +238,7 @@ function InicioPage() {
 
               <hr className="my-4 border-t border-gray-300" />
 
-              <p className="mt-4 text-sm dark:text-textPrimary">
+              <p className="mt-4 text-sm dark:text-white">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur 
                 explicabo ut dolores illum tempore repellat, necessitatibus sequi 
                 debitis ducimus aut natus minima soluta. Tenetur consequuntur amet 
@@ -243,10 +247,10 @@ function InicioPage() {
             </div>
 
             <div 
-              className="bg-white shadow-md rounded-2xl p-6 max-w-lg w-full mx-4
-                dark:bg-bgPrimary-darkPrimary
-              " 
               data-aos="zoom-out-left"
+              className="bg-white shadow-md rounded-2xl p-6 max-w-lg w-full mx-4
+                dark:bg-dark-800
+              " 
             >
               <div className="flex flex-col sm:flex-row gap-6">
                 <div className="flex-shrink-0">
@@ -270,7 +274,7 @@ function InicioPage() {
 
               <hr className="my-4 border-t border-gray-300" />
 
-              <p className="mt-4 text-sm dark:text-textPrimary">
+              <p className="mt-4 text-sm dark:text-white">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur 
                 explicabo ut dolores illum tempore repellat, necessitatibus sequi 
                 debitis ducimus aut natus minima soluta. Tenetur consequuntur amet 

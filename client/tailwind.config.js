@@ -9,18 +9,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        textPrimary: {
-          DEFAULT: '#ffffff', 
-          dark: '#000000',    
+        white: {
+          DEFAULT: '#ffffff',
+          50: '#f8fafc',
+          100: '#f1f5f9', //! Fondo en modo white
+          200: '#d1d5db' //! Border en modo white
         },
-        bgPrimary: {
-          DEFAULT: '#f8fafc',
-          dark: '#1f2937',
-          darkPrimary: '#374151'
-        },
-        borderPrimary: {
-          DEFAULT: '#d1d5db',  
-          dark: '#374151',     
+        dark: {
+          700: '#1f2937', //! Fondo en modo oscuro
+          800: '#374151' //! Border en modo oscuro
         },
       },
       backgroundImage: {

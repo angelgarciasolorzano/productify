@@ -18,8 +18,8 @@ function Navbar() {
 
   return (
     <nav className={`${location.pathname === "/" ? "fixed" : "sticky overflow-hidden"}
-      w-full border-b top-0 z-50 border-borderPrimary bg-white shadow-sm 
-      duration-300 dark:bg-bgPrimary-dark dark:border-borderPrimary-dark`}
+      w-full border-b top-0 z-50 border-white-200 bg-white shadow-sm 
+      duration-300 dark:bg-dark-700 dark:border-dark-800`}
     >
       <div className="flex items-center justify-between font-medium gap-2 px-6 py-2">
         <motion.div
@@ -36,7 +36,7 @@ function Navbar() {
           
           <button 
             className="rounded-full p-2 bg-gray-200 hover:bg-gray-300 
-            dark:bg-bgPrimary-darkPrimary dark:text-textPrimary" 
+            dark:bg-dark-800 dark:text-white" 
             onClick={updateTheme}
           >
             {theme ? <FaSun /> : <FaMoon />}
@@ -59,7 +59,7 @@ function Navbar() {
                       smooth={true}
                       duration={100}
                       className="relative group cursor-pointer hover:text-green-700 
-                      dark:text-textPrimary dark:hover:bg-text-gradient dark:bg-clip-text 
+                      dark:text-white dark:hover:bg-text-gradient dark:bg-clip-text 
                         dark:hover:text-transparent
                       "
                     >

@@ -31,8 +31,7 @@ function DropdownExpandable(props: DropdownProps) {
       <button
         onClick={toggle}
         className={`flex items-center justify-between w-full px-4 py-2 mt-2 text-sm 
-          hover:bg-gray-200 rounded-lg duration-200 dark:text-textPrimary 
-          dark:hover:bg-bgPrimary-darkPrimary
+          hover:bg-gray-200 rounded-lg duration-200 dark:text-white dark:hover:bg-dark-800
         `}
       >
         <div className="flex items-center">
@@ -75,8 +74,7 @@ function DropdownExpandable(props: DropdownProps) {
             <Link
               to={subItem.link}
               className="flex items-center px-4 py-2 mt-2 text-sm hover:bg-gray-200 
-                rounded-lg duration-200 dark:text-textPrimary 
-                dark:hover:bg-bgPrimary-darkPrimary
+                rounded-lg duration-200 dark:text-white dark:hover:bg-dark-800
               "
             >
               {subItem.icon ? (

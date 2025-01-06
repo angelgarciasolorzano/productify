@@ -31,8 +31,8 @@ function Sidebar() {
       animate="visible"
       variants={createContainerVariantes({staggerChildren: 0.3, when: "beforeChildren"})}
       className={`${open ? "w-56" : "w-20"} flex flex-col bg-white border-r 
-        border-borderPrimary duration-300 dark:bg-bgPrimary-dark 
-        dark:border-borderPrimary-dark
+        border-white-200 duration-300 dark:bg-dark-700 
+        dark:border-dark-800
       `}
     >
       <motion.div 
@@ -40,7 +40,7 @@ function Sidebar() {
         className="flex items-center justify-center m-4"
       >
         <RxHamburgerMenu 
-          className="flex-shrink-0 mr-2 cursor-pointer dark:text-textPrimary" 
+          className="flex-shrink-0 mr-2 cursor-pointer dark:text-white" 
           size={20} 
           onClick={toggleSidebar} 
         />
@@ -52,18 +52,16 @@ function Sidebar() {
         </h3>
       </motion.div>
 
-      <hr className="border-t ml-4 mr-4 border-borderPrimary 
-        dark:border-borderPrimary-dark" 
-      />
+      <hr className="border-t ml-4 mr-4 border-white-200 dark:border-dark-800" />
 
       <div className="flex-1 overflow-x-hidden overflow-y-auto px-4 py-2 mt-2
         scrollbar-thin dark:scrollbar-thumb-gray-500
-        dark:scrollbar-track-bgPrimary-dark"
+        dark:scrollbar-track-dark-700"
       >
         {
           itemsContent.map((item, index) => (
             <motion.div variants={createItemVariantes("arriba")} key={index} className="mb-4">
-              <h3 className="text-sm font-semibold dark:text-textPrimary">
+              <h3 className="text-sm font-semibold dark:text-white">
                 {item.title}
               </h3>
 
@@ -86,8 +84,7 @@ function Sidebar() {
                           to={linkItem.link} 
                           className="flex items-center px-4 py-2 mt-2 text-sm
                             hover:bg-gray-200 rounded-lg duration-200
-                            dark:hover:bg-bgPrimary-darkPrimary
-                            dark:text-textPrimary
+                            dark:hover:bg-dark-800 dark:text-white
                           "
                         >
                           <linkItem.icon 
@@ -108,24 +105,20 @@ function Sidebar() {
               </ul>
               
               {index < itemsContent.length - 1 && (
-                <hr className="border-t mt-2 border-borderPrimary 
-                  dark:border-borderPrimary-dark" 
-                />
+                <hr className="border-t mt-2 border-white-200 dark:border-dark-800" />
               )}
             </motion.div>
           ))
         }
       </div>
 
-      <hr className="border-t ml-4 mr-4 border-borderPrimary 
-        dark:border-borderPrimary-dark" 
-      />
+      <hr className="border-t ml-4 mr-4 border-white-200 dark:border-dark-800" />
 
       <div className="px-4 py-2 mt-2">
         {
           itemsFooter.map((item, index) => (
             <motion.div variants={createItemVariantes("arriba")} key={index}>
-              <h3 className="text-sm font-semibold dark:text-textPrimary">
+              <h3 className="text-sm font-semibold dark:text-white">
                 {item.title}
               </h3>
 
@@ -137,7 +130,7 @@ function Sidebar() {
                         to={linkItem.link} 
                         className="flex items-center px-4 py-2 mt-2 text-sm
                           hover:bg-gray-200 rounded-lg duration-200
-                          dark:text-textPrimary dark:hover:bg-bgPrimary-darkPrimary
+                          dark:text-white dark:hover:bg-dark-800
                         "
                       >
                         <linkItem.icon 

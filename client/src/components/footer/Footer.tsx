@@ -9,7 +9,7 @@ function Footer() {
 
   if (location.pathname === "/login") {
     return (
-      <footer className="py-6 bg-slate-100 duration-300 dark:bg-bgPrimary-dark">
+      <footer className="py-6 bg-white-100 duration-300 dark:bg-dark-700">
         <motion.div
           className="container mx-auto flex justify-center items-center space-x-2"
           variants={createContainerVariantes({ staggerChildren: 0.2})}
@@ -22,7 +22,7 @@ function Footer() {
                 key={index}
                 href={item.href}
                 className="p-2 rounded-full hover:bg-gray-200 
-                  dark:hover:bg-bgPrimary-darkPrimary dark:text-white
+                  dark:hover:bg-dark-800 dark:text-white
                 "
                 variants={createItemVariantes("abajo")}
               >

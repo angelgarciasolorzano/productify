@@ -19,15 +19,13 @@ function LoginPage() {
   });
 
   return (
-    <main className="flex flex-1 items-center duration-300 justify-center flex-grow 
-      bg-slate-100 dark:bg-bgPrimary-dark"
-    >
+    <main className="flex flex-1 items-center duration-300 justify-center flex-grow">
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }} 
         className="flex flex-col items-center content-stretch w-96 pt-4 shadow-sm 
-          min-h-[18rem] rounded-2xl bg-white dark:bg-bgPrimary-darkPrimary
+          min-h-[18rem] rounded-2xl bg-white dark:bg-dark-800
         "
       >
         <h1 className="mt-2 text-2xl font-semibold dark:text-white">

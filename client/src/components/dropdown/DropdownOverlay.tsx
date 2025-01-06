@@ -22,8 +22,8 @@ function DropdownOverlay({ children, isOpen, className }: Props) {
         >
           <div className="relative">
             <motion.div className="relative mt-2 bg-white rounded-md shadow-lg border 
-              border-borderPrimary overflow-hidden z-10 p-2 dark:bg-slate-800
-              dark:border-borderPrimary-dark"
+              border-white-200 overflow-hidden z-10 p-2 dark:bg-slate-800
+              dark:border-dark-800"
             >
               <div className="relative z-20">
                 {children}

@@ -44,12 +44,11 @@ function HeaderDashboard() {
       animate="visible"
       variants={containerDashboardVariants}
       className="flex justify-between items-center py-2 px-4 shadow-sm border-b bg-white 
-        border-borderPrimary duration-300 dark:bg-bgPrimary-dark 
-        dark:border-borderPrimary-dark
+        border-white-200 duration-300 dark:bg-dark-700 dark:border-dark-800
       "
     >
       <motion.div variants={itemDashboardVariants}>
-        <h1 className="text-2xl font-semibold text-gray-900 dark:text-textPrimary">
+        <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
           Dashboard
         </h1>
       </motion.div>
@@ -63,8 +62,7 @@ function HeaderDashboard() {
             <button 
               onClick={() => toggleDropdown("Notificacion")}
               className="relative p-2 rounded-full bg-gray-200 hover:bg-gray-300 
-                dark:text-textPrimary dark:bg-bgPrimary-darkPrimary
-                dark:hover:bg-gray-600
+                dark:text-white dark:bg-dark-800 dark:hover:bg-gray-600
               "
             >
               <IoNotificationsOutline />
@@ -82,34 +80,30 @@ function HeaderDashboard() {
               isOpen={isDropdownOpen === "Notificacion"}
               className="w-72"
             >
-              <div className="flex items-center justify-between px-2">
-                <span className="text-sm dark:text-textPrimary">
+              <div className="flex items-center justify-between px-2 mb-2">
+                <span className="text-sm dark:text-white">
                   Notificaciones
                 </span>
 
                 <IoCloseOutline 
                   size={20} 
                   onClick={() => toggleDropdown("Notificacion")}
-                  className="cursor-pointer text-gray-600 hover:text-textPrimary-dark 
-                    dark:hover:text-textPrimary dark:text-gray-400
+                  className="cursor-pointer text-gray-600 hover:text-black 
+                    dark:hover:text-white dark:text-gray-400
                   " 
                 />
               </div>
-
-              <hr className="border-t m-2 border-borderPrimary
-                dark:border-borderPrimary-dark" 
-              />
 
               {notificacionesVisibles.map((item, index) => (
                 <Link 
                   key={index} 
                   to={item.link}
                   className="flex items-center px-4 py-2 text-sm hover:bg-gray-200 
-                    rounded-md dark:text-textPrimary dark:hover:bg-bgPrimary-darkPrimary
+                    rounded-md dark:text-white dark:hover:bg-dark-800
                   "
                 >
                   <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center 
-                    justify-center dark:bg-gray-600 dark:text-textPrimary"
+                    justify-center dark:bg-gray-600 dark:text-white"
                   >
                     <WiStars size={24} className={`${iconColors[index]} flex-shrink-0`} />
                   </div>
@@ -118,14 +112,12 @@ function HeaderDashboard() {
                 </Link>
               ))}
 
-              <hr className="border-t m-2 border-borderPrimary
-                dark:border-borderPrimary-dark" 
-              />
+              <hr className="border-t m-2 border-white-200 dark:border-dark-800" />
 
               <Link
                 to="/items"
                 className="block text-center rounded-md px-4 py-1 text-sm hover:bg-gray-200
-                dark:hover:bg-bgPrimary-darkPrimary dark:text-textPrimary"
+                dark:hover:bg-dark-800 dark:text-white"
               >
                 Mostrar todas las notificaciones
               </Link>
@@ -135,8 +127,7 @@ function HeaderDashboard() {
           <button
             onClick={updateTheme}
             className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 
-              dark:bg-bgPrimary-darkPrimary dark:text-textPrimary
-              dark:hover:bg-gray-600
+              dark:bg-dark-800 dark:text-white dark:hover:bg-gray-600
             "
           >
             {theme ? <LuSun /> : <LuMoon />}
@@ -147,7 +138,7 @@ function HeaderDashboard() {
           <div className="relative">
             <div className="flex items-center space-x-4">
               <div className="flex flex-col items-end">
-                <span className="text-sm dark:text-textPrimary">
+                <span className="text-sm dark:text-white">
                   Angel Garcia
                 </span>
 
@@ -170,30 +161,26 @@ function HeaderDashboard() {
               isOpen={isDropdownOpen === "Profile"}
               className="w-48"
             >
-              <div className="flex items-center justify-between px-2">
-                <span className="text-sm dark:text-textPrimary">
+              <div className="flex items-center justify-between px-2 mb-2">
+                <span className="text-sm dark:text-white">
                   Cuenta
                 </span>
 
                 <IoCloseOutline 
                   size={20} 
                   onClick={() => toggleDropdown("Profile")}
-                  className="cursor-pointer text-gray-600 hover:text-textPrimary-dark 
-                    dark:hover:text-textPrimary dark:text-gray-400
+                  className="cursor-pointer text-gray-600 hover:text-black
+                    dark:hover:text-white dark:text-gray-400
                   " 
                 />
               </div>
-
-              <hr className="border-t m-2 border-borderPrimary
-                dark:border-borderPrimary-dark" 
-              />
 
               {subItems.map((item, index) => (
                 <Link 
                   key={index} 
                   to={item.link}
                   className="flex items-center px-4 py-2 text-sm hover:bg-gray-200 
-                    rounded-md dark:text-textPrimary dark:hover:bg-bgPrimary-darkPrimary
+                    rounded-md dark:text-white dark:hover:bg-dark-800
                   "
                 >
                   <item.icon 
