@@ -1,6 +1,6 @@
 import { Variants } from "framer-motion";
 
-export const expandableVariants: Variants = {
+export const dropdownExpandableVariants: Variants = {
   open: {
     height: "auto", 
     opacity: 1, 
@@ -13,7 +13,7 @@ export const expandableVariants: Variants = {
   },
 };
 
-export const overlayVariants: Variants = {
+export const dropdownOverlayVariants: Variants = {
   hidden: {
     opacity: 0,
     y: -10,

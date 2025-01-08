@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { WiStars } from "react-icons/wi";
 
 import { DropdownOverlay } from "../dropdown";
-import { containerDashboardVariants, itemDashboardVariants } from "./headerVariants";
+import { headerDashboardContainerVariants, headerItemDashboardVariants } from "./headerVariants";
 import { fondoPrimary } from "../../assets";
 
 import themeStore from "../../store/themeStore";
@@ -42,12 +42,12 @@ function HeaderDashboard() {
     <motion.header 
       initial="hidden"
       animate="visible"
-      variants={containerDashboardVariants}
+      variants={headerDashboardContainerVariants}
       className="flex justify-between items-center py-2 px-4 shadow-sm border-b bg-white 
         border-white-200 duration-300 dark:bg-dark-700 dark:border-dark-800
       "
     >
-      <motion.div variants={itemDashboardVariants}>
+      <motion.div variants={headerItemDashboardVariants}>
         <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">
           Dashboard
         </h1>
@@ -55,7 +55,7 @@ function HeaderDashboard() {
     
       <div className="flex items-center gap-10">
         <motion.div 
-          variants={itemDashboardVariants} 
+          variants={headerItemDashboardVariants} 
           className="flex items-center gap-4"
         >
           <div className="relative">
@@ -134,7 +134,7 @@ function HeaderDashboard() {
           </button>
         </motion.div>
 
-        <motion.div variants={itemDashboardVariants}>
+        <motion.div variants={headerItemDashboardVariants}>
           <div className="relative">
             <div className="flex items-center space-x-4">
               <div className="flex flex-col items-end">

@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
-import { links, socialLinks, contactoInfo, linksLogin } from "./footerItems";
 import { Link } from "react-scroll";
-import { createContainerVariantes, createItemVariantes } from "../../animation/motionVariants";
 import { motion } from "framer-motion";
+
+import { links, socialLinks, contactoInfo, linksLogin } from "./footerItems";
+import { footerContainerVariants, footerItemsVariants } from "./footerVariants";
 
 function Footer() {
   const location = useLocation();
@@ -12,7 +13,7 @@ function Footer() {
       <footer className="py-6 bg-white-100 duration-300 dark:bg-dark-700">
         <motion.div
           className="container mx-auto flex justify-center items-center space-x-2"
-          variants={createContainerVariantes({ staggerChildren: 0.2})}
+          variants={footerContainerVariants}
           initial="hidden"
           animate="visible"
         >
@@ -24,7 +25,7 @@ function Footer() {
                 className="p-2 rounded-full hover:bg-gray-200 
                   dark:hover:bg-dark-800 dark:text-white
                 "
-                variants={createItemVariantes("abajo")}
+                variants={footerItemsVariants}
               >
                 <item.icon size={24} />
               </motion.a>

@@ -2,14 +2,11 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { Link } from "react-scroll";
 import { Link as LinkRouter, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import {  
-  createContainerVariantes,
-  createItemVariantes,
-  desplazamientoVariantes
-} from "../../animation/motionVariants";
+
+import { navbarContainerVariants, navbarItemVariants, navbarVariants } from "./navbarVariants";
+import { linksInicio } from "./navbarItems";
 
 import themeStore from "../../store/themeStore";
-import { linksInicio } from "./navbarItems";
 
 function Navbar() {
   const theme = themeStore((state) => state.theme);
@@ -25,7 +22,7 @@ function Navbar() {
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={desplazamientoVariantes("Izquierda")} 
+          variants={navbarVariants("Izquierda")} 
           className='flex items-center justify-between space-x-4'
         >
           <span className="text-green-600 text-xl font-bold dark:bg-text-titulo-gradient 
@@ -48,12 +45,12 @@ function Navbar() {
             <motion.ul 
               initial="hidden"
               animate="visible"
-              variants={createContainerVariantes({ staggerChildren: 0.2 })}
+              variants={navbarContainerVariants}
               className="md:flex hidden items-center gap-8"
             >
               {
                 linksInicio.map((link) => (
-                  <motion.li key={link.id} variants={createItemVariantes("abajo")}>
+                  <motion.li key={link.id} variants={navbarItemVariants}>
                     <Link 
                       to={link.id} 
                       smooth={true}
@@ -79,7 +76,7 @@ function Navbar() {
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={desplazamientoVariantes("Derecha")}
+          variants={navbarVariants("Derecha")}
         >
 
           <LinkRouter 

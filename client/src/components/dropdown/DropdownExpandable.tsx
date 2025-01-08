@@ -5,7 +5,7 @@ import { HiOutlineChevronDown } from "react-icons/hi";
 import { FaCircle } from "react-icons/fa";
 import { useMemo } from "react";
 
-import { expandableVariants } from "./dropdownVariants";
+import { dropdownExpandableVariants } from "./dropdownVariants";
 import { DropdownItems } from "./dropdownType";
 
 import generarColor from "../../helpers/generarColor";
@@ -64,7 +64,7 @@ function DropdownExpandable(props: DropdownProps) {
       <motion.ul
         initial={false}
         animate={isOpen ? "open" : "closed"}
-        variants={expandableVariants}
+        variants={dropdownExpandableVariants}
         className={`overflow-hidden pl-2 mt-2 ${
           !isSidebarOpen && "opacity-0 hidden"
         }`}

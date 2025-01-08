@@ -3,13 +3,9 @@ import { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { motion } from "framer-motion";
 
+import { sidebarContainerVariants, sidebarItemVariants } from "./sidebarVariants";
 import { itemsContent, itemsFooter } from "./sidebarItems";
 import { DropdownExpandable } from "../dropdown";
-
-import { 
-  createItemVariantes, 
-  createContainerVariantes 
-} from "../../animation/motionVariants";
 
 function Sidebar() {
   const [open, setOpen] = useState<boolean>(true);
@@ -29,14 +25,14 @@ function Sidebar() {
     <motion.aside 
       initial="hidden"
       animate="visible"
-      variants={createContainerVariantes({staggerChildren: 0.3, when: "beforeChildren"})}
+      variants={sidebarContainerVariants}
       className={`${open ? "w-56" : "w-20"} flex flex-col bg-white border-r 
         border-white-200 duration-300 dark:bg-dark-700 
         dark:border-dark-800
       `}
     >
       <motion.div 
-        variants={createItemVariantes("arriba")} 
+        variants={sidebarItemVariants} 
         className="flex items-center justify-center m-4"
       >
         <RxHamburgerMenu 
@@ -60,7 +56,11 @@ function Sidebar() {
       >
         {
           itemsContent.map((item, index) => (
-            <motion.div variants={createItemVariantes("arriba")} key={index} className="mb-4">
+            <motion.div 
+              key={index}
+              variants={sidebarItemVariants}  
+              className="mb-4"
+            >
               <h3 className="text-sm font-semibold dark:text-white">
                 {item.title}
               </h3>
@@ -117,7 +117,10 @@ function Sidebar() {
       <div className="px-4 py-2 mt-2">
         {
           itemsFooter.map((item, index) => (
-            <motion.div variants={createItemVariantes("arriba")} key={index}>
+            <motion.div 
+              key={index} 
+              variants={sidebarItemVariants}
+            >
               <h3 className="text-sm font-semibold dark:text-white">
                 {item.title}
               </h3>

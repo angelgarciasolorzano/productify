@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ReactNode } from "react";
 
-import { overlayVariants } from "./dropdownVariants";
+import { dropdownOverlayVariants } from "./dropdownVariants";
 
 interface Props {
   children: ReactNode;
@@ -17,7 +17,7 @@ function DropdownOverlay({ children, isOpen, className }: Props) {
           initial="hidden"
           animate="visible"
           exit="hidden"
-          variants={overlayVariants}
+          variants={dropdownOverlayVariants}
           className={`${ className } absolute mt-2 right-0 origin-top-right z-50`}
         >
           <div className="relative">
