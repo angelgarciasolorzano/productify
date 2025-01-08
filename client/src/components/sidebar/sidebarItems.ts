@@ -8,7 +8,7 @@ import {
   AiOutlineUsergroupAdd, AiOutlinePieChart 
 } from "react-icons/ai";
 
-interface SubItem {
+interface SubItems {
   text: string;
   link: string;
   icon?: IconType;
@@ -18,7 +18,7 @@ interface ItemsLinks {
   text: string;
   link: string;
   icon: IconType;
-  subItems?: SubItem[];
+  subItems?: SubItems[];
 };
 
 interface Items {

@@ -1,8 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware"
+import { AxiosError } from "axios";
+
 import { loginUsuario } from "../api/authApi";
 import { LoginTypeSchema } from "../schemas/authSchema";
-import { AxiosError } from "axios";
 
 import toast from "react-hot-toast";
 import Usuario from "../types/usuarioType";

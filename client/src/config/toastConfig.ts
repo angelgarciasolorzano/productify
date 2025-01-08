@@ -1,11 +1,11 @@
 import { ToastPosition } from "react-hot-toast";
 
-interface ToastConfigParams {
+interface Props {
   theme: boolean;
   position: ToastPosition;
 };
 
-const toastConfig = ({ theme, position }: ToastConfigParams) => ({
+const toastConfig = ({ theme, position }: Props) => ({
   position,
   reverseOrder: true,
   toastOptions: {

@@ -1,8 +1,9 @@
 import { HiOutlineMail, HiLockClosed } from "react-icons/hi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginTypeSchema, loginFormSchema } from "../schemas/authSchema";
 import { motion } from "framer-motion";
+
+import { LoginTypeSchema, loginFormSchema } from "../schemas/authSchema";
 import { Input } from "../components/form";
 
 import authStore from "../store/authStore";
