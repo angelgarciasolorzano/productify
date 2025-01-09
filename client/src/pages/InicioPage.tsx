@@ -13,12 +13,10 @@ function InicioPage() {
     <main className="flex-1 duration-300 bg-white-50 dark:bg-dark-700">
       <section 
         id="inicio" 
-        className="flex justify-center items-center overflow-hidden"
+        className="overflow-hidden max-w-screen-xl m-auto pt-10 pb-10 pl-4 pr-4"
       >
-        <div className="flex items-center justify-center gap-8 p-12 m-10 max-lg:flex-col 
-          max-lg:text-center"
-        >
-          <div className="w-full max-w-xl" data-aos="fade-right">
+        <div className="grid grid-cols-2 items-center p-6 gap-8 md:p-12 lg:m-10 max-lg:grid-cols-1">
+          <div className="max-lg:text-center" data-aos="fade-right">
             <h1 className="text-5xl font-bold mb-2 text-yellow-500 dark:bg-text-titulo-gradient
               dark:bg-clip-text dark:text-transparent"
             >
@@ -47,33 +45,28 @@ function InicioPage() {
             </button>
           </div>
 
-          <div 
-            className="w-full max-w-lg flex justify-center items-center" 
-            data-aos="fade-left"
-          >
+          <div data-aos="fade-left">
             <img 
               src={fondoPrimary} 
-              className="object-cover rounded-3xl shadow-md h-auto aspect-[16/12]" 
+              className="flex w-full m-auto max-w-screen-sm object-cover rounded-3xl shadow-md" 
             />
           </div>
         </div>
       </section>
 
-      <section id="identidad" className="flex justify-center items-center pt-14 overflow-hidden">
-        <div className="flex items-center justify-center gap-8 p-12 max-lg:flex-col 
-          max-lg:text-center"
-        >
-          <div 
-            className="w-full max-w-lg flex justify-center max-md:max-w-md" 
-            data-aos="fade-up"
-          >
+      <section 
+        id="identidad" 
+        className="overflow-hidden max-w-screen-xl m-auto pt-10 pb-10 pl-4 pr-4"
+      >
+        <div className="grid grid-cols-2 items-center p-6 gap-8 md:p-12 lg:m-5 max-lg:grid-cols-1">
+          <div data-aos="fade-up">
             <img 
               src={fondoSecondary} 
-              className="object-cover rounded-3xl shadow-x h-auto aspect-[16/12]" 
+              className="flex w-full m-auto max-w-screen-sm object-cover rounded-3xl shadow-md" 
             />
           </div>
 
-          <div className="w-full max-w-xl" data-aos="fade-down">
+          <div className="max-lg:text-center" data-aos="fade-down">
             <span className="text-sm text-orange-500 font-medium dark:bg-text-gradient
               dark:bg-clip-text dark:text-transparent"
             >
@@ -110,8 +103,11 @@ function InicioPage() {
         </div>
       </section>
 
-      <section id="servicios" className="flex justify-center items-center pt-14 overflow-hidden">
-        <div className="flex flex-col items-center p-8 gap-4">
+      <section 
+        id="servicios" 
+        className="overflow-hidden max-w-screen-xl m-auto pt-10 pb-10 pl-4 pr-4"
+      >
+        <div className="flex flex-col items-center p-8 gap-4 lg:m-5">
           <div className="w-full max-w-4xl" data-aos="flip-up">
             <h1 className="text-5xl text-center text-yellow-500 font-bold 
               dark:bg-text-titulo-gradient dark:bg-clip-text dark:text-transparent"
@@ -191,8 +187,11 @@ function InicioPage() {
         </div>
       </section>
 
-      <section id="comunidad" className="flex justify-center items-center pt-14 overflow-hidden">
-        <div className="flex flex-col items-center p-8 gap-14 mb-8">
+      <section 
+        id="comunidad" 
+        className="overflow-hidden max-w-screen-xl m-auto pt-10 pb-10 pl-4 pr-4"
+      >
+        <div className="flex flex-col items-center p-8 gap-14 mb-8 lg:m-5">
           <div className="w-full max-w-4xl" data-aos="zoom-out">
             <h1 className="text-5xl text-center text-yellow-500 font-bold 
               dark:bg-text-titulo-gradient dark:bg-clip-text dark:text-transparent"
