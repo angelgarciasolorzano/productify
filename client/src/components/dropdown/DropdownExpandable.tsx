@@ -27,7 +27,7 @@ function DropdownExpandable(props: DropdownProps) {
   }, [subItems]);
 
   return (
-    <div>
+    <>
       <button
         onClick={toggle}
         className={`flex items-center justify-between w-full px-4 py-2 mt-2 text-sm 
@@ -61,7 +61,7 @@ function DropdownExpandable(props: DropdownProps) {
         </motion.div>
       </button>
 
-      <motion.ul
+      <motion.li
         initial={false}
         animate={isOpen ? "open" : "closed"}
         variants={dropdownExpandableVariants}
@@ -70,31 +70,30 @@ function DropdownExpandable(props: DropdownProps) {
         }`}
       >
         {subItems.map((subItem, index) => (
-          <li key={index}>
-            <Link
-              to={subItem.link}
-              className="flex items-center px-4 py-2 mt-2 text-sm hover:bg-gray-200 
-                rounded-lg duration-200 dark:text-white dark:hover:bg-dark-800
-              "
-            >
-              {subItem.icon ? (
-                <subItem.icon
-                  size={18}
-                  className="flex-shrink-0 mr-2 text-gray-600 dark:text-gray-400"
-                />
-              ) : (
-                <FaCircle 
-                  size={7}
-                  className={`${iconColors[index]} flex-shrink-0`} 
-                />
-              )}
+          <Link
+            key={index}
+            to={subItem.link}
+            className="flex items-center px-4 py-2 mt-2 text-sm hover:bg-gray-200 
+              rounded-lg duration-200 dark:text-white dark:hover:bg-dark-800
+            "
+          >
+            {subItem.icon ? (
+              <subItem.icon
+                size={18}
+                className="flex-shrink-0 mr-2 text-gray-600 dark:text-gray-400"
+              />
+            ) : (
+              <FaCircle 
+                size={7}
+                className={`${iconColors[index]} flex-shrink-0`} 
+              />
+            )}
 
-              <span className="ml-2 truncate">{subItem.text}</span>
-            </Link>
-          </li>
+            <span className="ml-2 truncate">{subItem.text}</span>
+          </Link>
         ))}
-      </motion.ul>
-    </div>
+      </motion.li>
+    </>
   );
 }
 
