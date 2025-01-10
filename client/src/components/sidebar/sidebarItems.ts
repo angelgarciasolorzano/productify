@@ -32,7 +32,7 @@ export const itemsContent: Items[] = [
     items: [
       {
         text: "Dashboard",
-        link: "/Dashboard",
+        link: "",
         icon: LuLayoutDashboard
       }
     ]
@@ -46,16 +46,16 @@ export const itemsContent: Items[] = [
         icon: AiOutlineShoppingCart,
         subItems: [
           {
-            text: "Listar",
-            link: "/dashboard",
+            text: "Registrar producto",
+            link: "registrar-producto",
           },
           {
-            text: "Listar",
-            link: "/dashboard",
+            text: "Gestionar categorias",
+            link: "gestionar-categorias",
           },
           {
-            text: "Listar",
-            link: "/dashboard",
+            text: "Inventario",
+            link: "inventario",
           }
         ]
       },

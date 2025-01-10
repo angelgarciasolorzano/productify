@@ -1,13 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { InicioLayout, LoginLayout }  from "./layouts";
 import { Toaster } from "react-hot-toast";
-import { toastConfig } from "./config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { toastConfig } from "./config";
+
+import { InicioLayout, LoginLayout }  from "./layouts";
+
+import { 
+  ProductoRegistrar, ProductoGestionarCategorias, 
+  ProductoInventario 
+} from "./pages/productos";
 
 import themeStore from "./store/themeStore";
 import Container from "./components/Container";
 import DashboardLayout from "./layouts/DashboardLayout";
-import { InicioPage } from "./pages";
+import HomePage from "./pages/HomePage";
 
 const queryClient = new QueryClient();
 
@@ -23,8 +30,10 @@ function App() {
             <Route path="/login" element={<LoginLayout />} />
 
             <Route path="/dashboard/*" element={<DashboardLayout />}>
-              <Route path="pages" element={<InicioLayout />} />
-              <Route path="login" element={<InicioPage />} />
+              <Route index element={<HomePage />} />
+              <Route path="registrar-producto" element={<ProductoRegistrar />} />
+              <Route path="gestionar-categorias" element={<ProductoGestionarCategorias />} />
+              <Route path="inventario" element={<ProductoInventario />} />
             </Route>
           </Routes>
 
