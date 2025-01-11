@@ -14,7 +14,7 @@ function Input<T extends FieldValues>(props: Props<T>) {
   const { register, inputName, labelName, icon: Icon, errors, ...inputProps } = props;
 
   return (
-    <div className="w-full">
+    <div className="block w-full">
       <label
         htmlFor={inputName}
         className="block text-sm font-semibold mb-2 text-gray-800 dark:text-white"
@@ -22,32 +22,29 @@ function Input<T extends FieldValues>(props: Props<T>) {
         {labelName}
       </label>
 
-      <div className="relative">
+      <div className={`flex items-center w-full text-gray-700 bg-white border border-gray-400 
+        rounded-md shadow-sm overflow-hidden dark:text-gray-200 dark:bg-gray-700
+        ${errors
+          ? `border-red-500 focus-within:ring-1 focus-within:ring-red-500`
+          : `focus-within:border-blue-400 focus-within:ring-1 focus-within:ring-blue-400
+            dark:focus-within:border-gray-200 dark:focus-within:ring-gray-200`
+        }`}
+      >
+        <div className="flex items-center justify-center px-2 text-gray-800 dark:text-gray-200">
+          {Icon && <Icon className="w-5 h-5" />}
+        </div>
+
         <input
           {...register(inputName)}
           {...inputProps}
-          className={
-            `${Icon ? 'pl-8' : 'pl-2'} pr-4 py-2 border w-full rounded-md shadow-sm text-sm 
-              dark:text-gray-200 dark:bg-gray-700 dark:placeholder:text-gray-200 ${
-              errors
-              ? `border-red-500 focus:outline-red-500 focus:text-gray-800
-                dark:border-red-500 dark:focus:outline`
-              : `focus:outline-blue-400 border-gray-400 focus:text-gray-800
-                dark:focus:outline-gray-200`
-            }`
-          }
+          className="w-full py-2 pr-2 border-0 focus:outline-none text-gray-800 dark:bg-gray-700 
+          dark:text-gray-200"
         />
-
-        {Icon &&
-          <Icon className="absolute top-0 bottom-0 w-5 h-5 m-auto text-gray-800 start-2 
-            dark:text-gray-200"
-          />
-        }
       </div>
 
       {errors && <p className="pt-1 text-sm text-red-500">{errors.message}</p>}
     </div>
-  )
+  );
 }
 
 export default Input;
