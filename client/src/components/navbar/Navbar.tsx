@@ -14,9 +14,8 @@ function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className={`${location.pathname === "/" ? "fixed" : "sticky overflow-hidden"}
-      w-full border-b top-0 z-50 border-white-200 bg-white shadow-sm 
-      duration-300 dark:bg-dark-700 dark:border-dark-800`}
+    <nav className={`sticky w-full border-b top-0 z-50 border-white-200 bg-white shadow-sm 
+      overflow-hidden duration-300 dark:bg-dark-700 dark:border-dark-800`}
     >
       <div className="flex items-center justify-between font-medium gap-2 px-6 py-2">
         <motion.div
@@ -55,6 +54,7 @@ function Navbar() {
                       to={link.id} 
                       smooth={true}
                       duration={100}
+                      offset={link.offset}
                       className="relative group cursor-pointer hover:text-green-700 
                       dark:text-white dark:hover:bg-text-gradient dark:bg-clip-text 
                         dark:hover:text-transparent
@@ -81,9 +81,11 @@ function Navbar() {
 
           <LinkRouter 
             to={location.pathname === "/" ? "/login" : "/"} 
-            className="bg-green-500 text-white px-4 py-2 rounded-xl 
-              transition duration-200 ease-in-out hover:bg-green-700 active:bg-green-900 
-              focus:outline-none
+            className="bg-green-500 text-white px-4 py-2 rounded-xl border border-transparent
+              transition duration-200 ease-in-out hover:bg-emerald-700 active:bg-green-900 
+              focus:outline-none dark:bg-transparent dark:text-white dark:border-white-200
+              dark:hover:border-green-500 dark:hover:text-green-500 dark:hover:shadow-sm
+              dark:hover:shadow-green-500
             " 
           >
             {location.pathname === "/" ? "Iniciar Sesión" : "Inicio"}

@@ -12,10 +12,11 @@ function InicioPage() {
   return (
     <main className="flex-1 duration-300 bg-white-50 dark:bg-dark-700">
       <section 
-        id="inicio" 
-        className="overflow-hidden max-w-screen-xl m-auto pt-10 pb-10 pl-4 pr-4"
+        id="inicio"
+        className="overflow-hidden max-w-screen-xl m-auto pt-5 pb-5 pl-4 pr-4
+        dark:bg-dark-700"
       >
-        <div className="grid grid-cols-2 items-center p-6 gap-8 md:p-12 lg:m-10 max-lg:grid-cols-1">
+        <div className="grid grid-cols-2 items-center p-6 gap-8 md:p-10 lg:m-5 max-lg:grid-cols-1">
           <div className="max-lg:text-center" data-aos="fade-right">
             <h1 className="text-5xl font-bold mb-2 text-yellow-500 dark:bg-text-titulo-gradient
               dark:bg-clip-text dark:text-transparent"
@@ -23,23 +24,23 @@ function InicioPage() {
               Bienvenido a Productify
             </h1>
 
-            <p className="mb-6 mt-6 text-lg dark:text-white">
+            <p className="mb-6 mt-6 text-lg text-gray-800 dark:text-white">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore 
               tempore veniam blanditiis corrupti est esse laborum exercitationem placeat 
               voluptatibus rerum corporis obcaecati, ea velit odio facere maxime 
               soluta quam reprehenderit?
             </p>
 
-            <button className="bg-emerald-500 text-white font-bold py-2 px-4 rounded-xl 
+            <button className="min-w-[30%] bg-green-500 text-white font-bold py-2 px-4 rounded-full 
               hover:bg-emerald-700 transition-all duration-300 shadow-md 
-              dark:hover:bg-green-500 dark:hover:shadow-sm dark:hover:shadow-green-500"
+              dark:hover:bg-emerald-500 dark:hover:shadow-sm dark:hover:shadow-emerald-500"
             >
               Comenzar
             </button>
 
-            <button className="border bg-transparent border-green-500 font-bold py-2 px-4 
-              rounded-xl ml-4 hover:text-green-700 duration-300 shadow-md dark:text-white
-              dark:hover:shadow-sm dark:hover:shadow-green-500 dark:hover:text-green-400"
+            <button className="min-w-[30%] border bg-transparent border-green-500 font-bold py-2 px-4 
+              rounded-full ml-4 hover:text-green-700 duration-300 shadow-sm dark:text-white
+              dark:hover:shadow-green-400 dark:hover:text-green-400"
             >
               Comenzar
             </button>
@@ -56,7 +57,7 @@ function InicioPage() {
 
       <section 
         id="identidad" 
-        className="overflow-hidden max-w-screen-xl m-auto pt-10 pb-10 pl-4 pr-4"
+        className="overflow-hidden max-w-screen-xl m-auto pt-5 pb-5 pl-4 pr-4"
       >
         <div className="grid grid-cols-2 items-center p-6 gap-8 md:p-12 lg:m-5 max-lg:grid-cols-1">
           <div data-aos="fade-up">
@@ -79,23 +80,24 @@ function InicioPage() {
               Conoce nuestra identidad
             </h1>
 
-            <p className="mb-4 mt-4 text-lg dark:text-white">
+            <p className="mb-4 mt-4 text-lg text-gray-800 dark:text-white">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore 
               tempore veniam blanditiis corrupti est esse laborum exercitationem placeat 
               voluptatibus rerum corporis obcaecati, ea velit odio facere maxime 
               soluta quam reprehenderit?
             </p>
 
-            <p className="mb-4 mt-4 text-lg dark:text-white">
+            <p className="mb-4 mt-4 text-lg text-gray-800 dark:text-white">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore 
               tempore veniam blanditiis corrupti est esse laborum exercitationem placeat 
               voluptatibus rerum corporis obcaecati, ea velit odio facere maxime 
               soluta quam reprehenderit?
             </p>
 
-            <button className="bg-transparent border border-green-500 text-green-950 font-bold 
-              py-2 px-4 rounded-xl hover:text-green-700 duration-300 shadow-md dark:text-white
-              dark:hover:shadow-sm dark:hover:shadow-green-500 dark:hover:text-green-400"
+            <button className="min-w-[30%] bg-yellow-400 text-white font-bold border border-transparent
+              py-2 px-4 rounded-full hover:bg-yellow-500 duration-300 shadow-md
+              dark:hover:bg-transparent dark:hover:border-yellow-400 dark:hover:text-yellow-400
+              dark:hover:shadow-sm dark:hover:shadow-yellow-500"
             >
               Comenzar
             </button>
@@ -105,7 +107,7 @@ function InicioPage() {
 
       <section 
         id="servicios" 
-        className="overflow-hidden max-w-screen-xl m-auto pt-10 pb-10 pl-4 pr-4"
+        className="overflow-hidden max-w-screen-xl m-auto pt-5 pb-5 pl-4 pr-4 dark:bg-dark-700"
       >
         <div className="flex flex-col items-center p-8 gap-4 lg:m-5">
           <div className="w-full max-w-4xl" data-aos="flip-up">
@@ -115,7 +117,7 @@ function InicioPage() {
               Nuestros Servicios
             </h1>
 
-            <p className="mt-4 text-lg text-center dark:text-white">
+            <p className="mt-4 text-lg text-center text-gray-800 dark:text-white">
               En Productify, ofrecemos una gama completa de soluciones diseñadas para 
               facilitar la gestión de inventario agrícola. Desde el seguimiento preciso 
               de productos hasta la automatización de procesos, nuestro objetivo es 
@@ -139,7 +141,7 @@ function InicioPage() {
                 Control de Inventario Preciso
               </span>
 
-              <p className="mt-4 dark:text-white">
+              <p className="mt-4 text-gray-800 dark:text-white">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                 Maiores iste ipsa voluptas 
                 cupiditate asperiores eius eveniet sed molestias culpa quaerat.
@@ -158,7 +160,7 @@ function InicioPage() {
                 Gestión de Productos Eficiente
               </span>
 
-              <p className="mt-4 dark:text-white">
+              <p className="mt-4 text-gray-800 dark:text-white">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores iste 
                 ipsa voluptas cupiditate asperiores eius eveniet sed 
                 molestias culpa quaerat.
@@ -177,7 +179,7 @@ function InicioPage() {
                 Reportes y Análisis de Stock
               </span>
 
-              <p className="mt-4 dark:text-white">
+              <p className="mt-4 text-gray-800 dark:text-white">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores iste 
                 ipsa voluptas cupiditate asperiores eius eveniet sed molestias culpa 
                 quaerat.
@@ -189,7 +191,7 @@ function InicioPage() {
 
       <section 
         id="comunidad" 
-        className="overflow-hidden max-w-screen-xl m-auto pt-10 pb-10 pl-4 pr-4"
+        className="overflow-hidden max-w-screen-xl m-auto pt-5 pb-7 pl-4 pr-4 dark:bg-dark-700"
       >
         <div className="flex flex-col items-center p-8 gap-14 mb-8 lg:m-5">
           <div className="w-full max-w-4xl" data-aos="zoom-out">
@@ -199,7 +201,7 @@ function InicioPage() {
               Comunidad
             </h1>
 
-            <p className="mt-4 text-lg text-center dark:text-white">
+            <p className="mt-4 text-lg text-center text-gray-800 dark:text-white">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore 
               tempore veniam blanditiis corrupti est esse laborum exercitationem placeat 
               voluptatibus rerum corporis obcaecati, ea velit odio facere maxime 
@@ -211,10 +213,10 @@ function InicioPage() {
             <div 
               data-aos="zoom-out-right"
               className="bg-white shadow-md rounded-2xl p-6 max-w-lg w-full mx-4
-                border border-white-200 dark:bg-dark-720 dark:border-dark-800
+                dark:bg-dark-720
               " 
             >
-              <div className="flex flex-col sm:flex-row gap-6">
+              <div className="flex flex-col gap-6 sm:flex-row max-sm:items-center">
                 <div className="flex-shrink-0">
                   <img 
                     src={perfilPrimary} 
@@ -222,7 +224,7 @@ function InicioPage() {
                   />
                 </div>
 
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col justify-center max-sm:text-center">
                   <h2 className="text-2xl font-bold text-green-600 dark:bg-text-gradient
                     dark:bg-clip-text dark:text-transparent"
                   >
@@ -237,7 +239,7 @@ function InicioPage() {
 
               <hr className="my-4 border-t border-gray-300 dark:border-dark-800" />
 
-              <p className="mt-4 text-sm dark:text-white">
+              <p className="mt-4 text-sm text-gray-800 dark:text-white">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur 
                 explicabo ut dolores illum tempore repellat, necessitatibus sequi 
                 debitis ducimus aut natus minima soluta. Tenetur consequuntur amet 
@@ -247,11 +249,11 @@ function InicioPage() {
 
             <div 
               data-aos="zoom-out-left"
-              className="bg-white shadow-md rounded-2xl p-6 max-w-lg w-full mx-4
-                border border-white-200 dark:bg-dark-720 dark:border-dark-800
+              className="bg-white shadow-md rounded-2xl p-6 max-w-lg w-full mx-4 
+                dark:bg-dark-720
               " 
             >
-              <div className="flex flex-col sm:flex-row gap-6">
+              <div className="flex flex-col sm:flex-row gap-6 max-sm:items-center">
                 <div className="flex-shrink-0">
                   <img 
                     src={perfilSecondary} 
@@ -259,7 +261,7 @@ function InicioPage() {
                   />
                 </div>
 
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col justify-center max-sm:text-center">
                   <h2 className="text-2xl font-bold text-green-600 dark:bg-text-gradient
                     dark:bg-clip-text dark:text-transparent">
                     Angel Nie Garcia Solorzano
@@ -273,7 +275,7 @@ function InicioPage() {
 
               <hr className="my-4 border-t border-gray-300 dark:border-dark-800" />
 
-              <p className="mt-4 text-sm dark:text-white">
+              <p className="mt-4 text-sm text-gray-800 dark:text-white">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur 
                 explicabo ut dolores illum tempore repellat, necessitatibus sequi 
                 debitis ducimus aut natus minima soluta. Tenetur consequuntur amet 
