@@ -16,7 +16,9 @@ export default {
           200: '#d1d5db' //! Border en modo white
         },
         dark: {
-          700: '#1f2937', //! Fondo en modo oscuro
+          700: '#0F151B', //! Fondo en modo oscuro
+          710: '#061118', //! Fondo para el dropdown en modo oscuro
+          720: '#101720', //! Fondo para el sidebar, header, pages y footer en modo oscuro
           800: '#374151' //! Border en modo oscuro
         },
       },

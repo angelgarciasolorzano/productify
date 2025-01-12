@@ -211,7 +211,7 @@ function InicioPage() {
             <div 
               data-aos="zoom-out-right"
               className="bg-white shadow-md rounded-2xl p-6 max-w-lg w-full mx-4
-                dark:bg-dark-800
+                border border-white-200 dark:bg-dark-720 dark:border-dark-800
               " 
             >
               <div className="flex flex-col sm:flex-row gap-6">
@@ -229,13 +229,13 @@ function InicioPage() {
                     Angel Nie Garcia Solorzano
                   </h2>
                   
-                  <p className="text-sm text-gray-600 dark:text-white">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     Programador full stack
                   </p>
                 </div>
               </div>
 
-              <hr className="my-4 border-t border-gray-300" />
+              <hr className="my-4 border-t border-gray-300 dark:border-dark-800" />
 
               <p className="mt-4 text-sm dark:text-white">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur 
@@ -248,7 +248,7 @@ function InicioPage() {
             <div 
               data-aos="zoom-out-left"
               className="bg-white shadow-md rounded-2xl p-6 max-w-lg w-full mx-4
-                dark:bg-dark-800
+                border border-white-200 dark:bg-dark-720 dark:border-dark-800
               " 
             >
               <div className="flex flex-col sm:flex-row gap-6">
@@ -265,13 +265,13 @@ function InicioPage() {
                     Angel Nie Garcia Solorzano
                   </h2>
 
-                  <p className="text-sm text-gray-600 dark:text-white">
+                  <p className="text-sm text-gray-600 dark:text-gray-300">
                     Programador full stack
                   </p>
                 </div>
               </div>
 
-              <hr className="my-4 border-t border-gray-300" />
+              <hr className="my-4 border-t border-gray-300 dark:border-dark-800" />
 
               <p className="mt-4 text-sm dark:text-white">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur 

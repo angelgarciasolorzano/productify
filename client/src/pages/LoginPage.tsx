@@ -26,7 +26,8 @@ function LoginPage() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }} 
         className="flex flex-col items-center content-stretch w-96 pt-4 shadow-sm 
-          min-h-[18rem] rounded-2xl bg-white dark:bg-dark-800
+          min-h-[18rem] rounded-2xl bg-white border border-white-200 
+          dark:bg-dark-720 dark:border-dark-800
         "
       >
         <h1 className="mt-2 text-2xl font-semibold dark:text-white">

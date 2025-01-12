@@ -27,7 +27,7 @@ function Sidebar() {
       animate="visible"
       variants={sidebarContainerVariants}
       className={`${open ? "w-56" : "w-20"} flex flex-col bg-white border-r 
-        border-white-200 duration-300 dark:bg-dark-700 
+        border-white-200 duration-300 dark:bg-dark-720
         dark:border-dark-800
       `}
     >

@@ -37,7 +37,7 @@ function Footer() {
   };
 
   return (
-    <footer className="bg-gray-900 text-gray-300 row-span-1">
+    <footer className="bg-gray-900 text-gray-300 row-span-1 dark:bg-dark-710">
       <div className="max-w-6xl mx-auto px-4 py-10 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="mb-8 md:mb-0">

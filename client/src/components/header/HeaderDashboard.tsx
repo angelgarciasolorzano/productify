@@ -44,7 +44,7 @@ function HeaderDashboard() {
       animate="visible"
       variants={headerDashboardContainerVariants}
       className="flex justify-between items-center py-2 px-4 shadow-sm border-b bg-white 
-        border-white-200 duration-300 dark:bg-dark-700 dark:border-dark-800
+        border-white-200 duration-300 dark:bg-dark-720 dark:border-dark-800
       "
     >
       <motion.div variants={headerItemDashboardVariants}>
