@@ -1,7 +1,7 @@
 import { LuMoon, LuSun } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { IoNotificationsOutline, IoCloseOutline } from "react-icons/io5";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { WiStars } from "react-icons/wi";
 
@@ -29,6 +29,9 @@ function HeaderDashboard() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<string | null>(null);
   const notificacionesVisibles = notifications.slice(0, 3);
   const notificationCount = 9;
+
+  const notificacionesRef = useRef<HTMLButtonElement>(null);
+  const profileRef = useRef<HTMLButtonElement>(null);
   
   const toggleDropdown = (dropdown: string): void => {
     setIsDropdownOpen((text) => (text === dropdown ? null : dropdown));
@@ -60,6 +63,7 @@ function HeaderDashboard() {
         >
           <div className="relative">
             <button 
+              ref={notificacionesRef}
               onClick={() => toggleDropdown("Notificacion")}
               className="relative p-2 rounded-full bg-gray-200 hover:bg-gray-300 
                 dark:text-white dark:bg-dark-800 dark:hover:bg-gray-600
@@ -79,6 +83,7 @@ function HeaderDashboard() {
             <DropdownOverlay 
               isOpen={isDropdownOpen === "Notificacion"}
               className="w-72"
+              itemRef={notificacionesRef}
             >
               <div className="flex items-center justify-between px-2 mb-2">
                 <span className="text-sm dark:text-white">
@@ -147,19 +152,19 @@ function HeaderDashboard() {
                 </span>
               </div>
 
-              <div className="flex-shrink-0 cursor-pointer">
+              <button ref={profileRef} onClick={() => toggleDropdown("Profile")}>
                 <img
                   src={fondoPrimary}
                   alt="User"
                   className="h-10 w-10 rounded-full"
-                  onClick={() => toggleDropdown("Profile")}
                 />
-              </div>
+              </button>
             </div>
 
             <DropdownOverlay 
               isOpen={isDropdownOpen === "Profile"}
               className="w-48"
+              itemRef={profileRef}
             >
               <div className="flex items-center justify-between px-2 mb-2">
                 <span className="text-sm dark:text-white">

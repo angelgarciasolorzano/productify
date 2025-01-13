@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, RefObject, CSSProperties } from "react";
+import { createPortal } from "react-dom";
 
 import { dropdownOverlayVariants } from "./dropdownVariants";
 
@@ -7,10 +8,24 @@ interface Props {
   children: ReactNode;
   isOpen: boolean;
   className: string;
+  itemRef: RefObject<HTMLButtonElement>;
 };
 
-function DropdownOverlay({ children, isOpen, className }: Props) {
-  return (
+function DropdownOverlay({ children, isOpen, className, itemRef }: Props) {
+  const portalRoot = document.getElementById("portal-root");
+
+  if (!portalRoot || !itemRef.current) {
+    return null;
+  };
+
+  const { bottom, left, width } = itemRef.current.getBoundingClientRect();
+
+  const styles: CSSProperties = {
+    top: `${bottom + window.scrollY + 15}px`,
+    right: `${window.innerWidth - (left + width + window.scrollX)}px`
+  };
+  
+  return createPortal (
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -18,21 +33,16 @@ function DropdownOverlay({ children, isOpen, className }: Props) {
           animate="visible"
           exit="hidden"
           variants={dropdownOverlayVariants}
-          className={`${ className } absolute mt-2 right-0 origin-top-right z-50`}
+          style={styles}
+          className={`absolute bg-white shadow-md pointer-events-auto 
+            rounded-md p-2 z-50 ${className} dark:bg-dark-700
+          `}
         >
-          <div className="relative">
-            <motion.div className="relative mt-2 bg-white rounded-md shadow-lg border 
-              border-white-200 overflow-hidden z-10 p-2 dark:bg-dark-710
-              dark:border-dark-800"
-            >
-              <div className="relative z-20">
-                {children}
-              </div>
-            </motion.div>
-          </div>
+          {children}
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    portalRoot
   );
 }
 
