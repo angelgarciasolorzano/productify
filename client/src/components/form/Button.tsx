@@ -13,8 +13,9 @@ function Button(props: Props) {
     <button
       {...buttonProps}
       className={
-        `bg-green-600 text-white text-sm px-4 py-2 rounded-xl transition duration-200 
-        ease-in-out hover:bg-green-700 active:bg-green-900 focus:outline-none mb-4`
+        `flex items-center justify-center bg-green-600 text-white min-w-[30%] px-4 text-sm py-2 
+        rounded-xl transition duration-200 ease-in-out hover:bg-green-700 
+        active:bg-green-900 focus:outline-none mb-4`
       }
     >
       {loading ? <Loader /> : children}
