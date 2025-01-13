@@ -65,8 +65,8 @@ function HeaderDashboard() {
             <button 
               ref={notificacionesRef}
               onClick={() => toggleDropdown("Notificacion")}
-              className="relative p-2 rounded-full bg-gray-200 hover:bg-gray-300 
-                dark:text-white dark:bg-dark-800 dark:hover:bg-gray-600
+              className="relative p-2 rounded-full border border-white-200 hover:border-gray-500  
+                dark:text-white dark:border-dark-800 dark:hover:border-white-200
               "
             >
               <IoNotificationsOutline />
@@ -121,8 +121,8 @@ function HeaderDashboard() {
 
               <Link
                 to="/items"
-                className="block text-center rounded-md px-4 py-1 text-sm hover:bg-gray-200
-                dark:hover:bg-dark-800 dark:text-white"
+                className="block text-center px-4 py-1 text-sm hover:text-blue-500
+                dark:text-white dark:hover:text-blue-500"
               >
                 Mostrar todas las notificaciones
               </Link>
@@ -131,8 +131,8 @@ function HeaderDashboard() {
 
           <button
             onClick={updateTheme}
-            className="p-2 rounded-full bg-gray-200 hover:bg-gray-300 
-              dark:bg-dark-800 dark:text-white dark:hover:bg-gray-600
+            className="p-2 rounded-full border border-white-200 hover:border-gray-500
+              dark:text-white dark:border-dark-800 dark:hover:border-white-200
             "
           >
             {theme ? <LuSun /> : <LuMoon />}

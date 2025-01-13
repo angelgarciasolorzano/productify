@@ -34,8 +34,8 @@ function DropdownOverlay({ children, isOpen, className, itemRef }: Props) {
           exit="hidden"
           variants={dropdownOverlayVariants}
           style={styles}
-          className={`absolute bg-white shadow-md pointer-events-auto 
-            rounded-md p-2 z-50 ${className} dark:bg-dark-700
+          className={`absolute bg-white shadow-md pointer-events-auto border border-white-200 
+            rounded-md p-2 z-50 ${className} dark:bg-dark-700 dark:border-dark-800
           `}
         >
           {children}

@@ -10,7 +10,9 @@ function DashboardLayout() {
       <Sidebar />
       <div className="flex flex-col flex-1">
         <HeaderDashboard />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto scrollbar-thin dark:scrollbar-thumb-gray-500
+          dark:scrollbar-track-dark-720"
+        >
           <Outlet />
         </main>
       </div>

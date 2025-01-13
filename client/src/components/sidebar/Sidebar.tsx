@@ -52,7 +52,7 @@ function Sidebar() {
 
       <div className="flex-1 overflow-x-hidden overflow-y-auto px-4 py-2 mt-2
         scrollbar-thin dark:scrollbar-thumb-gray-500
-        dark:scrollbar-track-dark-700"
+        dark:scrollbar-track-dark-720"
       >
         {
           itemsContent.map((item, index) => (
