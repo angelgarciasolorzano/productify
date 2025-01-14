@@ -1,4 +1,3 @@
-import { LuMoon, LuSun } from "react-icons/lu";
 import { motion } from "framer-motion";
 import { IoNotificationsOutline, IoCloseOutline } from "react-icons/io5";
 import { useState, useMemo, useRef } from "react";
@@ -9,9 +8,9 @@ import { DropdownOverlay } from "../dropdown";
 import { headerDashboardContainerVariants, headerItemDashboardVariants } from "./headerVariants";
 import { fondoPrimary } from "../../assets";
 
-import themeStore from "../../store/themeStore";
 import subItems from "../profile/profileItems";
 import generarColor from "../../helpers/generarColor";
+import DarkMode from "../DarkMode";
 
 const notifications = [
   {  text: "You have a new message", link: "/messages/1" },
@@ -22,10 +21,7 @@ const notifications = [
   {  text: "Your subscription is expiring soon", link: "/subscriptions/6" },
 ];
 
-function HeaderDashboard() {
-  const theme = themeStore((state) => state.theme);
-  const updateTheme = themeStore((state) => state.updateTheme);
-  
+function HeaderDashboard() {  
   const [isDropdownOpen, setIsDropdownOpen] = useState<string | null>(null);
   const notificacionesVisibles = notifications.slice(0, 3);
   const notificationCount = 9;
@@ -65,7 +61,7 @@ function HeaderDashboard() {
             <button 
               ref={notificacionesRef}
               onClick={() => toggleDropdown("Notificacion")}
-              className="relative p-2 rounded-full border border-white-200 hover:border-gray-500  
+              className="relative p-2 rounded-lg border border-white-200 hover:border-gray-500  
                 dark:text-white dark:border-dark-800 dark:hover:border-white-200
               "
             >
@@ -121,7 +117,7 @@ function HeaderDashboard() {
 
               <Link
                 to="/items"
-                className="block text-center px-4 py-1 text-sm hover:text-blue-500
+                className="block text-center px-4 py-1 text-sm hover:text-blue-600
                 dark:text-white dark:hover:text-blue-500"
               >
                 Mostrar todas las notificaciones
@@ -129,14 +125,7 @@ function HeaderDashboard() {
             </DropdownOverlay>
           </div>
 
-          <button
-            onClick={updateTheme}
-            className="p-2 rounded-full border border-white-200 hover:border-gray-500
-              dark:text-white dark:border-dark-800 dark:hover:border-white-200
-            "
-          >
-            {theme ? <LuSun /> : <LuMoon />}
-          </button>
+          <DarkMode />
         </motion.div>
 
         <motion.div variants={headerItemDashboardVariants}>

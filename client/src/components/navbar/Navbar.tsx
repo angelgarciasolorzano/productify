@@ -1,4 +1,3 @@
-import { FaMoon, FaSun } from "react-icons/fa";
 import { Link } from "react-scroll";
 import { Link as LinkRouter, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -6,11 +5,9 @@ import { motion } from "framer-motion";
 import { navbarContainerVariants, navbarItemVariants, navbarVariants } from "./navbarVariants";
 import { linksInicio } from "./navbarItems";
 
-import themeStore from "../../store/themeStore";
+import DarkMode from "../DarkMode";
 
 function Navbar() {
-  const theme = themeStore((state) => state.theme);
-  const updateTheme = themeStore((state) => state.updateTheme);
   const location = useLocation();
 
   return (
@@ -30,13 +27,7 @@ function Navbar() {
             Productify
           </span>
           
-          <button 
-            className="rounded-full p-2 bg-gray-200 hover:bg-gray-300 
-            dark:bg-dark-800 dark:text-white" 
-            onClick={updateTheme}
-          >
-            {theme ? <FaSun /> : <FaMoon />}
-          </button>
+          <DarkMode />
         </motion.div>
 
         {
@@ -88,7 +79,7 @@ function Navbar() {
               dark:hover:shadow-green-500
             " 
           >
-            {location.pathname === "/" ? "Iniciar Sesión" : "Inicio"}
+            {location.pathname === "/" ? "Iniciar sesión" : "Inicio"}
           </LinkRouter>
         </motion.div>
       </div>

@@ -22,7 +22,7 @@ function Input<T extends FieldValues>(props: Props<T>) {
         {labelName}
       </label>
 
-      <div className={`flex items-center w-full text-gray-700 border border-gray-400 
+      <div className={`flex items-center w-full border border-gray-400 
         rounded-md shadow-sm overflow-hidden dark:text-gray-200
         ${errors
           ? `border-red-500 focus-within:ring-1 focus-within:ring-red-500`
