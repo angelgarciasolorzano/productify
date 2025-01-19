@@ -11,7 +11,7 @@ export const headerDashboardContainerVariants: Variants = {
   },
 };
 
-export const headerItemDashboardVariants: Variants =  {
+export const headerDashboardItemVariants: Variants =  {
   hidden: { opacity: 0, y: -20 }, 
   visible: { 
     opacity: 1, y: 0, 
