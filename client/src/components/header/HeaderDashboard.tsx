@@ -26,6 +26,8 @@ function HeaderDashboard() {
   const notificacionesVisibles = notifications.slice(0, 3);
   const notificationCount = 9;
 
+  console.log("se monta");
+
   const notificacionesRef = useRef<HTMLButtonElement>(null);
   const profileRef = useRef<HTMLButtonElement>(null);
   
@@ -80,6 +82,7 @@ function HeaderDashboard() {
               isOpen={isDropdownOpen === "Notificacion"}
               className="w-72"
               itemRef={notificacionesRef}
+              toggle={() => toggleDropdown("Notificacion")}
             >
               <div className="flex items-center justify-between px-2 mb-2">
                 <span className="text-sm dark:text-white">
@@ -154,6 +157,7 @@ function HeaderDashboard() {
               isOpen={isDropdownOpen === "Profile"}
               className="w-48"
               itemRef={profileRef}
+              toggle={() => toggleDropdown("Profile")}
             >
               <div className="flex items-center justify-between px-2 mb-2">
                 <span className="text-sm dark:text-white">

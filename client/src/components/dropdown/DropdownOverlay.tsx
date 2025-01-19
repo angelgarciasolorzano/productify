@@ -1,39 +1,39 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ReactNode, RefObject, CSSProperties } from "react";
+import { ReactNode, RefObject } from "react";
 import { createPortal } from "react-dom";
 
 import { dropdownOverlayVariants } from "./dropdownVariants";
+import { useClickOutside, usePosition } from "../../hooks";
 
-interface Props {
+interface Props<T extends HTMLElement> {
   children: ReactNode;
   isOpen: boolean;
   className: string;
-  itemRef: RefObject<HTMLButtonElement>;
+  itemRef: RefObject<T>;
+  toggle: () => void;
 };
 
-function DropdownOverlay({ children, isOpen, className, itemRef }: Props) {
+function DropdownOverlay<T extends HTMLElement>(props: Props<T>) {
+  const { children, isOpen, className, itemRef, toggle } = props;
+  
+  const dropdownRef = useClickOutside<T>({toggle, itemRef});
+  const style = usePosition(itemRef);
   const portalRoot = document.getElementById("portal-root");
 
   if (!portalRoot || !itemRef.current) {
     return null;
-  };
-
-  const { bottom, left, width } = itemRef.current.getBoundingClientRect();
-
-  const styles: CSSProperties = {
-    top: `${bottom + window.scrollY + 15}px`,
-    right: `${window.innerWidth - (left + width + window.scrollX)}px`
   };
   
   return createPortal (
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          ref={dropdownRef as RefObject<HTMLDivElement>}
           initial="hidden"
           animate="visible"
           exit="hidden"
           variants={dropdownOverlayVariants}
-          style={styles}
+          style={style}
           className={`absolute bg-white shadow-md pointer-events-auto border border-white-200 
             rounded-md p-2 z-50 ${className} dark:bg-dark-700 dark:border-dark-800
           `}
