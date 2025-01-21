@@ -20,9 +20,7 @@ function DropdownOverlay<T extends HTMLElement>(props: Props<T>) {
   const style = usePosition(itemRef);
   const portalRoot = document.getElementById("portal-root");
 
-  if (!portalRoot || !itemRef.current) {
-    return null;
-  };
+  if (!portalRoot || !itemRef.current) return null;
   
   return createPortal (
     <AnimatePresence>

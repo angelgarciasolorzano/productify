@@ -2,7 +2,7 @@ import { RefObject, useEffect, useRef } from "react";
 
 interface Props<T extends HTMLElement> {
   toggle: () => void;
-  itemRef: RefObject<T>;
+  itemRef?: RefObject<T>;
 };
 
 function useClickOutside<T extends HTMLElement>(props: Props<T>) {
@@ -11,9 +11,8 @@ function useClickOutside<T extends HTMLElement>(props: Props<T>) {
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
-      if (
-        domNodeRef.current && !domNodeRef.current.contains(event.target as Node)
-        && itemRef.current && !itemRef.current.contains(event.target as Node)
+      if (domNodeRef.current && !domNodeRef.current.contains(event.target as Node)
+        && (!itemRef?.current || !itemRef.current.contains(event.target as Node))
       ) {
         toggle();
       }
