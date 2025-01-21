@@ -123,7 +123,7 @@ function Notifications(props: NotificacionProps) {
         toggle={() => toggleDropdown("Notificacion")}
       >
         <div className="flex items-center justify-between px-2 mb-2">
-          <span className="text-sm dark:text-white">
+          <span className="text-sm font-semibold dark:text-white">
             Notificaciones
           </span>
 
@@ -140,7 +140,7 @@ function Notifications(props: NotificacionProps) {
           <Link 
             key={index} 
             to={item.link}
-            className="flex items-center px-4 py-2 text-sm hover:bg-gray-200 
+            className="flex items-center px-4 text-gray-800 py-2 text-sm hover:bg-gray-200 
               rounded-md dark:text-white dark:hover:bg-dark-800
             "
           >
@@ -200,7 +200,7 @@ function Profile({toggleDropdown, isDropdownOpen}: ProfileProps) {
         toggle={() => toggleDropdown("Profile")}
       >
         <div className="flex items-center justify-between px-2 mb-2">
-          <span className="text-sm dark:text-white">
+          <span className="text-sm font-semibold dark:text-white">
             Cuenta
           </span>
 
@@ -217,7 +217,7 @@ function Profile({toggleDropdown, isDropdownOpen}: ProfileProps) {
           <Link 
             key={index} 
             to={item.link}
-            className="flex items-center px-4 py-2 text-sm hover:bg-gray-200 
+            className="flex items-center text-gray-800 px-4 py-2 text-sm hover:bg-gray-200 
               rounded-md dark:text-white dark:hover:bg-dark-800
             "
           >

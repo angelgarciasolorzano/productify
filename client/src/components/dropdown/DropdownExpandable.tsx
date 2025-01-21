@@ -73,8 +73,8 @@ function DropdownExpandable(props: DropdownProps) {
           <Link
             key={index}
             to={subItem.link}
-            className="flex items-center px-4 py-2 mt-2 text-sm hover:bg-gray-200 
-              rounded-lg duration-200 dark:text-white dark:hover:bg-dark-800
+            className="flex items-center text-gray-800 px-4 py-2 mt-2 text-sm hover:bg-gray-200 
+              rounded-lg duration-200 dark:text-gray-200 dark:hover:bg-dark-800
             "
           >
             {subItem.icon ? (

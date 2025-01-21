@@ -43,9 +43,8 @@ function Categoria() {
   console.log(getValues());
 
   return (
-    <div className="flex justify-center min-h-full p-4">
-      <div className="flex justify-center items-center bg-white rounded-2xl w-full
-        dark:bg-dark-720"
+      <div className="flex justify-center w-full min-h-full items-center rounded-2xl
+        bg-white shadow-md dark:bg-dark-720"
       >
         <form 
           onSubmit={onSubmit} 
@@ -94,7 +93,6 @@ function Categoria() {
           <Button loading={false}>Guardar</Button>
         </form>
       </div>
-    </div>
   )
 }
 
