@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Modal from "../../components/Modal";
 import Table from "../../components/table/Table";
 
 function Registrar() {
@@ -11,9 +10,7 @@ function Registrar() {
 
       <button className="bg-black" onClick={() => setOpen(!open)}>Abrir modal</button>
 
-      <Modal isOpen={open} onClose={() => setOpen(false)}>
-        <Table />
-      </Modal>
+      <Table />
     </div>
   )
 }
