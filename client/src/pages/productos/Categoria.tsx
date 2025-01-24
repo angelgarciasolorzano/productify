@@ -1,8 +1,10 @@
 import { LoginTypeSchema, loginFormSchema } from "../../schemas/authSchema";
 import { FieldError, useForm, UseFormRegister } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RiCheckboxCircleLine, RiCheckboxBlankCircleLine } from "react-icons/ri";
-import { Md10K, MdAdd } from "react-icons/md";
+import { RiCheckboxCircleLine } from "react-icons/ri";
+import { LuPencil } from "react-icons/lu";
+import { MdAdd } from "react-icons/md";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 import { Input } from "../../components/form";
 
@@ -10,7 +12,7 @@ import Button from "../../components/form/Button";
 import TextArea from "../../components/form/TextArea";
 import InputSelect from "../../components/form/InputSelect";
 import Table from "../../components/table/Table";
-import { Modal, ModalTitle, ModalContent, ModalFooter } from "../../components/modal/Modal";
+import { Modal, ModalTitle, ModalBody, ModalFooter } from "../../components/modal/Modal";
 import useToggle from "../../hooks/useToggle";
 import useModal from "../../hooks/useModal";
 
@@ -33,7 +35,7 @@ const options = [
   { 
     value: 'Inactivo', 
     label: 'Inactivo', 
-    icon: RiCheckboxBlankCircleLine,
+    icon: IoCloseCircleOutline,
     iconColor: 'text-red-600 dark:text-red-500'
   }
 ];
@@ -68,11 +70,11 @@ function Categoria() {
       <Modal 
         isOpen={openModal} 
         onClose={() => closeModal(() => reset())}
-        className="w-5/12"
+        className="w-5/12 py-1"
       >
         <ModalTitle title="Registrar categoria" onClose={() => closeModal(() => reset())} />
 
-        <ModalContent>
+        <ModalBody>
           <CategoriaForm 
             openSelect={openSelect} 
             closeSelect={closeSelect} 
@@ -81,15 +83,13 @@ function Categoria() {
             register={register} 
             errors={errors}
           />
-        </ModalContent>
+        </ModalBody>
 
         <ModalFooter>
           <div className="flex items-center justify-end gap-4 mb-4 mt-2">
             <Button
               onClick={() => closeModal(() => reset())}
-              className="bg-gray-500 hover:bg-gray-800 dark:bg-dark-800 
-                dark:hover:bg-gray-800 min-w-[20%]
-              " 
+              className="bg-red-600 text-white hover:bg-red-800 min-w-[20%]" 
             >
               Cancelar
             </Button>
@@ -127,7 +127,7 @@ function CategoriaForm(props: CategoriaFormProps) {
           type="text"
           placeholder="Ingrese el nombre de la categoria"
           errors={errors.correo_Usuario}
-          icon={Md10K}
+          icon={LuPencil}
         />
 
         <InputSelect<LoginTypeSchema>

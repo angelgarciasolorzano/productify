@@ -14,7 +14,7 @@ interface ModalProps {
 };
 
 type ModalTitleProps = Pick<ModalProps, "onClose" | "className"> & { title: string };
-type ModalContentProps = Pick<ModalProps, "children" | "className">;
+type ModalBodyProps = Pick<ModalProps, "children" | "className">;
 type ModalFooterProps = Pick<ModalProps, "children" | "className">;
 
 export function Modal({ isOpen, onClose, children, className }: ModalProps) {
@@ -51,7 +51,7 @@ export function Modal({ isOpen, onClose, children, className }: ModalProps) {
             <div
               ref={modalRef}
               className={twMerge(
-                `bg-white px-2 rounded-xl shadow-xl max-w-[85%] max-h-[90vh] 
+                `bg-white px-2 rounded-2xl shadow-xl max-w-[85%] max-h-[90vh] 
                 pointer-events-auto overflow-hidden dark:bg-dark-720`,
                 className
               )}
@@ -88,7 +88,7 @@ export function ModalTitle({ onClose, title, className }: ModalTitleProps) {
   )
 };
 
-export function ModalContent({ children, className }: ModalContentProps) {
+export function ModalBody({ children, className }: ModalBodyProps) {
   return (
     <div className={
       twMerge(
