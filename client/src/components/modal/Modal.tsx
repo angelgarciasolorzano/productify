@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { MdOutlineClose } from "react-icons/md";
 import { useClickOutside } from "../../hooks";
 import { modalAnimation, modalFondoAnimation } from "./modalVariants";
+import { twMerge } from "tailwind-merge";
 
 interface ModalProps {
   isOpen: boolean;
@@ -12,7 +13,7 @@ interface ModalProps {
   className?: string;
 };
 
-type ModalTitleProps = Pick<ModalProps, "onClose"> & { title: string };
+type ModalTitleProps = Pick<ModalProps, "onClose" | "className"> & { title: string };
 type ModalContentProps = Pick<ModalProps, "children" | "className">;
 type ModalFooterProps = Pick<ModalProps, "children" | "className">;
 
@@ -49,9 +50,11 @@ export function Modal({ isOpen, onClose, children, className }: ModalProps) {
           >
             <div
               ref={modalRef}
-              className={`bg-white px-2 rounded-xl shadow-xl max-w-[85%] max-h-[90vh] 
-                pointer-events-auto overflow-hidden dark:bg-dark-720 ${className}`
-              }
+              className={twMerge(
+                `bg-white px-2 rounded-xl shadow-xl max-w-[85%] max-h-[90vh] 
+                pointer-events-auto overflow-hidden dark:bg-dark-720`,
+                className
+              )}
             >
               {children}
             </div>
@@ -63,10 +66,15 @@ export function Modal({ isOpen, onClose, children, className }: ModalProps) {
   )
 };
 
-export function ModalTitle({ onClose, title }: ModalTitleProps) {
+export function ModalTitle({ onClose, title, className }: ModalTitleProps) {
   return (
     <div className="flex justify-between items-center mt-2 px-2 text-xl">
-      <span className="text-green-600 font-semibold dark:text-green-500">
+      <span className={
+        twMerge(
+          `text-green-600 font-semibold dark:text-green-500`,
+          className
+        )}
+      >
         {title}
       </span>
 
@@ -80,19 +88,28 @@ export function ModalTitle({ onClose, title }: ModalTitleProps) {
   )
 };
 
-export function ModalContent({ children }: ModalContentProps) {
+export function ModalContent({ children, className }: ModalContentProps) {
   return (
-    <div className="overflow-auto px-2 max-h-[80vh] scrollbar-thin 
-      dark:scrollbar-thumb-gray-500 dark:scrollbar-track-dark-720"
+    <div className={
+      twMerge(
+        `overflow-auto px-2 max-h-[80vh] scrollbar-thin 
+        dark:scrollbar-thumb-gray-500 dark:scrollbar-track-dark-720`,
+        className
+      )}
     > 
       {children}
     </div>
   )
 };
 
-export function ModalFooter({ children }: ModalFooterProps) {
+export function ModalFooter({ children, className }: ModalFooterProps) {
   return (
-    <div className="px-4 pt-4">
+    <div className={
+      twMerge(
+        `px-2 pt-2`,
+        className
+      )}
+    >
       {children}
     </div>
   )

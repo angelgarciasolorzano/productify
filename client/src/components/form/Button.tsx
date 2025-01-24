@@ -1,22 +1,26 @@
 import { ComponentProps, ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
+
 import Loader from "../Loader";
 
 interface Props extends ComponentProps<"button"> {
-  loading: boolean;
+  loading?: boolean;
   children: ReactNode;
+  className?: string;
 };
 
 function Button(props: Props) {
-  const { loading, children, ...buttonProps } = props;
+  const { loading, children, className, ...buttonProps } = props;
 
   return (
     <button
       {...buttonProps}
-      className={
-        `flex items-center justify-center bg-green-600 text-white min-w-[30%] px-4 text-sm py-2 
-        rounded-xl transition duration-200 ease-in-out hover:bg-green-700 
-        active:bg-green-900 focus:outline-none mb-4`
-      }
+      className={twMerge(
+        `flex items-center justify-center bg-green-600 text-white
+        px-2 text-sm py-2 rounded-xl transition duration-200 ease-in-out
+        ${loading ? "bg-black" : "hover:bg-green-700"}`,
+        className
+      )}
     >
       {loading ? <Loader /> : children}
     </button>

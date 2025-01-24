@@ -62,6 +62,7 @@ function LoginPage() {
             loading={loading}
             type="submit"
             disabled={loading}
+            className="min-w-[40%]"
           >
             Iniciar Sesion
           </Button>

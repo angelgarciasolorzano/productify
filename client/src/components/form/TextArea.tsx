@@ -36,7 +36,7 @@ function TextArea<T extends FieldValues>(props: Props<T>) {
       />
 
       {errors && 
-        <p className="pt-1 text-sm text-red-600 dark:text-red-500">
+        <p className="text-sm text-red-600 dark:text-red-500">
           {errors.message}
         </p>
       }
