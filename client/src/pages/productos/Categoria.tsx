@@ -70,7 +70,7 @@ function Categoria() {
       <Modal 
         isOpen={openModal} 
         onClose={() => closeModal(() => reset())}
-        className="w-5/12 py-1"
+        className="w-5/12 py-1 border border-white-200 dark:border-dark-800"
       >
         <ModalTitle title="Registrar categoria" onClose={() => closeModal(() => reset())} />
 
@@ -86,10 +86,13 @@ function Categoria() {
         </ModalBody>
 
         <ModalFooter>
-          <div className="flex items-center justify-end gap-4 mb-4 mt-2">
+          <div className="flex items-center justify-end gap-4 mb-2 mt-2">
             <Button
               onClick={() => closeModal(() => reset())}
-              className="bg-red-600 text-white hover:bg-red-800 min-w-[20%]" 
+              className="text-black bg-transparent border border-gray-400 min-w-[20%]
+                hover:bg-red-600 hover:text-white hover:border-transparent
+                dark:text-white
+              " 
             >
               Cancelar
             </Button>

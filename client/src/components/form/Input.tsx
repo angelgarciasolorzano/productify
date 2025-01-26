@@ -6,12 +6,13 @@ interface Props<T extends FieldValues> extends ComponentProps<"input"> {
   icon?: IconType;
   labelName: string;
   inputName: Path<T>;
+  isRequired?: boolean;
   register: UseFormRegister<T>;
   errors?: FieldError;
 };
 
 function Input<T extends FieldValues>(props: Props<T>) {
-  const { register, inputName, labelName, icon: Icon, errors, ...inputProps } = props;
+  const { register, inputName, labelName, isRequired, icon: Icon, errors, ...inputProps } = props;
 
   return (
     <div className="block w-full">
@@ -20,6 +21,10 @@ function Input<T extends FieldValues>(props: Props<T>) {
         className="block text-sm font-semibold mb-2 text-gray-800 dark:text-white"
       >
         {labelName}
+
+        {isRequired && (
+          <span className="text-red-600 font-bold dark:text-red-500"> *</span>
+        )}
       </label>
 
       <div className={`flex items-center w-full border border-gray-400 
@@ -30,19 +35,23 @@ function Input<T extends FieldValues>(props: Props<T>) {
             dark:focus-within:border-gray-200 dark:focus-within:ring-gray-200`
         }`}
       >
-        <div className="flex items-center justify-center px-2 text-gray-800 
-          dark:text-gray-200"
-        >
-          {Icon && <Icon className="w-5 h-5 text-gray-600 dark:text-gray-400" />}
-        </div>
+        {
+          Icon && (
+            <div className="flex items-center justify-center px-2 text-gray-800 
+              dark:text-gray-200"
+            >
+              <Icon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+            </div>
+          )
+        }
 
         <input
           {...register(inputName)}
           {...inputProps}
-          className="w-full py-2 pr-2 border-0 focus:outline-none text-gray-800 
+          className={`w-full ${Icon ? "pr-3" : "px-2"} py-2 border-0 focus:outline-none text-gray-800 
             bg-transparent dark:text-gray-200 placeholder:text-gray-500
             dark:placeholder:text-gray-400
-          "
+          `}
         />
       </div>
 

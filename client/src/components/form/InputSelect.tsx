@@ -23,6 +23,7 @@ interface Props<T extends FieldValues> {
   register: UseFormRegister<T>;
   labelName: string;
   inputName: Path<T>;
+  isRequired?: boolean;
   opciones: Opcion[];
   onChange: (opcion: string) => void;
   toggle: () => void;
@@ -32,7 +33,10 @@ interface Props<T extends FieldValues> {
 };
 
 function InputSelect<T extends FieldValues>(props: Props<T>) {
-  const { opciones, onChange, toggle , open, setOpen, labelName, inputName, register, errors} = props;
+  const { 
+    opciones, onChange, toggle , open, setOpen, labelName, isRequired, 
+    inputName, register, errors
+  } = props;
   const [selectOpcion, setSelectOpcion] = useState<Opcion | null>(null);
 
   const handleClick = (opcion: Opcion): void => {
@@ -49,6 +53,10 @@ function InputSelect<T extends FieldValues>(props: Props<T>) {
           className="block text-sm font-semibold mb-2 text-gray-800 dark:text-white"
         >
           {labelName}
+
+          {isRequired && (
+            <span className="text-red-600 font-bold dark:text-red-500"> *</span>
+          )}
         </label>
         
         <div 

@@ -13,10 +13,6 @@ interface ModalProps {
   className?: string;
 };
 
-type ModalTitleProps = Pick<ModalProps, "onClose" | "className"> & { title: string };
-type ModalBodyProps = Pick<ModalProps, "children" | "className">;
-type ModalFooterProps = Pick<ModalProps, "children" | "className">;
-
 export function Modal({ isOpen, onClose, children, className }: ModalProps) {
   const modalRoot = document.getElementById("modal-root");
   const modalRef = useClickOutside<HTMLDivElement>({ toggle: onClose });
@@ -51,7 +47,7 @@ export function Modal({ isOpen, onClose, children, className }: ModalProps) {
             <div
               ref={modalRef}
               className={twMerge(
-                `bg-white px-2 rounded-2xl shadow-xl max-w-[85%] max-h-[90vh] 
+                `flex flex-col bg-white px-2 rounded-2xl shadow-xl max-w-[85%] max-h-[90vh] 
                 pointer-events-auto overflow-hidden dark:bg-dark-720`,
                 className
               )}
@@ -65,6 +61,8 @@ export function Modal({ isOpen, onClose, children, className }: ModalProps) {
     modalRoot
   )
 };
+
+type ModalTitleProps = Pick<ModalProps, "onClose" | "className"> & { title: string };
 
 export function ModalTitle({ onClose, title, className }: ModalTitleProps) {
   return (
@@ -88,11 +86,13 @@ export function ModalTitle({ onClose, title, className }: ModalTitleProps) {
   )
 };
 
+type ModalBodyProps = Pick<ModalProps, "children" | "className">;
+
 export function ModalBody({ children, className }: ModalBodyProps) {
   return (
     <div className={
       twMerge(
-        `overflow-auto px-2 max-h-[80vh] scrollbar-thin 
+        `flex-1 overflow-auto px-2 max-h-[80vh] scrollbar-thin 
         dark:scrollbar-thumb-gray-500 dark:scrollbar-track-dark-720`,
         className
       )}
@@ -101,6 +101,8 @@ export function ModalBody({ children, className }: ModalBodyProps) {
     </div>
   )
 };
+
+type ModalFooterProps = Pick<ModalProps, "children" | "className">;
 
 export function ModalFooter({ children, className }: ModalFooterProps) {
   return (
