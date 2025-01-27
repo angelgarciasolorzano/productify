@@ -1,6 +1,6 @@
 import { useForm, UseFormRegister, FieldError } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MdOutlineAttachMoney, MdOutlineInventory2, MdOutlineBalance } from "react-icons/md";
+import { MdOutlineAttachMoney, MdOutlineInventory2, MdOutlineBalance, MdOutlineCalendarToday } from "react-icons/md";
 import { IoPricetagsOutline, IoCloseCircleOutline } from "react-icons/io5";
 import { RiCheckboxCircleLine } from "react-icons/ri";
 
@@ -11,6 +11,7 @@ import TextArea from "../../components/form/TextArea";
 import InputSelect from "../../components/form/InputSelect";
 import useToggle from "../../hooks/useToggle";
 import Button from "../../components/form/Button";
+import ImageSelect from "../../components/form/ImageSelect";
 
 const options = [
   { 
@@ -64,41 +65,7 @@ function Registrar() {
             selectToggle={handleToggle}
           />
 
-          <div className="w-full border border-white-200 rounded-2xl p-4 dark:border-dark-800">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-xl font-semibold dark:text-white">
-                Datos adicionales
-              </span>
-
-              <span className="text-xs bg-blue-500 bg-opacity-10 p-2 rounded-full 
-                text-blue-600 font-semibold dark:text-blue-500"
-              >
-                Opcional
-              </span>
-            </div>
-
-            <p className="text-xs bg-blue-500 bg-opacity-10 p-2 rounded-lg mt-2 mb-2 
-              text-blue-600 font-medium dark:text-blue-500"
-            >
-              Proporcione información extra sobre el producto, como la fecha de expiración 
-              y una imagen representativa para identificarlo visualmente. Esta información
-              puede ser llenada mas tarde si lo desea.
-            </p>
-
-            <Input 
-              register={register}
-              labelName="Unidad"
-              inputName="correo_Usuario"
-              placeholder="Ingrese el nombre del producto"
-            />
-
-            <Input 
-              register={register}
-              labelName="Unidad"
-              inputName="correo_Usuario"
-              placeholder="Ingrese el nombre del producto"
-            />
-          </div>
+          <RegistrarDatosAdicionales register={register} errors={errors} />
 
           <GuardarRegistro />
         </div>
@@ -257,6 +224,50 @@ function RegistrarCategoria(props: RegistrarCategoriaProps) {
         onChange={(value: string) => console.log(value)} 
         errors={errors.contra_Usuario}
       />
+    </div>
+  )
+};
+
+interface RegistrarDatosAdicionalesProps {
+  register: UseFormRegister<LoginTypeSchema>;
+  errors: Partial<Record<keyof LoginTypeSchema, FieldError>>;
+};
+
+function RegistrarDatosAdicionales({ register }: RegistrarDatosAdicionalesProps) {
+  return (
+    <div className="w-full border border-white-200 rounded-2xl p-4 dark:border-dark-800">
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-xl font-semibold dark:text-white">
+          Datos adicionales
+        </span>
+
+        <span className="text-xs bg-blue-500 bg-opacity-10 p-2 rounded-full 
+          text-blue-600 font-semibold dark:text-blue-500"
+        >
+          Opcional
+        </span>
+      </div>
+
+      <p className="text-xs bg-blue-500 bg-opacity-10 p-2 rounded-lg mt-2 mb-2 
+        text-blue-600 font-medium dark:text-blue-500"
+      >
+        Proporcione información extra sobre el producto, como la fecha de expiración 
+        y una imagen representativa para identificarlo visualmente. Esta información
+        puede ser llenada mas tarde si lo desea.
+      </p>
+
+      <div className="flex flex-col gap-8 mt-4">
+        <Input 
+          register={register}
+          labelName="Fecha de vencimiento"
+          inputName="correo_Usuario"
+          placeholder="Ingrese el nombre del producto"
+          type="date"
+          icon={MdOutlineCalendarToday}
+        />
+
+        <ImageSelect className="border border-gray-400 rounded-2xl p-3" />
+      </div>
     </div>
   )
 };

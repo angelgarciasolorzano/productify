@@ -6,7 +6,6 @@ import Loader from "../Loader";
 interface Props extends ComponentProps<"button"> {
   loading?: boolean;
   children: ReactNode;
-  className?: string;
 };
 
 function Button(props: Props) {

@@ -12,7 +12,17 @@ interface Props<T extends FieldValues> extends ComponentProps<"input"> {
 };
 
 function Input<T extends FieldValues>(props: Props<T>) {
-  const { register, inputName, labelName, isRequired, icon: Icon, errors, ...inputProps } = props;
+  const { 
+    register, inputName, labelName, isRequired, icon: Icon, errors, 
+    type,...inputProps 
+  } = props;
+
+  const handleIconClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (type === "date") {
+      const inputElement = e.currentTarget.nextSibling as HTMLInputElement | null;
+      inputElement?.showPicker();
+    }
+  };
 
   return (
     <div className="block w-full">
@@ -37,8 +47,13 @@ function Input<T extends FieldValues>(props: Props<T>) {
       >
         {
           Icon && (
-            <div className="flex items-center justify-center px-2 text-gray-800 
-              dark:text-gray-200"
+            <div 
+              onClick={handleIconClick}
+              className={`flex items-center justify-center px-2 text-gray-800 
+                dark:text-gray-200 ${
+                  type === "date" || type === "time" ? "cursor-pointer" : ""
+                }`
+              }
             >
               <Icon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
             </div>
@@ -46,6 +61,8 @@ function Input<T extends FieldValues>(props: Props<T>) {
         }
 
         <input
+          id={inputName}
+          type={type}
           {...register(inputName)}
           {...inputProps}
           className={`w-full ${Icon ? "pr-3" : "px-2"} py-2 border-0 focus:outline-none text-gray-800 
