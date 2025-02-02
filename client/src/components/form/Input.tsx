@@ -8,12 +8,13 @@ interface Props<T extends FieldValues> extends ComponentProps<"input"> {
   inputName: Path<T>;
   isRequired?: boolean;
   register: UseFormRegister<T>;
+  registerOpction?: Parameters<UseFormRegister<T>>[1];
   errors?: FieldError;
 };
 
 function Input<T extends FieldValues>(props: Props<T>) {
   const { 
-    register, inputName, labelName, isRequired, icon: Icon, errors, 
+    register, registerOpction, inputName, labelName, isRequired, icon: Icon, errors, 
     type,...inputProps 
   } = props;
 
@@ -63,7 +64,7 @@ function Input<T extends FieldValues>(props: Props<T>) {
         <input
           id={inputName}
           type={type}
-          {...register(inputName)}
+          {...register(inputName, registerOpction)}
           {...inputProps}
           className={`w-full ${Icon ? "pr-3" : "px-2"} py-2 border-0 focus:outline-none text-gray-800 
             bg-transparent dark:text-gray-200 placeholder:text-gray-500

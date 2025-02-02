@@ -1,11 +1,14 @@
 import { useForm, UseFormRegister, FieldError } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { MdOutlineAttachMoney, MdOutlineInventory2, MdOutlineBalance, MdOutlineCalendarToday } from "react-icons/md";
 import { IoPricetagsOutline, IoCloseCircleOutline } from "react-icons/io5";
 import { RiCheckboxCircleLine } from "react-icons/ri";
+import { 
+  MdOutlineAttachMoney, MdOutlineInventory2, 
+  MdOutlineBalance, MdOutlineCalendarToday 
+} from "react-icons/md";
 
-import { LoginTypeSchema, loginFormSchema } from "../../schemas/authSchema";
 import { Input } from "../../components/form";
+import { productoFormSchema, ProductoTypeSchema } from "../../schemas/productoSchema";
 
 import TextArea from "../../components/form/TextArea";
 import InputSelect from "../../components/form/InputSelect";
@@ -30,261 +33,212 @@ const options = [
 
 function Registrar() {
   const { state: openSelect, toggle: handleToggle, close: closeSelect } = useToggle();
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginTypeSchema>({
-    resolver: zodResolver(loginFormSchema)
+  const { register, handleSubmit, formState: { errors } } = useForm<ProductoTypeSchema>({
+    defaultValues: {
+      precio_compra: 0,
+      precio_venta: 0
+    },
+    resolver: zodResolver(productoFormSchema)
   });
 
-  const onSubmit = handleSubmit(async (values: LoginTypeSchema): Promise<void> => {
-    console.log(values);
+  const onSubmite = handleSubmit(async (values: ProductoTypeSchema) => {
+    console.log("Datos válidos:", values);
   });
 
   return (
     <div className="w-full px-4 bg-white rounded-2xl shadow-md dark:bg-dark-720">
-      <div className="flex justify-between items-center mt-4">
+      <div className="flex justify-between items-center mt-4 mb-4">
         <span className="text-green-600 text-2xl font-semibold dark:text-green-500">
           Registrar producto
         </span>
       </div>
 
       <form 
-        onSubmit={onSubmit} 
+        onSubmit={onSubmite} 
         id="producto-form" 
-        className="flex mt-4 items-stretch justify-evenly gap-4 mb-4 max-md:flex-col"
+        className="flex flex-col mt-4 gap-4 mb-4"
       >
-        <div className="flex flex-col flex-1 items-center gap-4 w-full">
-          <RegistrarProducto register={register} errors={errors} />
-          <RegistrarInventario register={register} errors={errors} />
-        </div>
+        <RegistrarProducto 
+          register={register} 
+          errors={errors} 
+          openSelect={openSelect} 
+          closeSelect={closeSelect} 
+          selectToggle={handleToggle} 
+        />
 
-        <div className="flex flex-col flex-1 items-center gap-4 w-full">
-          <RegistrarCategoria 
-            register={register} 
-            errors={errors}
-            openSelect={openSelect} 
-            closeSelect={closeSelect} 
-            selectToggle={handleToggle}
-          />
+        <RegistrarInventario
+          register={register} 
+          errors={errors} 
+          openSelect={openSelect} 
+          closeSelect={closeSelect} 
+          selectToggle={handleToggle}
+        />
 
-          <RegistrarDatosAdicionales register={register} errors={errors} />
-
-          <GuardarRegistro />
-        </div>
+        <GuardarRegistro />
       </form>
     </div>
   )
 };
 
 interface RegistrarProductoProps {
-  register: UseFormRegister<LoginTypeSchema>;
-  errors: Partial<Record<keyof LoginTypeSchema, FieldError>>;
+  register: UseFormRegister<ProductoTypeSchema>;
+  errors: Partial<Record<keyof ProductoTypeSchema, FieldError>>;
+  openSelect: string | null;
+  closeSelect: (text: string | null) => void;
+  selectToggle: (text: string | null) => void;
 };
 
-function RegistrarProducto({ register, errors }: RegistrarProductoProps) {
+function RegistrarProducto(props: RegistrarProductoProps) {
+  const { register, errors, openSelect, closeSelect, selectToggle } = props;
+
   return (
-    <div className="w-full border rounded-2xl p-4 border-white-200 dark:border-dark-800">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-xl font-semibold dark:text-white">
-          Datos del producto
-        </span>
-
-        <span className="text-xs bg-orange-500 bg-opacity-10 p-2 rounded-full 
-          text-yellow-600 font-semibold dark:text-yellow-500"
-        >
-          Obligatorio
-        </span>
-      </div>
-
-      <p className="pb-4 text-xs text-gray-500 dark:text-gray-400">
-        Complete los campos obligatorios marcados con un asterisco 
-        <b className="text-red-600 dark:text-red-500"> (*)</b>
-      </p>
-
-      <div className="flex flex-col gap-4">
-        <Input 
-          register={register}
-          labelName="Nombre"
-          inputName="correo_Usuario"
-          placeholder="Ingrese el nombre del producto"
-          isRequired={true}
-          errors={errors.correo_Usuario}
-          icon={IoPricetagsOutline}
-        />
-
-        <TextArea 
-          register={register}
-          labelName="Descripción"
-          inputName="contra_Usuario"
-          placeholder="Ingrese la descripción del producto"
-          errors={errors.correo_Usuario}
-        />
-      </div>
-    </div>
-  )
-};
-
-interface RegistrarInventarioProps {
-  register: UseFormRegister<LoginTypeSchema>;
-  errors: Partial<Record<keyof LoginTypeSchema, FieldError>>;
-};
-
-function RegistrarInventario({ register, errors }: RegistrarInventarioProps) {
-  return (
-    <div className="w-full border rounded-2xl p-4 border-white-200 dark:border-dark-800">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-xl font-semibold dark:text-white">
-          Datos de inventario
-        </span>
-
-        <span className="text-xs bg-orange-500 bg-opacity-10 p-2 rounded-full 
-          text-yellow-600 font-semibold dark:text-yellow-500"
-        >
-          Obligatorio
-        </span>
-      </div>
+    <div className="flex flex-col w-full border rounded-2xl p-4 border-white-200 
+      dark:border-dark-800"
+    >
+      <span className="text-xl font-semibold dark:text-white">
+        Datos del producto
+      </span>
 
       <p className="pb-4 text-xs text-gray-500 dark:text-gray-400">
         Complete los campos obligatorios marcados con un asterisco
         <b className="text-red-600 dark:text-red-500"> (*)</b>
       </p>
 
-      <div className="flex flex-col gap-4">
-        <Input 
-          register={register}
-          labelName="Precio"
-          inputName="correo_Usuario"
-          placeholder="Ingrese el nombre del producto"
-          isRequired={true}
-          errors={errors.correo_Usuario}
-          icon={MdOutlineAttachMoney}
-        />
+      <div className="flex gap-4 mb-4 w-full max-lg:flex-col-reverse">
+        <div className="flex items-center justify-center border border-dashed rounded-2xl 
+          p-4 w-5/12 border-gray-400 max-lg:w-full"
+        >
+          <ImageSelect />
+        </div>
 
-        <Input 
-          register={register}
-          labelName="Stock"
-          inputName="correo_Usuario"
-          placeholder="Ingrese el nombre del producto"
-          isRequired={true}
-          errors={errors.correo_Usuario}
-          icon={MdOutlineInventory2}
-        />
+        <div className="flex flex-col gap-4 w-full">
+          <div className="flex gap-4 max-md:flex-col">
+            <Input 
+              register={register}
+              labelName="Nombre"
+              inputName="nombre_producto"
+              placeholder="Ingrese el nombre del producto"
+              isRequired={true}
+              errors={errors.nombre_producto}
+              icon={IoPricetagsOutline}
+            />
 
-        <Input 
-          register={register}
-          labelName="Unidad"
-          inputName="correo_Usuario"
-          placeholder="Ingrese el nombre del producto"
-          isRequired={true}
-          errors={errors.correo_Usuario}
-          icon={MdOutlineBalance}
-        />
+            <InputSelect 
+              register={register}
+              labelName="Categoria"
+              inputName="id_categoria"
+              isRequired={true}
+              opciones={options}
+              toggle={() => selectToggle("estado")}
+              open={openSelect === "estado"}
+              setOpen={closeSelect}
+              onChange={(value: string) => console.log(value)} 
+              errors={errors.id_categoria}
+            />
+          </div>
+
+          <TextArea
+            register={register}
+            labelName="Descripción"
+            inputName="descripcion_producto"
+            placeholder="Ingrese la descripción del producto"
+            errors={errors.descripcion_producto}
+          />
+        </div>
       </div>
     </div>
   )
 };
 
-interface RegistrarCategoriaProps {
-  register: UseFormRegister<LoginTypeSchema>;
-  errors: Partial<Record<keyof LoginTypeSchema, FieldError>>;
-  openSelect: string | null;
-  closeSelect: (text: string | null) => void;
-  selectToggle: (text: string | null) => void;
-};
+type RegistrarInventarioProps = RegistrarProductoProps;
 
-function RegistrarCategoria(props: RegistrarCategoriaProps) {
+function RegistrarInventario(props: RegistrarInventarioProps) {
   const { register, errors, openSelect, closeSelect, selectToggle } = props;
 
   return (
-    <div className="w-full border border-white-200 rounded-2xl p-4 dark:border-dark-800">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-xl font-semibold dark:text-white">
-          Categoria
-        </span>
-
-        <span className="text-xs bg-orange-500 bg-opacity-10 p-2 rounded-full 
-          text-yellow-600 font-semibold dark:text-yellow-500"
-        >
-          Obligatorio
-        </span>
-      </div>
+    <div className="flex flex-col w-full border rounded-2xl p-4 border-white-200 
+      dark:border-dark-800"
+    >
+      <span className="text-xl font-semibold dark:text-white">
+        Datos de inventario
+      </span>
 
       <p className="pb-4 text-xs text-gray-500 dark:text-gray-400">
-        Complete los campos obligatorios marcados con un asterisco 
+        Complete los campos obligatorios marcados con un asterisco
         <b className="text-red-600 dark:text-red-500"> (*)</b>
       </p>
 
-      <InputSelect 
-        register={register}
-        labelName="Categoria"
-        inputName="correo_Usuario"
-        isRequired={true}
-        opciones={options}
-        toggle={() => selectToggle("estado")}
-        open={openSelect === "estado"}
-        setOpen={closeSelect}
-        onChange={(value: string) => console.log(value)} 
-        errors={errors.contra_Usuario}
-      />
-    </div>
-  )
-};
-
-interface RegistrarDatosAdicionalesProps {
-  register: UseFormRegister<LoginTypeSchema>;
-  errors: Partial<Record<keyof LoginTypeSchema, FieldError>>;
-};
-
-function RegistrarDatosAdicionales({ register }: RegistrarDatosAdicionalesProps) {
-  return (
-    <div className="w-full border border-white-200 rounded-2xl p-4 dark:border-dark-800">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-xl font-semibold dark:text-white">
-          Datos adicionales
-        </span>
-
-        <span className="text-xs bg-blue-500 bg-opacity-10 p-2 rounded-full 
-          text-blue-600 font-semibold dark:text-blue-500"
-        >
-          Opcional
-        </span>
-      </div>
-
-      <p className="text-xs bg-blue-500 bg-opacity-10 p-2 rounded-lg mt-2 mb-2 
-        text-blue-600 font-medium dark:text-blue-500"
-      >
-        Proporcione información extra sobre el producto, como la fecha de expiración 
-        y una imagen representativa para identificarlo visualmente. Esta información
-        puede ser llenada mas tarde si lo desea.
-      </p>
-
-      <div className="flex flex-col gap-8 mt-4">
-        <Input 
+      <div className="flex w-full gap-4 mb-6 max-md:flex-col">
+        <InputSelect 
           register={register}
-          labelName="Fecha de vencimiento"
-          inputName="correo_Usuario"
-          placeholder="Ingrese el nombre del producto"
-          type="date"
-          icon={MdOutlineCalendarToday}
+          labelName="Proveedor"
+          inputName="id_proveedor"
+          isRequired={true}
+          opciones={options}
+          toggle={() => selectToggle("estado")}
+          open={openSelect === "estado"}
+          setOpen={closeSelect}
+          onChange={(value: string) => console.log(value)} 
+          errors={errors.id_proveedor}
         />
 
-        <ImageSelect className="border border-gray-400 rounded-2xl p-3" />
+        <Input 
+          register={register}
+          registerOpction={{ valueAsNumber: true }}
+          labelName="Precio de compra"
+          inputName="precio_compra"
+          placeholder="Ingrese el precio de compra del producto"
+          type="number"
+          errors={errors.precio_compra}
+          icon={MdOutlineAttachMoney}
+        />
       </div>
+
+      <div className="w-full flex gap-4 mb-6 max-md:flex-col">
+        <Input
+          register={register}
+          registerOpction={{ valueAsNumber: true }}
+          labelName="Precio de venta"
+          inputName="precio_venta"
+          type="number"
+          placeholder="Ingrese el precio de venta del producto"
+          isRequired={true}
+          errors={errors.precio_venta}
+          icon={MdOutlineInventory2}
+        />
+
+        <Input
+          register={register}
+          registerOpction={{ valueAsNumber: true }}
+          labelName="Stock"
+          inputName="stock_producto"
+          type="number"
+          placeholder="Ingrese el stock del producto"
+          isRequired={true}
+          errors={errors.stock_producto}
+          icon={MdOutlineBalance}
+        />
+      </div>
+
+      <Input 
+        register={register}
+        registerOpction={{ valueAsDate: true }}
+        labelName="Fecha de vencimiento"
+        inputName="fecha_vencimiento"
+        placeholder="Ingrese el nombre del producto"
+        type="date"
+        defaultValue={new Date().toISOString().split("T")[0]}
+        icon={MdOutlineCalendarToday}
+        errors={errors.fecha_vencimiento}
+      />
     </div>
   )
 };
 
 function GuardarRegistro() {
   return (
-    <div className="flex flex-col items-center border border-white-200 rounded-2xl p-4 
-      gap-4 w-full dark:border-dark-800"
-    >
-      <p className="text-xs bg-orange-500 bg-opacity-10 rounded-lg p-2 text-yellow-600 
-        font-medium dark:text-yellow-500"
-      >
-        Revise que todos los campos obligatorios esten completos antes de 
-        guardar el producto.
-      </p>
-        
-      <Button type="submit" form="producto-form" className="min-w-[30%]">
+    <div className="w-full flex justify-center">
+      <Button form="producto-form" className="px-6 bg-blue-600 min-w-32">
         Guardar
       </Button>
     </div>
