@@ -1,43 +1,23 @@
-import { useForm, UseFormRegister, FieldError } from "react-hook-form";
+import { useForm, UseFormRegister, FieldError, UseFormSetValue, UseFormGetValues, Controller, Control } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IoPricetagsOutline, IoCloseCircleOutline } from "react-icons/io5";
-import { RiCheckboxCircleLine } from "react-icons/ri";
+import { IoPricetagsOutline } from "react-icons/io5";
 import { 
   MdOutlineAttachMoney, MdOutlineInventory2, 
-  MdOutlineBalance, MdOutlineCalendarToday 
+  MdOutlineBalance
 } from "react-icons/md";
+import { DateInput } from "@mantine/dates";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
-import { Input } from "../../components/form";
 import { productoFormSchema, ProductoTypeSchema } from "../../schemas/productoSchema";
 
-import TextArea from "../../components/form/TextArea";
-import InputSelect from "../../components/form/InputSelect";
-import useToggle from "../../hooks/useToggle";
 import Button from "../../components/form/Button";
 import ImageSelect from "../../components/form/ImageSelect";
 
-const options = [
-  { 
-    value: 'Activo', 
-    label: 'Activo', 
-    icon: RiCheckboxCircleLine, 
-    iconColor: 'text-green-600 dark:text-green-500' 
-  },
-  { 
-    value: 'Inactivo', 
-    label: 'Inactivo', 
-    icon: IoCloseCircleOutline,
-    iconColor: 'text-red-600 dark:text-red-500'
-  }
-];
+import { ComboboxItem, NumberInput, OptionsFilter, Select, Textarea, TextInput } from "@mantine/core";
 
 function Registrar() {
-  const { state: openSelect, toggle: handleToggle, close: closeSelect } = useToggle();
-  const { register, handleSubmit, formState: { errors } } = useForm<ProductoTypeSchema>({
-    defaultValues: {
-      precio_compra: 0,
-      precio_venta: 0
-    },
+  const { register, handleSubmit, setValue, getValues, control, formState: { errors } } = useForm<ProductoTypeSchema>({
     resolver: zodResolver(productoFormSchema)
   });
 
@@ -60,20 +40,19 @@ function Registrar() {
       >
         <RegistrarProducto 
           register={register} 
+          setValue={setValue}
+          getValues={getValues}
           errors={errors} 
-          openSelect={openSelect} 
-          closeSelect={closeSelect} 
-          selectToggle={handleToggle} 
+          control={control}
         />
 
         <RegistrarInventario
           register={register} 
           errors={errors} 
-          openSelect={openSelect} 
-          closeSelect={closeSelect} 
-          selectToggle={handleToggle}
+          setValue={setValue}
+          getValues={getValues}
+          control={control}
         />
-
         <GuardarRegistro />
       </form>
     </div>
@@ -83,16 +62,16 @@ function Registrar() {
 interface RegistrarProductoProps {
   register: UseFormRegister<ProductoTypeSchema>;
   errors: Partial<Record<keyof ProductoTypeSchema, FieldError>>;
-  openSelect: string | null;
-  closeSelect: (text: string | null) => void;
-  selectToggle: (text: string | null) => void;
+  setValue: UseFormSetValue<ProductoTypeSchema>;
+  getValues: UseFormGetValues<ProductoTypeSchema>;
+  control: Control<ProductoTypeSchema>;
 };
 
 function RegistrarProducto(props: RegistrarProductoProps) {
-  const { register, errors, openSelect, closeSelect, selectToggle } = props;
+  const { register, errors, setValue } = props;
 
   return (
-    <div className="flex flex-col w-full border rounded-2xl p-4 border-white-200 
+    <div className="w-full border rounded-2xl p-4 border-white-200 
       dark:border-dark-800"
     >
       <span className="text-xl font-semibold dark:text-white">
@@ -104,47 +83,57 @@ function RegistrarProducto(props: RegistrarProductoProps) {
         <b className="text-red-600 dark:text-red-500"> (*)</b>
       </p>
 
-      <div className="flex gap-4 mb-4 w-full max-lg:flex-col-reverse">
-        <div className="flex items-center justify-center border border-dashed rounded-2xl 
-          p-4 w-5/12 border-gray-400 max-lg:w-full"
+      <div className="grid grid-cols-3 gap-4 max-lg:grid-cols-1">
+        <div className="flex items-center justify-center row-span-2 p-4 border 
+          border-dashed rounded-2xl border-gray-400 max-lg:order-last"
         >
           <ImageSelect />
         </div>
 
-        <div className="flex flex-col gap-4 w-full">
-          <div className="flex gap-4 max-md:flex-col">
-            <Input 
-              register={register}
-              labelName="Nombre"
-              inputName="nombre_producto"
-              placeholder="Ingrese el nombre del producto"
-              isRequired={true}
-              errors={errors.nombre_producto}
-              icon={IoPricetagsOutline}
+        <TextInput 
+          {...register("nombre_producto")}
+          label="Nombre" 
+          placeholder="Ingrese el nombre del producto"
+          description="Favor de ingresar un nombre corto y descriptivo"
+          withAsterisk
+          error={errors.nombre_producto?.message}
+          leftSection={
+            <IoPricetagsOutline 
+              size={18} 
+              className={`${errors.nombre_producto?.message
+                ? `text-red-600 dark:text-red-500`
+                : `text-gray-600 dark:text-gray-400`
+              }`}
             />
+          }
+        />
 
-            <InputSelect 
-              register={register}
-              labelName="Categoria"
-              inputName="id_categoria"
-              isRequired={true}
-              opciones={options}
-              toggle={() => selectToggle("estado")}
-              open={openSelect === "estado"}
-              setOpen={closeSelect}
-              onChange={(value: string) => console.log(value)} 
-              errors={errors.id_categoria}
-            />
-          </div>
+        <Select
+          {...register("id_categoria")}
+          label="Categoria"
+          description="Seleccione una opción de la lista"
+          placeholder="Seleccione una opción"
+          data={[{ value: "1", label: "Activo" }, { value: "2", label: "Inactivo" }]}
+          allowDeselect
+          required
+          maxDropdownHeight={200}
+          error={errors.id_categoria?.message}
+          onChange={(value) => {
+            setValue("id_categoria", Number(value), { shouldValidate: true })}
+          }
+        />
 
-          <TextArea
-            register={register}
-            labelName="Descripción"
-            inputName="descripcion_producto"
-            placeholder="Ingrese la descripción del producto"
-            errors={errors.descripcion_producto}
-          />
-        </div>
+        <Textarea
+          {...register("descripcion_producto")}
+          label="Descripcion"
+          description="Favor de ingresar una descripcion detallada del producto"
+          placeholder="Ingrese la descripción del producto"
+          error={errors.descripcion_producto?.message}
+          className="lg:col-span-2"
+          autosize
+          minRows={4}
+          maxRows={6}
+        />
       </div>
     </div>
   )
@@ -152,11 +141,26 @@ function RegistrarProducto(props: RegistrarProductoProps) {
 
 type RegistrarInventarioProps = RegistrarProductoProps;
 
-function RegistrarInventario(props: RegistrarInventarioProps) {
-  const { register, errors, openSelect, closeSelect, selectToggle } = props;
+const optionsFilter: OptionsFilter = ({ options, search }) => {
+  const splittedSearch = search.toLowerCase().trim().split(' ');
+  return (options as ComboboxItem[]).filter((option) => {
+    const words = option.label.toLowerCase().trim().split(' ');
+    return splittedSearch.every((searchWord) => words.some((word) => word.includes(searchWord)));
+  });
+};
 
+function RegistrarInventario(props: RegistrarInventarioProps) {
+  const { register, errors, setValue, control } = props;
+  const proveedores = [
+    { id: "1", nombre: 'Great Britain' },
+    { id: "2", nombre: 'Russian Federation' },
+    { id: "3", nombre: 'United States' },
+  ];
+
+  dayjs.extend(customParseFormat);
+  
   return (
-    <div className="flex flex-col w-full border rounded-2xl p-4 border-white-200 
+    <div className="w-full border rounded-2xl p-4 border-white-200 
       dark:border-dark-800"
     >
       <span className="text-xl font-semibold dark:text-white">
@@ -168,69 +172,115 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
         <b className="text-red-600 dark:text-red-500"> (*)</b>
       </p>
 
-      <div className="flex w-full gap-4 mb-6 max-md:flex-col">
-        <InputSelect 
-          register={register}
-          labelName="Proveedor"
-          inputName="id_proveedor"
-          isRequired={true}
-          opciones={options}
-          toggle={() => selectToggle("estado")}
-          open={openSelect === "estado"}
-          setOpen={closeSelect}
-          onChange={(value: string) => console.log(value)} 
-          errors={errors.id_proveedor}
+      <div className="grid grid-cols-2 gap-4 max-lg:grid-cols-1">
+        <Select
+          {...register("id_proveedor")}
+          label="Proveedor"
+          description="Seleccione un proveedor de la lista"
+          placeholder="Seleccione un proveedor"
+          required
+          searchable
+          filter={optionsFilter}
+          data={proveedores.map((proveedor) => ({
+            value: proveedor.id,
+            label: proveedor.nombre,
+          }))}
+          nothingFoundMessage="No se encontraron proveedores"
+          error={errors.id_proveedor?.message}
+          onChange={(value) => {
+            setValue("id_proveedor", Number(value), { shouldValidate: true })}
+          }
         />
 
-        <Input 
-          register={register}
-          registerOpction={{ valueAsNumber: true }}
-          labelName="Precio de compra"
-          inputName="precio_compra"
-          placeholder="Ingrese el precio de compra del producto"
-          type="number"
-          errors={errors.precio_compra}
-          icon={MdOutlineAttachMoney}
+        <Controller 
+          name="precio_compra"
+          control={control}
+          render={({field}) => (
+            <NumberInput 
+              {...field}
+              label="Precio de compra"
+              description="Favor de ingresar el precio de compra del producto"
+              placeholder="Ingrese el precio de compra del producto"
+              decimalScale={4}
+              allowNegative={false}
+              error={errors.precio_compra?.message}
+              onChange={(value) => {field.onChange(value === "" ? undefined : value)}}
+              leftSection={
+                <MdOutlineAttachMoney 
+                  size={18} 
+                  className={`${errors.precio_compra?.message
+                    ? `text-red-600 dark:text-red-500`
+                    : `text-gray-600 dark:text-gray-400`
+                  }`}
+                />
+              }
+            />
+          )}
+        />
+
+        <Controller
+          name="precio_venta"
+          control={control}
+          render={({ field }) => (
+            <NumberInput 
+              {...field}
+              label="Precio de venta"
+              description="Favor de ingresar el precio de venta del producto"
+              placeholder="Ingrese el precio de venta del producto"
+              required
+              decimalScale={4}
+              allowNegative={false}
+              error={errors.precio_venta?.message}
+              onChange={(value) => {field.onChange(value === "" ? undefined : value)}}
+              leftSection={
+                <MdOutlineInventory2 
+                  size={18} 
+                  className={`${errors.precio_venta?.message
+                    ? `text-red-600 dark:text-red-500`
+                    : `text-gray-600 dark:text-gray-400`
+                  }`}
+                />
+              }
+            />
+          )}
+        />
+
+        <Controller 
+          name="stock_producto"
+          control={control}
+          render={({field}) => (
+            <NumberInput 
+              {...field}
+              label="Stock"
+              description="Favor de ingresar el stock del producto"
+              placeholder="Ingrese el stock del producto"
+              required
+              decimalScale={0}
+              allowNegative={false}
+              error={errors.stock_producto?.message}
+              onChange={(value) => {field.onChange(value === "" ? undefined : value)}}
+              leftSection={
+                <MdOutlineBalance 
+                  size={18} 
+                  className={`${errors.stock_producto?.message
+                    ? `text-red-600 dark:text-red-500`
+                    : `text-gray-600 dark:text-gray-400`
+                  }`}
+                />
+              }
+            />
+          )}
+        />
+
+        <DateInput
+          minDate={new Date()}
+          label="Fecha de vencimiento"
+          className="lg:col-span-2"
+          description="Seleccione la fecha de vencimiento del producto"
+          placeholder="Seleccione una fecha"
+          valueFormat="DD/MM/YYYY"
         />
       </div>
-
-      <div className="w-full flex gap-4 mb-6 max-md:flex-col">
-        <Input
-          register={register}
-          registerOpction={{ valueAsNumber: true }}
-          labelName="Precio de venta"
-          inputName="precio_venta"
-          type="number"
-          placeholder="Ingrese el precio de venta del producto"
-          isRequired={true}
-          errors={errors.precio_venta}
-          icon={MdOutlineInventory2}
-        />
-
-        <Input
-          register={register}
-          registerOpction={{ valueAsNumber: true }}
-          labelName="Stock"
-          inputName="stock_producto"
-          type="number"
-          placeholder="Ingrese el stock del producto"
-          isRequired={true}
-          errors={errors.stock_producto}
-          icon={MdOutlineBalance}
-        />
-      </div>
-
-      <Input 
-        register={register}
-        registerOpction={{ valueAsDate: true }}
-        labelName="Fecha de vencimiento"
-        inputName="fecha_vencimiento"
-        placeholder="Ingrese el nombre del producto"
-        type="date"
-        defaultValue={new Date().toISOString().split("T")[0]}
-        icon={MdOutlineCalendarToday}
-        errors={errors.fecha_vencimiento}
-      />
     </div>
   )
 };
