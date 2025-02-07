@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+const MAX_FILE_SIZE: number = 5 * 1024 * 1024;
+const ACCEPTED_IMAGE_TYPES: string[] = ['image/jpeg', 'image/png', 'image/jpg'];
+
 export const productoFormSchema = z.object({
   id_producto: z.number().optional(),
 
@@ -62,11 +65,13 @@ export const productoFormSchema = z.object({
       message: "La fecha de vencimiento debe ser una fecha posterior a la actual",
     }
   ).optional(),
-  
-  imagen_producto: z.instanceof(File, {
-    message: "El archivo debe ser una imagen valida",
-  }).refine(file => file.type.startsWith("image/"), {
-    message: "El archivo debe ser una imagen"
+
+  imagen_producto: z.custom<File>((file) => file instanceof File, {
+    message: "Debe seleccionar un archivo de imagen",
+  }).refine(file => file.size <= MAX_FILE_SIZE, {
+    message: "El tamaño permitido es de 5 MB",
+  }).refine(file => ACCEPTED_IMAGE_TYPES.includes(file.type), {
+    message: "Solo se permiten archivos de tipo .jpg, .png y .jpeg",
   }).optional(),
 
   estado_producto: z.enum(["activo", "inactivo"]).optional(),

@@ -33,6 +33,11 @@ function Registrar() {
   const theme = themeStore((state) => state.theme);
 
   const onSubmite = handleSubmit(async (values: ProductoTypeSchema) => {
+    const formData = new FormData();
+    if (values.imagen_producto) {
+    formData.append("image", values.imagen_producto);
+    };
+
     const datos = {
       ...values,
       fecha_vencimiento: values.fecha_vencimiento 
@@ -115,7 +120,11 @@ function RegistrarProducto(props: RegistrarProductoProps) {
         <div className="flex items-center justify-center row-span-2 p-4 border 
           border-dashed rounded-2xl border-gray-400 max-lg:order-last"
         >
-          <ImageSelect />
+          <ImageSelect<ProductoTypeSchema> 
+            setValue={setValue} 
+            name="imagen_producto"
+            error={errors.imagen_producto} 
+          />
         </div>
 
         <TextInput 

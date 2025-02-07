@@ -2,46 +2,54 @@ import { useState, useRef, ChangeEvent } from "react";
 import { IoCameraOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
+import { UseFormSetValue, FieldValues, Path, PathValue, FieldError } from "react-hook-form";
 
 import Button from "./Button";
 
-interface ImageSelectProps {
+interface ImageSelectProps<T extends FieldValues> {
   className?: string;
+  setValue: UseFormSetValue<T>;
+  name: Path<T>;
+  error?: FieldError;
 };
 
-function ImageSelect({ className }: ImageSelectProps) {
+function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
+  const { className, setValue, name, error } = props;
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (file) {
-      const imageUrl = URL.createObjectURL(file)
-      setSelectedImage(imageUrl)
-      setFileName(file.name)
-    }
+  const handleImageChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const file = event.target.files;
+
+    if (file && file.length > 0) {
+      const imagen = file[0];
+      const imageUrl = URL.createObjectURL(imagen);
+
+      if (selectedImage) URL.revokeObjectURL(selectedImage);
+
+      setSelectedImage(imageUrl);
+      setFileName(file[0].name);
+      setValue(name, imagen as PathValue<T, Path<T>>, {
+        shouldValidate: true
+      });
+    };
   };
 
-  const handleRemoveImage = () => {
-    setSelectedImage(null)
-    setFileName(null)
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ""
-    }
+  const handleRemoveImage = (): void => {
+    if (fileInputRef.current) fileInputRef.current.value = "";
+
+    setSelectedImage(null);
+    setFileName(null);
+    setValue(name, undefined as PathValue<T, Path<T>>, {
+      shouldValidate: true
+    });
   };
 
-  const handleImageClick = () => {
-    fileInputRef.current?.click()
-  };
+  const handleImageClick = (): void => fileInputRef.current?.click();
 
   return (
-    <div className={
-      twMerge(
-        `flex items-center gap-2 max-md:flex-col lg:flex-col`,
-        className
-      )}
-    >
+    <div className={twMerge(`flex items-center gap-2 max-md:flex-col lg:flex-col`, className)}>
       <span className="text-sm font-medium text-center text-gray-800 block mb-2 
         max-lg:hidden dark:text-gray-200"
       >
@@ -55,10 +63,10 @@ function ImageSelect({ className }: ImageSelectProps) {
         "
       >
         {selectedImage ? (
-          <img 
-            src={selectedImage || "/placeholder.svg"} 
-            alt="Selected" 
-            className="flex w-full h-full object-cover" 
+          <img
+            src={selectedImage || "/placeholder.svg"}
+            alt="Selected"
+            className="flex w-full h-full object-cover"
           />
         ) : (
           <IoCameraOutline className="w-12 h-12 text-gray-400" />
@@ -82,8 +90,8 @@ function ImageSelect({ className }: ImageSelectProps) {
 
       <div className="flex flex-col items-center mt-2 space-y-4">
         <div>
-          <span className="text-sm font-medium text-center text-gray-800 block mb-1 
-            lg:hidden dark:text-gray-200"
+          <span className="text-sm font-medium text-center text-gray-800 block 
+            mb-1 lg:hidden dark:text-gray-200"
           >
             Imagen seleccionada
           </span>
@@ -97,14 +105,18 @@ function ImageSelect({ className }: ImageSelectProps) {
               Ninguna imagen seleccionada
             </p>
           )}
+
+          {error && 
+            <p className="text-sm text-red-600 text-center dark:text-red-500">
+              {error.message}
+            </p>
+          }
         </div>
 
         {selectedImage && (
-          <Button 
-            onClick={handleRemoveImage} 
-            className="sm:w-auto bg-red-600 hover:bg-red-800 rounded-lg 
-              px-4 shadow-md
-            "
+          <Button
+            onClick={handleRemoveImage}
+            className="sm:w-auto bg-red-600 hover:bg-red-800 rounded-lg px-4 shadow-md"
           >
             <MdOutlineDelete size={20} className="mr-1" />
             Eliminar imagen
@@ -112,7 +124,7 @@ function ImageSelect({ className }: ImageSelectProps) {
         )}
       </div>
     </div>
-  )
+  );
 }
 
 export default ImageSelect;
