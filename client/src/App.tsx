@@ -48,6 +48,11 @@ const themeMantine = createTheme({
       }
     }),
     Select: Select.extend({
+      defaultProps: {
+        comboboxProps: {
+          withinPortal: false
+        }
+      },
       classNames: {
         root: "w-full",
         label: "mb-1 dark:text-white",
@@ -83,6 +88,7 @@ const themeMantine = createTheme({
     DateInput: DateInput.extend({
       defaultProps: {
         popoverProps: {
+          withinPortal: false,
           classNames: {
             dropdown: "border-gray-400 dark:bg-gray-900 dark:border-gray-600"
           }

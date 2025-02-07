@@ -32,15 +32,15 @@ export const productoFormSchema = z.object({
     invalid_type_error: "El precio de venta debe ser un numero valido"
   })
   .positive({
-    message: "El precio de venta debe ser un numero positivo y mayor a 0",
+    message: "El precio de venta debe ser un numero mayor a 0",
   }),
 
   stock_producto: z.number({
     message: "El stock es requerido",
     invalid_type_error: "El stock debe ser un numero valido"
   })
-  .positive({
-    message: "El stock debe ser un numero positivo y mayor a 0",
+  .nonnegative({
+    message: "El stock debe ser un numero positivo",
   }),
 
   id_proveedor: z.number({
@@ -54,13 +54,14 @@ export const productoFormSchema = z.object({
     invalid_type_error: "La fecha de registro debe ser una fecha valida"
   }).optional(),
 
-  fecha_vencimiento: z.date({
-    invalid_type_error: "La fecha de vencimiento debe ser una fecha valida"
-  })
-  .refine(date => date > new Date(), {
-    message: "La fecha de vencimiento debe ser una fecha posterior a la actual",
-  })
-  .optional(),
+  fecha_vencimiento: z.union([z.date(), z.null()]).refine(
+    (date) => {
+      if (date === null) return true;
+      return date > new Date();
+    }, {
+      message: "La fecha de vencimiento debe ser una fecha posterior a la actual",
+    }
+  ).optional(),
   
   imagen_producto: z.instanceof(File, {
     message: "El archivo debe ser una imagen valida",

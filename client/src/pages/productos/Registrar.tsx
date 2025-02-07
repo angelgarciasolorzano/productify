@@ -1,37 +1,69 @@
-import { useForm, UseFormRegister, FieldError, UseFormSetValue, UseFormGetValues, Controller, Control } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IoPricetagsOutline } from "react-icons/io5";
-import { 
-  MdOutlineAttachMoney, MdOutlineInventory2, 
-  MdOutlineBalance
-} from "react-icons/md";
 import { DateInput } from "@mantine/dates";
+import { FaBuildingUser, FaMoneyBill1Wave } from "react-icons/fa6";
+import { TiFolderOpen } from "react-icons/ti";
+import { PiFolderPlusFill } from "react-icons/pi";
+import { MdOutlineAttachMoney, MdOutlineBalance,MdOutlineCalendarMonth } from "react-icons/md";
+
+import { 
+  useForm, UseFormRegister, FieldError, UseFormSetValue, 
+  Controller, Control 
+} from "react-hook-form";
+
+import { 
+  ComboboxItem, NumberInput, OptionsFilter, 
+  Select, Textarea, TextInput, Button, Text,
+} from "@mantine/core";
+
 import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 
 import { productoFormSchema, ProductoTypeSchema } from "../../schemas/productoSchema";
 
-import Button from "../../components/form/Button";
 import ImageSelect from "../../components/form/ImageSelect";
-
-import { ComboboxItem, NumberInput, OptionsFilter, Select, Textarea, TextInput } from "@mantine/core";
+import themeStore from "../../store/themeStore";
 
 function Registrar() {
-  const { register, handleSubmit, setValue, getValues, control, formState: { errors } } = useForm<ProductoTypeSchema>({
+  const { 
+    register, handleSubmit, setValue, control, formState: { errors } 
+  } = useForm<ProductoTypeSchema>({
+    defaultValues: {fecha_vencimiento: null},
     resolver: zodResolver(productoFormSchema)
   });
+  const theme = themeStore((state) => state.theme);
 
   const onSubmite = handleSubmit(async (values: ProductoTypeSchema) => {
-    console.log("Datos válidos:", values);
+    const datos = {
+      ...values,
+      fecha_vencimiento: values.fecha_vencimiento 
+        ? dayjs(values.fecha_vencimiento).format('DD/MM/YYYY') 
+        : null
+      ,
+      descripcion_producto: values.descripcion_producto === "" 
+        ? null 
+        : values.descripcion_producto
+    };
+    console.log(datos);
   });
 
   return (
-    <div className="w-full px-4 bg-white rounded-2xl shadow-md dark:bg-dark-720">
-      <div className="flex justify-between items-center mt-4 mb-4">
-        <span className="text-green-600 text-2xl font-semibold dark:text-green-500">
-          Registrar producto
-        </span>
-      </div>
+    <div className="w-full h-fit px-4 bg-white rounded-2xl shadow-md dark:bg-dark-720">
+      <Text  
+        className="text-2xl font-semibold mt-3 mb-1"
+        variant="gradient"
+        gradient={{ 
+          from: theme ? 'rgba(3, 255, 49, 1)' : '#16a34a', 
+          to: theme ? 'rgba(136, 252, 131, 1)' : '#16a34a', 
+          deg: 90 
+        }}
+      >
+        Registrar producto
+      </Text>
+
+      <p className="text-xs text-gray-500 dark:text-gray-400">
+        Favor de completar todos los campos marcos con un asterisco
+        <b className="text-red-600 dark:text-red-500"> (*)</b>
+      </p>
 
       <form 
         onSubmit={onSubmite} 
@@ -41,18 +73,16 @@ function Registrar() {
         <RegistrarProducto 
           register={register} 
           setValue={setValue}
-          getValues={getValues}
           errors={errors} 
-          control={control}
         />
 
         <RegistrarInventario
           register={register} 
           errors={errors} 
           setValue={setValue}
-          getValues={getValues}
           control={control}
         />
+        
         <GuardarRegistro />
       </form>
     </div>
@@ -63,8 +93,6 @@ interface RegistrarProductoProps {
   register: UseFormRegister<ProductoTypeSchema>;
   errors: Partial<Record<keyof ProductoTypeSchema, FieldError>>;
   setValue: UseFormSetValue<ProductoTypeSchema>;
-  getValues: UseFormGetValues<ProductoTypeSchema>;
-  control: Control<ProductoTypeSchema>;
 };
 
 function RegistrarProducto(props: RegistrarProductoProps) {
@@ -95,7 +123,7 @@ function RegistrarProducto(props: RegistrarProductoProps) {
           label="Nombre" 
           placeholder="Ingrese el nombre del producto"
           description="Favor de ingresar un nombre corto y descriptivo"
-          withAsterisk
+          required
           error={errors.nombre_producto?.message}
           leftSection={
             <IoPricetagsOutline 
@@ -114,9 +142,19 @@ function RegistrarProducto(props: RegistrarProductoProps) {
           description="Seleccione una opción de la lista"
           placeholder="Seleccione una opción"
           data={[{ value: "1", label: "Activo" }, { value: "2", label: "Inactivo" }]}
-          allowDeselect
+          leftSectionPointerEvents="none"
+          leftSection={
+            <TiFolderOpen 
+              size={18}
+              className={`${errors.id_categoria?.message
+                ? `text-red-600 dark:text-red-500`
+                : `text-gray-600 dark:text-gray-400`
+              }`}
+            />
+          }
           required
-          maxDropdownHeight={200}
+          clearable
+          allowDeselect
           error={errors.id_categoria?.message}
           onChange={(value) => {
             setValue("id_categoria", Number(value), { shouldValidate: true })}
@@ -139,7 +177,9 @@ function RegistrarProducto(props: RegistrarProductoProps) {
   )
 };
 
-type RegistrarInventarioProps = RegistrarProductoProps;
+type RegistrarInventarioProps = RegistrarProductoProps & {
+  control: Control<ProductoTypeSchema>;
+};
 
 const optionsFilter: OptionsFilter = ({ options, search }) => {
   const splittedSearch = search.toLowerCase().trim().split(' ');
@@ -156,8 +196,6 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
     { id: "2", nombre: 'Russian Federation' },
     { id: "3", nombre: 'United States' },
   ];
-
-  dayjs.extend(customParseFormat);
   
   return (
     <div className="w-full border rounded-2xl p-4 border-white-200 
@@ -180,15 +218,26 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
           placeholder="Seleccione un proveedor"
           required
           searchable
+          clearable
           filter={optionsFilter}
-          data={proveedores.map((proveedor) => ({
-            value: proveedor.id,
-            label: proveedor.nombre,
-          }))}
           nothingFoundMessage="No se encontraron proveedores"
           error={errors.id_proveedor?.message}
           onChange={(value) => {
             setValue("id_proveedor", Number(value), { shouldValidate: true })}
+          }
+          data={proveedores.map((proveedor) => ({
+            value: proveedor.id,
+            label: proveedor.nombre,
+          }))}
+          leftSectionPointerEvents="none"
+          leftSection={
+            <FaBuildingUser 
+              size={18}
+              className={`${errors.id_proveedor?.message
+                ? `text-red-600 dark:text-red-500`
+                : `text-gray-600 dark:text-gray-400`
+              }`}
+            />
           }
         />
 
@@ -204,7 +253,7 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
               decimalScale={4}
               allowNegative={false}
               error={errors.precio_compra?.message}
-              onChange={(value) => {field.onChange(value === "" ? undefined : value)}}
+              onChange={value => field.onChange(value === "" ? undefined : value)}
               leftSection={
                 <MdOutlineAttachMoney 
                   size={18} 
@@ -231,9 +280,9 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
               decimalScale={4}
               allowNegative={false}
               error={errors.precio_venta?.message}
-              onChange={(value) => {field.onChange(value === "" ? undefined : value)}}
+              onChange={value => field.onChange(value === "" ? undefined : value)}
               leftSection={
-                <MdOutlineInventory2 
+                <FaMoneyBill1Wave 
                   size={18} 
                   className={`${errors.precio_venta?.message
                     ? `text-red-600 dark:text-red-500`
@@ -258,7 +307,7 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
               decimalScale={0}
               allowNegative={false}
               error={errors.stock_producto?.message}
-              onChange={(value) => {field.onChange(value === "" ? undefined : value)}}
+              onChange={value => field.onChange(value === "" ? undefined : value)}
               leftSection={
                 <MdOutlineBalance 
                   size={18} 
@@ -273,12 +322,26 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
         />
 
         <DateInput
+          {...register("fecha_vencimiento")}
           minDate={new Date()}
           label="Fecha de vencimiento"
           className="lg:col-span-2"
           description="Seleccione la fecha de vencimiento del producto"
           placeholder="Seleccione una fecha"
           valueFormat="DD/MM/YYYY"
+          error={errors.fecha_vencimiento?.message}
+          clearable
+          onChange={value => setValue("fecha_vencimiento", value || null)}
+          leftSectionPointerEvents="none"
+          leftSection={
+            <MdOutlineCalendarMonth 
+              size={18}
+              className={`${errors.fecha_vencimiento?.message
+                ? `text-red-600 dark:text-red-500`
+                : `text-gray-600 dark:text-gray-400`
+              }`}
+            />
+          }
         />
       </div>
     </div>
@@ -288,7 +351,13 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
 function GuardarRegistro() {
   return (
     <div className="w-full flex justify-center">
-      <Button form="producto-form" className="px-6 bg-blue-600 min-w-32">
+      <Button 
+        form="producto-form" 
+        type="submit" 
+        radius="md"
+        classNames={{ root: "px-10"}}
+        leftSection={<PiFolderPlusFill size={18} />} 
+      >
         Guardar
       </Button>
     </div>
