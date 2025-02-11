@@ -15,7 +15,7 @@ function DashboardLayout() {
         <main className="flex-1 relative overflow-y-auto min-h-0 overflow-x-hidden scrollbar-thin 
           dark:scrollbar-thumb-gray-500 dark:scrollbar-track-dark-720"
         >
-          <div className="w-full flex justify-center px-4 py-4 min-h-full">
+          <div className="w-full px-4 min-h-full bg-white dark:bg-dark-720">
             <Outlet />
           </div>
         </main>

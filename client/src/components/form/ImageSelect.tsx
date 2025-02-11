@@ -2,22 +2,26 @@ import { useState, useRef, ChangeEvent } from "react";
 import { IoCameraOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
 import { twMerge } from "tailwind-merge";
-import { UseFormSetValue, FieldValues, Path, PathValue, FieldError } from "react-hook-form";
+import { 
+  UseFormSetValue, FieldValues, Path, PathValue, FieldError, UseFormGetValues 
+} from "react-hook-form";
 
-import Button from "./Button";
+import { Button } from "@mantine/core";
 
 interface ImageSelectProps<T extends FieldValues> {
   className?: string;
   setValue: UseFormSetValue<T>;
+  getValue: UseFormGetValues<T>;
   name: Path<T>;
   error?: FieldError;
 };
 
 function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
-  const { className, setValue, name, error } = props;
+  const { className, setValue, getValue, name, error } = props;
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string | null>(null);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const imagen = getValue(name) as File | undefined;
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const file = event.target.files;
@@ -29,7 +33,6 @@ function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
       if (selectedImage) URL.revokeObjectURL(selectedImage);
 
       setSelectedImage(imageUrl);
-      setFileName(file[0].name);
       setValue(name, imagen as PathValue<T, Path<T>>, {
         shouldValidate: true
       });
@@ -40,7 +43,6 @@ function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
     if (fileInputRef.current) fileInputRef.current.value = "";
 
     setSelectedImage(null);
-    setFileName(null);
     setValue(name, undefined as PathValue<T, Path<T>>, {
       shouldValidate: true
     });
@@ -96,9 +98,9 @@ function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
             Imagen seleccionada
           </span>
 
-          {fileName ? (
+          {imagen?.name ? (
             <p className="text-sm text-gray-600 text-center dark:text-gray-400">
-              {fileName}
+              {imagen.name}
             </p>
           ) : (
             <p className="text-sm text-center text-gray-400 italic">
@@ -114,12 +116,13 @@ function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
         </div>
 
         {selectedImage && (
-          <Button
+          <Button 
+            radius="md" 
+            classNames={{root: "bg-red-600 hover:bg-orange-600"}}
+            leftSection={<MdOutlineDelete size={20} />} 
             onClick={handleRemoveImage}
-            className="sm:w-auto bg-red-600 hover:bg-red-800 rounded-lg px-4 shadow-md"
           >
-            <MdOutlineDelete size={20} className="mr-1" />
-            Eliminar imagen
+            Eliminar Imagen
           </Button>
         )}
       </div>

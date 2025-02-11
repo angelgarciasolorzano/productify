@@ -14,7 +14,7 @@ export const productoFormSchema = z.object({
     message: "El nombre del producto no puede superar los 50 caracteres"
   }),
 
-  descripcion_producto: z.string().max(500, {
+  descripcion_producto: z.string().max(100, {
     message: "La descripción del producto no puede superar los 500 caracteres"
   }).optional(),
 
@@ -74,7 +74,7 @@ export const productoFormSchema = z.object({
     message: "Solo se permiten archivos de tipo .jpg, .png y .jpeg",
   }).optional(),
 
-  estado_producto: z.enum(["activo", "inactivo"]).optional(),
+  estado_producto: z.enum(["activo", "inactivo"]).optional().default("activo")
 
 }).superRefine((data, ctx) => {
   if (data.precio_compra && data.precio_venta <= data.precio_compra) {

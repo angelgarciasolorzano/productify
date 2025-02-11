@@ -62,19 +62,17 @@ export function Modal({ isOpen, onClose, children, className }: ModalProps) {
   )
 };
 
-type ModalTitleProps = Pick<ModalProps, "onClose" | "className"> & { title: string };
+type ModalTitleProps = Omit<ModalProps, "isOpen">;
 
-export function ModalTitle({ onClose, title, className }: ModalTitleProps) {
+export function ModalTitle({ onClose, children, className }: ModalTitleProps) {
   return (
-    <div className="flex justify-between items-center mt-2 px-2 text-xl">
-      <span className={
-        twMerge(
-          `text-green-600 font-semibold dark:text-green-500`,
-          className
-        )}
-      >
-        {title}
-      </span>
+    <div className={
+      twMerge(
+        `flex justify-between items-center mt-2 px-2 text-xl`,
+        className
+      )
+    }>
+      {children}
 
       <MdOutlineClose 
         size={24} 

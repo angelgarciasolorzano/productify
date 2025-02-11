@@ -1,68 +1,46 @@
-import { LoginTypeSchema, loginFormSchema } from "../../schemas/authSchema";
 import { FieldError, useForm, UseFormRegister } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { RiCheckboxCircleLine } from "react-icons/ri";
 import { LuPencil } from "react-icons/lu";
 import { MdAdd } from "react-icons/md";
-import { IoCloseCircleOutline } from "react-icons/io5";
+import { Text, Button, Textarea, TextInput } from "@mantine/core";
 
-import { Input } from "../../components/form";
-
-import Button from "../../components/form/Button";
-import TextArea from "../../components/form/TextArea";
-import InputSelect from "../../components/form/InputSelect";
 import Table from "../../components/table/Table";
 import { Modal, ModalTitle, ModalBody, ModalFooter } from "../../components/modal/Modal";
-import useToggle from "../../hooks/useToggle";
+import { categoriaFormSchema, CategoriaTypeSchema } from "../../schemas/categoriaSchema";
 import useModal from "../../hooks/useModal";
-
-interface CategoriaFormProps {
-  openSelect: string | null;
-  closeSelect: (text: string | null) => void;
-  selectToggle: (text: string | null) => void;
-  onSubmit: () => void;
-  register: UseFormRegister<LoginTypeSchema>;
-  errors: Partial<Record<keyof LoginTypeSchema, FieldError>>;
-};
-
-const options = [
-  { 
-    value: 'Activo', 
-    label: 'Activo', 
-    icon: RiCheckboxCircleLine, 
-    iconColor: 'text-green-600 dark:text-green-500' 
-  },
-  { 
-    value: 'Inactivo', 
-    label: 'Inactivo', 
-    icon: IoCloseCircleOutline,
-    iconColor: 'text-red-600 dark:text-red-500'
-  }
-];
+import themeStore from "../../store/themeStore";
 
 function Categoria() {
   const { open: openModal, close: closeModal, toggle: toggleModal } = useModal();
-  const { state: openSelect, toggle: handleToggle, close: closeSelect } = useToggle();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm<LoginTypeSchema>({
-    resolver: zodResolver(loginFormSchema)
+  const theme = themeStore((state) => state.theme) ? "dark" : "light";
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<CategoriaTypeSchema>({
+    resolver: zodResolver(categoriaFormSchema)
   });
 
-  const onSubmit = handleSubmit(async (values: LoginTypeSchema): Promise<void> => {
+  const onSubmit = handleSubmit(async (values: CategoriaTypeSchema): Promise<void> => {
     console.log(values);
   });
 
   return (
-    <div className="w-full px-4 bg-white rounded-2xl shadow-md dark:bg-dark-720">
-      <div className="flex justify-between items-center mt-4">
-        <span className="text-green-600 text-2xl font-semibold dark:text-green-500">
-          Gestion de categorias
-        </span>
+    <div className="w-full py-3">
+      <div className="flex justify-between items-center mt-1">
+        <Text  
+          className="text-2xl font-semibold"
+          variant="gradient"
+          gradient={{ 
+            from: theme === "dark" ? 'rgba(3, 255, 49, 1)' : '#16a34a', 
+            to: theme === "dark" ? 'rgba(136, 252, 131, 1)' : '#16a34a', 
+            deg: 90 
+          }}
+        >
+          Gestion de categoria
+        </Text>
 
         <Button 
+          radius="md"
           onClick={toggleModal}
-          className="shadow-md rounded-lg bg-blue-600 hover:bg-blue-800"
+          leftSection={<MdAdd size={20} />}
         >
-          <MdAdd size={20} className="mr-1" />
           Agregar categoria
         </Button>
       </div>
@@ -70,38 +48,54 @@ function Categoria() {
       <Modal 
         isOpen={openModal} 
         onClose={() => closeModal(() => reset())}
-        className="w-5/12 py-1 border border-white-200 dark:border-dark-800"
+        className="w-5/12 py-1 rounded-lg dark:border dark:border-dark-800 max-md:w-10/12"
       >
-        <ModalTitle title="Registrar categoria" onClose={() => closeModal(() => reset())} />
+        <ModalTitle onClose={() => closeModal(() => reset())}>
+          <Text  
+            className="text-xl font-semibold"
+            variant="gradient"
+            gradient={{ 
+              from: theme === "dark" ?'rgba(0, 140, 255, 1)' : '#1345ff', 
+              to: theme === "dark" ? 'rgba(5, 238, 255, 1)' : '#1345ff', 
+              deg: 10 
+            }}
+          >
+            Registrar categoria
+          </Text>
+        </ModalTitle>
 
         <ModalBody>
-          <CategoriaForm 
-            openSelect={openSelect} 
-            closeSelect={closeSelect} 
-            selectToggle={handleToggle} 
-            onSubmit={onSubmit} 
-            register={register} 
-            errors={errors}
-          />
+          <>
+            <p className="text-xs mt-1 text-gray-500 mb-3 dark:text-gray-400">
+              Favor de completar todos los campos marcados con un asterisco
+              <b className="text-red-600 dark:text-red-500"> (*)</b>
+            </p>
+
+            <CategoriaForm 
+              theme={theme}
+              onSubmit={onSubmit} 
+              register={register} 
+              errors={errors}
+            />
+          </>
         </ModalBody>
 
         <ModalFooter>
           <div className="flex items-center justify-end gap-4 mb-2 mt-2">
             <Button
+              radius="md"
               onClick={() => closeModal(() => reset())}
-              className="text-black bg-transparent border border-gray-400 min-w-[20%]
-                hover:bg-red-600 hover:text-white hover:border-transparent
-                dark:text-white
-              " 
+              classNames={{
+                label: "text-black dark:text-white",
+                root: `bg-transparent border border-gray-400 hover:bg-gray-50 
+                  dark:bg-gray-800 dark:border-dark-800 dark:hover:bg-dark-800
+                `, 
+              }}
             >
               Cancelar
             </Button>
 
-            <Button 
-              type="submit" 
-              form="categoria-form"
-              className="min-w-[20%] bg-blue-600 hover:bg-blue-800" 
-            >
+            <Button radius="md" type="submit" form="categoria-form">
               Guardar
             </Button>
           </div>
@@ -113,45 +107,49 @@ function Categoria() {
   )
 };
 
-function CategoriaForm(props: CategoriaFormProps) {
-  const { openSelect, closeSelect, selectToggle, onSubmit, register, errors } = props;
+interface CategoriaFormProps {
+  onSubmit: () => void;
+  register: UseFormRegister<CategoriaTypeSchema>;
+  errors: Partial<Record<keyof CategoriaTypeSchema, FieldError>>;
+  theme: string;
+};
 
+function CategoriaForm({ onSubmit, register, errors, theme }: CategoriaFormProps) {
   return (
     <form 
       id="categoria-form"
       onSubmit={onSubmit} 
-      className="flex flex-col mt-4 items-center gap-4"
+      className="flex flex-col items-center justify-center gap-4 my-3"
     >
-      <div className="flex gap-4 w-full">
-        <Input<LoginTypeSchema>
-          register={register}
-          labelName="Nombre"
-          inputName="correo_Usuario"
-          type="text"
-          placeholder="Ingrese el nombre de la categoria"
-          errors={errors.correo_Usuario}
-          icon={LuPencil}
-        />
+      <TextInput 
+        {...register("nombre_categoria")}
+        label="Nombre"
+        description="Favor de ingresar el nombre de la categoria"
+        placeholder="Ingrese el nombre de la categoria"
+        error={errors.nombre_categoria?.message}
+        key={`nombre_categoria-${theme}`}
+        required
+        leftSection={
+          <LuPencil
+            size={18} 
+            className={`${errors.nombre_categoria?.message
+              ? `text-red-600 dark:text-red-500`
+              : `text-gray-600 dark:text-gray-400`
+            }`}
+          />
+        }
+      />
 
-        <InputSelect<LoginTypeSchema>
-          register={register}
-          labelName="Estado"
-          inputName="contra_Usuario"
-          opciones={options} 
-          toggle={() => selectToggle("estado")}
-          open={openSelect === "estado"}
-          setOpen={closeSelect}
-          onChange={(value: string) => console.log(value)} 
-          errors={errors.contra_Usuario}
-        />
-      </div>
-
-      <TextArea<LoginTypeSchema>
-        register={register}
-        labelName="Descripcion"
-        inputName="contra_Usuario"
-        placeholder="Ingrese una descripcion para la categoria"
-        errors={errors.contra_Usuario}
+      <Textarea 
+        {...register("descripcion_categoria")}
+        label="Descripcion"
+        description="Favor de ingresar una descripcion detallada de la categoria"
+        placeholder="Ingrese la descripcion de la categoria"
+        error={errors.descripcion_categoria?.message}
+        key={`descripcion_categoria-${theme}`}
+        autosize
+        minRows={4}
+        maxRows={6}
       />
     </form>
   )

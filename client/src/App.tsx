@@ -59,7 +59,7 @@ const themeMantine = createTheme({
         description: "text-gray-500 dark:text-gray-400",
         required: "text-red-600 dark:text-red-500 font-bold",
         dropdown: "border-gray-400 dark:bg-gray-900 dark:text-gray-200",
-        option: "hover:bg-gray-100 dark:hover:bg-dark-800",
+        option: "hover:bg-blue-500 hover:bg-opacity-10 dark:hover:bg-dark-800",
         error: "text-sm text-red-600 dark:text-red-500"
       }
     }),

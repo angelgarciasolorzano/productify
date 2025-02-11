@@ -8,7 +8,8 @@ import { MdOutlineAttachMoney, MdOutlineBalance,MdOutlineCalendarMonth } from "r
 
 import { 
   useForm, UseFormRegister, FieldError, UseFormSetValue, 
-  Controller, Control 
+  Controller, Control, 
+  UseFormGetValues
 } from "react-hook-form";
 
 import { 
@@ -24,13 +25,13 @@ import ImageSelect from "../../components/form/ImageSelect";
 import themeStore from "../../store/themeStore";
 
 function Registrar() {
+  const theme = themeStore((state) => state.theme) ? "dark" : "light";
   const { 
-    register, handleSubmit, setValue, control, formState: { errors } 
+    register, handleSubmit, setValue, getValues, control, formState: { errors } 
   } = useForm<ProductoTypeSchema>({
     defaultValues: {fecha_vencimiento: null},
     resolver: zodResolver(productoFormSchema)
   });
-  const theme = themeStore((state) => state.theme);
 
   const onSubmite = handleSubmit(async (values: ProductoTypeSchema) => {
     const formData = new FormData();
@@ -52,33 +53,35 @@ function Registrar() {
   });
 
   return (
-    <div className="w-full h-fit px-4 bg-white rounded-2xl shadow-md dark:bg-dark-720">
+    <div className="w-full py-3">
       <Text  
-        className="text-2xl font-semibold mt-3 mb-1"
+        className="text-2xl font-semibold mb-1"
         variant="gradient"
         gradient={{ 
-          from: theme ? 'rgba(3, 255, 49, 1)' : '#16a34a', 
-          to: theme ? 'rgba(136, 252, 131, 1)' : '#16a34a', 
+          from: theme === "dark" ? 'rgba(3, 255, 49, 1)' : '#16a34a', 
+          to: theme === "dark" ? 'rgba(136, 252, 131, 1)' : '#16a34a', 
           deg: 90 
         }}
       >
         Registrar producto
       </Text>
 
-      <p className="text-xs text-gray-500 dark:text-gray-400">
-        Favor de completar todos los campos marcos con un asterisco
+      <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
+        Favor de completar todos los campos marcados con un asterisco
         <b className="text-red-600 dark:text-red-500"> (*)</b>
       </p>
 
       <form 
         onSubmit={onSubmite} 
         id="producto-form" 
-        className="flex flex-col mt-4 gap-4 mb-4"
+        className="flex flex-col gap-4"
       >
         <RegistrarProducto 
           register={register} 
           setValue={setValue}
+          getValues={getValues}
           errors={errors} 
+          theme={theme}
         />
 
         <RegistrarInventario
@@ -86,6 +89,7 @@ function Registrar() {
           errors={errors} 
           setValue={setValue}
           control={control}
+          theme={theme}
         />
         
         <GuardarRegistro />
@@ -98,10 +102,12 @@ interface RegistrarProductoProps {
   register: UseFormRegister<ProductoTypeSchema>;
   errors: Partial<Record<keyof ProductoTypeSchema, FieldError>>;
   setValue: UseFormSetValue<ProductoTypeSchema>;
+  getValues: UseFormGetValues<ProductoTypeSchema>;
+  theme: string;
 };
 
 function RegistrarProducto(props: RegistrarProductoProps) {
-  const { register, errors, setValue } = props;
+  const { register, errors, setValue,getValues, theme } = props;
 
   return (
     <div className="w-full border rounded-2xl p-4 border-white-200 
@@ -122,6 +128,7 @@ function RegistrarProducto(props: RegistrarProductoProps) {
         >
           <ImageSelect<ProductoTypeSchema> 
             setValue={setValue} 
+            getValue={getValues}
             name="imagen_producto"
             error={errors.imagen_producto} 
           />
@@ -132,6 +139,7 @@ function RegistrarProducto(props: RegistrarProductoProps) {
           label="Nombre" 
           placeholder="Ingrese el nombre del producto"
           description="Favor de ingresar un nombre corto y descriptivo"
+          key={`nombre_producto-${theme}`}
           required
           error={errors.nombre_producto?.message}
           leftSection={
@@ -176,6 +184,7 @@ function RegistrarProducto(props: RegistrarProductoProps) {
           description="Favor de ingresar una descripcion detallada del producto"
           placeholder="Ingrese la descripción del producto"
           error={errors.descripcion_producto?.message}
+          key={`descripcion_producto-${theme}`}
           className="lg:col-span-2"
           autosize
           minRows={4}
@@ -186,7 +195,7 @@ function RegistrarProducto(props: RegistrarProductoProps) {
   )
 };
 
-type RegistrarInventarioProps = RegistrarProductoProps & {
+type RegistrarInventarioProps = Omit<RegistrarProductoProps, "getValues"> & {
   control: Control<ProductoTypeSchema>;
 };
 
@@ -199,7 +208,7 @@ const optionsFilter: OptionsFilter = ({ options, search }) => {
 };
 
 function RegistrarInventario(props: RegistrarInventarioProps) {
-  const { register, errors, setValue, control } = props;
+  const { register, errors, setValue, control, theme } = props;
   const proveedores = [
     { id: "1", nombre: 'Great Britain' },
     { id: "2", nombre: 'Russian Federation' },
@@ -259,6 +268,7 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
               label="Precio de compra"
               description="Favor de ingresar el precio de compra del producto"
               placeholder="Ingrese el precio de compra del producto"
+              key={`precio_compra-${theme}`}
               decimalScale={4}
               allowNegative={false}
               error={errors.precio_compra?.message}
@@ -285,6 +295,7 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
               label="Precio de venta"
               description="Favor de ingresar el precio de venta del producto"
               placeholder="Ingrese el precio de venta del producto"
+              key={`precio_venta-${theme}`}
               required
               decimalScale={4}
               allowNegative={false}
@@ -312,6 +323,7 @@ function RegistrarInventario(props: RegistrarInventarioProps) {
               label="Stock"
               description="Favor de ingresar el stock del producto"
               placeholder="Ingrese el stock del producto"
+              key={`stock_producto-${theme}`}
               required
               decimalScale={0}
               allowNegative={false}
