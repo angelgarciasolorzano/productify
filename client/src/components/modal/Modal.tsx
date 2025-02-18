@@ -2,9 +2,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { MdOutlineClose } from "react-icons/md";
-import { useClickOutside } from "../../hooks";
-import { modalAnimation, modalFondoAnimation } from "./modalVariants";
 import { twMerge } from "tailwind-merge";
+
+import { useClickOutside } from "@/hooks";
+import { modalAnimation, modalFondoAnimation } from "./modalVariants";
 
 interface ModalProps {
   isOpen: boolean;
@@ -62,9 +63,9 @@ export function Modal({ isOpen, onClose, children, className }: ModalProps) {
   )
 };
 
-type ModalTitleProps = Omit<ModalProps, "isOpen">;
+type ModalHeaderProps = Omit<ModalProps, "isOpen">;
 
-export function ModalTitle({ onClose, children, className }: ModalTitleProps) {
+export function ModalHeader({ onClose, children, className }: ModalHeaderProps) {
   return (
     <div className={
       twMerge(
@@ -104,12 +105,7 @@ type ModalFooterProps = Pick<ModalProps, "children" | "className">;
 
 export function ModalFooter({ children, className }: ModalFooterProps) {
   return (
-    <div className={
-      twMerge(
-        `px-2 pt-2`,
-        className
-      )}
-    >
+    <div className={twMerge(`px-2 pt-2`, className)}>
       {children}
     </div>
   )

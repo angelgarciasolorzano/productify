@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware"
 import { AxiosError } from "axios";
 
 import { loginUsuario } from "../api/authApi";
-import { LoginTypeSchema } from "../schemas/authSchema";
+import { LoginTypeSchema } from "../schemas/auth/authSchema";
 
 import toast from "react-hot-toast";
 import Usuario from "../types/usuarioType";

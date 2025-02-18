@@ -1,9 +1,8 @@
 import { useEffect } from "react";
+import { Inicio } from "@/views";
+import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
 
-import { InicioPage } from "../pages";
-
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
 import Aox from "aos";
 
 function InicioLayout() {
@@ -14,7 +13,7 @@ function InicioLayout() {
   return (
     <div className="flex flex-col">
       <Navbar />
-      <InicioPage />
+      <Inicio />
       <Footer />
     </div>
   )

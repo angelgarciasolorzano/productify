@@ -1,6 +1,7 @@
 import { useState, useRef, ChangeEvent } from "react";
 import { IoCameraOutline } from "react-icons/io5";
 import { MdOutlineDelete } from "react-icons/md";
+
 import { twMerge } from "tailwind-merge";
 import { 
   UseFormSetValue, FieldValues, Path, PathValue, FieldError, UseFormGetValues 
@@ -8,7 +9,7 @@ import {
 
 import { Button } from "@mantine/core";
 
-interface ImageSelectProps<T extends FieldValues> {
+interface InputFileProps<T extends FieldValues> {
   className?: string;
   setValue: UseFormSetValue<T>;
   getValue: UseFormGetValues<T>;
@@ -16,7 +17,7 @@ interface ImageSelectProps<T extends FieldValues> {
   error?: FieldError;
 };
 
-function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
+function FileInput<T extends FieldValues>(props: InputFileProps<T>) {
   const { className, setValue, getValue, name, error } = props;
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -51,12 +52,20 @@ function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
   const handleImageClick = (): void => fileInputRef.current?.click();
 
   return (
-    <div className={twMerge(`flex items-center gap-2 max-md:flex-col lg:flex-col`, className)}>
-      <span className="text-sm font-medium text-center text-gray-800 block mb-2 
-        max-lg:hidden dark:text-gray-200"
-      >
-        Imagen seleccionada
-      </span>
+    <div className={twMerge(`flex items-center gap-2 flex-col`, className)}>
+      <div>
+        <span className="text-sm font-semibold text-center text-gray-800 block
+          dark:text-gray-200"
+        >
+          Imagen del producto
+        </span>
+
+        {!imagen?.name && 
+          <p className="text-xs text-center text-gray-500 dark:text-gray-400">
+            Agregar imagen que no sobrepase el tamaño máximo de 5 MB
+          </p>
+        }
+      </div>
 
       <div
         onClick={handleImageClick}
@@ -92,19 +101,13 @@ function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
 
       <div className="flex flex-col items-center mt-2 space-y-4">
         <div>
-          <span className="text-sm font-medium text-center text-gray-800 block 
-            mb-1 lg:hidden dark:text-gray-200"
-          >
-            Imagen seleccionada
-          </span>
-
           {imagen?.name ? (
             <p className="text-sm text-gray-600 text-center dark:text-gray-400">
               {imagen.name}
             </p>
           ) : (
-            <p className="text-sm text-center text-gray-400 italic">
-              Ninguna imagen seleccionada
+            <p className="text-xs text-center text-gray-500 dark:text-gray-400">
+              Solamente se permiten imagenes .jpg, .png y .jpeg
             </p>
           )}
 
@@ -118,7 +121,7 @@ function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
         {selectedImage && (
           <Button 
             radius="md" 
-            classNames={{root: "bg-red-600 hover:bg-orange-600"}}
+            classNames={{root: "bg-red-600 hover:bg-red-700"}}
             leftSection={<MdOutlineDelete size={20} />} 
             onClick={handleRemoveImage}
           >
@@ -130,4 +133,4 @@ function ImageSelect<T extends FieldValues>(props: ImageSelectProps<T>) {
   );
 }
 
-export default ImageSelect;
+export default FileInput;

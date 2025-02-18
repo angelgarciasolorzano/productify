@@ -8,7 +8,7 @@ import {
 
 import "aos/dist/aos.css";
 
-function InicioPage() {
+function Inicio() {
   return (
     <main className="flex-1 duration-300 bg-white-50 dark:bg-dark-700">
       <section 
@@ -289,4 +289,4 @@ function InicioPage() {
   )
 }
 
-export default InicioPage;
+export default Inicio;

@@ -1,16 +1,10 @@
 import { fondoPrimary } from "../../assets";
-import { AnimatePresence } from "framer-motion";
-import { DropdownOverlay } from "../dropdown";
-import { DropdownType } from "../dropdown/dropdownType";
-
-import subItems from "./profileItems";
 
 interface Props {
-  isDropdownOpen: DropdownType | null;
   toggleDropdown: () => void;
 };
 
-function Profile({ isDropdownOpen, toggleDropdown }: Props) {
+function Profile({ toggleDropdown }: Props) {
   return (
     <div className="relative">
       <div className="flex items-center space-x-4">
@@ -33,15 +27,6 @@ function Profile({ isDropdownOpen, toggleDropdown }: Props) {
           />
         </div>
       </div>
-
-      <AnimatePresence>
-        {isDropdownOpen === DropdownType.Profile && 
-          <DropdownOverlay
-            items={subItems} 
-            tipo={DropdownType.Profile} 
-          />
-        }
-      </AnimatePresence>
     </div>
   );
 }

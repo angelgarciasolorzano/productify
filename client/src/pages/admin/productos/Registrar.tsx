@@ -1,35 +1,34 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { IoPricetagsOutline } from "react-icons/io5";
-import { DateInput } from "@mantine/dates";
 import { FaBuildingUser, FaMoneyBill1Wave } from "react-icons/fa6";
 import { TiFolderOpen } from "react-icons/ti";
 import { PiFolderPlusFill } from "react-icons/pi";
 import { MdOutlineAttachMoney, MdOutlineBalance,MdOutlineCalendarMonth } from "react-icons/md";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { 
   useForm, UseFormRegister, FieldError, UseFormSetValue, 
   Controller, Control, 
   UseFormGetValues
 } from "react-hook-form";
 
+import { DateInput } from "@mantine/dates";
 import { 
   ComboboxItem, NumberInput, OptionsFilter, 
   Select, Textarea, TextInput, Button, Text,
 } from "@mantine/core";
 
+import { productoFormSchema, ProductoTypeSchema } from "@/schemas/productos";
+import { FileInput } from "@/components/form";
+import { themeStore } from "@/store";
+
 import dayjs from "dayjs";
-
-import { productoFormSchema, ProductoTypeSchema } from "../../schemas/productoSchema";
-
-import ImageSelect from "../../components/form/ImageSelect";
-import themeStore from "../../store/themeStore";
 
 function Registrar() {
   const theme = themeStore((state) => state.theme) ? "dark" : "light";
   const { 
     register, handleSubmit, setValue, getValues, control, formState: { errors } 
   } = useForm<ProductoTypeSchema>({
-    defaultValues: {fecha_vencimiento: null},
+    defaultValues: { fecha_vencimiento: null },
     resolver: zodResolver(productoFormSchema)
   });
 
@@ -67,8 +66,7 @@ function Registrar() {
       </Text>
 
       <p className="text-xs text-gray-500 mb-3 dark:text-gray-400">
-        Favor de completar todos los campos marcados con un asterisco
-        <b className="text-red-600 dark:text-red-500"> (*)</b>
+        Completa los campos esenciales para una gestión eficiente y organizada
       </p>
 
       <form 
@@ -126,7 +124,7 @@ function RegistrarProducto(props: RegistrarProductoProps) {
         <div className="flex items-center justify-center row-span-2 p-4 border 
           border-dashed rounded-2xl border-gray-400 max-lg:order-last"
         >
-          <ImageSelect<ProductoTypeSchema> 
+          <FileInput<ProductoTypeSchema> 
             setValue={setValue} 
             getValue={getValues}
             name="imagen_producto"
