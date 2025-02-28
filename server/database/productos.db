@@ -2,50 +2,86 @@ DROP DATABASE IF EXISTS productos;
 CREATE DATABASE productos;
 USE productos;
 
-CREATE TABLE Cargos (
-  id_Cargo INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  nombre_Cargo VARCHAR (30) NOT NULL
+CREATE TABLE cargos (
+  id_cargo INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  nombre_cargo VARCHAR (50) NOT NULL UNIQUE,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Telefonos (
-  id_Telefono INT PRIMARY KEY AUTO_INCREMENT,
-  operador_Telefono VARCHAR (30) NOT NULL CHECK (operador_Telefono IN ('tigo', 'claro')),
-  numero_Telefono VARCHAR (8) NOT NULL UNIQUE CHECK (LENGTH(numero_Telefono) = 8),
-  id_Usuario_FK INT NOT NULL,
+CREATE TABLE usuarios (
+  id_usuario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  nombre_usuario VARCHAR(30) NOT NULL,
+  apellidos_usuario VARCHAR(30) NOT NULL,
+  sexo_usuario ENUM('M', 'F') NOT NULL, 
+  cedula_usuario CHAR(16) NOT NULL UNIQUE, 
+  departamento_usuario VARCHAR(30) NULL, 
+  direccion_usuario VARCHAR(100) NULL, 
+  correo_usuario VARCHAR(100) NOT NULL UNIQUE, 
+  contra_usuario VARCHAR(100) NOT NULL,
+  estado_usuario ENUM('activo', 'inactivo') DEFAULT 'activo',
+  id_cargo_fk INT NOT NULL,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-  FOREIGN KEY (id_Usuario_FK) REFERENCES Usuarios (id_Usuario)
+  FOREIGN KEY (id_cargo_fk) REFERENCES cargos(id_cargo)
 );
 
-CREATE TABLE Usuarios (
-  id_Usuario INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  nombre_Usuario VARCHAR (30) NOT NULL,
-  apellidos_Usuario VARCHAR (30) NOT NULL,
-  sexo_Usuario CHAR(1) NOT NULL CHECK (sexo_Usuario IN ('M', 'F')),
-  cedula_Usuario VARCHAR (20) NOT NULL UNIQUE CHECK (LENGTH(cedula_Usuario) = 16),
-  departamento_Usuario VARCHAR (30) DEFAULT 'sin ingresar',
-  direccion_Usuario VARCHAR (100) DEFAULT 'sin ingresar',
-  correo_Usuario VARCHAR (30) NOT NULL UNIQUE,
-  contra_Usuario VARCHAR (100) NOT NULL CHECK (LENGTH(contra_Usuario) >= 8),
-  estado_Usuario VARCHAR(10) DEFAULT 'activo' CHECK (estado_Usuario IN ('activo', 'inactivo')),
-  id_Cargo_FK INT NOT NULL,
+CREATE TABLE telefonos (
+  id_telefono INT PRIMARY KEY AUTO_INCREMENT,
+  operador_telefono ENUM('tigo', 'claro') NULL,
+  numero_telefono VARCHAR (15) NULL UNIQUE CHECK (LENGTH(numero_telefono) BETWEEN 8 AND 15),
+  id_usuario_fk INT NOT NULL,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-  FOREIGN KEY (id_Cargo_FK) REFERENCES Cargos (id_Cargo)
+  FOREIGN KEY (id_usuario_fk) REFERENCES usuarios (id_usuario)
 );
 
-INSERT INTO Cargos (nombre_Cargo) VALUES ('administrador');
-
-INSERT INTO Usuarios (
-  nombre_Usuario, apellidos_Usuario, sexo_Usuario, cedula_Usuario, departamento_Usuario,
-  direccion_Usuario, correo_Usuario, contra_Usuario, id_Cargo_FK
-) VALUES (
-  'Angel Noe', 'Garcia Solorzano', 'M', '001-240202-1032T', 'Managua', 
-  'De envasa 3 cuadras arribas, 20 metros al sur', 'angel@gmail.com', '1234', 1
+CREATE TABLE proveedores (
+  id_proveedor INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  nombre_proveedor VARCHAR (30) NOT NULL,
+  email_proveedor VARCHAR (30) NOT NULL UNIQUE,
+  telefono_proveedor VARCHAR (15) NOT NULL UNIQUE CHECK (LENGTH(telefono_proveedor) BETWEEN 8 AND 15),
+  direccion_proveedor VARCHAR (100) NULL,
+  estado_proveedor ENUM('activo', 'inactivo') DEFAULT 'activo',
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-SELECT * FROM Cargos;
-SELECT * FROM Usuarios;
-SELECT * FROM Telefonos;
+CREATE TABLE categorias (
+  id_categoria INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  nombre_categoria VARCHAR (50) NOT NULL,
+  descripcion_categoria VARCHAR (100) NULL,
+  estado_categoria ENUM('activo', 'inactivo') DEFAULT 'activo',
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
 
-DESCRIBE Cargos;
-DESCRIBE Telefono;
-DESCRIBE Usuarios;
+CREATE TABLE productos (
+  id_producto INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  nombre_producto VARCHAR (50) NOT NULL,
+  descripcion_producto VARCHAR (100) NULL,
+  precio_compra DECIMAL (10, 2) NOT NULL,
+  precio_venta DECIMAL (10, 2) NOT NULL,
+  stock_producto INT NOT NULL,
+  fecha_vencimiento_producto DATE NULL,
+  imagen_producto VARCHAR (255) NULL,
+  estado_producto ENUM ('activo', 'inactivo') DEFAULT 'activo',
+  id_categoria_fk INT NULL,
+  id_usuario_fk INT NOT NULL,
+  createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+  FOREIGN KEY (id_categoria_fk) REFERENCES categorias (id_categoria),
+  FOREIGN KEY (id_usuario_fk) REFERENCES usuarios (id_usuario)
+);
+
+CREATE TABLE productos_proveedores (
+  id_producto_proveedor INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  id_proveedor_fk INT NULL,
+  id_producto_fk INT NOT NULL,
+
+  FOREIGN KEY (id_proveedor_fk) REFERENCES proveedores (id_proveedor),
+  FOREIGN KEY (id_producto_fk) REFERENCES productos (id_producto)
+);

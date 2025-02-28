@@ -1,0 +1,21 @@
+USE productos;
+
+INSERT INTO cargos (nombre_cargo) VALUES ('administrador');
+
+INSERT INTO usuarios (
+  nombre_usuario, apellidos_usuario, sexo_usuario, cedula_usuario, departamento_usuario,
+  direccion_usuario, correo_usuario, contra_usuario, id_cargo_fk
+) VALUES (
+  'Angel Noe', 'Garcia Solorzano', 'M', '001-240202-1032T', 'Managua', 
+  'De envasa 3 cuadras arribas, 20 metros al sur', 'angel@gmail.com', '1234', 1
+);
+
+SHOW INDEX FROM proveedores;
+
+SELECT * FROM cargos;
+SELECT * FROM usuarios;
+SELECT * FROM telefonos;
+
+DESCRIBE cargos;
+DESCRIBE telefonos;
+DESCRIBE usuarios;
