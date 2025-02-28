@@ -1,7 +1,7 @@
-import { VariablesType } from "../schemas";
+import { VariableType } from "@/schemas";
 
 declare global {
   namespace NodeJS {
-    interface ProcessEnv extends VariablesType {}
+    interface ProcessEnv extends VariableType {}
   }
 };
