@@ -1,5 +1,6 @@
 import { sequelize } from "@/config";
 import "@/models/associations/productosAssociation";
+import "@/models/associations/usuariosAssociation";
 
 const conexionDatabase = async (): Promise<void> => {
   try{
