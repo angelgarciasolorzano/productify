@@ -1,28 +1,27 @@
-import "./types/variablesTypes";
-
-import { config } from "dotenv";
-import { conexionDatabase, cors } from "./config";
-import { authRouter } from "./routes";
+import "module-alias/register";
+import "@/types/variablesTypes";
 
 import express from "express";
 import morgan from "morgan";
-import validarEntorno from "./validation/variablesEntorno";
 
-config();
+import { validarVariables, conexionDatabase } from "@/validation";
+import { cors } from "@/config";
+
+import mainRouter from "@/routes";
 
 const app = express();
-const { SERVER_PORT } = process.env;
+const port = process.env.SERVER_PORT;
 
-validarEntorno();
+validarVariables();
 
 app.use(cors);
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/api", authRouter);
+app.use(mainRouter);
 
-app.listen(SERVER_PORT, (): void => {
-  console.log(`Servidor corriendo en el puerto ${SERVER_PORT}`);
+app.listen(port, (): void => {
+  console.log(`Servidor corriendo en el puerto ${port}`);
 });
 
 conexionDatabase();
