@@ -1,9 +1,9 @@
 import { Categoria } from "@/models/productos";
 import { CategoriaType } from "@/schemas/productos";
 import { CategoriaRepository } from "@/repositories/productos";
-import { NotFoundError, DatosError } from "@/errors";
+import { NotFoundError, DatosError, HandleError,  } from "@/errors";
 
-class CategoriaService {
+class CategoriaService extends HandleError {
   private validateCategoriaId(id_Categoria: Categoria["id_categoria"]): void {
     if (!id_Categoria || id_Categoria < 1 || isNaN(id_Categoria)) {
       throw new DatosError("El id de la categoria no es valido");
@@ -20,7 +20,7 @@ class CategoriaService {
 
       return categorias;
     } catch (error) {
-      throw new NotFoundError("Error al obtener las categorias");
+      this.handleError(error, "Error al obtener las categorias");
     }
   };
 
@@ -34,7 +34,7 @@ class CategoriaService {
 
       return categoria;
     } catch (error) {
-      throw new NotFoundError("Error al obtener la categoria");
+      this.handleError(error, "Error al obtener la categoria");
     }
   };
 
@@ -54,7 +54,7 @@ class CategoriaService {
 
       return categoria;
     } catch (error) {
-      throw new NotFoundError("Error al crear la categoria");
+      this.handleError(error, "Error al crear la categoria");
     }
   };
 
@@ -72,7 +72,7 @@ class CategoriaService {
   
       return categoria;
     } catch (error) {
-      throw new NotFoundError("Error al actualizar la categoria");
+      this.handleError(error, "Error al actualizar la categoria");
     }
   };
 };

@@ -1,9 +1,9 @@
 import { Proveedor } from "@/models/productos";
 import { ProveedorType } from "@/schemas/productos";
 import { ProveedorRepository } from "@/repositories/productos";
-import { NotFoundError, DatosError } from "@/errors";
+import { NotFoundError, DatosError, HandleError } from "@/errors";
 
-class ProveedorService {
+class ProveedorService extends HandleError {
   private validateProveedorId(id_Proveedor: Proveedor["id_proveedor"]): void {
     if (!id_Proveedor || id_Proveedor < 1 || isNaN(id_Proveedor)) {
       throw new DatosError("El id del proveedor no es valido");
@@ -20,7 +20,7 @@ class ProveedorService {
 
       return proveedores;
     } catch (error) {
-      throw new NotFoundError("Error al obtener los proveedores");
+      this.handleError(error, "Error al obtener los proveedores");
     }
   };
 
@@ -34,7 +34,7 @@ class ProveedorService {
 
       return proveedor;
     } catch (error) {
-      throw new NotFoundError("Error al obtener el proveedor");
+      this.handleError(error, "Error al obtener el proveedor");
     }
   };
 
@@ -54,7 +54,7 @@ class ProveedorService {
 
       return proveedor;
     } catch (error) {
-      throw new NotFoundError("Error al crear el proveedor");
+      this.handleError(error, "Error al crear el proveedor");
     }
   };
 
@@ -72,7 +72,7 @@ class ProveedorService {
   
       return proveedor;
     } catch (error) {
-      throw new NotFoundError("Error al actualizar el proveedor");
+      this.handleError(error, "Error al actualizar el proveedor");
     }
   };
 };
