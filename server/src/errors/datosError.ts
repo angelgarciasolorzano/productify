@@ -3,7 +3,7 @@ class DatosError extends Error {
 
   constructor(message: string) {
     super(message);
-    this.name = "ValidationError";
+    this.name = "DatosError";
     this.statusCode = 400;
   };
 };
