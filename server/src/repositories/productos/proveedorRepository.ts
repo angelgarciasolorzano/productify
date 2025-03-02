@@ -1,13 +1,13 @@
 import { Proveedor } from "@/models/productos";
 import { ProveedorType } from "@/schemas/productos";
-import { NotFoundError } from "@/errors";
+import { ServerError } from "@/errors";
 
 class ProveedorRepository {
   public async getProveedores(): Promise<Proveedor[]> {
     try {
       return await Proveedor.findAll();
     } catch (error) {
-      throw new NotFoundError("Error al obtener los proveedores");
+      throw new ServerError("Error al conectar con la base de datos");
     }
   };
 
@@ -15,7 +15,7 @@ class ProveedorRepository {
     try {
       return await Proveedor.findByPk(id_proveedor);
     } catch (error) {
-      throw new NotFoundError("Error al obtener el proveedor");
+      throw new ServerError("Error al conectar con la base de datos");
     }
   };
 
@@ -23,7 +23,7 @@ class ProveedorRepository {
     try {
       return await Proveedor.findOne({ where: { nombre_proveedor } });
     } catch (error) {
-      throw new NotFoundError("Error al obtener el proveedor");
+      throw new ServerError("Error al conectar con la base de datos");
     }
   };
 
@@ -31,7 +31,7 @@ class ProveedorRepository {
     try {
       return await Proveedor.create(data);
     } catch (error) {
-      throw new NotFoundError("Error al crear el proveedor");
+      throw new ServerError("Error al insertar en la base de datos");
     }
   };
 
@@ -47,7 +47,7 @@ class ProveedorRepository {
   
       return await proveedor.update(updateData);
     } catch (error) {
-      throw new NotFoundError("Error al actualizar el proveedor");
+      throw new ServerError("Error al actualizar en la base de datos");
     }
   };
 };
