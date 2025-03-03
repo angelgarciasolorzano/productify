@@ -1,8 +1,6 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-
-import Producto from "./productoModels";
-import Proveedor from "./proveedorModels";
+import { Producto, Proveedor } from "./";
 
 interface ProductoProveedorAtributos {
   id_producto_proveedor: number;
@@ -55,7 +53,6 @@ class ProductoProveedor extends Model<ProductoProveedorAtributos, ProductoProvee
       sequelize,
       modelName: "ProductoProveedor",
       tableName: "productos_proveedores",
-      timestamps: false
     })
   };
 

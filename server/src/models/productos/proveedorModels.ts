@@ -1,7 +1,6 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-
-import Producto from "./productoModels";
+import { Producto } from "./";
 
 interface ProveedorAtributos {
   id_proveedor: number;
@@ -67,7 +66,6 @@ class Proveedor extends Model<ProveedorAtributos, ProveedorCreationAtributos>
       direccion_proveedor: {
         type: DataTypes.STRING(100),
         allowNull: true,
-        defaultValue: 'sin ingresar'
       },
       
       estado_proveedor: {

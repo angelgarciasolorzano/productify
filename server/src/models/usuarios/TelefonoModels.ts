@@ -1,7 +1,6 @@
 import { DataTypes, Model, Sequelize, Optional } from "sequelize";
 import { sequelize } from "@/config";
-
-import Usuario from "./usuarioModels";
+import { Usuario } from "./";
 
 interface TelefonoAtributos {
   id_telefono: number;
@@ -58,12 +57,24 @@ class telefono extends Model<TelefonoAtributos, TelefonoCreationAtributos> imple
           key: "id_Usuario",
         },
         allowNull: false,
+      },
+
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
+      },
+
+      updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
       }
     }, {
       sequelize,
       modelName: "telefono",
       tableName: "telefonos",
-      timestamps: false,
+      timestamps: true,
     })
   };
 

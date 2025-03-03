@@ -1,7 +1,6 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-
-import Usuario from "./usuarioModels";
+import { Usuario } from "./";
 
 interface CargoAtributos {
   id_cargo: number;
@@ -52,7 +51,7 @@ class Cargo extends Model<CargoAtributos, CargoCreationAtributos> implements Car
       sequelize,
       modelName: "Cargo",
       tableName: "cargos",
-      timestamps: false,
+      timestamps: true,
     })
   };
 

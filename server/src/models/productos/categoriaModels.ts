@@ -1,7 +1,6 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-
-import Producto from "./productoModels";
+import { Producto } from "./";
 
 interface CategoriaAtributos {
   id_categoria: number;

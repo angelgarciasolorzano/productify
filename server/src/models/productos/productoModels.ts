@@ -1,9 +1,7 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-
-import Proveedor from "./proveedorModels";
-import Categoria from "./categoriaModels";
-import Usuario from "../usuarios/usuarioModels";
+import { Proveedor, Categoria } from "./";
+import { Usuario } from "../usuarios";
 
 interface ProductoAtributos {
   id_producto: number;
