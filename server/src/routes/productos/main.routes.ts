@@ -5,10 +5,10 @@ import proveedor from "./proveedor.routes";
 
 const router = Router();
 
-router.use("/categorias", categoria);
+router.use("/categoria", categoria);
 
-router.use("/productos", producto);
+router.use("/producto", producto);
 
-router.use("/proveedores", proveedor);
+router.use("/proveedor", proveedor);
 
 export default router;
