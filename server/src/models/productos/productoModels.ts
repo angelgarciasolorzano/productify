@@ -1,6 +1,6 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-import { Proveedor, Categoria } from "./";
+import { Categoria } from "./";
 import { Usuario } from "../usuarios";
 
 interface ProductoAtributos {
@@ -19,18 +19,12 @@ interface ProductoAtributos {
   updatedAt?: Date;
 };
 
-interface ProductoAssociations {
-  Proveedor: typeof Proveedor;
-  Categoria: typeof Categoria;
-  Usuario: typeof Usuario;
-};
-
 interface ProductoCreationAtributos extends Optional<ProductoAtributos, "id_producto"> {};
 
 class Producto extends Model<ProductoAtributos, ProductoCreationAtributos> 
   implements ProductoAtributos {
 
-  public id_producto!: number;
+  public readonly id_producto!: number;
   public nombre_producto!: string;
   public descripcion_producto?: string;
   public precio_compra!: number;
@@ -115,29 +109,17 @@ class Producto extends Model<ProductoAtributos, ProductoCreationAtributos>
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       },
 
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       }
     }, {
       sequelize,
       modelName: "Producto",
       tableName: "productos",
       timestamps: true
-    });
-  };
-
-  public static associate(models: ProductoAssociations) {
-    Producto.belongsTo(models.Categoria, { foreignKey: "id_categoria_fk" });
-    Producto.belongsTo(models.Usuario, { foreignKey: "id_usuario_fk" });
-
-    Producto.belongsToMany(models.Proveedor, { 
-      through: "ProductoProveedor", 
-      foreignKey: "id_producto_fk", 
     });
   };
 };

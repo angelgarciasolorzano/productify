@@ -1,6 +1,5 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-import { Producto } from "./";
 
 interface ProveedorAtributos {
   id_proveedor: number;
@@ -11,10 +10,6 @@ interface ProveedorAtributos {
   estado_proveedor: "activo" | "inactivo";
   createdAt?: Date;
   updatedAt?: Date;
-};
-
-interface ProveedorAssociation {
-  Producto: typeof Producto;
 };
 
 interface ProveedorCreationAtributos extends Optional<ProveedorAtributos, "id_proveedor"> {};
@@ -77,13 +72,11 @@ class Proveedor extends Model<ProveedorAtributos, ProveedorCreationAtributos>
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       },
 
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       }
     }, {
       sequelize,
@@ -91,13 +84,6 @@ class Proveedor extends Model<ProveedorAtributos, ProveedorCreationAtributos>
       tableName: "proveedores",
       timestamps: true
     })
-  };
-
-  public static associate(models: ProveedorAssociation) {
-    Proveedor.belongsToMany(models.Producto, { 
-      through: "ProductoProveedor", 
-      foreignKey: "id_proveedor_fk", 
-    });
   };
 };
 

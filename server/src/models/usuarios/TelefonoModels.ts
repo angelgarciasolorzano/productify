@@ -11,10 +11,6 @@ interface TelefonoAtributos {
   updatedAt?: Date;
 };
 
-interface TelefonoAssociation {
-  Usuario: typeof Usuario;
-};
-
 interface TelefonoCreationAtributos extends Optional<TelefonoAtributos, "id_telefono"> {};
 
 class telefono extends Model<TelefonoAtributos, TelefonoCreationAtributos> implements 
@@ -62,13 +58,11 @@ class telefono extends Model<TelefonoAtributos, TelefonoCreationAtributos> imple
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       },
 
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       }
     }, {
       sequelize,
@@ -76,10 +70,6 @@ class telefono extends Model<TelefonoAtributos, TelefonoCreationAtributos> imple
       tableName: "telefonos",
       timestamps: true,
     })
-  };
-
-  public static associate(models: TelefonoAssociation) {
-    telefono.belongsTo(models.Usuario, { foreignKey: 'id_usuario_fk' });
   };
 };
 

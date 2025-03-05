@@ -1,6 +1,5 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-import { Producto } from "./";
 
 interface CategoriaAtributos {
   id_categoria: number;
@@ -9,10 +8,6 @@ interface CategoriaAtributos {
   estado_categoria: "activo" | "inactivo";
   createdAt?: Date;
   updatedAt?: Date;
-};
-
-interface CategoriaAssociation {
-  Producto: typeof Producto;
 };
 
 interface CategoriaCreationAtributos extends Optional<CategoriaAtributos, "id_categoria"> {};
@@ -55,13 +50,11 @@ class Categoria extends Model<CategoriaAtributos, CategoriaCreationAtributos>
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       },
 
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       }
     }, {
       sequelize,
@@ -69,10 +62,6 @@ class Categoria extends Model<CategoriaAtributos, CategoriaCreationAtributos>
       tableName: "categorias",
       timestamps: true
     });
-  };
-
-  public static associate(models: CategoriaAssociation) {
-    Categoria.hasMany(models.Producto, { foreignKey: "id_categoria_fk" });
   };
 };
 

@@ -1,16 +1,11 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-import { Usuario } from "./";
 
 interface CargoAtributos {
   id_cargo: number;
   nombre_cargo: string;
   createdAt?: Date;
   updatedAt?: Date;
-};
-
-interface CargoAssociation {
-  Usuario: typeof Usuario;
 };
 
 interface CargoCreationAtributos extends Optional<CargoAtributos, "id_cargo"> {};
@@ -39,13 +34,11 @@ class Cargo extends Model<CargoAtributos, CargoCreationAtributos> implements Car
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       },
 
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       }
     }, {
       sequelize,
@@ -53,10 +46,6 @@ class Cargo extends Model<CargoAtributos, CargoCreationAtributos> implements Car
       tableName: "cargos",
       timestamps: true,
     })
-  };
-
-  public static associate(models: CargoAssociation) {
-    Cargo.hasMany(models.Usuario, { foreignKey: "id_cargo_fk" });
   };
 };
 

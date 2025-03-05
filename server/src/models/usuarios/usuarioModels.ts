@@ -1,7 +1,6 @@
 import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { sequelize } from "@/config";
-import { Producto } from "../productos";
-import { Telefono, Cargo } from "./";
+import { Cargo } from "./";
 
 interface UsuarioAtributos {
   id_usuario: number;
@@ -17,12 +16,6 @@ interface UsuarioAtributos {
   id_cargo_fk: number;
   createdAt?: Date;
   updatedAt?: Date;
-};
-
-interface UsuarioAssociation {
-  Cargo: typeof Cargo;
-  Producto: typeof Producto;
-  Telefono: typeof Telefono;
 };
 
 interface UsuarioCreationAtributos extends Optional<UsuarioAtributos, "id_usuario"> {};
@@ -120,13 +113,11 @@ class Usuario extends Model<UsuarioAtributos, UsuarioCreationAtributos> implemen
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       },
 
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: DataTypes.NOW
       }
     }, {
       sequelize,
@@ -134,12 +125,6 @@ class Usuario extends Model<UsuarioAtributos, UsuarioCreationAtributos> implemen
       tableName: "usuarios",
       timestamps: false,
     })
-  };
-
-  public static associate(models: UsuarioAssociation) {
-    Usuario.hasOne(models.Cargo, { foreignKey: "id_cargo_fk" });
-    Usuario.hasMany(models.Producto, { foreignKey: "id_usuario_fk" });
-    Usuario.hasMany(models.Telefono, { foreignKey: "id_usuario_fk" });
   };
 };
 
