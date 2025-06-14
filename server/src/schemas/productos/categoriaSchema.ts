@@ -11,8 +11,8 @@ export const CategoriaSchema = object({
   .optional(),
 
   estado_categoria: string()
-  .oneOf(["activo", "inactivo"], '"El estado debe ser "activo" o "inactivo"')
-  .default("activo"),
+  .oneOf(["activo", "inactivo"], "El estado debe ser activo o inactivo")
+  .default("activo")
 });
 
 export type CategoriaType = InferType<typeof CategoriaSchema>;

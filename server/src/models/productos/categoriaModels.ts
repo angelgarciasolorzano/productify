@@ -10,7 +10,9 @@ interface CategoriaAtributos {
   updatedAt?: Date;
 };
 
-interface CategoriaCreationAtributos extends Optional<CategoriaAtributos, "id_categoria"> {};
+interface CategoriaCreationAtributos extends Optional<CategoriaAtributos, 
+  "id_categoria" | "estado_categoria"> 
+{};
 
 class Categoria extends Model<CategoriaAtributos, CategoriaCreationAtributos> 
   implements CategoriaAtributos {

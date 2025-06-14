@@ -7,7 +7,7 @@ import formatoErrors from "../helpers/formatoErrors";
 const validarDatos = <T extends object>(schema: SchemaType<T>) => 
   async (request: Request, response: Response, next: NextFunction): Promise<void> => {
     try {
-      await schema.validate(request.body, { abortEarly: false });
+      await schema.validate(request.body, { abortEarly: false, stripUnknown: true });
       next();
     } catch (error) {
       const errores = error as ValidationError;

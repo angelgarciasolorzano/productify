@@ -39,10 +39,6 @@ class CategoriaService extends HandleError {
   };
 
   public async createCategoria(data: CategoriaType): Promise<Categoria> {
-    if (!data.nombre_categoria || data.nombre_categoria.length < 3) { 
-      throw new DatosError("El nombre de la categoria es obligatorio");
-    };
-
     try {
       const categoriaExiste = await CategoriaRepository.getCategoriaNombre(data.nombre_categoria);
 
@@ -64,7 +60,15 @@ class CategoriaService extends HandleError {
     try {
       const categoriaExiste = await CategoriaRepository.getCategoriaId(id_Categoria);
 
-      if (!categoriaExiste) throw new NotFoundError("No se encontro la categoria");
+      if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
+
+      const updateDate = (
+        categoriaExiste.nombre_categoria === data.nombre_categoria &&
+        categoriaExiste.descripcion_categoria === data.descripcion_categoria &&
+        categoriaExiste.estado_categoria === data.estado_categoria
+      );
+
+      if (updateDate) throw new DatosError("No hay cambios en los datos proporcionados");
   
       const categoria = await CategoriaRepository.updateCategoria(categoriaExiste, data);
   
