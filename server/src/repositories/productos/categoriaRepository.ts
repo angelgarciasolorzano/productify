@@ -37,13 +37,7 @@ class CategoriaRepository {
 
   public async updateCategoria(categoria: Categoria, data: CategoriaType): Promise<Categoria | null> {
     try {
-      const updateData: CategoriaType = {
-        nombre_categoria: data.nombre_categoria || categoria.nombre_categoria,
-        descripcion_categoria: data.descripcion_categoria || categoria.descripcion_categoria,
-        estado_categoria: data.estado_categoria || categoria.estado_categoria,
-      };
-
-      return await categoria.update(updateData);
+      return await categoria.update(data);
     } catch (error) {
       throw new ServerError("Error al actualizar la categoria");
     }

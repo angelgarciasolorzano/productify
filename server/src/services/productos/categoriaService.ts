@@ -49,13 +49,12 @@ class CategoriaService extends HandleError {
 
     if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
 
-    const updateDate = (
-      categoriaExiste.nombre_categoria === data.nombre_categoria &&
-      categoriaExiste.descripcion_categoria === data.descripcion_categoria &&
-      categoriaExiste.estado_categoria === data.estado_categoria
-    );
+    const hasNoChanges = Object.keys(data).every(key => {
+      const typedKey = key as keyof CategoriaType;
+      return categoriaExiste[typedKey] === data[typedKey];
+    });
 
-    if (updateDate) throw new DatosError("No hay cambios en los datos proporcionados");
+    if (hasNoChanges) throw new DatosError("No hay cambios en los datos proporcionados");
 
     const categoria = await CategoriaRepository.updateCategoria(categoriaExiste, data);
 
