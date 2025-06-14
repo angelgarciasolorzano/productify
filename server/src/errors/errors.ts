@@ -62,4 +62,4 @@ class ServerError extends AppError {
   }
 };
 
-export { DatosError, NotFoundError, ServerError };
+export { AppError, DatosError, NotFoundError, ServerError };
