@@ -1,4 +1,2 @@
-export { default as DatosError } from "./datosError";
-export { default as NotFoundError } from "./notFoundError";
-export { default as ServerError } from "./serverError";
+export * from "./errors";
 export { default as HandleError } from "./handleError";
