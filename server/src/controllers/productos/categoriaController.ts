@@ -3,47 +3,36 @@ import { RequestType } from "@/types";
 import { CategoriaType } from "@/schemas/productos";
 import { CategoriaService } from "@/services/productos";
 import { HandleError } from "@/errors";
+import { asyncWrapper } from "@/utils";
 
 class CategoriaController extends HandleError {
-  public getCategorias = async(_request: RequestType<CategoriaType>, response: Response): Promise<void> => {
-    try {
+  public getCategorias = asyncWrapper(
+    async (_request: RequestType<CategoriaType>, response: Response): Promise<void> => {
       const categorias = await CategoriaService.getCategorias();
-
       response.json(categorias);
-    } catch (error) {
-      this.responseError(error, response);
     }
-  };
+  );
 
-  public getCategoriaId = async (request: RequestType<CategoriaType>, response: Response): Promise<void> => {
-    try {
+  public getCategoriaId = asyncWrapper(
+    async (request: RequestType<CategoriaType>, response: Response): Promise<void> => {
       const categoria = await CategoriaService.getCategoriaId(Number(request.params.id));
-
       response.json(categoria);
-    } catch (error) {
-      this.responseError(error, response);
     }
-  };
+  );
 
-  public createCategoria = async (request: RequestType<CategoriaType>, response: Response): Promise<void> => {
-    try {
+  public createCategoria = asyncWrapper(
+    async (request: RequestType<CategoriaType>, response: Response) => {
       const categoria = await CategoriaService.createCategoria(request.body);
-
       response.json(categoria);
-    } catch (error) {
-      this.responseError(error, response);
     }
-  };
+  );
 
-  public updateCategoria = async (request: RequestType<CategoriaType>, response: Response): Promise<void> => {
-    try {
+  public updateCategoria = asyncWrapper(
+    async (request: RequestType<CategoriaType>, response: Response): Promise<void> => {
       const categoria = await CategoriaService.updateCategoria(Number(request.params.id), request.body);
-
       response.json(categoria);
-    } catch (error) {
-      this.responseError(error, response);
     }
-  };
+  );
 };
 
 export default new CategoriaController();

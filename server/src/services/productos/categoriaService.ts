@@ -11,73 +11,57 @@ class CategoriaService extends HandleError {
   };
 
   public async getCategorias(): Promise<Categoria[]> {
-    try {
-      const categorias = await CategoriaRepository.getCategorias();
+    const categorias = await CategoriaRepository.getCategorias();
 
-      if (!categorias || categorias.length === 0) {
-        throw new NotFoundError("No se encontraron categorias");
-      };
+    if (!categorias || categorias.length === 0) {
+      throw new NotFoundError("No se encontraron categorias");
+    };
 
-      return categorias;
-    } catch (error) {
-      this.handleError(error, "Error al obtener las categorias");
-    }
+    return categorias;
   };
 
   public async getCategoriaId(id_Categoria: Categoria["id_categoria"]): Promise<Categoria> {
     this.validateCategoriaId(id_Categoria);
 
-    try {
-      const categoria = await CategoriaRepository.getCategoriaId(id_Categoria);
+    const categoria = await CategoriaRepository.getCategoriaId(id_Categoria);
 
-      if (!categoria) throw new NotFoundError("No se encontro la categoria");
+    if (!categoria) throw new NotFoundError("No se encontro la categoria");
 
-      return categoria;
-    } catch (error) {
-      this.handleError(error, "Error al obtener la categoria");
-    }
+    return categoria;
   };
 
   public async createCategoria(data: CategoriaType): Promise<Categoria> {
-    try {
-      const categoriaExiste = await CategoriaRepository.getCategoriaNombre(data.nombre_categoria);
+    const categoriaExiste = await CategoriaRepository.getCategoriaNombre(data.nombre_categoria);
 
-      if (categoriaExiste) throw new DatosError("La categoria ya existe");
+    if (categoriaExiste) throw new DatosError("La categoria ya existe");
 
-      const categoria = await CategoriaRepository.createCategoria(data);
+    const categoria = await CategoriaRepository.createCategoria(data);
 
-      if (!categoria) throw new NotFoundError("No se pudo crear la categoria");
+    if (!categoria) throw new NotFoundError("No se pudo crear la categoria");
 
-      return categoria;
-    } catch (error) {
-      this.handleError(error, "Error al crear la categoria");
-    }
+    return categoria;
   };
 
   public async updateCategoria(id_Categoria: Categoria["id_categoria"], data: CategoriaType): Promise<Categoria> {
     this.validateCategoriaId(id_Categoria);
 
-    try {
-      const categoriaExiste = await CategoriaRepository.getCategoriaId(id_Categoria);
+    const categoriaExiste = await CategoriaRepository.getCategoriaId(id_Categoria);
 
-      if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
+    if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
 
-      const updateDate = (
-        categoriaExiste.nombre_categoria === data.nombre_categoria &&
-        categoriaExiste.descripcion_categoria === data.descripcion_categoria &&
-        categoriaExiste.estado_categoria === data.estado_categoria
-      );
+    const updateDate = (
+      categoriaExiste.nombre_categoria === data.nombre_categoria &&
+      categoriaExiste.descripcion_categoria === data.descripcion_categoria &&
+      categoriaExiste.estado_categoria === data.estado_categoria
+    );
 
-      if (updateDate) throw new DatosError("No hay cambios en los datos proporcionados");
-  
-      const categoria = await CategoriaRepository.updateCategoria(categoriaExiste, data);
-  
-      if (!categoria) throw new NotFoundError("No se pudo actualizar la categoria");
-  
-      return categoria;
-    } catch (error) {
-      this.handleError(error, "Error al actualizar la categoria");
-    }
+    if (updateDate) throw new DatosError("No hay cambios en los datos proporcionados");
+
+    const categoria = await CategoriaRepository.updateCategoria(categoriaExiste, data);
+
+    if (!categoria) throw new NotFoundError("No se pudo actualizar la categoria");
+
+    return categoria;
   };
 };
 
