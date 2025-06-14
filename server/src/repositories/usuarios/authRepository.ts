@@ -6,7 +6,7 @@ class AuthRepository {
     try {
       return await Usuario.findOne({ where: { correo_usuario } });
     } catch (error) {
-      throw new ServerError("Error al conectar con la base de datos");
+      throw new ServerError("Error al obtener el correo del usuario");
     }
   };
 };

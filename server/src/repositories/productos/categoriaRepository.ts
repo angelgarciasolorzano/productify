@@ -7,7 +7,7 @@ class CategoriaRepository {
     try {
       return await Categoria.findAll();
     } catch (error) {
-      throw new ServerError("Error interno del servidor");
+      throw new ServerError("Error al obtener las categorias");
     }
   };
 
@@ -15,7 +15,7 @@ class CategoriaRepository {
     try {
       return await Categoria.findByPk(id_Categoria);
     } catch (error) {
-      throw new ServerError("Error interno del servidor");
+      throw new ServerError("Error al obtener la categoria");
     }
   };
 
@@ -23,7 +23,7 @@ class CategoriaRepository {
     try {
       return await Categoria.findOne({ where: { nombre_categoria } });
     } catch (error) {
-      throw new ServerError("Error interno del servidor");
+      throw new ServerError("Error al obtener el nombre de la categoria");
     }
   };
 
@@ -31,7 +31,7 @@ class CategoriaRepository {
     try {
       return await Categoria.create(data);
     } catch (error) {
-      throw new ServerError("Error interno del servidor");
+      throw new ServerError("Error al crear la categoria");
     }
   };
 
@@ -45,7 +45,7 @@ class CategoriaRepository {
 
       return await categoria.update(updateData);
     } catch (error) {
-      throw new ServerError("Error interno del servidor");
+      throw new ServerError("Error al actualizar la categoria");
     }
   };
 };

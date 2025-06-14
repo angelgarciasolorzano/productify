@@ -6,7 +6,7 @@ class BaseRepository {
     try {
       return await Usuario.findAll();
     } catch (error) {
-      throw new ServerError("Error al conectar con la base de datos");
+      throw new ServerError("Error al obtener los usuarios");
     }
   };
 
@@ -14,7 +14,7 @@ class BaseRepository {
     try {
       return await Usuario.findOne({ where: { id_usuario: id_usuario } });
     } catch (error) {
-      throw new ServerError("Error al conectar con la base de datos");
+      throw new ServerError("Error al obtener el usuario");
     }
   };
 };

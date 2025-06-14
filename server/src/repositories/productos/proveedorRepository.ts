@@ -7,7 +7,7 @@ class ProveedorRepository {
     try {
       return await Proveedor.findAll();
     } catch (error) {
-      throw new ServerError("Error al conectar con la base de datos");
+      throw new ServerError("Error al obtener los proveedores");
     }
   };
 
@@ -15,7 +15,7 @@ class ProveedorRepository {
     try {
       return await Proveedor.findByPk(id_proveedor);
     } catch (error) {
-      throw new ServerError("Error al conectar con la base de datos");
+      throw new ServerError("Error al obtener el proveedor");
     }
   };
 
@@ -23,7 +23,7 @@ class ProveedorRepository {
     try {
       return await Proveedor.findOne({ where: { nombre_proveedor } });
     } catch (error) {
-      throw new ServerError("Error al conectar con la base de datos");
+      throw new ServerError("Error al obtener el nombre del proveedor");
     }
   };
 
@@ -31,7 +31,7 @@ class ProveedorRepository {
     try {
       return await Proveedor.create(data);
     } catch (error) {
-      throw new ServerError("Error al insertar en la base de datos");
+      throw new ServerError("Error al crear el proveedor");
     }
   };
 
@@ -47,7 +47,7 @@ class ProveedorRepository {
   
       return await proveedor.update(updateData);
     } catch (error) {
-      throw new ServerError("Error al actualizar en la base de datos");
+      throw new ServerError("Error al actualizar el proveedor");
     }
   };
 };
