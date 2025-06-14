@@ -2,7 +2,12 @@ import { NextFunction, Request, Response } from "express";
 
 /**
  * @function asyncWrapper
- * @description Envoltorio (Wrapper) para manejar la gestión de errores en las funciones asíncronas
+ * @description Envoltorio (Wrapper) para manejar la gestión de errores en las funciones asíncronas. Permite usar tipos personalizados de 'Request', 'Response' mediante generics
+ * 
+ * @template Req - Tipo de la petición (Request) por defecto
+ * @template Res - Tipo de la respuesta (Response) por defecto
+ * @template Next - Tipo de la función de callback (NextFunction) por defecto
+ * 
  * @param fn Función asíncrona del controlador que se va a envolver
  * @returns Funcion compatible con express que maneja las excepciones asíncronas
  * 
