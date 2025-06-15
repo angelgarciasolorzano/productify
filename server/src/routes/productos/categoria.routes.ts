@@ -12,11 +12,11 @@ const categoriaController = new CategoriaController(categoriaService);
 const router = Router();
 
 router
-  .get("/obtener-categoria/:id", categoriaController.getCategoriaId)
-  .get("/obtener-categorias", categoriaController.getCategorias);
+  .get("/obtener-categorias", categoriaController.getCategorias)
+  .get("/obtener-categoria/:id", categoriaController.getCategoriaId);
 
 router
-  .post("/registrar-categoria", validarDatos(CategoriaSchema), categoriaController.createCategoria)
+  .post("/registrar-categoria", validarDatos(CategoriaSchema), categoriaController.createCategoria);
 
 router
   .put("/actualizar-categoria/:id", validarDatos(CategoriaSchema), categoriaController.updateCategoria);

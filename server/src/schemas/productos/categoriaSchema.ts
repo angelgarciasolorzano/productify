@@ -12,7 +12,6 @@ export const CategoriaSchema = object({
 
   estado_categoria: string()
   .oneOf(["activo", "inactivo"], "El estado debe ser activo o inactivo")
-  //.default("activo")
   .optional()
 });
 
