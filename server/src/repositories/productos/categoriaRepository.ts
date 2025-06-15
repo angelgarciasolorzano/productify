@@ -5,25 +5,11 @@ import { ServerError } from "@/errors";
 /**
  * @interface ICategoriaRepository
  * @description Interfaz para definir los métodos de la clase CategoriaRepository
- */
-interface ICategoriaRepository {
-  getCategorias(): Promise<Categoria[]>;
-  getCategoriaId(id_Categoria: Categoria["id_categoria"]): Promise<Categoria | null>;
-  getCategoriaNombre(nombre_categoria: Categoria["nombre_categoria"]): Promise<Categoria | null>;
-  createCategoria(data: CategoriaType): Promise<Categoria>;
-  updateCategoria(categoria: Categoria, data: CategoriaType): Promise<Categoria | null>;
-};
-
-/**
- * Clase que encapsula la lógica de la base de datos para el modelo Categoria
- * @class CategoriaRepository
- * @description Clase para gestionar las operaciones CRUD de la tabla Categoria
- * @implements ICategoriaRepository
- */
-class CategoriaRepository implements ICategoriaRepository {
+*/
+export interface InterfaceCategoriaRepository {
   /**
    * Recupera una lista de todos los registros de la tabla Categoria
-   * @function getCategorias
+   * @method getCategorias
    * @returns {Promise<Categoria[]>} Una promesa que resuelve con una lista (array) de objetos Categoria
    * @throws {ServerError} Si la consulta a la base de datos falla
    * @example
@@ -31,18 +17,12 @@ class CategoriaRepository implements ICategoriaRepository {
    * 
    * const categorias = await CategoriaRepository.getCategorias();
    * console.log(categorias);
-   */
-  public async getCategorias(): Promise<Categoria[]> {
-    try {
-      return await Categoria.findAll();
-    } catch (error) {
-      throw new ServerError("Error al obtener las categorias");
-    }
-  };
+  */
+  getCategorias(): Promise<Categoria[]>;
 
   /**
    * Recupera un registro de la tabla Categoria por su id
-   * @function getCategoriaId
+   * @method getCategoriaId
    * @param {Categoria["id_categoria"]} id_Categoria El id de la categoria
    * @throws {ServerError} Si la consulta a la base de datos falla
    * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto Categoria o null si no se encuentra
@@ -51,18 +31,12 @@ class CategoriaRepository implements ICategoriaRepository {
    * 
    * const categoria = await CategoriaRepository.getCategoriaId(1);
    * if (categoria) console.log(categoria.nombre_categoria);
-   */
-  public async getCategoriaId(id_Categoria: Categoria["id_categoria"]): Promise<Categoria | null> {
-    try {
-      return await Categoria.findByPk(id_Categoria);
-    } catch (error) {
-      throw new ServerError("Error al obtener la categoria");
-    }
-  };
+  */
+  getCategoriaId(id_Categoria: Categoria["id_categoria"]): Promise<Categoria | null>;
 
   /**
    * Recupera un registro de la tabla Categoria por su nombre
-   * @function getCategoriaNombre
+   * @method getCategoriaNombre
    * @param {Categoria["nombre_categoria"]} nombre_categoria El nombre de la categoria
    * @throws {ServerError} Si la consulta a la base de datos falla
    * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto Categoria o null si no se encuentra
@@ -71,18 +45,12 @@ class CategoriaRepository implements ICategoriaRepository {
    * 
    * const categoria = await CategoriaRepository.getCategoriaNombre("Frutas");
    * if (categoria) console.log(categoria.nombre_categoria);
-   */
-  public async getCategoriaNombre(nombre_categoria: Categoria["nombre_categoria"]): Promise<Categoria | null> {
-    try {
-      return await Categoria.findOne({ where: { nombre_categoria } });
-    } catch (error) {
-      throw new ServerError("Error al obtener el nombre de la categoria");
-    }
-  };
+  */
+  getCategoriaNombre(nombre_categoria: Categoria["nombre_categoria"]): Promise<Categoria | null>;
 
   /**
    * Crea un nuevo registro en la tabla Categoria
-   * @function createCategoria
+   * @method createCategoria
    * @param {CategoriaType} data Datos del nuevo registro
    * @throws {ServerError} Si la consulta a la base de datos falla
    * @returns {Promise<Categoria>} Una promesa que resuelve con el objeto Categoria creado
@@ -96,18 +64,12 @@ class CategoriaRepository implements ICategoriaRepository {
    * });
    * 
    * console.log(categoria);
-   */
-  public async createCategoria(data: CategoriaType): Promise<Categoria> {
-    try {
-      return await Categoria.create(data);
-    } catch (error) {
-      throw new ServerError("Error al crear la categoria");
-    }
-  };
+  */
+  createCategoria(data: CategoriaType): Promise<Categoria>;
 
   /**
    * Actualiza un registro de la tabla Categoria
-   * @function updateCategoria
+   * @method updateCategoria
    * @param {Categoria} categoria El registro a actualizar
    * @param {CategoriaType} data  Los nuevos datos del registro
    * @throws {ServerError} Si la consulta a la base de datos falla
@@ -127,7 +89,49 @@ class CategoriaRepository implements ICategoriaRepository {
    *   const categoriaActualizada = await CategoriaRepository.updateCategoria(categoria, data);
    *   console.log(categoriaActualizada);
    * };
-   */
+  */
+  updateCategoria(categoria: Categoria, data: CategoriaType): Promise<Categoria | null>;
+};
+
+/**
+ * Clase que encapsula la lógica de la base de datos para el modelo Categoria
+ * @class CategoriaRepository
+ * @description Clase para gestionar las operaciones CRUD de la tabla Categoria
+ * @implements ICategoriaRepository
+*/
+export class CategoriaRepository implements InterfaceCategoriaRepository {
+  public async getCategorias(): Promise<Categoria[]> {
+    try {
+      return await Categoria.findAll();
+    } catch (error) {
+      throw new ServerError("Error al obtener las categorias");
+    }
+  };
+
+  public async getCategoriaId(id_Categoria: Categoria["id_categoria"]): Promise<Categoria | null> {
+    try {
+      return await Categoria.findByPk(id_Categoria);
+    } catch (error) {
+      throw new ServerError("Error al obtener la categoria");
+    }
+  };
+
+  public async getCategoriaNombre(nombre_categoria: Categoria["nombre_categoria"]): Promise<Categoria | null> {
+    try {
+      return await Categoria.findOne({ where: { nombre_categoria } });
+    } catch (error) {
+      throw new ServerError("Error al obtener el nombre de la categoria");
+    }
+  };
+
+  public async createCategoria(data: CategoriaType): Promise<Categoria> {
+    try {
+      return await Categoria.create(data);
+    } catch (error) {
+      throw new ServerError("Error al crear la categoria");
+    }
+  };
+
   public async updateCategoria(categoria: Categoria, data: CategoriaType): Promise<Categoria | null> {
     try {
       return await categoria.update(data);
@@ -136,5 +140,3 @@ class CategoriaRepository implements ICategoriaRepository {
     }
   };
 };
-
-export default new CategoriaRepository();
