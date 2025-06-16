@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { CategoriaRepository } from "@/repositories/categorias";
+import { CategoriaRepository, CategoriaFinder, CategoriaCRUD } from "@/repositories/categorias";
 import { CategoriaService } from "@/services/productos";
 import { CategoriaController } from "@/controllers/productos";
 import { CategoriaSchema } from "@/schemas/productos";
 import { validarDatos } from "@/middleware";
 
-const categoriaRepository = new CategoriaRepository();
+const categoriaRepository = new CategoriaRepository(CategoriaFinder, CategoriaCRUD);
 const categoriaService = new CategoriaService(categoriaRepository);
 const categoriaController = new CategoriaController(categoriaService);
 

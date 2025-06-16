@@ -1,6 +1,6 @@
 import { Categoria } from "@/models/productos";
 import { CategoriaType } from "@/schemas/productos";
-import { InterfaceCategoriaRepository } from "@/repositories/categorias";
+import { ICategoriaRepository } from "@/repositories/categorias";
 import { NotFoundError, DatosError } from "@/errors";
 
 /**
@@ -82,7 +82,7 @@ export interface InterfaceCategoriaService {
  * @implements InterfaceCategoriaService
 */
 export class CategoriaService implements InterfaceCategoriaService {
-  constructor(private categoriaRepository: InterfaceCategoriaRepository) {};
+  constructor(private categoriaRepository: ICategoriaRepository) {};
 
   private validateCategoriaId(id_Categoria: Categoria["id_categoria"]): void {
     if (!id_Categoria || id_Categoria < 1 || isNaN(id_Categoria)) {
