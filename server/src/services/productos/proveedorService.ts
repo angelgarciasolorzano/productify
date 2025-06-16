@@ -1,6 +1,6 @@
 import { Proveedor } from "@/models/productos";
 import { ProveedorType } from "@/schemas/productos";
-import { ProveedorRepository } from "@/repositories/productos";
+import { ProveedorRepository } from "@/repositories/proveedores";
 import { NotFoundError, DatosError, HandleError } from "@/errors";
 
 class ProveedorService extends HandleError {
