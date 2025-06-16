@@ -1,6 +1,6 @@
 import { Categoria } from "@/models/productos";
 import { CategoriaType } from "@/schemas/productos";
-import { InterfaceCategoriaRepository } from "@/repositories/productos";
+import { InterfaceCategoriaRepository } from "@/repositories/categorias";
 import { NotFoundError, DatosError } from "@/errors";
 
 /**

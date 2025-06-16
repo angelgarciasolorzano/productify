@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CategoriaRepository } from "@/repositories/productos";
+import { CategoriaRepository } from "@/repositories/categorias";
 import { CategoriaService } from "@/services/productos";
 import { CategoriaController } from "@/controllers/productos";
 import { CategoriaSchema } from "@/schemas/productos";
