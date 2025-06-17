@@ -1,14 +1,17 @@
 import { Request, Response, NextFunction } from "express";
-import { RequestType } from "@/types";
-import { CategoriaType } from "@/schemas/productos";
-import { ICategoriaService } from "@/services/categorias";
-import { asyncWrapper } from "@/utils";
 
 /**
- * @interface InterfaceCategoriaController
+ * @file iCategoria.controller.ts
+ * @description Archivo que define la interface para la clase CategoriaController
+ * @author Angel Noe Garcia Solorzano
+ * @version 1.0
+*/
+
+/**
+ * @interface ICategoriaController
  * @description Interfaz para definir los métodos de la clase CategoriaController
  */
-interface InterfaceCategoriaController {
+interface ICategoriaController {
   /**
    * @method getCategorias
    * @description Maneja la petición HTTP para obtener una lista de todas las categorías.
@@ -53,42 +56,4 @@ interface InterfaceCategoriaController {
   updateCategoria(request: Request, response: Response, next: NextFunction): void;
 };
 
-/**
- * Controlador para manejar operaciones CRUD relacionadas con categorías
- * @class CategoriaController
- * @description Llama a los metodos de la capa servicio y responde con la información solicitada
- * @implements InterfaceCategoriaController
-*/
-class CategoriaController implements InterfaceCategoriaController {
-  constructor(private categoriaService: ICategoriaService) {};
-
-  public getCategorias = asyncWrapper(
-    async (_request: RequestType<CategoriaType>, response: Response): Promise<void> => {
-      const categorias = await this.categoriaService.getCategorias();
-      response.json(categorias);
-    }
-  );
-
-  public getCategoriaId = asyncWrapper(
-    async (request: RequestType<CategoriaType>, response: Response): Promise<void> => {
-      const categoria = await this.categoriaService.getCategoriaId(Number(request.params.id));
-      response.json(categoria);
-    }
-  );
-
-  public createCategoria = asyncWrapper(
-    async (request: RequestType<CategoriaType>, response: Response) => {
-      const categoria = await this.categoriaService.createCategoria(request.body);
-      response.json(categoria);
-    }
-  );
-
-  public updateCategoria = asyncWrapper(
-    async (request: RequestType<CategoriaType>, response: Response): Promise<void> => {
-      const categoria = await this.categoriaService.updateCategoria(Number(request.params.id), request.body);
-      response.json(categoria);
-    }
-  );
-};
-
-export default CategoriaController;
+export default ICategoriaController;

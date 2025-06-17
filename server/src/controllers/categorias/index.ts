@@ -1,0 +1,1 @@
+export { default as CategoriaController } from "./categoria.controller";

@@ -7,7 +7,7 @@ import {
   CategoriaService, CategoriaFinderService, CategoriaCRUDService 
 } from "@/services/categorias";
 
-import { CategoriaController } from "@/controllers/productos";
+import { CategoriaController } from "@/controllers/categorias";
 import { CategoriaSchema } from "@/schemas/productos";
 import { validarDatos } from "@/middleware";
 
