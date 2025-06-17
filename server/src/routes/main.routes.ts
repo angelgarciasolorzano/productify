@@ -1,14 +1,18 @@
 import { Router } from "express";
+
+import auth from "./auth.routes";
 import categoria from "./categoria.routes";
 import producto from "./producto.routes";
 import proveedor from "./proveedor.routes";
 
 const router = Router();
 
-router.use("/categoria", categoria);
+router.use("/api/auth", auth);
 
-router.use("/producto", producto);
+router.use("/api/categoria", categoria);
 
-router.use("/proveedor", proveedor);
+router.use("/api/producto", producto);
+
+router.use("/api/proveedor", proveedor);
 
 export default router;

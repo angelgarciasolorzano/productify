@@ -6,9 +6,8 @@ import morgan from "morgan";
 
 import { validarVariables, conexionDatabase } from "@/validation";
 import { errorHandler } from "@/middleware";
+import { mainRouter } from "@/routes";
 import { cors } from "@/config";
-
-import mainRouter from "@/routes";
 
 const app = express();
 const port = process.env.SERVER_PORT;

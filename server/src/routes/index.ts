@@ -1,12 +1,20 @@
-import { Router } from "express";
+// import { Router } from "express";
 
-import productos from "./productos/main.routes";
-import auth from "./auth/main.routes";
+// import auth from "./auth.routes";
+// import categoria from "./categoria.routes";
+// import producto from "./producto.routes";
+// import proveedor from "./proveedor.routes";
 
-const router = Router();
+// const router = Router();
 
-router.use("/api", productos);
+// router.use("/api/auth", auth);
 
-router.use("/api", auth);
+// router.use("/api/categoria", categoria);
 
-export default router;
+// router.use("/api/producto", producto);
+
+// router.use("/api/proveedor", proveedor);
+
+// export default router;
+
+export { default as mainRouter } from "./main.routes";
