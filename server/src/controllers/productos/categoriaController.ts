@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { RequestType } from "@/types";
 import { CategoriaType } from "@/schemas/productos";
-import { InterfaceCategoriaService } from "@/services/productos";
+import { ICategoriaService } from "@/services/categorias";
 import { asyncWrapper } from "@/utils";
 
 /**
@@ -60,7 +60,7 @@ interface InterfaceCategoriaController {
  * @implements InterfaceCategoriaController
 */
 class CategoriaController implements InterfaceCategoriaController {
-  constructor(private categoriaService: InterfaceCategoriaService) {};
+  constructor(private categoriaService: ICategoriaService) {};
 
   public getCategorias = asyncWrapper(
     async (_request: RequestType<CategoriaType>, response: Response): Promise<void> => {
