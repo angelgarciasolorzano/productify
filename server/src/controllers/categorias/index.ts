@@ -1,1 +1,1 @@
-export { default as CategoriaController } from "./categoria.controller";
+export { default as CategoriaController } from "./categoria.module";
