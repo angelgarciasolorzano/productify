@@ -16,10 +16,13 @@ class CategoriaCRUDService implements ICategoriaCRUDService {
    * @description Crea una instancia de CategoriaCRUDService
    * @param categoriaRepository Instancia de CategoriaRepository
    * @example
-   * import { CategoriaRepository, CategoriaFinder, CategoriaCRUD } from "@/repositories/categorias";
+   * import { CategoriaRepository, CategoriaFinderRepository, CategoriaCRUDRepository } from "@/repositories/categorias";
    * import { CategoriaCRUDService } from "@/services/categorias";
+   * 
+   * const categoriaFinderRepository = new CategoriaFinderRepository();
+   * const categoriaCRUDRepository = new CategoriaCRUDRepository();
    *
-   * const categoriaRepository = new CategoriaRepository(CategoriaFinder, CategoriaCRUD);
+   * const categoriaRepository = new CategoriaRepository(CategoriaFinderRepository, CategoriaCRUDRepository);
    * 
    * const categoriaCRUDService = new CategoriaCRUDService(categoriaRepository);
   */

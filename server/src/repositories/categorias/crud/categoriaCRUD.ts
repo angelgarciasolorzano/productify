@@ -1,14 +1,16 @@
 import { Categoria } from "@/models/productos";
-import { ServerError } from "@/errors";
-import ICategoriaCRUD from "./iCategoriaCRUD";
 import { CategoriaType } from "@/schemas/productos";
+import { ServerError } from "@/errors";
+
+import ICategoriaCRUDRepository from "./iCategoriaCRUD";
 
 /**
+ * Clase que encapsula la lógica para operaciones de creación, lectura, actualización y eliminación de la tabla Categoria
  * @class CategoriaCRUD
  * @implements ICategoriaCRUD
- * @description Clase que encapsula la lógica para operaciones de creación, lectura, actualización y eliminación de la tabla Categoria
+ * @description Crea una instancia de CategoriaCRUDRepository
 */
-class CategoriaCRUD implements ICategoriaCRUD {
+class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
   public async getCategorias(): Promise<Categoria[]> {
     try {
       return await Categoria.findAll();
@@ -34,4 +36,4 @@ class CategoriaCRUD implements ICategoriaCRUD {
   };
 };
 
-export default new CategoriaCRUD();
+export default CategoriaCRUDRepository;

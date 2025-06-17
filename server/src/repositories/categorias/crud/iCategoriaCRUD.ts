@@ -3,28 +3,23 @@ import { CategoriaType } from "@/schemas/productos";
 
 /**
  * @file iCategoriaCRUD.ts
- * @description Archivo que define la interface para la clase CategoriaCRUD
- * 
- * Esta interfaz establece el contrato para las clases o servicios encargados de
- * realizar operaciones de recuperación de datos desde la fuente de datos (base de datos u otra),
- * limitándose a funciones CRUD. Es parte del módulo de categoria del sistema.
- * 
+ * @description Archivo que define la interface para la clase CategoriaCRUDRepository
  * @author Angel Noe Garcia Solorzano
  * @version 1.0
 */
 
 /**
  * @interface ICategoriaCRUD
- * @description Define las operaciones de creación, lectura, actualización y eliminación de categorias (CRUD)
+ * @description Interfaz para definir los métodos de la clase CategoriaCRUDRepository
 */
-interface ICategoriaCRUD {
+interface ICategoriaCRUDRepository {
   /**
-   * Recupera una lista de todos los registros de la tabla Categoria
    * @method getCategorias
+   * @description Recupera una lista de todos los registros de la tabla Categoria
    * @returns {Promise<Categoria[]>} Una promesa que resuelve con una lista (array) de objetos Categoria
    * @throws {ServerError} Si la consulta a la base de datos falla
    * @example
-   * import CategoriaRepository from "@/repositories/productos/categoriaRepository";
+   * import CategoriaRepository from "@/repositories/categorias";
    * 
    * const categorias = await CategoriaRepository.getCategorias();
    * console.log(categorias);
@@ -32,13 +27,13 @@ interface ICategoriaCRUD {
   getCategorias(): Promise<Categoria[]>;
 
   /**
-   * Crea un nuevo registro en la tabla Categoria
    * @method createCategoria
+   * @description Crea un nuevo registro en la tabla Categoria
    * @param {CategoriaType} data Datos del nuevo registro
    * @throws {ServerError} Si la consulta a la base de datos falla
    * @returns {Promise<Categoria>} Una promesa que resuelve con el objeto Categoria creado
    * @example
-   * import CategoriaRepository from "@/repositories/productos/categoriaRepository";
+   * import CategoriaRepository from "@/repositories/categorias";
    * 
    * const categoria = await CategoriaRepository.createCategoria({
    *   nombre_categoria: "Nueva categoria",
@@ -51,14 +46,14 @@ interface ICategoriaCRUD {
   createCategoria(data: CategoriaType): Promise<Categoria>;
 
   /**
-   * Actualiza un registro de la tabla Categoria
    * @method updateCategoria
+   * @description Actualiza un registro de la tabla Categoria
    * @param {Categoria} categoria El registro a actualizar
    * @param {CategoriaType} data  Los nuevos datos del registro
    * @throws {ServerError} Si la consulta a la base de datos falla
    * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto Categoria actualizado o null si falla
    * @example
-   * import CategoriaRepository from "@/repositories/productos/categoriaRepository";
+   * import CategoriaRepository from "@/repositories/categorias";
    * 
    * const categoria = await CategoriaRepository.getCategoriaId(1);
    * 
@@ -76,4 +71,4 @@ interface ICategoriaCRUD {
   updateCategoria(categoria: Categoria, data: CategoriaType): Promise<Categoria>;
 };
 
-export default ICategoriaCRUD;
+export default ICategoriaCRUDRepository;

@@ -1,13 +1,15 @@
 import { Categoria } from "@/models/productos";
 import { ServerError } from "@/errors";
-import ICategoriaFinder from "./iCategoriaFinder";
+
+import ICategoriaFinderRepository from "./iCategoriaFinder";
 
 /**
+ * Clase que encapsula la lógica para operaciones de consulta y busqueda de la tabla Categoria
  * @class CategoriaFinder
  * @implements ICategoriaFinder
- * @description Clase que encapsula la lógica para operaciones de consulta y busqueda de la tabla Categoria
+ * @description Crea una instancia de CategoriaFinderRepository
 */
-class CategoriaFinder implements ICategoriaFinder {
+class CategoriaFinderRepository implements ICategoriaFinderRepository {
   public async getCategoriaId(id_Categoria: Categoria["id_categoria"]): Promise<Categoria | null> {
     try {
       return await Categoria.findByPk(id_Categoria);
@@ -25,4 +27,4 @@ class CategoriaFinder implements ICategoriaFinder {
   };
 };
 
-export default new CategoriaFinder();
+export default CategoriaFinderRepository;

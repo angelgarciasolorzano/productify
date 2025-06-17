@@ -25,10 +25,13 @@ class CategoriaService implements ICategoriaService {
    * @param {ICategoriaFinder} finder Instancia de CategoriaFinderService
    * @param {ICategoriaCRUD} crud Instancia de CategoriaCRUDService
    * @example
-   * import { CategoriaRepository, CategoriaFinder, CategoriaCRUD } from "@/repositories/categorias";
+   * import { CategoriaRepository, CategoriaFinderRepository, CategoriaCRUDRepository } from "@/repositories/categorias";
    * import { CategoriaService, CategoriaFinderService, CategoriaCRUDService } from "@/services/categorias";
    * 
-   * const categoriaRepository = new CategoriaRepository(CategoriaFinder, CategoriaCRUD);
+   * const categoriaFinderRepository = new CategoriaFinderRepository();
+   * const categoriaCRUDRepository = new CategoriaCRUDRepository();
+   * 
+   * const categoriaRepository = new CategoriaRepository(CategoriaFinderRepository, CategoriaCRUDRepository);
    * 
    * const categoriaFinderService = new CategoriaFinderService(CategoriaRepository);
    * const categoriaCRUDService = new CategoriaCRUDService(CategoriaRepository);
