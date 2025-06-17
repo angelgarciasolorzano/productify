@@ -1,5 +1,4 @@
 import "module-alias/register";
-import "@/types/variablesTypes";
 
 import express from "express";
 import morgan from "morgan";
