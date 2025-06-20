@@ -57,8 +57,8 @@
     {
       "name": "domain-colored",
       "base": "class",
-      "color": "blue-800",
-      "lightColor": "blue-900",
+      "color": "orange-500",
+      "lightColor": "orange-900",
       "folderNames": ["domain"]
     },
     {
@@ -67,6 +67,29 @@
       "color": "gray-600",
       "lightColor": "gray-800",
       "folderNames": ["infrastructure"]
+    }
+  ],
+  "material-icon-theme.files.customClones": [
+    {
+      "name": "repository-colored",
+      "base": "angular",
+      "color": "green-500",
+      "lightColor": "green-800",
+      "fileExtensions": ["repository.ts"]
+    },
+    {
+      "name": "schema-colored",
+      "base": "angular",
+      "color": "purple-300",
+      "lightColor": "purple-800",
+      "fileExtensions": ["schema.ts"]
+    },
+    {
+      "name": "model-colored",
+      "base": "database",
+      "color": "#22a9ec",
+      "lightColor": "#1E3A8A",
+      "fileExtensions": ["model.ts", "entity.ts"]
     }
   ]
 }
