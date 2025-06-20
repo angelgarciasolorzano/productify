@@ -1,0 +1,72 @@
+{
+  "files.associations": {
+    "*.db": "sql"
+  },
+  "material-icon-theme.files.associations": {
+    "*.interface.ts": "typescript-def"
+  },
+  "material-icon-theme.folders.associations": {
+    "domain": "element",
+    "infrastructure": "serverless"
+  },
+  "material-icon-theme.folders.customClones": [
+    // Frontend
+    {
+      "name": "navbar-custom",
+      "base": "components",
+      "color": "blue-500",
+      "lightColor": "blue-700",
+      "folderNames": ["navbar"]
+    },
+    {
+      "name": "footer-custom",
+      "base": "components",
+      "color": "orange-500",
+      "lightColor": "yellow-400",
+      "folderNames": ["footer"]
+    },
+    {
+      "name": "form-custom",
+      "base": "components",
+      "color": "teal-500",
+      "lightColor": "teal-300",
+      "folderNames": ["form"]
+    },
+    {
+      "name": "header-custom",
+      "base": "components",
+      "color": "red-500",
+      "lightColor": "red-300",
+      "folderNames": ["header"]
+    },
+    {
+      "name": "sidebar-custom",
+      "base": "components",
+      "color": "cyan-500",
+      "lightColor": "cyan-700",
+      "folderNames": ["sidebar"]
+    },
+    {
+      "name": "dashboard-custom",
+      "base": "components",
+      "color": "pink-600",
+      "lightColor": "pink-800",
+      "folderNames": ["dashboard"]
+    },
+    //Backend
+    {
+      "name": "domain-colored",
+      "base": "class",
+      "color": "blue-800",
+      "lightColor": "blue-900",
+      "folderNames": ["domain"]
+    },
+    {
+      "name": "infrastructure-colored",
+      "base": "serverless",
+      "color": "gray-600",
+      "lightColor": "gray-800",
+      "folderNames": ["infrastructure"]
+    }
+  ]
+}
