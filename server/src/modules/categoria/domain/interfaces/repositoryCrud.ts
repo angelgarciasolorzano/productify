@@ -1,7 +1,7 @@
 import { Categoria } from "@/modules/categoria/domain";
 
 /**
- * @file iCategoriaCRUD.ts
+ * @file repositoryCrud.ts
  * @description Archivo que define la interface para la clase CategoriaCRUDRepository
  * @author Angel Noe Garcia Solorzano
  * @version 1.0

@@ -1,7 +1,7 @@
 import { Categoria } from "@/modules/categoria/domain";
 
 /**
- * @file iCategoriaFinder.ts
+ * @file repositoryFinder.ts
  * @description Archivo que define la interface para la clase CategoriaFinderRepository
  * @author Angel Noe Garcia Solorzano
  * @version 1.0
