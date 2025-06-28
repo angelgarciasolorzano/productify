@@ -1,1 +1,2 @@
 export { default as Categoria } from "./categoria";
+export { default as ICategoriaFinderRepository } from "./interfaces/repositoryFinder";
