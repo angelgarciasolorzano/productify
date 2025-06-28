@@ -1,5 +1,5 @@
 import { Categoria } from "@/modules/categoria/domain";
-import { CategoriaSequelize } from "@/modules/categoria/infrastructure";
+import { CategoriaSequelize, CategoriaSequelizeAttributes } from "@/modules/categoria/infrastructure";
 
 /**
  * @class CategoriaMapper
@@ -45,7 +45,7 @@ class CategoriaMapper {
    * @returns Objeto de modelo Sequelize de Categoria
    * @throws Error si no se puede mapear el modelo a un objeto de dominio
   */
-  public static toPersistence(categoria: Categoria): Partial<CategoriaSequelize> {
+  public static toPersistence(categoria: Categoria): CategoriaSequelizeAttributes {
     if (!categoria) throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
     return {
@@ -53,8 +53,6 @@ class CategoriaMapper {
       nombre_categoria: categoria.nombre,
       descripcion_categoria: categoria.descripcion,
       estado_categoria: categoria.estado,
-      createdAt: categoria.createdAt,
-      updatedAt: categoria.updatedAt
     };
   };
 };

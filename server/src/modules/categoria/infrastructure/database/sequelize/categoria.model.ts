@@ -3,7 +3,7 @@ import { sequelize } from "@/config";
 import CategoriaAttributes from "../categoria.interface";
 
 interface CategoriaCreationAttributes extends Optional<CategoriaAttributes, 
-  "id_categoria" | "estado_categoria"> 
+  "id_categoria" | "estado_categoria" | "descripcion_categoria" | "createdAt" | "updatedAt"> 
 {};
 
 class Categoria extends Model<CategoriaAttributes, CategoriaCreationAttributes> 
@@ -11,11 +11,11 @@ class Categoria extends Model<CategoriaAttributes, CategoriaCreationAttributes>
 
   public readonly id_categoria!: number;
   public nombre_categoria!: string;
-  public descripcion_categoria?: string;
+  public descripcion_categoria?: string | undefined;
   public estado_categoria!: "activo" | "inactivo";
 
-  public readonly createdAt?: Date;
-  public readonly updatedAt?: Date;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 
   public static initialize(sequelize: Sequelize) {
     Categoria.init({
@@ -61,4 +61,7 @@ class Categoria extends Model<CategoriaAttributes, CategoriaCreationAttributes>
 
 Categoria.initialize(sequelize);
 
-export default Categoria;
+export { 
+  Categoria as CategoriaSequelize, 
+  CategoriaAttributes as CategoriaSequelizeAttributes 
+};
