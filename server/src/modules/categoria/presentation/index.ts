@@ -1,0 +1,1 @@
+export { default as ICategoriaController } from "./interface/controller";
