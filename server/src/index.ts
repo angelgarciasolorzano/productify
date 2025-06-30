@@ -5,7 +5,7 @@ import morgan from "morgan";
 
 import { validarVariables, conexionDatabase } from "@/validation";
 import { errorHandler } from "@/middleware";
-import { mainRouter } from "@/routes";
+import { moduleMainRouter } from "@/modules";
 import { cors } from "@/config";
 
 const app = express();
@@ -17,7 +17,7 @@ app.use(cors);
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use(mainRouter);
+app.use(moduleMainRouter);
 
 app.use(errorHandler);
 

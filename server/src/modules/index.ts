@@ -1,0 +1,1 @@
+export { default as moduleMainRouter } from "./main.routes";
