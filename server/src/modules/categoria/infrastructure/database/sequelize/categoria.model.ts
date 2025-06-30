@@ -1,13 +1,11 @@
-import { DataTypes, Model, Optional, Sequelize } from "sequelize";
+import { DataTypes, Model, Sequelize } from "sequelize";
+import { CategoriaAttributes, CategoriaCreationAttributes } from "@/modules/categoria/infrastructure";
 import { sequelize } from "@/config";
-import CategoriaAttributes from "../categoria.interface";
 
-interface CategoriaCreationAttributes extends Optional<CategoriaAttributes, 
-  "id_categoria" | "estado_categoria" | "descripcion_categoria" | "createdAt" | "updatedAt"> 
-{};
-
-class Categoria extends Model<CategoriaAttributes, CategoriaCreationAttributes> 
-  implements CategoriaAttributes {
+class Categoria extends Model<
+  CategoriaAttributes, 
+  CategoriaCreationAttributes
+> implements CategoriaAttributes {
 
   public readonly id_categoria!: number;
   public nombre_categoria!: string;
@@ -61,7 +59,4 @@ class Categoria extends Model<CategoriaAttributes, CategoriaCreationAttributes>
 
 Categoria.initialize(sequelize);
 
-export { 
-  Categoria as CategoriaSequelize, 
-  CategoriaAttributes as CategoriaSequelizeAttributes 
-};
+export default Categoria;

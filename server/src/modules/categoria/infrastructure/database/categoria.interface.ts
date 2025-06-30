@@ -11,4 +11,17 @@ interface CategoriaAttributes {
   updatedAt?: Date;
 };
 
-export default CategoriaAttributes;
+/**
+ * @interface CategoriaCreationAttributes
+ * @description Interfaz que define los atributos obligatorios para crear una nueva categoría
+*/
+interface CategoriaCreationAttributes extends Omit<Partial<CategoriaAttributes>,
+  "nombre_categoria"
+> {
+  nombre_categoria: string;
+};
+
+export {
+  CategoriaAttributes,
+  CategoriaCreationAttributes
+};
