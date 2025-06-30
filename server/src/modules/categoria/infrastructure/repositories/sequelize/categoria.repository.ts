@@ -1,6 +1,8 @@
-import { Categoria } from "@/modules/categoria/domain";
 import { 
-  ICategoriaRepository, ICategoriaFinderRepository, ICategoriaCRUDRepository 
+  Categoria, 
+  ICategoriaRepository, 
+  ICategoriaFinderRepository, 
+  ICategoriaCRUDRepository 
 } from "@/modules/categoria/domain";
 
 /**

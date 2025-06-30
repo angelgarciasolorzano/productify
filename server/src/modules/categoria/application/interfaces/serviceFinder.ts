@@ -1,4 +1,4 @@
-import CategoriaResponseDto from "../dtos/response.dto";
+import { CategoriaResponseDto } from "@/modules/categoria/application";
 
 /**
  * @file serviceFinder.ts

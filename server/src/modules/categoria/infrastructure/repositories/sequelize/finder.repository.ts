@@ -1,6 +1,5 @@
-import { CategoriaSequelize } from "@/modules/categoria/infrastructure";
+import { CategoriaSequelize, CategoriaSequelizeMapper } from "@/modules/categoria/infrastructure";
 import { Categoria, ICategoriaFinderRepository } from "@/modules/categoria/domain";
-import { CategoriaSequelizeMapper } from "@/modules/categoria/infrastructure";
 import { ServerError } from "@/errors";
 
 /**

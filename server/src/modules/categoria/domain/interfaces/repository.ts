@@ -1,4 +1,4 @@
-import { ICategoriaFinderRepository, ICategoriaCRUDRepository } from "../index";
+import { ICategoriaFinderRepository, ICategoriaCRUDRepository } from "@/modules/categoria/domain";
 
 /**
  * @file repository.ts

@@ -1,9 +1,11 @@
 import { Response } from "express";
 import { asyncWrapper } from "@/utils";
-import {  PublicRequestWithBody, PublicRequest } from "@/types";
+import { PublicRequestWithBody, PublicRequest } from "@/types";
 
 import { 
-  ICategoriaService, CreateCategoriaDto, UpdateCategoriaDto 
+  ICategoriaService, 
+  CreateCategoriaDto, 
+  UpdateCategoriaDto 
 } from "@/modules/categoria/application";
 
 import { ICategoriaController } from "@/modules/categoria/presentation";
