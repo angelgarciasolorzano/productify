@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { asyncWrapper } from "@/utils";
-import { AuthenticatedRequest } from "@/types";
+import {  PublicRequestWithBody, PublicRequest } from "@/types";
 
 import { 
   ICategoriaService, CreateCategoriaDto, UpdateCategoriaDto 
@@ -23,28 +23,28 @@ class CategoriaController implements ICategoriaController {
   constructor(private categoriaService: ICategoriaService) {};
 
   public getCategorias = asyncWrapper(
-    async (_request: AuthenticatedRequest, response: Response): Promise<void> => {
+    async (_request: PublicRequest, response: Response): Promise<void> => {
       const categorias = await this.categoriaService.getCategorias();
       response.json(categorias)
     }
   );
 
   public getCategoriaId = asyncWrapper(
-    async (request: AuthenticatedRequest<never, { id: string }>, response: Response): Promise<void> => {
+    async (request: PublicRequestWithBody<never, { id: string }>, response: Response): Promise<void> => {
       const categoria = await this.categoriaService.getCategoriaId(Number(request.params.id));
       response.json(categoria);
     }
   );
 
   public createCategoria = asyncWrapper(
-    async (request: AuthenticatedRequest<CreateCategoriaDto>, response: Response): Promise<void> => {
+    async (request: PublicRequestWithBody<CreateCategoriaDto>, response: Response): Promise<void> => {
       const categoria = await this.categoriaService.createCategoria(request.body);
       response.json(categoria);
     }
   );
 
   public updateCategoria = asyncWrapper(
-    async (request: AuthenticatedRequest<UpdateCategoriaDto, { id: string }>, response: Response): Promise<void> => {
+    async (request: PublicRequestWithBody<UpdateCategoriaDto, { id: string }>, response: Response): Promise<void> => {
       const categoria = await this.categoriaService.updateCategoria(
         Number(request.params.id), request.body
       );
