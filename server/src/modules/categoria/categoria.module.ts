@@ -6,7 +6,7 @@ import {
   CategoriaService, CategoriaFinderService, CategoriaCRUDService 
 } from "@/modules/categoria/application";
 
-import { CategoriaController } from "@/modules/categoria/presentation";
+import { CategoriaController, buildCategoriaRouter } from "@/modules/categoria/presentation";
 
 const categoriaFinderRepository = new CategoriaSequelizeFinderRepository();
 const categoriaCRUDRepository = new CategoriaSequelizeCRUDRepository();
@@ -22,4 +22,6 @@ const categoriaService = new CategoriaService(categoriaFinderService, categoriaC
 
 const categoriaController = new CategoriaController(categoriaService);
 
-export default categoriaController;
+const router = buildCategoriaRouter(categoriaController);
+
+export default router;
