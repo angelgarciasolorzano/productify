@@ -4,29 +4,32 @@ import { Categoria } from "@/modules/categoria/domain";
  * @file repositoryFinder.ts
  * @description Archivo que define la interface para la clase CategoriaFinderRepository
  * @author Angel Noe Garcia Solorzano
- * @version 1.0
+ * @version 1.1
 */
 
 /**
- * @interface ICategoriaFinder
- * @description Interfaz para definir los métodos de la clase CategoriaFinderRepository
+ * Define el contrato para consultar categorias por criterios específicos.
+ * 
+ * Esta interfaz proporciona metodos para buscar una categoría por su id o nombre.
+ * 
+ * @interface ICategoriaFinderRepository
 */
 interface ICategoriaFinderRepository {
   /**
-   * @method getCategoriaId
-   * @description Recupera un registro de la tabla Categoria por su id
-   * @param {number} id El id de la categoria
-   * @throws {ServerError} Si la consulta a la base de datos falla
-   * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto del dominio Categoria o null si no se encuentra
+   * Recupera un registro de la tabla Categoria por su id.
+   *
+   * @param {number} id El id de la categoria a buscar.
+   * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto del dominio o null si no se encuentra.
+   * @throws {ServerError} Si la consulta a la base de datos falla.
   */
   getCategoriaId(id: number): Promise<Categoria | null>;
 
   /**
-   * @method getCategoriaNombre
-   * @description Recupera un registro de la tabla Categoria por su nombre
-   * @param {string} nombre nombre de la categoria
-   * @throws {ServerError} Si la consulta a la base de datos falla
-   * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto del dominio Categoria o null si no se encuentra
+   * Recupera un registro de la tabla Categoria por su nombre.
+   *
+   * @param {string} nombre nombre de la categoria a buscar.
+   * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto del dominio o null si no se encuentra.
+   * @throws {ServerError} Si la consulta a la base de datos falla.
   */
   getCategoriaNombre(nombre: string): Promise<Categoria | null>;
 };
