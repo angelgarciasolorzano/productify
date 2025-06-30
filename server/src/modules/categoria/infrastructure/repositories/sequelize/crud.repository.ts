@@ -13,7 +13,7 @@ class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
     try {
       const categorias = await CategoriaSequelize.findAll();
 
-      return categorias ? CategoriaSequelizeMapper.toDtoList(categorias) : null;
+      return categorias ? CategoriaSequelizeMapper.toDomainList(categorias) : null;
     } catch (error) {
       throw new ServerError("Error al obtener las categorias");
     }

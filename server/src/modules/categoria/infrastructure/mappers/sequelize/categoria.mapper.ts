@@ -31,7 +31,7 @@ class CategoriaMapper {
    * @returns Arreglo de objetos de dominio Categoria
    * @throws Error si no se puede mapear el modelo a un objeto de dominio
   */
-  public static toDtoList(categorias: CategoriaSequelize[]): Categoria[] {
+  public static toDomainList(categorias: CategoriaSequelize[]): Categoria[] {
     if (!categorias) throw new Error("No se puede mapear un array de modelos Categoria nulo a un array de dominio");
 
     if (categorias.length === 0) return [];
