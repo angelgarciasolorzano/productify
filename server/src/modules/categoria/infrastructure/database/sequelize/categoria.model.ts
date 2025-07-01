@@ -2,6 +2,15 @@ import { DataTypes, Model, Sequelize } from "sequelize";
 import { CategoriaAttributes, CategoriaCreationAttributes } from "@/modules/categoria/infrastructure";
 import { sequelize } from "@/config";
 
+/**
+ * Modelo sequelize que representa la entidad `categorias` en la base de datos.
+ * 
+ * Este modelo define la estrutura de la entidad, sus campos y restricciones.
+ * 
+ * @class Categoria
+ * @extends Model
+ * @implements CategoriaAttributes
+*/
 class Categoria extends Model<
   CategoriaAttributes, 
   CategoriaCreationAttributes
@@ -15,10 +24,16 @@ class Categoria extends Model<
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
+  /**
+   * Inicializa el modelo en sequelize y define la estructura de la entidad `categorias`.
+   * 
+   * @param sequelize Instancia de sequelize
+  */
   public static initialize(sequelize: Sequelize) {
     Categoria.init({
       id_categoria: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
         autoIncrement: true
       },
