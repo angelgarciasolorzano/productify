@@ -3,10 +3,13 @@ import { Categoria, ICategoriaFinderRepository } from "@/modules/categoria/domai
 import { ServerError } from "@/errors";
 
 /**
- * Clase que encapsula la lógica para operaciones de consulta y busqueda de la tabla Categoria
- * @class CategoriaFinder
- * @implements ICategoriaFinder
- * @description Crea una instancia de CategoriaFinderRepository
+ * Esta clase encapsula la logica de acceso a datos para realizar operaciones de consulta y busqueda
+ * sobre la entidad categorias.
+ * 
+ * Mapea los resultados de la consulta a un objeto de dominio.
+ *
+ * @class CategoriaFinderRepository
+ * @implements ICategoriaFinderRepository
 */
 class CategoriaFinderRepository implements ICategoriaFinderRepository {
   public async getCategoriaId(id: number): Promise<Categoria | null> {

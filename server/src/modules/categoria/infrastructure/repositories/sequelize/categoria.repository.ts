@@ -6,22 +6,21 @@ import {
 } from "@/modules/categoria/domain";
 
 /**
- * Esta clase es la encargada de recibir los datos de la categoria desde la capa service e interactuar con la base de datos.
- * Realiza operaciones con la ORM de la base de datos, es parte del módulo de categoria del sistema.
+ * Implementacion concreta del repositorio de la entidad categorias que actua como fachada para las
+ * operaciones de busqueda y CRUD, delegando a los repositorios especializados.
  * 
  * @class CategoriaRepository
  * @implements ICategoriaRepository
- * @description Clase que encapsula la lógica de la base de datos para el modelo Categoria
+ * @see ICategoriaFinderRepository Para operaciones de consulta/busqueda
+ * @see ICategoriaCRUDRepository Para operaciones CRUD basicas
 */
 class CategoriaRepository implements ICategoriaRepository {
   private finder: ICategoriaFinderRepository;
   private crud: ICategoriaCRUDRepository;
 
   /**
-   * @constructor CategoriaRepository
-   * @description Crea una instancia de CategoriaRepository
-   * @param {ICategoriaFinderRepository} finder Instancia de CategoriaFinderRepository
-   * @param {ICategoriaCRUDRepository} crud Instancia de CategoriaCRUDRepository
+   * @param {ICategoriaFinderRepository} finder Implementacion del repositorio de busqueda de categorias
+   * @param {ICategoriaCRUDRepository} crud Implementacion del repositorio de CRUD de categorias
   */
   constructor(finder: ICategoriaFinderRepository, crud: ICategoriaCRUDRepository) {
     this.finder = finder;

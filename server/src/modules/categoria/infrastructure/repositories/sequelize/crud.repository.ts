@@ -3,10 +3,13 @@ import { Categoria, ICategoriaCRUDRepository } from "@/modules/categoria/domain"
 import { ServerError } from "@/errors";
 
 /**
- * Clase que encapsula la lógica para operaciones de creación, lectura, actualización y eliminación de la tabla Categoria
- * @class CategoriaCRUD
+ * Esta clase encapsula la logica de acceso a datos para realizar operaciones CRUD
+ * sobre la entidad categorias.
+ * 
+ * Mapea los resultados de la consulta a un objeto de dominio.
+ * 
+ * @class CategoriaCRUDRepository
  * @implements ICategoriaCRUDRepository
- * @description Crea una instancia de CategoriaCRUDRepository
 */
 class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
   public async getCategorias(): Promise<Categoria[] | null> {
