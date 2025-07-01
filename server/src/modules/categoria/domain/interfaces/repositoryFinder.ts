@@ -4,11 +4,11 @@ import { Categoria } from "@/modules/categoria/domain";
  * @file repositoryFinder.ts
  * @description Archivo que define la interface para la clase CategoriaFinderRepository
  * @author Angel Noe Garcia Solorzano
- * @version 1.1
+ * @version 1.2
 */
 
 /**
- * Define el contrato para consultar categorias por criterios específicos.
+ * Define el contrato para realizar operaciones de consulta sobre la entidad categorias.
  * 
  * Esta interfaz proporciona metodos para buscar una categoría por su id o nombre.
  * 

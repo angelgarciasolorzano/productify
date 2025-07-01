@@ -4,11 +4,11 @@ import { Categoria } from "@/modules/categoria/domain";
  * @file repositoryCrud.ts
  * @description Archivo que define la interface para la clase CategoriaCRUDRepository
  * @author Angel Noe Garcia Solorzano
- * @version 1.1
+ * @version 1.2
 */
 
 /**
- * Define el contrato para realizar operaciones CRUD sobre la tabla Categoria.
+ * Define el contrato para realizar operaciones CRUD sobre la entidad categorias.
  * 
  * Esta interfaz proporciona metodos para crear, leer y actualizar
  * registros de la tabla Categoria.

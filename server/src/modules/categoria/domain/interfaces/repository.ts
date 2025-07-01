@@ -4,11 +4,11 @@ import { ICategoriaFinderRepository, ICategoriaCRUDRepository } from "@/modules/
  * @file repository.ts
  * @description Archivo que define la interface para la clase CategoriaRepository
  * @author Angel Noe Garcia Solorzano
- * @version 1.1
+ * @version 1.2
 */
 
 /**
- * Define el contrato general para operaciones relacionadas con la tabla Categoria.
+ * Define el contrato general para operaciones relacionadas con la entidad categorias.
  *
  * Esta interfaz combina los métodos de la clase CategoriaFinderRepository
  * y la clase CategoriaCRUDRepository.
