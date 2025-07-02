@@ -3,7 +3,7 @@
  * 
  * @interface Categoria
 */
-interface Categoria {
+interface CategoriaDomain {
   id: number;
   nombre: string;
   descripcion?: string;
@@ -12,4 +12,22 @@ interface Categoria {
   updatedAt: Date;
 };
 
-export default Categoria;
+/**
+ * Interfaz que representa la entidad de dominio de creación de una categoría.
+ * 
+ * @interface CategoriaCreateDomain
+*/
+type CategoriaCreateDomain = Omit<CategoriaDomain, "id" | "estado" | "createdAt" | "updatedAt">;
+
+/**
+ * Interfaz que representa la entidad de dominio de actualización de una categoría.
+ * 
+ * @interface CategoriaUpdateDomain
+*/
+type CategoriaUpdateDomain = Partial<Omit<CategoriaDomain, "id" | "createdAt" | "updatedAt">>;
+
+export {
+  CategoriaDomain,
+  CategoriaCreateDomain,
+  CategoriaUpdateDomain
+};
