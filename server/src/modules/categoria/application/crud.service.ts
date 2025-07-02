@@ -1,4 +1,4 @@
-import { ICategoriaRepository } from "@/modules/categoria/domain";
+import { CategoriaUpdateDomain, ICategoriaRepository } from "@/modules/categoria/domain";
 import { 
   ICategoriaCRUDService, CategoriaResponseDto, CreateCategoriaDto, 
   CategoriaApplicationMapper, UpdateCategoriaDto 
@@ -47,17 +47,17 @@ class CategoriaCRUDService implements ICategoriaCRUDService {
     
     if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
     
-    const updatedCategoria = CategoriaApplicationMapper.fromUpdateDtoToDomain(categoriaExiste, dto);
+    const updatedCategoria = CategoriaApplicationMapper.fromUpdateDtoToDomain(dto);
 
     const hasNoChanges = Object.keys(dto).every(key => {
-      const typedKey = key as keyof UpdateCategoriaDto;
-      return updatedCategoria[typedKey] === dto[typedKey];
+      const typedKey = key as keyof CategoriaUpdateDomain;
+      return updatedCategoria[typedKey] === categoriaExiste[typedKey];
     });
     
     if (hasNoChanges) throw new DatosError("No hay cambios en los datos proporcionados");
     
     const savedCategoria = await this.categoriaRepository.updateCategoria(
-      updatedCategoria.id, updatedCategoria
+      id, updatedCategoria
     );
     
     if (!savedCategoria) throw new NotFoundError("No se pudo actualizar la categoria");
