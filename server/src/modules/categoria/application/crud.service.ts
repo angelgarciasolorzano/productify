@@ -6,15 +6,18 @@ import {
 import { DatosError, NotFoundError } from "@/errors";
 
 /**
+ * Clase que encapsula la logica de negocio para operaciones CRUD de Categorias.
+ * 
+ * Se comunica con la capa de repositorio para acceder a los datos y se encarga de transformar los datos
+ * en DTOs para ser consumidos por el controlador.
+ *
  * @class CategoriaCRUDService
  * @implements ICategoriaCRUDService
- * @description Clase que encapsula la logica de negocio para operaciones CRUD de Categorias
+ * @see CategoriaRepository Para acceder a los datos
 */
 class CategoriaCRUDService implements ICategoriaCRUDService {
   /**
-   * @constructor CategoriaCRUDService
-   * @description Crea una instancia de CategoriaCRUDService
-   * @param categoriaRepository Instancia de CategoriaRepository
+   * @param {ICategoriaRepository} categoriaRepository Implementacion del repositorio de Categoria
   */
   constructor(private categoriaRepository: ICategoriaRepository) {};
 

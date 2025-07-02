@@ -5,23 +5,21 @@ import {
 import { DatosError } from "@/errors";
 
 /**
- * Esta clase es la encargada de recibir los datos de la categoría desde el controlador y mandarlos al repositorio para su manipulación.
- * Realiza operaciones de la logica de negocio, es parte del módulo de categoria del sistema.
- * Interactua con la capa mas baja del sistema (CategoriaRepository)
+ * Implementacion concreta del servicio de la aplicacion que actua como fachada para las
+ * operaciones de busqueda y CRUD, delegando a los servicios especializados.
  * 
  * @class CategoriaService
  * @implements ICategoriaService
- * @description Clase que encapsula la logica de negocio para las operaciones Categorias
+ * @see CategoriaFinderService Para operaciones de consulta/busqueda
+ * @see CategoriaCRUDService Para operaciones CRUD basicas
 */
 class CategoriaService implements ICategoriaService {
   private finder: ICategoriaFinderService;
   private crud: ICategoriaCRUDService;
 
   /**
-   * @constructor CategoriaService
-   * @description Crea una instancia de CategoriaService
-   * @param {ICategoriaFinderService} finder Instancia de CategoriaFinderService
-   * @param {ICategoriaCRUDService} crud Instancia de CategoriaCRUDService
+   * @param {ICategoriaFinderService} finder Implementacion del servicio de busqueda de Categoria
+   * @param {ICategoriaCRUDService} crud Implementacion del servicio de CRUD de Categoria
   */
   constructor(finder: ICategoriaFinderService, crud: ICategoriaCRUDService) {
     this.finder = finder;
@@ -29,12 +27,14 @@ class CategoriaService implements ICategoriaService {
   };
 
   /**
-   * @param id_Categoria El id de la categoria
-   * @returns No devuelve nada
+   * Valida que el id de la categoria sea valido.
+   * 
+   * @param {number} id El id de la categoria
+   * @returns {void} No devuelve nada
    * @throws {DatosError} Si el id de la categoria no es valido
   */
-  private validateCategoriaId(id_Categoria: number): void {
-    if (!id_Categoria || id_Categoria < 1 || isNaN(id_Categoria)) {
+  private validateCategoriaId(id: number): void {
+    if (!id || id < 1 || isNaN(id)) {
       throw new DatosError("El id de la categoria no es valido");
     };
   };

@@ -5,15 +5,18 @@ import {
 import { NotFoundError } from "@/errors";
 
 /**
+ * Clase que encapsula la logica de negocio para operaciones de busqueda de Categorias.
+ * 
+ * Se comunica con la capa de repositorio para acceder a los datos y se encarga de transformar los datos
+ * en DTOs para ser consumidos por el controlador.
+ * 
  * @class CategoriaFinderService
  * @implements ICategoriaFinderService
- * @description Clase que encapsula la logica de negocio para operaciones de busqueda de Categorias
+ * @see CategoriaRepository Para acceder a los datos
 */
 class CategoriaFinderService implements ICategoriaFinderService {
   /**
-   * @constructor CategoriaFinderService
-   * @description Crea una instancia de CategoriaFinderService
-   * @param categoriaRepository Instancia de CategoriaRepository
+   * @param {ICategoriaRepository} categoriaRepository Implementacion del repositorio de Categoria
   */
   constructor(private categoriaRepository: ICategoriaRepository) {};
 
