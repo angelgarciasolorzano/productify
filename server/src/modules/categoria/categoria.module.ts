@@ -1,9 +1,13 @@
 import { 
-  CategoriaSequelizeRepository, CategoriaSequelizeFinderRepository, CategoriaSequelizeCRUDRepository 
+  CategoriaSequelizeRepository, 
+  CategoriaSequelizeFinderRepository, 
+  CategoriaSequelizeCRUDRepository 
 } from "@/modules/categoria/infrastructure";
 
 import { 
-  CategoriaService, CategoriaFinderService, CategoriaCRUDService 
+  CategoriaService, 
+  CategoriaFinderService, 
+  CategoriaCRUDService 
 } from "@/modules/categoria/application";
 
 import { CategoriaController, buildCategoriaRouter } from "@/modules/categoria/presentation";
