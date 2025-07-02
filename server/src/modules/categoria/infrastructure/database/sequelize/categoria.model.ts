@@ -1,5 +1,5 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
-import { CategoriaAttributes, CategoriaCreationAttributes } from "@/modules/categoria/infrastructure";
+import { CategoriaModel, CategoriaCreationModel } from "@/modules/categoria/infrastructure";
 import { sequelize } from "@/config";
 
 /**
@@ -9,12 +9,12 @@ import { sequelize } from "@/config";
  * 
  * @class Categoria
  * @extends Model
- * @implements CategoriaAttributes
+ * @implements CategoriaModel
 */
 class Categoria extends Model<
-  CategoriaAttributes, 
-  CategoriaCreationAttributes
-> implements CategoriaAttributes {
+  CategoriaModel, 
+  CategoriaCreationModel
+> implements CategoriaModel {
 
   public readonly id_categoria!: number;
   public nombre_categoria!: string;

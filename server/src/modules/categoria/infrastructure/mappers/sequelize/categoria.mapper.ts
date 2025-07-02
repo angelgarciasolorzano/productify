@@ -1,20 +1,20 @@
 import { CategoriaDomain, CategoriaCreateDomain, CategoriaUpdateDomain } from "@/modules/categoria/domain";
-import { CategoriaSequelize, CategoriaAttributes, CategoriaCreationAttributes } from "@/modules/categoria/infrastructure";
+import { CategoriaModel, CategoriaCreationModel } from "@/modules/categoria/infrastructure";
 
 /**
- * Clase que mapea los objetos de dominio a los objetos de modelo Sequelize y viceversa.
+ * Clase que mapea los objetos de dominio a los objetos de modelo y viceversa.
  * 
  * @class CategoriaMapper
 */
 class CategoriaMapper {
   /**
-   * Metodo que mapea un objeto de modelo Sequelize a un objeto de dominio.
+   * Metodo que mapea un objeto de modelo a un objeto de dominio.
    * 
-   * @param {CategoriaSequelize} model Objeto de modelo Sequelize de Categoria.
+   * @param {CategoriaModel} model Objeto de modelo de Categoria.
    * @returns {CategoriaDomain} Objeto de la entidad de dominio Categoria.
    * @throws {Error} Si no se puede mapear el modelo a un objeto de dominio.
   */
-  public static toDomain(model: CategoriaSequelize): CategoriaDomain {
+  public static toDomain(model: CategoriaModel): CategoriaDomain {
     if (!model) throw new Error("No se puede mapear un modelo Categoria nulo a un objeto de dominio");
 
     return {
@@ -28,13 +28,13 @@ class CategoriaMapper {
   };
 
   /**
-   * Metodo que mapea un arreglo de objetos de modelo Sequelize a un arreglo de objetos de dominio.
+   * Metodo que mapea un arreglo de objetos de modelo a un arreglo de objetos de dominio.
    * 
-   * @param {CategoriaSequelize[]} model Arreglo de modelo Sequelize de Categoria.
+   * @param {CategoriaModel[]} model Arreglo de modelo de Categoria.
    * @returns {CategoriaDomain[]} Arreglo de objetos de dominio Categoria.
    * @throws {Error} Si no se puede mapear el modelo a un objeto de dominio.
   */
-  public static toDomainList(model: CategoriaSequelize[]): CategoriaDomain[] {
+  public static toDomainList(model: CategoriaModel[]): CategoriaDomain[] {
     if (!model) throw new Error("No se puede mapear un array de modelos Categoria nulo a un array de dominio");
 
     if (model.length === 0) return [];
@@ -43,13 +43,13 @@ class CategoriaMapper {
   };
 
   /**
-   * Metodo que mapea un objeto de dominio a un objeto de modelo Sequelize.
+   * Metodo que mapea un objeto de dominio a un objeto de modelo.
    * 
    * @param {CategoriaDomain} domain Entidad de dominio Categoria.
-   * @returns {CategoriaAttributes} Objeto de modelo Sequelize de Categoria.
+   * @returns {CategoriaModel} Objeto de modelo de Categoria.
    * @throws {Error} Si no se puede mapear el modelo a un objeto de dominio.
   */
-  public static toPersistence(domain: CategoriaDomain): CategoriaAttributes {
+  public static toPersistence(domain: CategoriaDomain): CategoriaModel {
     if (!domain) throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
     return {
@@ -63,13 +63,13 @@ class CategoriaMapper {
   };
 
   /**
-   * Metodo que mapea un objeto de dominio de creacion a un objeto de modelo Sequelize.
+   * Metodo que mapea un objeto de dominio de creacion a un objeto de modelo.
    * 
    * @param {CategoriaCreateDomain} domain Objeto de dominio de creacion Categoria.
-   * @returns {CategoriaCreationAttributes} Objeto de modelo Sequelize de Categoria.
+   * @returns {CategoriaCreationModel} Objeto de modelo de Categoria.
    * @throws {Error} Si no se puede mapear el objeto de dominio a un objeto de modelo.
   */
-  public static toPersistenceFromCreate(domain: CategoriaCreateDomain): CategoriaCreationAttributes {
+  public static toPersistenceFromCreate(domain: CategoriaCreateDomain): CategoriaCreationModel {
     if (!domain) throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
     return {
@@ -79,13 +79,13 @@ class CategoriaMapper {
   };
 
   /**
-   * Metodo que mapea un objeto de dominio de actualizacion a un objeto de modelo Sequelize.
+   * Metodo que mapea un objeto de dominio de actualizacion a un objeto de modelo.
    * 
    * @param {CategoriaUpdateDomain} domain Objeto de dominio de actualizacion Categoria.
-   * @returns {Partial<CategoriaAttributes>} Objeto de modelo Sequelize.
+   * @returns {Partial<CategoriaModel>} Objeto de modelo de Categoria.
    * @throws {Error} Si no se puede mapear el objeto de dominio a un objeto de modelo.
   */
-  public static toPersistenceFromUpdate(domain: CategoriaUpdateDomain): Partial<CategoriaAttributes> {
+  public static toPersistenceFromUpdate(domain: CategoriaUpdateDomain): Partial<CategoriaModel> {
     if (!domain) throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
     return {
