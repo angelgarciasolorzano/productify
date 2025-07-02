@@ -1,5 +1,5 @@
 import { CategoriaSequelize, CategoriaSequelizeMapper } from "@/modules/categoria/infrastructure";
-import { Categoria, ICategoriaFinderRepository } from "@/modules/categoria/domain";
+import { CategoriaDomain, ICategoriaFinderRepository } from "@/modules/categoria/domain";
 import { ServerError } from "@/errors";
 
 /**
@@ -12,7 +12,7 @@ import { ServerError } from "@/errors";
  * @implements ICategoriaFinderRepository
 */
 class CategoriaFinderRepository implements ICategoriaFinderRepository {
-  public async getCategoriaId(id: number): Promise<Categoria | null> {
+  public async getCategoriaId(id: number): Promise<CategoriaDomain | null> {
     try {
       const categoriaModel = await CategoriaSequelize.findByPk(id);
 
@@ -22,7 +22,7 @@ class CategoriaFinderRepository implements ICategoriaFinderRepository {
     }
   };
 
-  public async getCategoriaNombre(nombre: string): Promise<Categoria | null> {
+  public async getCategoriaNombre(nombre: string): Promise<CategoriaDomain | null> {
     try {
       const categoriaModel = await CategoriaSequelize.findOne({ 
         where: { nombre_categoria: nombre } 

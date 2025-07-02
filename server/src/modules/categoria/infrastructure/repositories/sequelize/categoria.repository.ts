@@ -1,8 +1,10 @@
 import { 
-  Categoria, 
+  CategoriaDomain, 
+  CategoriaCreateDomain,
+  CategoriaUpdateDomain,
   ICategoriaRepository, 
   ICategoriaFinderRepository, 
-  ICategoriaCRUDRepository 
+  ICategoriaCRUDRepository, 
 } from "@/modules/categoria/domain";
 
 /**
@@ -27,23 +29,23 @@ class CategoriaRepository implements ICategoriaRepository {
     this.crud = crud;
   };
 
-  public async getCategoriaId(id: number): Promise<Categoria | null> {
+  public async getCategoriaId(id: number): Promise<CategoriaDomain | null> {
     return await this.finder.getCategoriaId(id);
   };
 
-  public async getCategoriaNombre(nombre: string): Promise<Categoria | null> {
+  public async getCategoriaNombre(nombre: string): Promise<CategoriaDomain | null> {
     return await this.finder.getCategoriaNombre(nombre);
   };
 
-  public async getCategorias(): Promise<Categoria[] | null> {
+  public async getCategorias(): Promise<CategoriaDomain[] | null> {
     return await this.crud.getCategorias();
   };
 
-  public async createCategoria(data: Categoria): Promise<Categoria | null> {
+  public async createCategoria(data: CategoriaCreateDomain): Promise<CategoriaDomain | null> {
     return await this.crud.createCategoria(data);
   };
 
-  public async updateCategoria(id: number, data: Categoria): Promise<Categoria | null> {
+  public async updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<CategoriaDomain | null> {
     return await this.crud.updateCategoria(id, data);
   };
 };

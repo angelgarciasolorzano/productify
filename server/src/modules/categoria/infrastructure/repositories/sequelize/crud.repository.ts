@@ -1,5 +1,8 @@
 import { CategoriaSequelize, CategoriaSequelizeMapper } from "@/modules/categoria/infrastructure";
-import { Categoria, ICategoriaCRUDRepository } from "@/modules/categoria/domain";
+import { 
+  CategoriaDomain, ICategoriaCRUDRepository,
+  CategoriaCreateDomain, CategoriaUpdateDomain 
+} from "@/modules/categoria/domain";
 import { ServerError } from "@/errors";
 
 /**
@@ -12,7 +15,7 @@ import { ServerError } from "@/errors";
  * @implements ICategoriaCRUDRepository
 */
 class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
-  public async getCategorias(): Promise<Categoria[] | null> {
+  public async getCategorias(): Promise<CategoriaDomain[] | null> {
     try {
       const categorias = await CategoriaSequelize.findAll();
 
@@ -22,9 +25,9 @@ class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
     }
   };
 
-  public async createCategoria(data: Categoria): Promise<Categoria | null> {
+  public async createCategoria(data: CategoriaCreateDomain): Promise<CategoriaDomain | null> {
     try {
-      const categoriaModel = CategoriaSequelizeMapper.toPersistence(data);
+      const categoriaModel = CategoriaSequelizeMapper.toPersistenceFromCreate(data);
 
       const categoria = await CategoriaSequelize.create(categoriaModel);
 
@@ -34,9 +37,9 @@ class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
     }
   };
 
-  public async updateCategoria(id: number, data: Categoria): Promise<Categoria | null> {
+  public async updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<CategoriaDomain | null> {
     try {
-      const categoriaModel = CategoriaSequelizeMapper.toPersistence(data);
+      const categoriaModel = CategoriaSequelizeMapper.toPersistenceFromUpdate(data);
 
       const [affectedRows] = await CategoriaSequelize.update(categoriaModel, {
         where: { id_categoria: id }
