@@ -11,16 +11,18 @@ import {
 import { ICategoriaController } from "@/modules/categoria/presentation";
 
 /**
- * Controlador para manejar las operaciones del modulo de categorias
+ * Clase que representa el controlador de la aplicación para la gestión de las categorías.
+ * 
+ * Se comunica con la capa del servicio para acceder a los metodos y responder con la información 
+ * solicitada.
+ * 
  * @class CategoriaController
  * @implements ICategoriaController
- * @description Llama a los metodos de la capa servicio y responde con la información solicitada
+ * @see ICategoriaService Para operaciones de consulta/busqueda y CRUD
 */
 class CategoriaController implements ICategoriaController {
   /**
-   * @constructor CategoriaController
-   * @description Crea una instancia de CategoriaController
-   * @param {ICategoriaService} categoriaService Instancia de CategoriaService
+   * @param {ICategoriaService} categoriaService Implementacion del servicio de categorias
   */
   constructor(private categoriaService: ICategoriaService) {};
 
