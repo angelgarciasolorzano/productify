@@ -1,5 +1,5 @@
 import { ServerError } from "@/errors";
-import { CategoriaMySQlSequelize, CategoriaSequelizeMapper } from "@/modules/categoria/infrastructure";
+import { CategoriaMySQlSequelize, CategoriaMapper } from "@/modules/categoria/infrastructure";
 
 import { 
   ICategoriaCRUDRepository,
@@ -22,7 +22,7 @@ class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
     try {
       const categorias = await CategoriaMySQlSequelize.findAll();
 
-      return categorias ? CategoriaSequelizeMapper.toDomainList(categorias) : null;
+      return categorias ? CategoriaMapper.toDomainList(categorias) : null;
     } catch (error) {
       throw new ServerError("Error al obtener las categorias");
     }
@@ -30,11 +30,11 @@ class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
 
   public async createCategoria(data: CategoriaCreateDomain): Promise<CategoriaDomain | null> {
     try {
-      const categoriaModel = CategoriaSequelizeMapper.toPersistenceFromCreate(data);
+      const categoriaModel = CategoriaMapper.toPersistenceFromCreate(data);
 
       const categoria = await CategoriaMySQlSequelize.create(categoriaModel);
 
-      return categoria ? CategoriaSequelizeMapper.toDomain(categoria) : null;
+      return categoria ? CategoriaMapper.toDomain(categoria) : null;
     } catch (error) {
       throw new ServerError("Error al crear la categoria");
     }
@@ -42,7 +42,7 @@ class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
 
   public async updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<CategoriaDomain | null> {
     try {
-      const categoriaModel = CategoriaSequelizeMapper.toPersistenceFromUpdate(data);
+      const categoriaModel = CategoriaMapper.toPersistenceFromUpdate(data);
 
       const [affectedRows] = await CategoriaMySQlSequelize.update(categoriaModel, {
         where: { id_categoria: id }
@@ -52,7 +52,7 @@ class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
 
       const categoria = await CategoriaMySQlSequelize.findByPk(id);
 
-      return categoria ? CategoriaSequelizeMapper.toDomain(categoria) : null;
+      return categoria ? CategoriaMapper.toDomain(categoria) : null;
     } catch (error) {
       throw new ServerError("Error al actualizar la categoria");
     }
