@@ -4,8 +4,8 @@ import { PublicRequestWithBody, PublicRequest } from "@/types";
 
 import { 
   ICategoriaService, 
-  CreateCategoriaDto, 
-  UpdateCategoriaDto 
+  CategoriaCreateDto, 
+  CategoriaUpdateDto 
 } from "@/modules/categoria/application";
 
 import { ICategoriaController } from "@/modules/categoria/presentation";
@@ -39,14 +39,14 @@ class CategoriaController implements ICategoriaController {
   );
 
   public createCategoria = asyncWrapper(
-    async (request: PublicRequestWithBody<CreateCategoriaDto>, response: Response): Promise<void> => {
+    async (request: PublicRequestWithBody<CategoriaCreateDto>, response: Response): Promise<void> => {
       const categoria = await this.categoriaService.createCategoria(request.body);
       response.json(categoria);
     }
   );
 
   public updateCategoria = asyncWrapper(
-    async (request: PublicRequestWithBody<UpdateCategoriaDto, { id: string }>, response: Response): Promise<void> => {
+    async (request: PublicRequestWithBody<CategoriaUpdateDto, { id: string }>, response: Response): Promise<void> => {
       const categoria = await this.categoriaService.updateCategoria(
         Number(request.params.id), request.body
       );

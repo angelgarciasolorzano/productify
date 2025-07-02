@@ -2,15 +2,16 @@
  * @file categoriaResponse.dto.ts
  * @description Archivo que define la estructura de los datos de categoria devueltos por la capa service
  * @author Angel Garcia
- * @version 1.0
+ * @version 1.1
 */
 
 /**
+ * Objeto de transferencia que representa los datos que se devuelven por la aplicacion.
+ *
  * @interface CategoriaResponseDto
- * @description Define la estructura de los datos de categoria devueltos por la capa service
 */
 interface CategoriaResponseDto {
-  id: number;
+  codigo: number;
   nombre: string;
   descripcion?: string;
   estado: "activo" | "inactivo";
@@ -18,4 +19,6 @@ interface CategoriaResponseDto {
   fechaModificacion?: Date;
 };
 
-export default CategoriaResponseDto;
+export {
+  CategoriaResponseDto
+};

@@ -1,6 +1,6 @@
 import { 
   ICategoriaService, ICategoriaFinderService, ICategoriaCRUDService,
-  CategoriaResponseDto, CreateCategoriaDto, UpdateCategoriaDto 
+  CategoriaResponseDto, CategoriaCreateDto, CategoriaUpdateDto
 } from "@/modules/categoria/application";
 import { DatosError } from "@/errors";
 
@@ -49,11 +49,11 @@ class CategoriaService implements ICategoriaService {
     return await this.crud.getCategorias();
   };
 
-  public async createCategoria(data: CreateCategoriaDto): Promise<CategoriaResponseDto> {
+  public async createCategoria(data: CategoriaCreateDto): Promise<CategoriaResponseDto> {
     return await this.crud.createCategoria(data);
   };
 
-  public async updateCategoria(id: number, data: UpdateCategoriaDto): Promise<CategoriaResponseDto> {
+  public async updateCategoria(id: number, data: CategoriaUpdateDto): Promise<CategoriaResponseDto> {
     this.validateCategoriaId(id);
 
     return await this.crud.updateCategoria(id, data);

@@ -1,7 +1,7 @@
 import { CategoriaUpdateDomain, ICategoriaRepository } from "@/modules/categoria/domain";
 import { 
-  ICategoriaCRUDService, CategoriaResponseDto, CreateCategoriaDto, 
-  CategoriaApplicationMapper, UpdateCategoriaDto 
+  ICategoriaCRUDService, CategoriaResponseDto, CategoriaCreateDto, 
+  CategoriaApplicationMapper, CategoriaUpdateDto 
 } from "@/modules/categoria/application";
 import { DatosError, NotFoundError } from "@/errors";
 
@@ -31,7 +31,7 @@ class CategoriaCRUDService implements ICategoriaCRUDService {
     return CategoriaApplicationMapper.toDtoList(categorias);
   };
 
-  public async createCategoria(data: CreateCategoriaDto): Promise<CategoriaResponseDto> {
+  public async createCategoria(data: CategoriaCreateDto): Promise<CategoriaResponseDto> {
     const categoriaExists = await this.categoriaRepository.getCategoriaNombre(data.nombreCategoria);
 
     if (categoriaExists) throw new DatosError("La categoria ya existe");
@@ -45,14 +45,14 @@ class CategoriaCRUDService implements ICategoriaCRUDService {
     return CategoriaApplicationMapper.toResponseDto(savedCategoria);
   };
 
-  public async updateCategoria(id: number, dto: UpdateCategoriaDto): Promise<CategoriaResponseDto> {
+  public async updateCategoria(id: number, dto: CategoriaUpdateDto): Promise<CategoriaResponseDto> {
     const categoriaExiste = await this.categoriaRepository.getCategoriaId(id);
     
     if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
     
     const updatedCategoria = CategoriaApplicationMapper.fromUpdateDtoToDomain(dto);
 
-    const hasNoChanges = Object.keys(dto).every(key => {
+    const hasNoChanges = Object.keys(updatedCategoria).every(key => {
       const typedKey = key as keyof CategoriaUpdateDomain;
       return updatedCategoria[typedKey] === categoriaExiste[typedKey];
     });

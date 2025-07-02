@@ -2,7 +2,7 @@ import {
   CategoriaDomain, CategoriaCreateDomain, CategoriaUpdateDomain
 } from "@/modules/categoria/domain";
 import {
-  CategoriaResponseDto, CreateCategoriaDto, UpdateCategoriaDto 
+  CategoriaResponseDto, CategoriaCreateDto, CategoriaUpdateDto 
 } from "@/modules/categoria/application";
 
 /**
@@ -22,7 +22,7 @@ class CategoriaApplicationMapper {
   */
   public static toResponseDto(domain: CategoriaDomain): CategoriaResponseDto {
     return {
-      id: domain.id,
+      codigo: domain.id,
       nombre: domain.nombre,
       descripcion: domain.descripcion,
       estado: domain.estado,
@@ -49,11 +49,11 @@ class CategoriaApplicationMapper {
   /**
    * Transforma un objeto de DTO de creacion en un objeto de dominio de creacion.
    *
-   * @param {CreateCategoriaDto} dto Objeto recibido desde el controlador.
+   * @param {CategoriaCreateDto} dto Objeto recibido desde el controlador.
    * @returns {CategoriaCreateDomain} Un objeto del dominio CategoriaCreateDomain.
    * @throws {Error} Si el objeto DTO es nulo o undefined.
   */
-  public static fromCreateDtoToDomain(dto: CreateCategoriaDto): CategoriaCreateDomain {
+  public static fromCreateDtoToDomain(dto: CategoriaCreateDto): CategoriaCreateDomain {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {
@@ -65,17 +65,17 @@ class CategoriaApplicationMapper {
   /**
    * Transforma un objeto de DTO de actualizacion en un objeto de dominio de actualizacion.
    *
-   * @param {UpdateCategoriaDto} dto Objeto recibido desde el controlador.
+   * @param {CategoriaUpdateDto} dto Objeto recibido desde el controlador.
    * @returns {CategoriaUpdateDomain} Un objeto del dominio CategoriaUpdateDomain.
    * @throws {Error} Si el objeto DTO es nulo o undefined.
   */
-  public static fromUpdateDtoToDomain(dto: UpdateCategoriaDto): CategoriaUpdateDomain {
+  public static fromUpdateDtoToDomain(dto: CategoriaUpdateDto): CategoriaUpdateDomain {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {
-      nombre: dto.nombre,
-      descripcion: dto.descripcion,
-      estado: dto.estado
+      nombre: dto.nombreCategoria,
+      descripcion: dto.descripcionCategoria,
+      estado: dto.estadoCategoria
     };
   };
 };
