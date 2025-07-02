@@ -1,8 +1,13 @@
-import { 
-  ICategoriaService, ICategoriaFinderService, ICategoriaCRUDService,
-  CategoriaResponseDto, CategoriaCreateDto, CategoriaUpdateDto
-} from "@/modules/categoria/application";
 import { DatosError } from "@/errors";
+
+import { 
+  ICategoriaService, 
+  ICategoriaFinderService, 
+  ICategoriaCRUDService,
+  CategoriaResponseDto, 
+  CategoriaCreateDto, 
+  CategoriaUpdateDto
+} from "@/modules/categoria/application";
 
 /**
  * Implementacion concreta del servicio de la aplicacion que actua como fachada para las

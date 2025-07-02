@@ -1,9 +1,13 @@
-import { CategoriaUpdateDomain, ICategoriaRepository } from "@/modules/categoria/domain";
-import { 
-  ICategoriaCRUDService, CategoriaResponseDto, CategoriaCreateDto, 
-  CategoriaApplicationMapper, CategoriaUpdateDto 
-} from "@/modules/categoria/application";
 import { DatosError, NotFoundError } from "@/errors";
+import { CategoriaUpdateDomain, ICategoriaRepository } from "@/modules/categoria/domain";
+
+import { 
+  ICategoriaCRUDService, 
+  CategoriaResponseDto, 
+  CategoriaCreateDto, 
+  CategoriaUpdateDto, 
+  CategoriaApplicationMapper
+} from "@/modules/categoria/application";
 
 /**
  * Clase que encapsula la logica de negocio para operaciones CRUD de Categorias.

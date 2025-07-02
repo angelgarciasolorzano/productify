@@ -1,8 +1,13 @@
 import { 
-  CategoriaDomain, CategoriaCreateDomain, CategoriaUpdateDomain
+  CategoriaDomain, 
+  CategoriaCreateDomain, 
+  CategoriaUpdateDomain
 } from "@/modules/categoria/domain";
+
 import {
-  CategoriaResponseDto, CategoriaCreateDto, CategoriaUpdateDto 
+  CategoriaResponseDto, 
+  CategoriaCreateDto, 
+  CategoriaUpdateDto 
 } from "@/modules/categoria/application";
 
 /**

@@ -1,8 +1,11 @@
-import { ICategoriaRepository } from "@/modules/categoria/domain";
-import { 
-  ICategoriaFinderService, CategoriaResponseDto, CategoriaApplicationMapper 
-} from "@/modules/categoria/application";
 import { NotFoundError } from "@/errors";
+import { ICategoriaRepository } from "@/modules/categoria/domain";
+
+import { 
+  ICategoriaFinderService, 
+  CategoriaResponseDto, 
+  CategoriaApplicationMapper 
+} from "@/modules/categoria/application";
 
 /**
  * Clase que encapsula la logica de negocio para operaciones de busqueda de Categorias.

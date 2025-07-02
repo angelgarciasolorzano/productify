@@ -1,5 +1,7 @@
 import { 
-  CategoriaResponseDto, CategoriaCreateDto, CategoriaUpdateDto 
+  CategoriaResponseDto, 
+  CategoriaCreateDto, 
+  CategoriaUpdateDto 
 } from "@/modules/categoria/application";
 
 /**
