@@ -16,9 +16,9 @@ import {
  * Este mapper facilita la transformacion de datos entre la representacion del negocio (entidad de dominio)
  * y la representacion que expone la API (DTO).
  *
- * @class CategoriaApplicationMapper
+ * @class CategoriaMapper
 */
-class CategoriaApplicationMapper {
+class CategoriaMapper {
   /**
    * Transforma un objeto de dominio en un objeto DTO de tipo CategoriaResponseDto.
    *
@@ -85,4 +85,4 @@ class CategoriaApplicationMapper {
   };
 };
 
-export default CategoriaApplicationMapper;
+export default CategoriaMapper;

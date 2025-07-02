@@ -4,7 +4,7 @@ import { ICategoriaRepository } from "@/modules/categoria/domain";
 import { 
   ICategoriaFinderService, 
   CategoriaResponseDto, 
-  CategoriaApplicationMapper 
+  CategoriaMapper 
 } from "@/modules/categoria/application";
 
 /**
@@ -28,7 +28,7 @@ class CategoriaFinderService implements ICategoriaFinderService {
 
     if (!categoria) throw new NotFoundError("No se encontro la categoria");
 
-    return CategoriaApplicationMapper.toResponseDto(categoria);
+    return CategoriaMapper.toResponseDto(categoria);
   };
 };
 

@@ -6,7 +6,7 @@ import {
   CategoriaResponseDto, 
   CategoriaCreateDto, 
   CategoriaUpdateDto, 
-  CategoriaApplicationMapper
+  CategoriaMapper
 } from "@/modules/categoria/application";
 
 /**
@@ -32,7 +32,7 @@ class CategoriaCRUDService implements ICategoriaCRUDService {
       throw new NotFoundError("No se encontraron categorias");
     };
     
-    return CategoriaApplicationMapper.toDtoList(categorias);
+    return CategoriaMapper.toDtoList(categorias);
   };
 
   public async createCategoria(data: CategoriaCreateDto): Promise<CategoriaResponseDto> {
@@ -40,13 +40,13 @@ class CategoriaCRUDService implements ICategoriaCRUDService {
 
     if (categoriaExists) throw new DatosError("La categoria ya existe");
 
-    const newCategoria = CategoriaApplicationMapper.fromCreateDtoToDomain(data);
+    const newCategoria = CategoriaMapper.fromCreateDtoToDomain(data);
 
     const savedCategoria = await this.categoriaRepository.createCategoria(newCategoria);
 
     if (!savedCategoria) throw new NotFoundError("No se pudo crear la categoria");
 
-    return CategoriaApplicationMapper.toResponseDto(savedCategoria);
+    return CategoriaMapper.toResponseDto(savedCategoria);
   };
 
   public async updateCategoria(id: number, dto: CategoriaUpdateDto): Promise<CategoriaResponseDto> {
@@ -54,7 +54,7 @@ class CategoriaCRUDService implements ICategoriaCRUDService {
     
     if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
     
-    const updatedCategoria = CategoriaApplicationMapper.fromUpdateDtoToDomain(dto);
+    const updatedCategoria = CategoriaMapper.fromUpdateDtoToDomain(dto);
 
     const hasNoChanges = Object.keys(updatedCategoria).every(key => {
       const typedKey = key as keyof CategoriaUpdateDomain;
@@ -69,7 +69,7 @@ class CategoriaCRUDService implements ICategoriaCRUDService {
     
     if (!savedCategoria) throw new NotFoundError("No se pudo actualizar la categoria");
     
-    return CategoriaApplicationMapper.toResponseDto(savedCategoria);
+    return CategoriaMapper.toResponseDto(savedCategoria);
   };
 };
 
