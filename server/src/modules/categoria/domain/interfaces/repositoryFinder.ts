@@ -1,10 +1,10 @@
-import { Categoria } from "@/modules/categoria/domain";
+import { CategoriaDomain } from "@/modules/categoria/domain";
 
 /**
  * @file repositoryFinder.ts
  * @description Archivo que define la interface para la clase CategoriaFinderRepository
  * @author Angel Noe Garcia Solorzano
- * @version 1.2
+ * @version 1.3
 */
 
 /**
@@ -19,19 +19,19 @@ interface ICategoriaFinderRepository {
    * Recupera un registro de la tabla Categoria por su id.
    *
    * @param {number} id El id de la categoria a buscar.
-   * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto del dominio o null si no se encuentra.
+   * @returns {Promise<CategoriaDomain | null>} Una promesa que resuelve con el objeto del dominio o null si no se encuentra.
    * @throws {ServerError} Si la consulta a la base de datos falla.
   */
-  getCategoriaId(id: number): Promise<Categoria | null>;
+  getCategoriaId(id: number): Promise<CategoriaDomain | null>;
 
   /**
    * Recupera un registro de la tabla Categoria por su nombre.
    *
    * @param {string} nombre nombre de la categoria a buscar.
-   * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto del dominio o null si no se encuentra.
+   * @returns {Promise<CategoriaDomain | null>} Una promesa que resuelve con el objeto del dominio o null si no se encuentra.
    * @throws {ServerError} Si la consulta a la base de datos falla.
   */
-  getCategoriaNombre(nombre: string): Promise<Categoria | null>;
+  getCategoriaNombre(nombre: string): Promise<CategoriaDomain | null>;
 };
 
 export default ICategoriaFinderRepository;
