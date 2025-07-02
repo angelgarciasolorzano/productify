@@ -1,4 +1,4 @@
-import { CategoriaSequelize, CategoriaSequelizeMapper } from "@/modules/categoria/infrastructure";
+import { CategoriaMySQlSequelize, CategoriaSequelizeMapper } from "@/modules/categoria/infrastructure";
 import { CategoriaDomain, ICategoriaFinderRepository } from "@/modules/categoria/domain";
 import { ServerError } from "@/errors";
 
@@ -14,7 +14,7 @@ import { ServerError } from "@/errors";
 class CategoriaFinderRepository implements ICategoriaFinderRepository {
   public async getCategoriaId(id: number): Promise<CategoriaDomain | null> {
     try {
-      const categoriaModel = await CategoriaSequelize.findByPk(id);
+      const categoriaModel = await CategoriaMySQlSequelize.findByPk(id);
 
       return categoriaModel ? CategoriaSequelizeMapper.toDomain(categoriaModel) : null;
     } catch (error) {
@@ -24,7 +24,7 @@ class CategoriaFinderRepository implements ICategoriaFinderRepository {
 
   public async getCategoriaNombre(nombre: string): Promise<CategoriaDomain | null> {
     try {
-      const categoriaModel = await CategoriaSequelize.findOne({ 
+      const categoriaModel = await CategoriaMySQlSequelize.findOne({ 
         where: { nombre_categoria: nombre } 
       });
 

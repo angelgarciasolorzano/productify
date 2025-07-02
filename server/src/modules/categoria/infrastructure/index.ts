@@ -1,5 +1,5 @@
-export * from "./database/categoria.interface";
-export { default as CategoriaSequelize } from "./database/sequelize/categoria.model";
+export * from "./database/interface/categoria";
+export { default as CategoriaMySQlSequelize } from "./database/sequelize/mySql.model";
 
 export { default as CategoriaSequelizeMapper } from "./mappers/sequelize/categoria.mapper";
 
