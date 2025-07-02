@@ -10,8 +10,8 @@ import { DatosError } from "@/errors";
  * 
  * @class CategoriaService
  * @implements ICategoriaService
- * @see CategoriaFinderService Para operaciones de consulta/busqueda
- * @see CategoriaCRUDService Para operaciones CRUD basicas
+ * @see ICategoriaFinderService Para operaciones de consulta/busqueda
+ * @see ICategoriaCRUDService Para operaciones CRUD basicas
 */
 class CategoriaService implements ICategoriaService {
   private finder: ICategoriaFinderService;

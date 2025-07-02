@@ -12,7 +12,7 @@ import { NotFoundError } from "@/errors";
  * 
  * @class CategoriaFinderService
  * @implements ICategoriaFinderService
- * @see CategoriaRepository Para acceder a los datos
+ * @see ICategoriaRepository Para acceder a los datos
 */
 class CategoriaFinderService implements ICategoriaFinderService {
   /**

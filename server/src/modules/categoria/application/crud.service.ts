@@ -13,7 +13,7 @@ import { DatosError, NotFoundError } from "@/errors";
  *
  * @class CategoriaCRUDService
  * @implements ICategoriaCRUDService
- * @see CategoriaRepository Para acceder a los datos
+ * @see ICategoriaRepository Para acceder a los datos
 */
 class CategoriaCRUDService implements ICategoriaCRUDService {
   /**
