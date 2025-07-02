@@ -1,9 +1,12 @@
-import { CategoriaSequelize, CategoriaSequelizeMapper } from "@/modules/categoria/infrastructure";
-import { 
-  CategoriaDomain, ICategoriaCRUDRepository,
-  CategoriaCreateDomain, CategoriaUpdateDomain 
-} from "@/modules/categoria/domain";
 import { ServerError } from "@/errors";
+import { CategoriaSequelize, CategoriaSequelizeMapper } from "@/modules/categoria/infrastructure";
+
+import { 
+  ICategoriaCRUDRepository,
+  CategoriaDomain, 
+  CategoriaCreateDomain, 
+  CategoriaUpdateDomain 
+} from "@/modules/categoria/domain";
 
 /**
  * Esta clase encapsula la logica de acceso a datos para realizar operaciones CRUD
