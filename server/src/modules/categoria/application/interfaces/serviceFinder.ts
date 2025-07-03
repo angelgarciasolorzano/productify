@@ -1,11 +1,4 @@
-import { CategoriaResponseDto } from "@/modules/categoria/application";
-
-/**
- * @file serviceFinder.ts
- * @description Archivo que define la interface para la clase CategoriaFinderService
- * @author Angel Noe Garcia Solorzano
- * @version 1.1
-*/
+import { ResponseDto } from "@/modules/categoria/application";
 
 /**
  * Define el contrato del servicio de la aplicacion para la busqueda de categorias.
@@ -14,17 +7,17 @@ import { CategoriaResponseDto } from "@/modules/categoria/application";
  * obtener una categoría por su id, utilizando DTOs como puente entre la capa de presentacion
  * y la capa de dominio.
  *
- * @interface ICategoriaFinderService
+ * @interface IFinderService
 */
-interface ICategoriaFinderService {
+interface IFinderService {
   /**
    * Recupera una categoría por su id.
    *
    * @param {number} id El id de la categoría
-   * @returns {Promise<CategoriaResponseDto>} Una promesa que resuelve con el objeto CategoriaResponseDto
+   * @returns {Promise<ResponseDto>} Una promesa que resuelve con el objeto ResponseDto
    * @throws {NotFoundError} Si no se encuentra la categoría
   */
-  getCategoriaId(id: number): Promise<CategoriaResponseDto>;
+  getCategoriaId(id: number): Promise<ResponseDto>;
 };
 
-export default ICategoriaFinderService;
+export default IFinderService;

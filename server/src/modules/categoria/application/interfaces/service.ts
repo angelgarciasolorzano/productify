@@ -1,20 +1,13 @@
-import { ICategoriaFinderService, ICategoriaCRUDService } from "@/modules/categoria/application";
-
-/**
- * @file service.ts
- * @description Archivo que define la interface para la clase CategoriaService
- * @author Angel Noe Garcia Solorzano
- * @version 1.1
-*/
+import { IFinderService, ICrudService } from "@/modules/categoria/application";
 
 /**
  * Define el contrato general del servicio de la aplicacion para la gestion de categorias.
  *
- * Esta interfaz combina los métodos de la clase CategoriaFinderService
- * y la clase CategoriaCRUDService.
+ * Esta interfaz combina los métodos de la clase FinderService
+ * y la clase CrudService.
  *
- * @interface ICategoriaService
+ * @interface IService
 */
-interface ICategoriaService extends ICategoriaFinderService, ICategoriaCRUDService {};
+interface IService extends IFinderService, ICrudService {};
 
-export default ICategoriaService;
+export default IService;

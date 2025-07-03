@@ -1,15 +1,8 @@
 import { 
-  CategoriaResponseDto, 
-  CategoriaCreateDto, 
-  CategoriaUpdateDto 
+  ResponseDto, 
+  CreateDto, 
+  UpdateDto 
 } from "@/modules/categoria/application";
-
-/**
- * @file serviceCrud.ts
- * @description Archivo que define la interface para la clase CategoriaCRUDService
- * @author Angel Noe Garcia Solorzano
- * @version 1.2
-*/
 
 /**
  * Define el contrato del servicio de la aplicacion para la gestion de las categorías.
@@ -18,38 +11,38 @@ import {
  * crear, obtener y actualizar registros de categoria, utilizando DTOs como puente
  * entre la capa de presentacion y la capa de dominio.
  *
- * @interface ICategoriaCRUDService
+ * @interface ICrudService
 */
-interface ICategoriaCRUDService {
+interface ICrudService {
   /**
    * Recupera una lista de todas las categorías existentes.
    *
-   * @returns {Promise<CategoriaResponseDto[]>} Una promesa que resuelve con una lista (array) de objetos CategoriaResponseDto.
+   * @returns {Promise<ResponseDto[]>} Una promesa que resuelve con una lista (array) de objetos ResponseDto.
    * @throws {NotFoundError} Si no se encuentran categorías.
   */
-  getCategorias(): Promise<CategoriaResponseDto[]>;
+  getCategorias(): Promise<ResponseDto[]>;
 
   /**
    * Crea una nueva categoria con los datos recibidos.
    *
-   * @param {CategoriaCreateDto} data Datos del nuevo registro.
-   * @returns {Promise<CategoriaResponseDto>} Una promesa que resuelve con el objeto CategoriaResponseDto creado.
+   * @param {CreateDto} data Datos del nuevo registro.
+   * @returns {Promise<ResponseDto>} Una promesa que resuelve con el objeto ResponseDto creado.
    * @throws {DatosError} Si la categoría ya existe.
    * @throws {NotFoundError} Si no se pudo crear la categoría.
   */
-  createCategoria(data: CategoriaCreateDto): Promise<CategoriaResponseDto>;
+  createCategoria(data: CreateDto): Promise<ResponseDto>;
 
   /**
    * Actualiza una categoria existente segun su ID.
    * 
    * @param {number} id El id de la categoría a actualizar.
-   * @param {CategoriaUpdateDto} data Nuevos datos de la categoría.
-   * @returns {Promise<CategoriaResponseDto>} Una promesa que resuelve con el objeto CategoriaResponseDto actualizado.
+   * @param {UpdateDto} data Nuevos datos de la categoría.
+   * @returns {Promise<ResponseDto>} Una promesa que resuelve con el objeto ResponseDto actualizado.
    * @throws {NotFoundError} Si no se encuentra la categoría.
    * @throws {DatosError} Si no hay cambios en los datos proporcionados.
    * @throws {NotFoundError} Si no se pudo actualizar la categoría.
   */
-  updateCategoria(id: number, data: CategoriaUpdateDto): Promise<CategoriaResponseDto>;
+  updateCategoria(id: number, data: UpdateDto): Promise<ResponseDto>;
 };
 
-export default ICategoriaCRUDService;
+export default ICrudService;
