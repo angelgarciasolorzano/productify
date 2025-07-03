@@ -7,6 +7,6 @@ export { default as ICategoriaService } from "./interfaces/service";
 
 export { default as CategoriaMapper } from "./mappers/categoria.mapper";
 
-export { default as CategoriaService } from "./categoria.service";
-export { default as CategoriaFinderService } from "./finder.service";
-export { default as CategoriaCRUDService } from "./crud.service";
+export { default as CategoriaService } from "./services/categoria.service";
+export { default as CategoriaFinderService } from "./services/finder.service";
+export { default as CategoriaCRUDService } from "./services/crud.service";
