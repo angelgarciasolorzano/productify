@@ -1,20 +1,20 @@
-import { CategoriaDomain, CategoriaCreateDomain, CategoriaUpdateDomain } from "@/modules/categoria/domain";
+import { Domain, CreateDomain, UpdateDomain } from "@/modules/categoria/domain";
 import { CategoriaModel, CategoriaCreationModel } from "@/modules/categoria/infrastructure";
 
 /**
  * Clase que mapea los objetos de dominio a los objetos de modelo y viceversa.
  * 
- * @class CategoriaMapper
+ * @class Mapper
 */
-class CategoriaMapper {
+class Mapper {
   /**
    * Metodo que mapea un objeto de modelo a un objeto de dominio.
    * 
-   * @param {CategoriaModel} model Objeto de modelo de Categoria.
-   * @returns {CategoriaDomain} Objeto de la entidad de dominio Categoria.
+   * @param {CategoriaModel} model Objeto de modelo.
+   * @returns {Domain} Objeto de la entidad de dominio.
    * @throws {Error} Si no se puede mapear el modelo a un objeto de dominio.
   */
-  public static toDomain(model: CategoriaModel): CategoriaDomain {
+  public static toDomain(model: CategoriaModel): Domain {
     if (!model) throw new Error("No se puede mapear un modelo Categoria nulo a un objeto de dominio");
 
     return {
@@ -30,11 +30,11 @@ class CategoriaMapper {
   /**
    * Metodo que mapea un arreglo de objetos de modelo a un arreglo de objetos de dominio.
    * 
-   * @param {CategoriaModel[]} model Arreglo de modelo de Categoria.
-   * @returns {CategoriaDomain[]} Arreglo de objetos de dominio Categoria.
+   * @param {CategoriaModel[]} model Arreglo de modelo.
+   * @returns {Domain[]} Arreglo de objetos de dominio.
    * @throws {Error} Si no se puede mapear el modelo a un objeto de dominio.
   */
-  public static toDomainList(model: CategoriaModel[]): CategoriaDomain[] {
+  public static toDomainList(model: CategoriaModel[]): Domain[] {
     if (!model) throw new Error("No se puede mapear un array de modelos Categoria nulo a un array de dominio");
 
     if (model.length === 0) return [];
@@ -45,11 +45,11 @@ class CategoriaMapper {
   /**
    * Metodo que mapea un objeto de dominio a un objeto de modelo.
    * 
-   * @param {CategoriaDomain} domain Entidad de dominio Categoria.
-   * @returns {CategoriaModel} Objeto de modelo de Categoria.
+   * @param {Domain} domain Objeto de dominio.
+   * @returns {CategoriaModel} Objeto de modelo.
    * @throws {Error} Si no se puede mapear el modelo a un objeto de dominio.
   */
-  public static toPersistence(domain: CategoriaDomain): CategoriaModel {
+  public static toPersistence(domain: Domain): CategoriaModel {
     if (!domain) throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
     return {
@@ -65,11 +65,11 @@ class CategoriaMapper {
   /**
    * Metodo que mapea un objeto de dominio de creacion a un objeto de modelo.
    * 
-   * @param {CategoriaCreateDomain} domain Objeto de dominio de creacion Categoria.
-   * @returns {CategoriaCreationModel} Objeto de modelo de Categoria.
+   * @param {CreateDomain} domain Objeto de dominio de creacion.
+   * @returns {CategoriaCreationModel} Objeto de modelo.
    * @throws {Error} Si no se puede mapear el objeto de dominio a un objeto de modelo.
   */
-  public static toPersistenceFromCreate(domain: CategoriaCreateDomain): CategoriaCreationModel {
+  public static toPersistenceFromCreate(domain: CreateDomain): CategoriaCreationModel {
     if (!domain) throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
     return {
@@ -81,11 +81,11 @@ class CategoriaMapper {
   /**
    * Metodo que mapea un objeto de dominio de actualizacion a un objeto de modelo.
    * 
-   * @param {CategoriaUpdateDomain} domain Objeto de dominio de actualizacion Categoria.
-   * @returns {Partial<CategoriaModel>} Objeto de modelo de Categoria.
+   * @param {UpdateDomain} domain Objeto de dominio de actualizacion.
+   * @returns {Partial<CategoriaModel>} Objeto de modelo.
    * @throws {Error} Si no se puede mapear el objeto de dominio a un objeto de modelo.
   */
-  public static toPersistenceFromUpdate(domain: CategoriaUpdateDomain): Partial<CategoriaModel> {
+  public static toPersistenceFromUpdate(domain: UpdateDomain): Partial<CategoriaModel> {
     if (!domain) throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
     return {
@@ -96,4 +96,4 @@ class CategoriaMapper {
   };
 };
 
-export default CategoriaMapper;
+export default Mapper;

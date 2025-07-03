@@ -3,9 +3,9 @@ import { CategoriaModel, CategoriaCreationModel } from "@/modules/categoria/infr
 import { sequelize } from "@/config";
 
 /**
- * Modelo sequelize que representa la entidad `categorias` en la base de datos.
+ * Modelo sequelize que representa la tabla `categorias` en la base de datos.
  * 
- * Este modelo define la estrutura de la entidad, sus campos y restricciones.
+ * Este modelo define la estrutura de la tabla, sus campos y restricciones.
  * 
  * @class Categoria
  * @extends Model
@@ -25,7 +25,7 @@ class Categoria extends Model<
   public readonly updatedAt!: Date;
 
   /**
-   * Inicializa el modelo en sequelize y define la estructura de la entidad `categorias`.
+   * Inicializa el modelo en sequelize y define la estructura de la tabla `categorias`.
    * 
    * @param sequelize Instancia de sequelize
   */

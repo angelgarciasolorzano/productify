@@ -1,5 +1,5 @@
 /**
- * Interfaz que representa los atributos de la entidad categorias.
+ * Interfaz que representa los atributos de la tabla categorias.
  * 
  * @interface CategoriaModel
 */
@@ -23,7 +23,4 @@ interface CategoriaCreationModel extends Omit<Partial<CategoriaModel>,
   nombre_categoria: string;
 };
 
-export {
-  CategoriaModel,
-  CategoriaCreationModel
-};
+export { CategoriaModel, CategoriaCreationModel };

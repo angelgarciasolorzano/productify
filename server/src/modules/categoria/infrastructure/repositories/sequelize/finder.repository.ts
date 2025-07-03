@@ -1,38 +1,38 @@
-import { CategoriaMySQlSequelize, CategoriaMapper } from "@/modules/categoria/infrastructure";
-import { CategoriaDomain, ICategoriaFinderRepository } from "@/modules/categoria/domain";
+import { CategoriaSequelize, Mapper } from "@/modules/categoria/infrastructure";
+import { Domain, IFinderRepository } from "@/modules/categoria/domain";
 import { ServerError } from "@/errors";
 
 /**
  * Esta clase encapsula la logica de acceso a datos para realizar operaciones de consulta y busqueda
- * sobre la entidad categorias.
+ * sobre la tabla categorias.
  * 
  * Mapea los resultados de la consulta a un objeto de dominio.
  *
- * @class CategoriaFinderRepository
- * @implements ICategoriaFinderRepository
+ * @class FinderRepository
+ * @implements IFinderRepository
 */
-class CategoriaFinderRepository implements ICategoriaFinderRepository {
-  public async getCategoriaId(id: number): Promise<CategoriaDomain | null> {
+class FinderRepository implements IFinderRepository {
+  public async getCategoriaId(id: number): Promise<Domain | null> {
     try {
-      const categoriaModel = await CategoriaMySQlSequelize.findByPk(id);
+      const categoriaModel = await CategoriaSequelize.findByPk(id);
 
-      return categoriaModel ? CategoriaMapper.toDomain(categoriaModel) : null;
+      return categoriaModel ? Mapper.toDomain(categoriaModel) : null;
     } catch (error) {
       throw new ServerError("Error al obtener la categoria");
     }
   };
 
-  public async getCategoriaNombre(nombre: string): Promise<CategoriaDomain | null> {
+  public async getCategoriaNombre(nombre: string): Promise<Domain | null> {
     try {
-      const categoriaModel = await CategoriaMySQlSequelize.findOne({ 
+      const categoriaModel = await CategoriaSequelize.findOne({ 
         where: { nombre_categoria: nombre } 
       });
 
-      return categoriaModel ? CategoriaMapper.toDomain(categoriaModel) : null;
+      return categoriaModel ? Mapper.toDomain(categoriaModel) : null;
     } catch (error) {
       throw new ServerError("Error al obtener el nombre de la categoria");
     }
   };
 };
 
-export default CategoriaFinderRepository;
+export default FinderRepository;

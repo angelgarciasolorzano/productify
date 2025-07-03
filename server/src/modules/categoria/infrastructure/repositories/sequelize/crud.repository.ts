@@ -1,62 +1,56 @@
+import { ICrudRepository,Domain, CreateDomain, UpdateDomain } from "@/modules/categoria/domain";
+import { CategoriaSequelize, Mapper } from "@/modules/categoria/infrastructure";
 import { ServerError } from "@/errors";
-import { CategoriaMySQlSequelize, CategoriaMapper } from "@/modules/categoria/infrastructure";
-
-import { 
-  ICategoriaCRUDRepository,
-  CategoriaDomain, 
-  CategoriaCreateDomain, 
-  CategoriaUpdateDomain 
-} from "@/modules/categoria/domain";
 
 /**
  * Esta clase encapsula la logica de acceso a datos para realizar operaciones CRUD
- * sobre la entidad categorias.
+ * sobre la tabla categorias.
  * 
  * Mapea los resultados de la consulta a un objeto de dominio.
  * 
- * @class CategoriaCRUDRepository
- * @implements ICategoriaCRUDRepository
+ * @class CrudRepository
+ * @implements ICrudRepository
 */
-class CategoriaCRUDRepository implements ICategoriaCRUDRepository {
-  public async getCategorias(): Promise<CategoriaDomain[] | null> {
+class CrudRepository implements ICrudRepository {
+  public async getCategorias(): Promise<Domain[] | null> {
     try {
-      const categorias = await CategoriaMySQlSequelize.findAll();
+      const categorias = await CategoriaSequelize.findAll();
 
-      return categorias ? CategoriaMapper.toDomainList(categorias) : null;
+      return categorias ? Mapper.toDomainList(categorias) : null;
     } catch (error) {
       throw new ServerError("Error al obtener las categorias");
     }
   };
 
-  public async createCategoria(data: CategoriaCreateDomain): Promise<CategoriaDomain | null> {
+  public async createCategoria(data: CreateDomain): Promise<Domain | null> {
     try {
-      const categoriaModel = CategoriaMapper.toPersistenceFromCreate(data);
+      const categoriaModel = Mapper.toPersistenceFromCreate(data);
 
-      const categoria = await CategoriaMySQlSequelize.create(categoriaModel);
+      const categoria = await CategoriaSequelize.create(categoriaModel);
 
-      return categoria ? CategoriaMapper.toDomain(categoria) : null;
+      return categoria ? Mapper.toDomain(categoria) : null;
     } catch (error) {
       throw new ServerError("Error al crear la categoria");
     }
   };
 
-  public async updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<CategoriaDomain | null> {
+  public async updateCategoria(id: number, data: UpdateDomain): Promise<Domain | null> {
     try {
-      const categoriaModel = CategoriaMapper.toPersistenceFromUpdate(data);
+      const categoriaModel = Mapper.toPersistenceFromUpdate(data);
 
-      const [affectedRows] = await CategoriaMySQlSequelize.update(categoriaModel, {
+      const [affectedRows] = await CategoriaSequelize.update(categoriaModel, {
         where: { id_categoria: id }
       });
 
       if (affectedRows === 0) return null;
 
-      const categoria = await CategoriaMySQlSequelize.findByPk(id);
+      const categoria = await CategoriaSequelize.findByPk(id);
 
-      return categoria ? CategoriaMapper.toDomain(categoria) : null;
+      return categoria ? Mapper.toDomain(categoria) : null;
     } catch (error) {
       throw new ServerError("Error al actualizar la categoria");
     }
   };
 };
 
-export default CategoriaCRUDRepository;
+export default CrudRepository;
