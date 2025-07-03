@@ -7,6 +7,6 @@ export { default as ICrudService } from "./interfaces/serviceCrud";
 
 export { default as Mapper } from "./mappers/mapper";
 
-export { default as CategoriaService } from "./services/categoria.service";
-export { default as CategoriaFinderService } from "./services/finder.service";
-export { default as CategoriaCRUDService } from "./services/crud.service";
+export { default as Service } from "./services/service";
+export { default as FinderService } from "./services/finder.service";
+export { default as CrudService } from "./services/crud.service";
