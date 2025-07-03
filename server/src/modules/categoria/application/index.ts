@@ -5,7 +5,7 @@ export { default as IService } from "./interfaces/service";
 export { default as IFinderService } from "./interfaces/serviceFinder";
 export { default as ICrudService } from "./interfaces/serviceCrud";
 
-export { default as CategoriaMapper } from "./mappers/categoria.mapper";
+export { default as Mapper } from "./mappers/mapper";
 
 export { default as CategoriaService } from "./services/categoria.service";
 export { default as CategoriaFinderService } from "./services/finder.service";

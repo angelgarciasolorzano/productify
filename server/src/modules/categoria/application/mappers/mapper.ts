@@ -4,11 +4,7 @@ import {
   CategoriaUpdateDomain
 } from "@/modules/categoria/domain";
 
-import {
-  CategoriaResponseDto, 
-  CategoriaCreateDto, 
-  CategoriaUpdateDto 
-} from "@/modules/categoria/application";
+import { ResponseDto, CreateDto, UpdateDto } from "@/modules/categoria/application";
 
 /**
  * Clase encargada de mapear los objetos de dominio a objetos DTO y viceversa en la capa de la aplicacion.
@@ -16,18 +12,18 @@ import {
  * Este mapper facilita la transformacion de datos entre la representacion del negocio (entidad de dominio)
  * y la representacion que expone la API (DTO).
  *
- * @class CategoriaMapper
+ * @class Mapper
 */
-class CategoriaMapper {
+class Mapper {
   /**
-   * Transforma un objeto de dominio en un objeto DTO de tipo CategoriaResponseDto.
+   * Transforma un objeto de dominio en un objeto DTO de tipo ResponseDto.
    *
    * @param {CategoriaDomain} domain Objeto de dominio de Categoria.
-   * @returns {CategoriaResponseDto} Un objeto DTO de CategoriaResponseDto.
+   * @returns {ResponseDto} Un objeto DTO de ResponseDto.
   */
-  public static toResponseDto(domain: CategoriaDomain): CategoriaResponseDto {
+  public static toResponseDto(domain: CategoriaDomain): ResponseDto {
     return {
-      codigo: domain.id,
+      id: domain.id,
       nombre: domain.nombre,
       descripcion: domain.descripcion,
       estado: domain.estado,
@@ -40,10 +36,10 @@ class CategoriaMapper {
    * Transforma un arreglo de objetos del dominio en un arreglo de objetos DTO.
    * 
    * @param {CategoriaDomain[]} domain Arreglo de objetos de dominio categoria.
-   * @returns {CategoriaResponseDto[]} Un arreglo de objetos DTO de CategoriaResponseDto.
+   * @returns {ResponseDto[]} Un arreglo de objetos DTO de ResponseDto.
    * @throws {Error} Si el arreglo de dominio es nulo o undefined.
   */
-  public static toDtoList(domain: CategoriaDomain[]): CategoriaResponseDto[] {
+  public static toListDto(domain: CategoriaDomain[]): ResponseDto[] {
     if (!domain) throw new Error("No se puede mapear un array de dominio nulo a un array de DTO");
 
     if (domain.length === 0) return [];
@@ -54,11 +50,11 @@ class CategoriaMapper {
   /**
    * Transforma un objeto de DTO de creacion en un objeto de dominio de creacion.
    *
-   * @param {CategoriaCreateDto} dto Objeto recibido desde el controlador.
+   * @param {CreateDto} dto Objeto recibido desde el controlador.
    * @returns {CategoriaCreateDomain} Un objeto del dominio CategoriaCreateDomain.
    * @throws {Error} Si el objeto DTO es nulo o undefined.
   */
-  public static fromCreateDtoToDomain(dto: CategoriaCreateDto): CategoriaCreateDomain {
+  public static fromCreateDtoToDomain(dto: CreateDto): CategoriaCreateDomain {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {
@@ -70,11 +66,11 @@ class CategoriaMapper {
   /**
    * Transforma un objeto de DTO de actualizacion en un objeto de dominio de actualizacion.
    *
-   * @param {CategoriaUpdateDto} dto Objeto recibido desde el controlador.
+   * @param {UpdateDto} dto Objeto recibido desde el controlador.
    * @returns {CategoriaUpdateDomain} Un objeto del dominio CategoriaUpdateDomain.
    * @throws {Error} Si el objeto DTO es nulo o undefined.
   */
-  public static fromUpdateDtoToDomain(dto: CategoriaUpdateDto): CategoriaUpdateDomain {
+  public static fromUpdateDtoToDomain(dto: UpdateDto): CategoriaUpdateDomain {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {
@@ -85,4 +81,4 @@ class CategoriaMapper {
   };
 };
 
-export default CategoriaMapper;
+export default Mapper;
