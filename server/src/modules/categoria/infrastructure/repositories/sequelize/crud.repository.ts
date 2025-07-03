@@ -1,5 +1,5 @@
 import { ICrudRepository,Domain, CreateDomain, UpdateDomain } from "@/modules/categoria/domain";
-import { CategoriaSequelize, Mapper } from "@/modules/categoria/infrastructure";
+import { ModelSequelize, Mapper } from "@/modules/categoria/infrastructure";
 import { ServerError } from "@/errors";
 
 /**
@@ -14,7 +14,7 @@ import { ServerError } from "@/errors";
 class CrudRepository implements ICrudRepository {
   public async getCategorias(): Promise<Domain[] | null> {
     try {
-      const categorias = await CategoriaSequelize.findAll();
+      const categorias = await ModelSequelize.findAll();
 
       return categorias ? Mapper.toDomainList(categorias) : null;
     } catch (error) {
@@ -26,7 +26,7 @@ class CrudRepository implements ICrudRepository {
     try {
       const categoriaModel = Mapper.toPersistenceFromCreate(data);
 
-      const categoria = await CategoriaSequelize.create(categoriaModel);
+      const categoria = await ModelSequelize.create(categoriaModel);
 
       return categoria ? Mapper.toDomain(categoria) : null;
     } catch (error) {
@@ -38,13 +38,13 @@ class CrudRepository implements ICrudRepository {
     try {
       const categoriaModel = Mapper.toPersistenceFromUpdate(data);
 
-      const [affectedRows] = await CategoriaSequelize.update(categoriaModel, {
+      const [affectedRows] = await ModelSequelize.update(categoriaModel, {
         where: { id_categoria: id }
       });
 
       if (affectedRows === 0) return null;
 
-      const categoria = await CategoriaSequelize.findByPk(id);
+      const categoria = await ModelSequelize.findByPk(id);
 
       return categoria ? Mapper.toDomain(categoria) : null;
     } catch (error) {

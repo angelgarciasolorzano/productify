@@ -1,5 +1,5 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
-import { CategoriaModel, CategoriaCreationModel } from "@/modules/categoria/infrastructure";
+import { DataTypes, Model as SequelizeModel, Sequelize } from "sequelize";
+import { Model, CreationModel } from "@/modules/categoria/infrastructure";
 import { sequelize } from "@/config";
 
 /**
@@ -8,13 +8,10 @@ import { sequelize } from "@/config";
  * Este modelo define la estrutura de la tabla, sus campos y restricciones.
  * 
  * @class Categoria
- * @extends Model
- * @implements CategoriaModel
+ * @extends SequelizeModel
+ * @implements Model
 */
-class Categoria extends Model<
-  CategoriaModel, 
-  CategoriaCreationModel
-> implements CategoriaModel {
+class Categoria extends SequelizeModel<Model, CreationModel> implements Model {
 
   public readonly id_categoria!: number;
   public nombre_categoria!: string;

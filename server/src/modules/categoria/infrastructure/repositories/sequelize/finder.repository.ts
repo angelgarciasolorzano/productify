@@ -1,4 +1,4 @@
-import { CategoriaSequelize, Mapper } from "@/modules/categoria/infrastructure";
+import { ModelSequelize, Mapper } from "@/modules/categoria/infrastructure";
 import { Domain, IFinderRepository } from "@/modules/categoria/domain";
 import { ServerError } from "@/errors";
 
@@ -14,7 +14,7 @@ import { ServerError } from "@/errors";
 class FinderRepository implements IFinderRepository {
   public async getCategoriaId(id: number): Promise<Domain | null> {
     try {
-      const categoriaModel = await CategoriaSequelize.findByPk(id);
+      const categoriaModel = await ModelSequelize.findByPk(id);
 
       return categoriaModel ? Mapper.toDomain(categoriaModel) : null;
     } catch (error) {
@@ -24,7 +24,7 @@ class FinderRepository implements IFinderRepository {
 
   public async getCategoriaNombre(nombre: string): Promise<Domain | null> {
     try {
-      const categoriaModel = await CategoriaSequelize.findOne({ 
+      const categoriaModel = await ModelSequelize.findOne({ 
         where: { nombre_categoria: nombre } 
       });
 

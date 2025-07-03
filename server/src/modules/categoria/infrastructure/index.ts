@@ -1,6 +1,6 @@
 export * from "./database/interface/db.interface";
 
-export { default as CategoriaSequelize } from "./database/sequelize/db.model";
+export { default as ModelSequelize } from "./database/sequelize/db.model";
 
 export { default as Mapper } from "./mappers/mapper";
 
