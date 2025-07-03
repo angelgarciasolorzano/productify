@@ -1,5 +1,5 @@
-export * from "./dtos/categoria.dto";
-export * from "./dtos/response.dto";
+export * from "./dtos/input.dto";
+export * from "./dtos/output.dto";
 
 export { default as ICategoriaFinderService } from "./interfaces/serviceFinder";
 export { default as ICategoriaCRUDService } from "./interfaces/serviceCrud";
