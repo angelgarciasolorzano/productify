@@ -1,7 +1,7 @@
 import { Domain, CreateDomain, UpdateDomain } from "@/modules/categoria/domain";
 
 /**
- * Define el contrato para realizar operaciones CRUD sobre la entidad categorias.
+ * Define el contrato para realizar operaciones CRUD sobre la tabla categorias.
  * 
  * Esta interfaz proporciona metodos para crear, leer y actualizar
  * registros.

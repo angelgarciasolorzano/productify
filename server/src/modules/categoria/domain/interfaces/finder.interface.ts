@@ -1,7 +1,7 @@
 import { Domain } from "@/modules/categoria/domain";
 
 /**
- * Define el contrato para realizar operaciones de consulta sobre la entidad categorias.
+ * Define el contrato para realizar operaciones de consulta sobre la tabla categorias.
  * 
  * Esta interfaz proporciona metodos para buscar una categoría por su id o nombre.
  * 
