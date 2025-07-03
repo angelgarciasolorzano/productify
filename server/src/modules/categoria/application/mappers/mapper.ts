@@ -1,9 +1,4 @@
-import { 
-  CategoriaDomain, 
-  CategoriaCreateDomain, 
-  CategoriaUpdateDomain
-} from "@/modules/categoria/domain";
-
+import { Domain, CreateDomain, UpdateDomain } from "@/modules/categoria/domain";
 import { ResponseDto, CreateDto, UpdateDto } from "@/modules/categoria/application";
 
 /**
@@ -18,10 +13,10 @@ class Mapper {
   /**
    * Transforma un objeto de dominio en un objeto DTO de tipo ResponseDto.
    *
-   * @param {CategoriaDomain} domain Objeto de dominio de Categoria.
+   * @param {Domain} domain Objeto de dominio.
    * @returns {ResponseDto} Un objeto DTO de ResponseDto.
   */
-  public static toResponseDto(domain: CategoriaDomain): ResponseDto {
+  public static toResponseDto(domain: Domain): ResponseDto {
     return {
       id: domain.id,
       nombre: domain.nombre,
@@ -35,11 +30,11 @@ class Mapper {
   /**
    * Transforma un arreglo de objetos del dominio en un arreglo de objetos DTO.
    * 
-   * @param {CategoriaDomain[]} domain Arreglo de objetos de dominio categoria.
+   * @param {Domain[]} domain Arreglo de objetos de dominio.
    * @returns {ResponseDto[]} Un arreglo de objetos DTO de ResponseDto.
    * @throws {Error} Si el arreglo de dominio es nulo o undefined.
   */
-  public static toListDto(domain: CategoriaDomain[]): ResponseDto[] {
+  public static toListDto(domain: Domain[]): ResponseDto[] {
     if (!domain) throw new Error("No se puede mapear un array de dominio nulo a un array de DTO");
 
     if (domain.length === 0) return [];
@@ -51,10 +46,10 @@ class Mapper {
    * Transforma un objeto de DTO de creacion en un objeto de dominio de creacion.
    *
    * @param {CreateDto} dto Objeto recibido desde el controlador.
-   * @returns {CategoriaCreateDomain} Un objeto del dominio CategoriaCreateDomain.
+   * @returns {CreateDomain} Un objeto del dominio CreateDomain.
    * @throws {Error} Si el objeto DTO es nulo o undefined.
   */
-  public static fromCreateDtoToDomain(dto: CreateDto): CategoriaCreateDomain {
+  public static fromCreateDtoToDomain(dto: CreateDto): CreateDomain {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {
@@ -67,10 +62,10 @@ class Mapper {
    * Transforma un objeto de DTO de actualizacion en un objeto de dominio de actualizacion.
    *
    * @param {UpdateDto} dto Objeto recibido desde el controlador.
-   * @returns {CategoriaUpdateDomain} Un objeto del dominio CategoriaUpdateDomain.
+   * @returns {UpdateDomain} Un objeto del dominio UpdateDomain.
    * @throws {Error} Si el objeto DTO es nulo o undefined.
   */
-  public static fromUpdateDtoToDomain(dto: UpdateDto): CategoriaUpdateDomain {
+  public static fromUpdateDtoToDomain(dto: UpdateDto): UpdateDomain {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {

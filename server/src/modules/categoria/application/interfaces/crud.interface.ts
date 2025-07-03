@@ -1,8 +1,4 @@
-import { 
-  ResponseDto, 
-  CreateDto, 
-  UpdateDto 
-} from "@/modules/categoria/application";
+import { ResponseDto, CreateDto, UpdateDto } from "@/modules/categoria/application";
 
 /**
  * Define el contrato del servicio de la aplicacion para la gestion de las categorías.

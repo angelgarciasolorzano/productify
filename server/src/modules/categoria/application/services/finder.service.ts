@@ -1,5 +1,5 @@
 import { IFinderService, ResponseDto, Mapper } from "@/modules/categoria/application";
-import { ICategoriaRepository } from "@/modules/categoria/domain";
+import { IFacadeRepository } from "@/modules/categoria/domain";
 import { NotFoundError } from "@/errors";
 
 /**
@@ -10,16 +10,16 @@ import { NotFoundError } from "@/errors";
  * 
  * @class FinderService
  * @implements IFinderService
- * @see ICategoriaRepository Para acceder a los datos
+ * @see IFacadeRepository Para acceder a los datos
 */
 class FinderService implements IFinderService {
   /**
-   * @param {ICategoriaRepository} categoriaRepository Implementacion del repositorio de Categoria
+   * @param {IFacadeRepository} facadeRepository Implementacion del repositorio
   */
-  constructor(private categoriaRepository: ICategoriaRepository) {};
+  constructor(private facadeRepository: IFacadeRepository) {};
 
   public async getCategoriaId(id: number): Promise<ResponseDto> {
-    const categoria = await this.categoriaRepository.getCategoriaId(id);
+    const categoria = await this.facadeRepository.getCategoriaId(id);
 
     if (!categoria) throw new NotFoundError("No se encontro la categoria");
 

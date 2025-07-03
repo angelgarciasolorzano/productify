@@ -1,7 +1,7 @@
 import { DatosError } from "@/errors";
 
 import { 
-  IService, 
+  IFacadeService, 
   IFinderService, 
   ICrudService,
   ResponseDto, 
@@ -13,12 +13,12 @@ import {
  * Implementacion concreta del servicio de la aplicacion que actua como fachada para las
  * operaciones de busqueda y CRUD, delegando a los servicios especializados.
  * 
- * @class Service
- * @implements IService
+ * @class FacadeService
+ * @implements IFacadeService
  * @see IFinderService Para operaciones de consulta/busqueda
  * @see ICrudService Para operaciones CRUD basicas
 */
-class Service implements IService {
+class FacadeService implements IFacadeService {
   private finder: IFinderService;
   private crud: ICrudService;
 
@@ -65,4 +65,4 @@ class Service implements IService {
   };
 };
 
-export default Service;
+export default FacadeService;

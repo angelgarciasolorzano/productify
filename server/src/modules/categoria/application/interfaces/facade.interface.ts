@@ -6,8 +6,8 @@ import { IFinderService, ICrudService } from "@/modules/categoria/application";
  * Esta interfaz combina los métodos de la clase FinderService
  * y la clase CrudService.
  *
- * @interface IService
+ * @interface IFacadeService
 */
-interface IService extends IFinderService, ICrudService {};
+interface IFacadeService extends IFinderService, ICrudService {};
 
-export default IService;
+export default IFacadeService;
