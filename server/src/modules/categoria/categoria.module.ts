@@ -1,26 +1,26 @@
 import { 
-  CategoriaSequelizeRepository, 
-  CategoriaSequelizeFinderRepository, 
-  CategoriaSequelizeCRUDRepository 
+  CategoriaRepository, 
+  CategoriaFinderRepositorySequelize, 
+  CategoriaCrudRepositorySequelize 
 } from "@/modules/categoria/infrastructure";
 
 import { 
   CategoriaService, 
   CategoriaFinderService, 
-  CategoriaCRUDService 
+  CategoriaCrudService 
 } from "@/modules/categoria/application";
 
 import { CategoriaController, buildCategoriaRouter } from "@/modules/categoria/presentation";
 
-const categoriaFinderRepository = new CategoriaSequelizeFinderRepository();
-const categoriaCRUDRepository = new CategoriaSequelizeCRUDRepository();
+const categoriaFinderRepository = new CategoriaFinderRepositorySequelize();
+const categoriaCRUDRepository = new CategoriaCrudRepositorySequelize();
 
-const categoriaRepository = new CategoriaSequelizeRepository(
+const categoriaRepository = new CategoriaRepository(
   categoriaFinderRepository, categoriaCRUDRepository
 );
 
 const categoriaFinderService = new CategoriaFinderService(categoriaRepository);
-const categoriaCRUDService = new CategoriaCRUDService(categoriaRepository);
+const categoriaCRUDService = new CategoriaCrudService(categoriaRepository);
 
 const categoriaService = new CategoriaService(categoriaFinderService, categoriaCRUDService);
 

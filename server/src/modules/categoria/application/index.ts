@@ -1,12 +1,12 @@
-export * from "./dtos/input.dto";
-export * from "./dtos/output.dto";
+export * from "./dtos/categoriaInput.dto";
+export * from "./dtos/categoriaOutput.dto";
 
-export { default as IFacadeService } from "./interfaces/facade.interface";
-export { default as IFinderService } from "./interfaces/finder.interface";
-export { default as ICrudService } from "./interfaces/crud.interface";
+export { default as ICategoriaService } from "./interfaces/repository.interface";
+export { default as ICategoriaFinderService } from "./interfaces/finder.interface";
+export { default as ICategoriaCrudService } from "./interfaces/crud.interface";
 
-export { default as Mapper } from "./mappers/mapper";
+export { default as CategoriaMapper } from "./mappers/categoria.mapper";
 
-export { default as FacadeService } from "./services/facade.service";
-export { default as FinderService } from "./services/finder.service";
-export { default as CrudService } from "./services/crud.service";
+export { default as CategoriaService } from "./services/repository.service";
+export { default as CategoriaFinderService } from "./services/finder.service";
+export { default as CategoriaCrudService } from "./services/crud.service";

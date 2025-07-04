@@ -1,9 +1,9 @@
-export * from "./database/interface/db.interface";
+export * from "./database/interface/categoriaDb.interface";
 
-export { default as ModelSequelize } from "./database/sequelize/db.model";
+export { default as CategoriaModel } from "./database/sequelize/categoria.model";
 
-export { default as Mapper } from "./mappers/mapper";
+export { default as CategoriaPersistenceMapper } from "./mappers/categoriaPersis.mapper";
 
-export { default as FacadeRepositorySequelize } from "./repositories/facade.repository";
-export { default as FinderRepositorySequelize } from "./repositories/sequelize/finder.repository";
-export { default as CrudRepositorySequelize } from "./repositories/sequelize/crud.repository";
+export { default as CategoriaRepository } from "./repositories/categoria.repository";
+export { default as CategoriaFinderRepositorySequelize } from "./repositories/sequelize/finder.repository";
+export { default as CategoriaCrudRepositorySequelize } from "./repositories/sequelize/crud.repository";

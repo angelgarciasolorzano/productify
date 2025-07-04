@@ -1,9 +1,9 @@
 /**
  * Objeto de transferencia que representa los datos que se devuelven por la aplicacion.
  *
- * @interface ResponseDto
+ * @interface CategoriaResponseDto
 */
-interface ResponseDto {
+interface CategoriaResponseDto {
   id: number;
   nombre: string;
   descripcion?: string;
@@ -12,4 +12,4 @@ interface ResponseDto {
   fechaModificacion?: Date;
 };
 
-export { ResponseDto };
+export { CategoriaResponseDto };

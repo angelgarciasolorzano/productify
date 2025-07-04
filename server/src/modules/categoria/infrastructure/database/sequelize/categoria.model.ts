@@ -1,5 +1,5 @@
-import { DataTypes, Model as SequelizeModel, Sequelize } from "sequelize";
-import { Model, CreationModel } from "@/modules/categoria/infrastructure";
+import { DataTypes, Model, Sequelize } from "sequelize";
+import { ICategoriaDb, ICategoriaCreationDb } from "@/modules/categoria/infrastructure";
 import { sequelize } from "@/config";
 
 /**
@@ -7,11 +7,11 @@ import { sequelize } from "@/config";
  * 
  * Este modelo define la estrutura de la tabla, sus campos y restricciones.
  * 
- * @class Categoria
- * @extends SequelizeModel
- * @implements Model
+ * @class CategoriaModel
+ * @extends Model
+ * @implements ICategoriaDb
 */
-class Categoria extends SequelizeModel<Model, CreationModel> implements Model {
+class CategoriaModel extends Model<ICategoriaDb, ICategoriaCreationDb> implements ICategoriaDb {
 
   public readonly id_categoria!: number;
   public nombre_categoria!: string;
@@ -27,7 +27,7 @@ class Categoria extends SequelizeModel<Model, CreationModel> implements Model {
    * @param sequelize Instancia de sequelize
   */
   public static initialize(sequelize: Sequelize) {
-    Categoria.init({
+    CategoriaModel.init({
       id_categoria: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -62,13 +62,13 @@ class Categoria extends SequelizeModel<Model, CreationModel> implements Model {
       }
     }, {
       sequelize,
-      modelName: "Categoria",
+      modelName: "CategoriaModel",
       tableName: "categorias",
       timestamps: true
     });
   };
 };
 
-Categoria.initialize(sequelize);
+CategoriaModel.initialize(sequelize);
 
-export default Categoria;
+export default CategoriaModel;

@@ -1,4 +1,4 @@
-import { ResponseDto } from "@/modules/categoria/application";
+import { CategoriaResponseDto } from "@/modules/categoria/application";
 
 /**
  * Define el contrato del servicio de la aplicacion para la busqueda de categorias.
@@ -7,17 +7,17 @@ import { ResponseDto } from "@/modules/categoria/application";
  * obtener una categoría por su id, utilizando DTOs como puente entre la capa de presentacion
  * y la capa de dominio.
  *
- * @interface IFinderService
+ * @interface ICategoriaFinderService
 */
-interface IFinderService {
+interface ICategoriaFinderService {
   /**
    * Recupera una categoría por su id.
    *
    * @param {number} id El id de la categoría
-   * @returns {Promise<ResponseDto>} Una promesa que resuelve con el objeto ResponseDto
+   * @returns {Promise<CategoriaResponseDto>} Una promesa que resuelve con el objeto CategoriaResponseDto
    * @throws {NotFoundError} Si no se encuentra la categoría
   */
-  getCategoriaId(id: number): Promise<ResponseDto>;
+  getCategoriaId(id: number): Promise<CategoriaResponseDto>;
 };
 
-export default IFinderService;
+export default ICategoriaFinderService;

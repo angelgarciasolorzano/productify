@@ -3,9 +3,9 @@
  * 
  * Este DTO representa los datos minimos para registrar una categoria en el sistema.
  * 
- * @interface CreateDto
+ * @interface CategoriaCreateDto
 */
-interface CreateDto {
+interface CategoriaCreateDto {
   nombreCategoria: string;
   descripcionCategoria?: string;
 };
@@ -15,10 +15,10 @@ interface CreateDto {
  * 
  * Este DTO representa los datos minimos para actualizar una categoria en el sistema.
  *
- * @type UpdateDto
+ * @type CategoriaUpdateDto
 */
-type UpdateDto = Partial<CreateDto> & {
+type CategoriaUpdateDto = Partial<CategoriaCreateDto> & {
   estadoCategoria: "activo" | "inactivo";
 };
 
-export { CreateDto, UpdateDto };
+export { CategoriaCreateDto, CategoriaUpdateDto };

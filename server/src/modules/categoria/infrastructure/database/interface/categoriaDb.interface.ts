@@ -1,9 +1,9 @@
 /**
  * Interfaz que representa los atributos de la tabla categorias.
  * 
- * @interface Model
+ * @interface ICategoriaDb
 */
-interface Model {
+interface ICategoriaDb {
   id_categoria: number;
   nombre_categoria: string;
   descripcion_categoria?: string;
@@ -15,12 +15,12 @@ interface Model {
 /**
  * Interfaz que define los atributos obligatorios para crear una categoria.
  *
- * @interface CreationModel
+ * @interface ICategoriaCreationDb
 */
-interface CreationModel extends Omit<Partial<Model>,
+interface ICategoriaCreationDb extends Omit<Partial<ICategoriaDb>,
   "nombre_categoria"
 > {
   nombre_categoria: string;
 };
 
-export { Model, CreationModel };
+export { ICategoriaDb, ICategoriaCreationDb };
