@@ -7,7 +7,7 @@ import { ICategoriaController } from "@/modules/categoria/presentation";
  * @param {ICategoriaController} controller Implementacion del controlador de Categoria.
  * @returns {Router} Router de express con las rutas de la API de Categoria.
 */
-function buildCategoriaRouter(controller: ICategoriaController): Router {
+function categoriaBuilRouter(controller: ICategoriaController): Router {
   const router = Router();
 
   router
@@ -19,4 +19,4 @@ function buildCategoriaRouter(controller: ICategoriaController): Router {
   return router;
 };
 
-export default buildCategoriaRouter;
+export default categoriaBuilRouter;

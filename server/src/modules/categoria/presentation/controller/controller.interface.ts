@@ -1,13 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
 /**
- * @file controller.ts
- * @description Archivo que define la interface para la clase CategoriaController
- * @author Angel Noe Garcia Solorzano
- * @version 1.1
-*/
-
-/**
  * Define el contrato del controlador de la aplicación para la gestión de las categorías.
  * 
  * Esta interfaz declara los métodos responsables de manejar las operaciones HTTP relacionadas 

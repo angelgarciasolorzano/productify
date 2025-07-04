@@ -10,7 +10,7 @@ import {
   CategoriaCrudService 
 } from "@/modules/categoria/application";
 
-import { CategoriaController, buildCategoriaRouter } from "@/modules/categoria/presentation";
+import { CategoriaController, categoriaBuilRouter } from "@/modules/categoria/presentation";
 
 const categoriaFinderRepository = new CategoriaFinderRepositorySequelize();
 const categoriaCRUDRepository = new CategoriaCrudRepositorySequelize();
@@ -26,6 +26,6 @@ const categoriaService = new CategoriaService(categoriaFinderService, categoriaC
 
 const categoriaController = new CategoriaController(categoriaService);
 
-const router = buildCategoriaRouter(categoriaController);
+const router = categoriaBuilRouter(categoriaController);
 
 export default router;
