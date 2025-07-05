@@ -67,6 +67,20 @@
       "color": "gray-600",
       "lightColor": "gray-800",
       "folderNames": ["infrastructure"]
+    },
+    {
+      "name": "dtos-colored",
+      "base": "interface",
+      "color": "cyan-600",
+      "lightColor": "cyan-700",
+      "folderNames": ["dtos"]
+    },
+    {
+      "name": "mapper-colored",
+      "base": "class",
+      "color": "purple-400",
+      "lightColor": "purple-700",
+      "folderNames": ["mappers"]
     }
   ],
   "material-icon-theme.files.customClones": [
@@ -80,8 +94,8 @@
     {
       "name": "schema-colored",
       "base": "angular",
-      "color": "purple-300",
-      "lightColor": "purple-800",
+      "color": "pink-500",
+      "lightColor": "pink-700",
       "fileExtensions": ["schema.ts"]
     },
     {
@@ -94,8 +108,8 @@
     {
       "name": "mapper-colored",
       "base": "angular",
-      "color": "blue-600",
-      "lightColor": "yellow-500",
+      "color": "purple-400",
+      "lightColor": "purple-700",
       "fileExtensions": ["mapper.ts"]
     }
   ]
