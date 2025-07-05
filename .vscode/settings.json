@@ -87,9 +87,16 @@
     {
       "name": "model-colored",
       "base": "database",
-      "color": "#22a9ec",
-      "lightColor": "#1E3A8A",
+      "color": "yellow-500",
+      "lightColor": "yellow-300",
       "fileExtensions": ["model.ts", "entity.ts"]
+    },
+    {
+      "name": "mapper-colored",
+      "base": "angular",
+      "color": "blue-600",
+      "lightColor": "yellow-500",
+      "fileExtensions": ["mapper.ts"]
     }
   ]
 }
