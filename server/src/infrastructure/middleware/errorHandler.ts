@@ -1,9 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import { AppError } from "@/errors"
+import { AppError } from "@/shared";
 
 /**
- * @function errorHandler
- * @description Middleware de manejo de errores global para Express
+ * Middleware de manejo de errores global para Express.
+ * 
+ * Este middleware maneja errores personalizados y cualquier otro error inesperado.
+ *
  * @param {unknown} error El objeto de error que fue lanzado por la aplicación
  * @param {Request} _request Objeto de la petición (no se usa en este caso)
  * @param {Response} response Objeto de la respuesta, para enviar una respuesta al cliente
