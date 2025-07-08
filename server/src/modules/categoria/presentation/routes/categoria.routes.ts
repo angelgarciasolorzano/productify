@@ -1,10 +1,11 @@
+import { Router } from "express";
+
 import { 
   ICategoriaController, 
   CategoriaCreateSchema, 
   CategoriaUpdateSchema 
 } from "@/modules/categoria/presentation";
 
-import { Router } from "express";
 import { validateRequestBody } from "@/infrastructure";
 
 /**
