@@ -1,1 +1,0 @@
-export { default as categoriaRouter } from "./categoria.module";

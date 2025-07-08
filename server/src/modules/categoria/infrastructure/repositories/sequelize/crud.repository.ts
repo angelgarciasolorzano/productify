@@ -6,7 +6,7 @@ import {
 } from "@/modules/categoria/domain";
 
 import { CategoriaModel, CategoriaPersistenceMapper } from "@/modules/categoria/infrastructure";
-import { ServerError } from "@/errors";
+import { ServerError } from "@/shared";
 
 /**
  * Esta clase encapsula la logica de acceso a datos para realizar operaciones CRUD

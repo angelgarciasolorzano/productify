@@ -7,7 +7,7 @@ import {
   CategoriaUpdateDto
 } from "@/modules/categoria/application";
 
-import { DatosError } from "@/errors";
+import { DatosError } from "@/shared";
 
 /**
  * Implementacion concreta del servicio de la aplicacion que actua como fachada para las

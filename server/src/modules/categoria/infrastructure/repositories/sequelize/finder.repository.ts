@@ -1,6 +1,6 @@
 import { CategoriaModel, CategoriaPersistenceMapper } from "@/modules/categoria/infrastructure";
 import { Categoria, ICategoriaFinderRepository } from "@/modules/categoria/domain";
-import { ServerError } from "@/errors";
+import { ServerError } from "@/shared";
 
 /**
  * Esta clase encapsula la logica de acceso a datos para realizar operaciones de consulta y busqueda

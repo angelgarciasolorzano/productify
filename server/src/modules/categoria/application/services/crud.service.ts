@@ -7,7 +7,7 @@ import {
 } from "@/modules/categoria/application";
 
 import { CategoriaUpdateDomain, ICategoriaRepository } from "@/modules/categoria/domain";
-import { DatosError, NotFoundError } from "@/errors";
+import { DatosError, NotFoundError } from "@/shared";
 
 /**
  * Clase que encapsula la logica de negocio para operaciones CRUD.

@@ -5,7 +5,7 @@ import {
 } from "@/modules/categoria/presentation";
 
 import { Router } from "express";
-import { validarDatos } from "@/middleware";
+import { validateRequestBody } from "@/infrastructure";
 
 /**
  * Construye un router de express con las rutas relacionadas a la API de Categoria.
@@ -19,8 +19,8 @@ function categoriaBuildRouter(controller: ICategoriaController): Router {
   router
     .get("/obtener-categorias", controller.getCategorias)
     .get("/obtener-categoria/:id", controller.getCategoriaId)
-    .post("/registrar-categoria", validarDatos(CategoriaCreateSchema), controller.createCategoria)
-    .put("/actualizar-categoria/:id", validarDatos(CategoriaUpdateSchema), controller.updateCategoria);
+    .post("/registrar-categoria", validateRequestBody(CategoriaCreateSchema), controller.createCategoria)
+    .put("/actualizar-categoria/:id", validateRequestBody(CategoriaUpdateSchema), controller.updateCategoria);
 
   return router;
 };

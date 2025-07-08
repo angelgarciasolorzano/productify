@@ -5,7 +5,7 @@ import {
 } from "@/modules/categoria/application";
 
 import { ICategoriaRepository } from "@/modules/categoria/domain";
-import { NotFoundError } from "@/errors";
+import { NotFoundError } from "@/shared";
 
 /**
  * Clase que encapsula la logica de negocio para operaciones de busqueda.

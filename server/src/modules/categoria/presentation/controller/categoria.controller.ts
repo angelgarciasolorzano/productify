@@ -5,8 +5,8 @@ import {
 } from "@/modules/categoria/application";
 
 import { Response } from "express";
-import { asyncWrapper } from "@/utils";
-import { PublicRequestWithBody, PublicRequest } from "@/types";
+import { asyncWrapper } from "@/shared";
+import { PublicRequestWithBody, PublicRequest } from "@/shared";
 
 import { ICategoriaController } from "@/modules/categoria/presentation";
 
