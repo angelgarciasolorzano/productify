@@ -1,6 +1,5 @@
 import { Router } from "express";
-
-import { categoriaRouter } from "@/modules/categoria";
+import { categoriaRouter } from "@/modules"
 
 const router = Router();
 
