@@ -1,1 +1,0 @@
-export { default as CategoriaController } from "./categoria.module";
