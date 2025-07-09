@@ -1,6 +1,5 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
 import { ICategoriaDb, ICategoriaCreationDb } from "@/modules/categoria/infrastructure";
-import { sequelize } from "@/infrastructure";
 
 /**
  * Modelo sequelize que representa la tabla `categorias` en la base de datos.
@@ -24,7 +23,7 @@ class CategoriaModel extends Model<ICategoriaDb, ICategoriaCreationDb> implement
   /**
    * Inicializa el modelo en sequelize y define la estructura de la tabla `categorias`.
    * 
-   * @param sequelize Instancia de sequelize
+   * @param {Sequelize} sequelize Instancia de sequelize
   */
   public static initialize(sequelize: Sequelize) {
     CategoriaModel.init({
@@ -68,7 +67,5 @@ class CategoriaModel extends Model<ICategoriaDb, ICategoriaCreationDb> implement
     });
   };
 };
-
-CategoriaModel.initialize(sequelize);
 
 export default CategoriaModel;

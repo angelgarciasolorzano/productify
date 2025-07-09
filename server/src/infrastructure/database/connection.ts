@@ -1,7 +1,9 @@
-import { sequelize } from "@/infrastructure";
+import { sequelize, setupModels } from "@/infrastructure";
 
 const connectionDatabase = async (): Promise<void> => {
   try {
+    setupModels();
+
     await sequelize.authenticate();
     await sequelize.sync();
 
