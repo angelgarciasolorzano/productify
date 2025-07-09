@@ -1,11 +1,11 @@
 import { 
-  Categoria, 
+  Categoria,
   CategoriaCreateDomain,
   CategoriaUpdateDomain,
-  ICategoriaRepository, 
-  ICategoriaFinderRepository, 
-  ICategoriaCrudRepository, 
-} from "@/modules/categoria/domain";
+  ICategoriaRepository,
+  ICategoriaFinderRepository,
+  ICategoriaCrudRepository
+} from "../../domain";
 
 /**
  * Implementacion concreta del repositorio de la tabla categorias que actua como fachada para las

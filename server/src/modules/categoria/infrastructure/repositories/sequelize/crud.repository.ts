@@ -1,12 +1,14 @@
+import { ServerError } from "@/shared";
+
 import { 
-  ICategoriaCrudRepository,
+  ICategoriaCrudRepository, 
   Categoria, 
   CategoriaCreateDomain, 
   CategoriaUpdateDomain 
-} from "@/modules/categoria/domain";
+} from "../../../domain";
 
-import { CategoriaModel, CategoriaPersistenceMapper } from "@/modules/categoria/infrastructure";
-import { ServerError } from "@/shared";
+import CategoriaModel from "../../database/sequelize/categoria.model";
+import CategoriaPersistenceMapper from "../../mappers/categoriaPersis.mapper";
 
 /**
  * Esta clase encapsula la logica de acceso a datos para realizar operaciones CRUD
