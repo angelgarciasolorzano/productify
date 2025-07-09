@@ -7,7 +7,7 @@ import {
   CategoriaUpdateDomain 
 } from "../../../domain";
 
-import CategoriaModel from "../../database/sequelize/categoria.model";
+import CategoriaSequelize from "../../database/sequelize/categoria.model";
 import CategoriaPersistenceMapper from "../../mappers/categoriaPersis.mapper";
 
 /**
@@ -24,7 +24,7 @@ import CategoriaPersistenceMapper from "../../mappers/categoriaPersis.mapper";
 class CategoriaCrudRepository implements ICategoriaCrudRepository {
   public async getCategorias(): Promise<Categoria[] | null> {
     try {
-      const categorias = await CategoriaModel.findAll();
+      const categorias = await CategoriaSequelize.findAll();
 
       return categorias ? CategoriaPersistenceMapper.toDomainList(categorias) : null;
     } catch (error) {
@@ -36,7 +36,7 @@ class CategoriaCrudRepository implements ICategoriaCrudRepository {
     try {
       const categoriaModel = CategoriaPersistenceMapper.toPersistenceFromCreate(data);
 
-      const categoria = await CategoriaModel.create(categoriaModel);
+      const categoria = await CategoriaSequelize.create(categoriaModel);
 
       return categoria ? CategoriaPersistenceMapper.toDomain(categoria) : null;
     } catch (error) {
@@ -48,13 +48,13 @@ class CategoriaCrudRepository implements ICategoriaCrudRepository {
     try {
       const categoriaModel = CategoriaPersistenceMapper.toPersistenceFromUpdate(data);
 
-      const [affectedRows] = await CategoriaModel.update(categoriaModel, {
+      const [affectedRows] = await CategoriaSequelize.update(categoriaModel, {
         where: { id_categoria: id }
       });
 
       if (affectedRows === 0) return null;
 
-      const categoria = await CategoriaModel.findByPk(id);
+      const categoria = await CategoriaSequelize.findByPk(id);
 
       return categoria ? CategoriaPersistenceMapper.toDomain(categoria) : null;
     } catch (error) {

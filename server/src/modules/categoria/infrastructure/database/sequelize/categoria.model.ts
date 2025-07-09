@@ -6,11 +6,11 @@ import { ICategoriaDb, ICategoriaCreationDb } from "../interface/categoriaDb.int
  * 
  * Este modelo define la estrutura de la tabla, sus campos y restricciones.
  * 
- * @class CategoriaModel
+ * @class CategoriaSequelize
  * @extends Model
  * @implements ICategoriaDb
 */
-class CategoriaModel extends Model<ICategoriaDb, ICategoriaCreationDb> implements ICategoriaDb {
+class CategoriaSequelize extends Model<ICategoriaDb, ICategoriaCreationDb> implements ICategoriaDb {
 
   public readonly id_categoria!: number;
   public nombre_categoria!: string;
@@ -26,7 +26,7 @@ class CategoriaModel extends Model<ICategoriaDb, ICategoriaCreationDb> implement
    * @param {Sequelize} sequelize Instancia de sequelize
   */
   public static initialize(sequelize: Sequelize) {
-    CategoriaModel.init({
+    CategoriaSequelize.init({
       id_categoria: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -61,11 +61,11 @@ class CategoriaModel extends Model<ICategoriaDb, ICategoriaCreationDb> implement
       }
     }, {
       sequelize,
-      modelName: "CategoriaModel",
+      modelName: "Categoria",
       tableName: "categorias",
       timestamps: true
     });
   };
 };
 
-export default CategoriaModel;
+export default CategoriaSequelize;

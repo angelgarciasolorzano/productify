@@ -2,7 +2,7 @@ import { ServerError } from "@/shared";
 
 import { Categoria, ICategoriaFinderRepository } from "../../../domain";
 
-import CategoriaModel from "../../database/sequelize/categoria.model";
+import CategoriaSequelize from "../../database/sequelize/categoria.model";
 import CategoriaPersistenceMapper from "../../mappers/categoriaPersis.mapper";
 
 /**
@@ -19,7 +19,7 @@ import CategoriaPersistenceMapper from "../../mappers/categoriaPersis.mapper";
 class CategoriaFinderRepository implements ICategoriaFinderRepository {
   public async getCategoriaId(id: number): Promise<Categoria | null> {
     try {
-      const categoriaModel = await CategoriaModel.findByPk(id);
+      const categoriaModel = await CategoriaSequelize.findByPk(id);
 
       return categoriaModel ? CategoriaPersistenceMapper.toDomain(categoriaModel) : null;
     } catch (error) {
@@ -29,7 +29,7 @@ class CategoriaFinderRepository implements ICategoriaFinderRepository {
 
   public async getCategoriaNombre(nombre: string): Promise<Categoria | null> {
     try {
-      const categoriaModel = await CategoriaModel.findOne({ 
+      const categoriaModel = await CategoriaSequelize.findOne({ 
         where: { nombre_categoria: nombre } 
       });
 
