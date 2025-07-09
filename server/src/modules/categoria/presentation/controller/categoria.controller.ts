@@ -1,13 +1,10 @@
 import { Response } from "express";
 
-import { 
-  ICategoriaService, 
-  CategoriaCreateDto, 
-  CategoriaUpdateDto 
-} from "@/modules/categoria/application";
-
-import { ICategoriaController } from "@/modules/categoria/presentation";
 import { asyncWrapper, PublicRequestWithBody, PublicRequest } from "@/shared";
+
+import { ICategoriaService, CategoriaCreateDto, CategoriaUpdateDto } from "../../application";
+
+import ICategoriaController from "./controller.interface";
 
 /**
  * Clase que representa el controlador de la aplicación para la gestión de las categorías.
