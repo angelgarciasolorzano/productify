@@ -2,15 +2,15 @@ import {
   CategoriaRepository, 
   CategoriaFinderRepositorySequelize, 
   CategoriaCrudRepositorySequelize 
-} from "@/modules/categoria/infrastructure";
+} from "./infrastructure"
 
 import { 
   CategoriaService, 
   CategoriaFinderService, 
   CategoriaCrudService 
-} from "@/modules/categoria/application";
+} from "./application";
 
-import { CategoriaController, categoriaBuildRouter } from "@/modules/categoria/presentation";
+import { CategoriaController, categoriaBuildRouter } from "./presentation";
 
 const categoriaFinderRepository = new CategoriaFinderRepositorySequelize();
 const categoriaCRUDRepository = new CategoriaCrudRepositorySequelize();
