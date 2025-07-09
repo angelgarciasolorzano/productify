@@ -1,4 +1,4 @@
-import { EnvSchema } from "@/core";
+import { EnvSchema } from "./env.schema";
 
 const loadEnv = (): void => {
   try {

@@ -1,4 +1,6 @@
-import { createApp, loadEnv } from "@/core";
+import createApp from "../app/app";
+import loadEnv from "../env/loadEnv";
+
 import { connectionDatabase } from "@/infrastructure";
 
 const serverStart = async (): Promise<void> => {
