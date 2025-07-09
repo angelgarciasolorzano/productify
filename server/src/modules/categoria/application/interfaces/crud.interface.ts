@@ -1,4 +1,5 @@
-import { CategoriaResponseDto, CategoriaCreateDto, CategoriaUpdateDto } from "@/modules/categoria/application";
+import { CategoriaCreateDto, CategoriaUpdateDto } from "../dtos/categoriaInput.dto";
+import { CategoriaResponseDto } from "../dtos/categoriaOutput.dto";
 
 /**
  * Define el contrato del servicio de la aplicacion para la gestion de las categorías.

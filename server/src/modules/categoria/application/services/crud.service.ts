@@ -1,13 +1,12 @@
-import { 
-  ICategoriaCrudService, 
-  CategoriaResponseDto, 
-  CategoriaCreateDto, 
-  CategoriaUpdateDto, 
-  CategoriaMapper 
-} from "@/modules/categoria/application";
-
-import { CategoriaUpdateDomain, ICategoriaRepository } from "@/modules/categoria/domain";
 import { DatosError, NotFoundError } from "@/shared";
+
+import { CategoriaCreateDto, CategoriaUpdateDto } from "../dtos/categoriaInput.dto";
+import { CategoriaResponseDto } from "../dtos/categoriaOutput.dto";
+
+import ICategoriaCrudService from "../interfaces/crud.interface";
+import CategoriaMapper from "../mappers/categoria.mapper";
+
+import { ICategoriaRepository, CategoriaUpdateDomain } from "../../domain";
 
 /**
  * Clase que encapsula la logica de negocio para operaciones CRUD.

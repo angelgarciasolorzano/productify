@@ -1,4 +1,4 @@
-import { CategoriaResponseDto } from "@/modules/categoria/application";
+import { CategoriaResponseDto } from "../dtos/categoriaOutput.dto";
 
 /**
  * Define el contrato del servicio de la aplicacion para la busqueda de categorias.
