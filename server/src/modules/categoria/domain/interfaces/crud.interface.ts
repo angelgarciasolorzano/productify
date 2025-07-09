@@ -1,4 +1,4 @@
-import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@/modules/categoria/domain";
+import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "../categoria";
 
 /**
  * Define el contrato para realizar operaciones CRUD sobre la tabla categorias.
