@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
-import { CategoriaModel } from "@/modules/categoria/infrastructure";
-import { UsuarioModel } from "@/modules/usuario/infrastructure";
+import { CategoriaSequelize } from "@/modules/categoria/infrastructure";
+import { UsuarioSequelize } from "@/modules/usuario/infrastructure";
 
 /**
  * Inicializa los modelos de Sequelize con la instancia de la configuración de Sequelize.
@@ -9,8 +9,8 @@ import { UsuarioModel } from "@/modules/usuario/infrastructure";
  * @param {Sequelize} sequelize Instancia de Sequelize
 */
 const initializeModel = (sequelize: Sequelize): void => {
-  CategoriaModel.initialize(sequelize);
-  UsuarioModel.initialize(sequelize);
+  CategoriaSequelize.initialize(sequelize);
+  UsuarioSequelize.initialize(sequelize);
 };
 
 export default initializeModel;

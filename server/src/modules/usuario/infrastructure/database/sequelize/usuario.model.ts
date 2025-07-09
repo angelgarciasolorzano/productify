@@ -1,16 +1,16 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
-import { IUsuarioDb, IUsuarioCreationDb } from "@/modules/usuario/infrastructure";
+import { IUsuarioDb, IUsuarioCreationDb } from "../interface/usuarioDb.interface";
 
 /**
  * Modelo sequelize que representa la tabla `usuarios` en la base de datos.
  * 
  * Este modelo define la estructura de la tabla, sus campos y restricciones.
  * 
- * @class UsuarioModel
+ * @class UsuarioSequelize
  * @extends Model
  * @implements IUsuarioDb
 */
-class UsuarioModel extends Model<IUsuarioDb, IUsuarioCreationDb> implements IUsuarioDb {
+class UsuarioSequelize extends Model<IUsuarioDb, IUsuarioCreationDb> implements IUsuarioDb {
   public readonly id_usuario!: number;
   public nombre_usuario!: string;
   public apellidos_usuario!: string;
@@ -32,7 +32,7 @@ class UsuarioModel extends Model<IUsuarioDb, IUsuarioCreationDb> implements IUsu
    * @param sequelize Instancia de sequelize
   */
   public static initialize(sequelize: Sequelize) {
-    UsuarioModel.init({
+    UsuarioSequelize.init({
       id_usuario: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -108,11 +108,11 @@ class UsuarioModel extends Model<IUsuarioDb, IUsuarioCreationDb> implements IUsu
       }
     }, {
       sequelize,
-      modelName: "UsuarioModel",
+      modelName: "Usuario",
       tableName: "usuarios",
       timestamps: true
     });
   };
 };
 
-export default UsuarioModel;
+export default UsuarioSequelize;
