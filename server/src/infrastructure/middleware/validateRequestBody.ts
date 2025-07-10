@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { ValidationError } from "yup";
-import { SchemaType, formatYupErrors } from "@/shared";
+import { SchemaType } from "@/shared";
 
 /**
  * Middleware para validar los datos del cuerpo de las solicitudes HTTP.
@@ -13,15 +12,12 @@ import { SchemaType, formatYupErrors } from "@/shared";
  * router.post("/categoria", validateRequestBody(categoriaSchema), controlador);
 */
 const validateRequestBody = <T extends object>(schema: SchemaType<T>) => 
-  async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+  async (request: Request, _response: Response, next: NextFunction): Promise<void> => {
     try {
       await schema.validate(request.body, { abortEarly: false, stripUnknown: true });
       next();
     } catch (error) {
-      const errores = error as ValidationError;
-      const formato = formatYupErrors(errores);
-
-      response.status(400).json({ errors: formato });
+      next(error);
     }
   };
   

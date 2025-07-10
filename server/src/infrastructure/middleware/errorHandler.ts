@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { AppError } from "@/shared";
+import { ValidationError } from "yup";
+import { AppError, formatYupErrors } from "@/shared";
 
 /**
  * Middleware de manejo de errores global para Express.
@@ -20,6 +21,15 @@ const errorHandler = (error: unknown, _request: Request, response: Response, _ne
       message: error.message,
       errorType: error.name
     });
+
+    return;
+  };
+
+  // 2. Manejar errores de validación de esquemas de yup
+  // 
+  if (error instanceof ValidationError) {
+    const formattedErrors = formatYupErrors(error);
+    response.status(400).json({ errors: formattedErrors });
 
     return;
   };
