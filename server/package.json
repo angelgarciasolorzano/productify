@@ -9,7 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "_moduleAliases": {
-    "@": "src"
+    "@": "src",
+    "@categoria": "src/modules/categoria",
+    "@usuario": "src/modules/usuario"
   },
   "keywords": [],
   "author": "",
