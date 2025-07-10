@@ -1,10 +1,11 @@
 import { Router } from "express";
-
 import { validateRequestBody } from "@/infrastructure";
 
-import ICategoriaController from "../controller/controller.interface";
-import CategoriaCreateSchema from "../schemas/categoriaCreate.schema";
-import CategoriaUpdateSchema from "../schemas/categoriaUpdate.schema";
+import { 
+  ICategoriaController,
+  CategoriaCreateSchema,
+  CategoriaUpdateSchema
+} from "@categoria/presentation";
 
 /**
  * Construye un router de express con las rutas relacionadas a la API de Categoria.
