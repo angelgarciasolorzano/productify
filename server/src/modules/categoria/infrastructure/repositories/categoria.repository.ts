@@ -5,7 +5,7 @@ import {
   ICategoriaRepository,
   ICategoriaFinderRepository,
   ICategoriaCrudRepository
-} from "../../domain";
+} from "@categoria/domain";
 
 /**
  * Implementacion concreta del repositorio de la tabla categorias que actua como fachada para las

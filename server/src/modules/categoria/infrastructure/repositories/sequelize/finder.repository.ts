@@ -1,9 +1,6 @@
 import { ServerError } from "@/shared";
-
-import { Categoria, ICategoriaFinderRepository } from "../../../domain";
-
-import CategoriaSequelize from "../../database/sequelize/categoria.model";
-import CategoriaPersistenceMapper from "../../mappers/categoriaPersis.mapper";
+import { Categoria, ICategoriaFinderRepository } from "@categoria/domain";
+import { CategoriaSequelize, CategoriaPersistenceMapper } from "@categoria/infrastructure";
 
 /**
  * Esta clase encapsula la logica de acceso a datos para realizar operaciones de consulta y busqueda

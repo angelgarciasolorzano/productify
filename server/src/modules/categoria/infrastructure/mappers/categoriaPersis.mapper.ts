@@ -1,5 +1,5 @@
-import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "../../domain";
-import { ICategoriaDb, ICategoriaCreationDb } from "../database/interface/categoriaDb.interface";
+import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@categoria/domain";
+import { ICategoriaDb, ICategoriaCreationDb } from "@categoria/infrastructure";
 
 /**
  * Clase que mapea los objetos de dominio a los objetos de modelo y viceversa.

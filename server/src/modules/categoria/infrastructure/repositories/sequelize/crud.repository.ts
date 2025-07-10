@@ -5,10 +5,9 @@ import {
   Categoria, 
   CategoriaCreateDomain, 
   CategoriaUpdateDomain 
-} from "../../../domain";
+} from "@categoria/domain";
 
-import CategoriaSequelize from "../../database/sequelize/categoria.model";
-import CategoriaPersistenceMapper from "../../mappers/categoriaPersis.mapper";
+import { CategoriaSequelize, CategoriaPersistenceMapper } from "@categoria/infrastructure";
 
 /**
  * Esta clase encapsula la logica de acceso a datos para realizar operaciones CRUD

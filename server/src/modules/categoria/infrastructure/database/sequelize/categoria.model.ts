@@ -1,5 +1,5 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
-import { ICategoriaDb, ICategoriaCreationDb } from "../interface/categoriaDb.interface";
+import { ICategoriaDb, ICategoriaCreationDb } from "@categoria/infrastructure";
 
 /**
  * Modelo sequelize que representa la tabla `categorias` en la base de datos.
