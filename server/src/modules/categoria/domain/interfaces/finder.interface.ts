@@ -1,4 +1,4 @@
-import { Categoria } from "../categoria"
+import { Categoria } from "@categoria/domain";
 
 /**
  * Define el contrato para realizar operaciones de consulta sobre la tabla categorias.

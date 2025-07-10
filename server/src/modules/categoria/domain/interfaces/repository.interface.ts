@@ -1,5 +1,4 @@
-import ICategoriaCrudRepository from "./crud.interface";
-import ICategoriaFinderRepository from "./finder.interface";
+import { ICategoriaCrudRepository, ICategoriaFinderRepository } from "@categoria/domain";
 
 /**
  * Define el contrato general para operaciones relacionadas con la tabla categorias.
