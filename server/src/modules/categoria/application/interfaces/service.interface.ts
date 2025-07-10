@@ -1,5 +1,4 @@
-import ICategoriaFinderService from "./finder.interface";
-import ICategoriaCrudService from "./crud.interface";
+import { ICategoriaFinderService, ICategoriaCrudService } from "@categoria/application";
 
 /**
  * Define el contrato general del servicio de la aplicacion para la gestion de categorias.

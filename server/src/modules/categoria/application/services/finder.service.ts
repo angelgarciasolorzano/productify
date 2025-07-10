@@ -1,11 +1,12 @@
 import { NotFoundError } from "@/shared";
 
-import { CategoriaResponseDto } from "../dtos/categoriaOutput.dto";
+import {
+  ICategoriaFinderService,
+  CategoriaResponseDto,
+  CategoriaMapper
+} from "@categoria/application";
 
-import ICategoriaFinderService from "../interfaces/finder.interface";
-import CategoriaMapper from "../mappers/categoria.mapper";
-
-import { ICategoriaRepository } from "../../domain";
+import { ICategoriaRepository } from "@categoria/domain";
 
 /**
  * Clase que encapsula la logica de negocio para operaciones de busqueda.

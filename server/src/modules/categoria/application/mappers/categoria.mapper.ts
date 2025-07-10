@@ -1,7 +1,5 @@
-import { CategoriaCreateDto, CategoriaUpdateDto } from "../dtos/categoriaInput.dto";
-import { CategoriaResponseDto } from "../dtos/categoriaOutput.dto";
-
-import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "../../domain";
+import { CategoriaCreateDto, CategoriaUpdateDto, CategoriaResponseDto } from "@categoria/application";
+import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@categoria/domain";
 
 /**
  * Clase encargada de mapear los objetos de dominio a objetos DTO y viceversa en la capa de la aplicacion.
