@@ -1,15 +1,13 @@
-import createApp from "../app/app";
-import loadEnv from "../env/loadEnv";
-
+import { createApp, loadEnv } from "@/core";
 import { connectionDatabase } from "@/infrastructure";
 
 const serverStart = async (): Promise<void> => {
-  const app = createApp();
-
   try {
     loadEnv();
 
     await connectionDatabase();
+
+    const app = createApp();
 
     app.listen(process.env.SERVER_PORT, () => {
       console.log(`Servidor corriendo en el puerto ${process.env.SERVER_PORT}`);

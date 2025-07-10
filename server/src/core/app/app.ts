@@ -2,9 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-import customCorsOptions from "../config/cors";
-import mainRouter from "../routes/main.routes";
-
+import { customCorsOptions, mainRouter } from "@/core";
 import { errorHandler } from "@/infrastructure";
 
 const createApp = () => {
