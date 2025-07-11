@@ -15,23 +15,17 @@ import { AppError, ServerError, formatYupErrors } from "@/shared";
 */
 const errorHandler = (error: unknown, _request: Request, response: Response, _next: NextFunction): void => {
   if (error instanceof AppError) {
-    if (error instanceof ServerError) {
-      response.status(error.statusCode).json({
-        success: false,
-        error: {
-          code: error.name,
-          message: "Ha ocurrido un error interno del servidor. Por favor, intente nuevamente más tarde."
-        }
-      });
-    } else {
-      response.status(error.statusCode).json({
-        success: false,
-        error: {
-          code: error.name,
-          message: error.message
-        }
-      });
-    };
+    const message = error instanceof ServerError 
+      ? "Ha ocurrido un error interno del servidor. Por favor, intente nuevamente más tarde." 
+    : error.message;
+  
+    response.status(error.statusCode).json({
+      success: false,
+      error: {
+        code: error.name,
+        message
+      }
+    });
 
     return;
   };
