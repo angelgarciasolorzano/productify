@@ -1,19 +1,28 @@
 import { ValidationError } from "yup";
 
+interface FieldError {
+  field: string;
+  message: string;
+};
+
 /**
- * Convierte un error de validacion de yup en un objeto plano con los campos y mensajes de error.
- * 
+ * Formatea los errores de validación de yup en un arreglo de objetos devolviendo
+ * solor el primer error por cada campo.
+ *
  * @param {ValidationError} errores Error de validacion de yup
- * @returns Objeto con clave-valor donde la clave es el campo y el valor es el mensaje de error.
+ * @returns {FieldError[]} Arreglo de objetos con los campos y mensajes de error
 */
-const formatYupErrors = (errores: ValidationError): { [key: string]: string } => {
-  const errorFormat: { [key: string]: string } = {};
+const formatYupErrors = (errores: ValidationError): FieldError[] => {
+  const uniqueErrors: Record<string, string> = {};
 
   errores.inner.forEach((error) => {
-    if (error.path) errorFormat[error.path] = error.message;
+    if (error.path) uniqueErrors[error.path] = error.message;
   });
 
-  return errorFormat;
+  return Object.entries(uniqueErrors).map(([field, message]) => ({
+    field,
+    message
+  }));
 };
 
 export default formatYupErrors;
