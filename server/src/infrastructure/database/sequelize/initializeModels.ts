@@ -8,9 +8,7 @@ import { UsuarioSequelize } from "@/modules/usuario/infrastructure";
  * 
  * @param {Sequelize} sequelize Instancia de Sequelize
 */
-const initializeModel = (sequelize: Sequelize): void => {
+export const initializeModels = (sequelize: Sequelize): void => {
   CategoriaSequelize.initialize(sequelize);
   UsuarioSequelize.initialize(sequelize);
 };
-
-export default initializeModel;

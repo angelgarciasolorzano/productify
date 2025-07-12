@@ -12,9 +12,11 @@ import { formatErrorResponse } from "@/shared";
  * @param {NextFunction} _next Objeto de la siguiente función (no se usa en este caso)
  * @returns {void} No devuelve nada directamente, sino que envia una respuesta al cliente
 */
-const errorHandler = (error: unknown, _request: Request, response: Response, _next: NextFunction): void => {
+export const errorHandler = (
+  error: unknown, 
+  _request: Request, 
+  response: Response, _next: NextFunction
+): void => {
   const { statusCode, body } = formatErrorResponse(error);
   response.status(statusCode).json(body);
 };
-
-export default errorHandler;

@@ -6,10 +6,8 @@ if (!DB_DATABASE || !DB_USUARIO || !DB_PASSWORD || !SERVER_HOST) {
   throw new Error("Faltan datos para la conexion a la base de datos");
 };
 
-const sequelize = new Sequelize(DB_DATABASE, DB_USUARIO, DB_PASSWORD, {
+export const sequelize = new Sequelize(DB_DATABASE, DB_USUARIO, DB_PASSWORD, {
   host: SERVER_HOST,
   dialect: 'mysql',
   logging: console.log,
 });
-
-export default sequelize;

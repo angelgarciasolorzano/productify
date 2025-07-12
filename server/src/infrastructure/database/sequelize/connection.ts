@@ -1,8 +1,8 @@
-import { sequelize, setupModels } from "@/infrastructure";
+import { sequelize, initializeModels } from "@/infrastructure";
 
-const connectionDatabase = async (): Promise<void> => {
+export const connectionDatabase = async (): Promise<void> => {
   try {
-    setupModels(sequelize);
+    initializeModels(sequelize);
 
     await sequelize.authenticate();
     await sequelize.sync();
@@ -13,5 +13,3 @@ const connectionDatabase = async (): Promise<void> => {
     process.exit(1);
   };
 };
-
-export default connectionDatabase;
