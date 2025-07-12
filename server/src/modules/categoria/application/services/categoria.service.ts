@@ -1,4 +1,4 @@
-import { DatosError } from "@/shared";
+import { ValidationError } from "@/shared";
 
 import { 
   ICategoriaService,
@@ -36,11 +36,11 @@ export class CategoriaService implements ICategoriaService {
    * 
    * @param {number} id El id de la categoria
    * @returns {void} No devuelve nada
-   * @throws {DatosError} Si el id de la categoria no es valido
+   * @throws {ValidationError} Si el id de la categoria no es valido
   */
   private validateCategoriaId(id: number): void {
     if (!id || id < 1 || isNaN(id)) {
-      throw new DatosError("El id de la categoria no es valido");
+      throw new ValidationError("El id de la categoria no es valido");
     };
   };
 

@@ -1,4 +1,4 @@
-import { DatosError, NotFoundError } from "@/shared";
+import { ValidationError, ConflictError, NotFoundError } from "@/shared";
 
 import {
   ICategoriaCrudService,
@@ -39,7 +39,7 @@ export class CategoriaCrudService implements ICategoriaCrudService {
   public async createCategoria(data: CategoriaCreateDto): Promise<CategoriaResponseDto> {
     const categoriaExists = await this.categoriaRepository.getCategoriaNombre(data.nombreCategoria);
 
-    if (categoriaExists) throw new DatosError("La categoria ya existe");
+    if (categoriaExists) throw new ConflictError("La categoria ya existe");
 
     const newCategoria = CategoriaMapper.fromCreateDtoToDomain(data);
 
@@ -62,7 +62,7 @@ export class CategoriaCrudService implements ICategoriaCrudService {
       return updatedCategoria[typedKey] === categoriaExiste[typedKey];
     });
     
-    if (hasNoChanges) throw new DatosError("No hay cambios en los datos proporcionados");
+    if (hasNoChanges) throw new ValidationError("No hay cambios en los datos proporcionados");
     
     const savedCategoria = await this.categoriaRepository.updateCategoria(
       id, updatedCategoria
