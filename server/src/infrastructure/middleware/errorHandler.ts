@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { formatErrorResponse } from "@/shared";
+import { formatResponseError } from "@/shared";
 
 /**
  * Middleware de manejo de errores global para Express.
@@ -17,6 +17,6 @@ export const errorHandler = (
   _request: Request, 
   response: Response, _next: NextFunction
 ): void => {
-  const { statusCode, body } = formatErrorResponse(error);
+  const { statusCode, body } = formatResponseError(error);
   response.status(statusCode).json(body);
 };

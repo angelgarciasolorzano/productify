@@ -1,11 +1,14 @@
+import { CodeError, HttpStatusCode } from "@/shared";
+
 /**
  * Define las propiedades requeridas de un error personalizado.
  * 
  * @interface AppErrorAttributes
 */
 interface AppErrorAttributes {
+  type: CodeError;
   message: string;
-  statusCode: number;
+  statusCode: HttpStatusCode;
 };
 
 /**
@@ -17,17 +20,18 @@ interface AppErrorAttributes {
 */
 class AppError extends Error implements AppErrorAttributes {
   public statusCode: number;
+  public type: CodeError;
 
   /**
    * Crea una nueva instancia de AppError
    * 
-   * @param {string} name Nombre del error personalizado
-   * @param {number} statusCode Codigo de estado del error personalizado
+   * @param {CodeError} type Tipo del error
+   * @param {HttpStatusCode} statusCode Codigo de estado del error personalizado
    * @param {string} message Mensaje del error personalizado
   */
-  constructor(name: string, statusCode: number, message: string) {
+  constructor(type: CodeError, statusCode: HttpStatusCode, message: string) {
     super(message);
-    this.name = name;
+    this.type = type;
     this.statusCode = statusCode;
   }
 };
@@ -44,7 +48,7 @@ class DatosError extends AppError {
    * @param {string} message Mensaje del error (por defecto `Error de validación de datos`)
   */
   constructor(message: string = "Error de validación de datos") {
-    super("DatosError", 400, message);
+    super(CodeError.DATOS_ERROR, HttpStatusCode.BAD_REQUEST, message);
   }
 };
 
@@ -59,7 +63,7 @@ class NotFoundError extends AppError {
    * @param {string} message Mensaje del error (por defecto `No se encontro el recurso solicitado`)
   */
   constructor(message: string = "No se encontro el recurso solicitado") {
-    super("NotFoundError", 404, message);
+    super(CodeError.NOT_FOUND_ERROR, HttpStatusCode.NOT_FOUND, message);
   }
 };
 
@@ -74,7 +78,7 @@ class ServerError extends AppError {
    * @param {string} message Mensaje del error (por defecto `Error interno del servidor`)
   */
   constructor(message: string = "Error interno del servidor") {
-    super("ServerError", 500, message);
+    super(CodeError.INTERNAL_SERVER_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR, message);
   }
 };
 

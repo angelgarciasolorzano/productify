@@ -1,3 +1,5 @@
+export * from "./constants/httpStatusCode";
+
 export * from "./errors/errors";
 export * from "./errors/codeError";
 export * from "./errors/getMessageError";

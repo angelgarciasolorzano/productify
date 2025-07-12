@@ -1,15 +1,15 @@
-import { AppError, formatYupErrors, getMessageError, CodeError } from "@/shared";
+import { AppError, formatYupErrors, getMessageError, CodeError, HttpStatusCode } from "@/shared";
 import { ValidationError } from "yup";
 
 /**
  * Define la estructura de un objeto de respuesta de error HTTP.
 */
 type ErrorResponse = {
-  statusCode: number;
+  statusCode: HttpStatusCode;
   body: {
     success: false;
     error: {
-      code: string;
+      code: CodeError;
       message: string;
       details?: { field: string; message: string }[];
     };
@@ -35,7 +35,7 @@ export function formatResponseError(error: unknown): ErrorResponse {
       body: {
         success: false,
         error: {
-          code: error.name,
+          code: error.type,
           message: messageError
         }
       }
@@ -44,7 +44,7 @@ export function formatResponseError(error: unknown): ErrorResponse {
 
   if (error instanceof ValidationError) {
     return {
-      statusCode: 400,
+      statusCode: HttpStatusCode.BAD_REQUEST,
       body: {
         success: false,
         error: {
@@ -57,7 +57,7 @@ export function formatResponseError(error: unknown): ErrorResponse {
   };
 
   return {
-    statusCode: 500,
+    statusCode: HttpStatusCode.INTERNAL_SERVER_ERROR,
     body: {
       success: false,
       error: {
