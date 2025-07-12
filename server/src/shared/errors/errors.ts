@@ -1,4 +1,4 @@
-import { CodeError, HttpStatusCode } from "@/shared";
+import { CodeError, FieldError, HttpStatusCode } from "@/shared";
 
 /**
  * Define las propiedades requeridas de un error personalizado.
@@ -6,7 +6,7 @@ import { CodeError, HttpStatusCode } from "@/shared";
  * @interface AppErrorAttributes
 */
 interface AppErrorAttributes {
-  type: CodeError;
+  code: CodeError;
   message: string;
   statusCode: HttpStatusCode;
 };
@@ -20,18 +20,18 @@ interface AppErrorAttributes {
 */
 class AppError extends Error implements AppErrorAttributes {
   public statusCode: number;
-  public type: CodeError;
+  public code: CodeError;
 
   /**
    * Crea una nueva instancia de AppError
    * 
-   * @param {CodeError} type Tipo del error
+   * @param {CodeError} code Codigo del error
    * @param {HttpStatusCode} statusCode Codigo de estado del error
    * @param {string} message Mensaje del error
   */
-  constructor(type: CodeError, statusCode: HttpStatusCode, message: string) {
+  constructor(code: CodeError, statusCode: HttpStatusCode, message: string) {
     super(message);
-    this.type = type;
+    this.code = code;
     this.statusCode = statusCode;
   }
 };
@@ -43,11 +43,15 @@ class AppError extends Error implements AppErrorAttributes {
  * @extends AppError
 */
 class ValidationError extends AppError {
+  public details?: FieldError[];
+
   /**
    * @param {string} message Mensaje del error (por defecto `Error de validación de datos`)
+   * @param {FieldError[]} details Detalles del error (opcional)
   */
-  constructor(message: string = "Error de validación de datos") {
+  constructor(message: string = "Error de validación de datos", details?: FieldError[]) {
     super(CodeError.VALIDATION_ERROR, HttpStatusCode.BAD_REQUEST, message);
+    this.details = details;
   }
 };
 

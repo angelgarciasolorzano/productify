@@ -24,7 +24,7 @@ export function formatResponseError(error: unknown): ErrorResponse {
   const messageError = getMessageError(error);
 
   if (error instanceof AppError) {
-    return createResponseError(error.statusCode, error.type, messageError);
+    return createResponseError(error.statusCode, error.code, messageError);
   };
 
   if (error instanceof ValidationError) {
