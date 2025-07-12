@@ -1,7 +1,7 @@
 import { createApp, loadEnv } from "@/core";
 import { connectionDatabase } from "@/infrastructure";
 
-const serverStart = async (): Promise<void> => {
+export const serverStart = async (): Promise<void> => {
   try {
     loadEnv();
 
@@ -17,5 +17,3 @@ const serverStart = async (): Promise<void> => {
     process.exit(1);
   }
 };
-
-export default serverStart;

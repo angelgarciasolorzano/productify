@@ -1,6 +1,6 @@
 import { EnvSchema } from "@/core";
 
-const loadEnv = (): void => {
+export const loadEnv = (): void => {
   try {
     EnvSchema.validateSync(process.env, { abortEarly: false });
     console.log("Variables de entorno cargadas correctamente");
@@ -9,5 +9,3 @@ const loadEnv = (): void => {
     process.exit(1);
   }
 };
-
-export default loadEnv;

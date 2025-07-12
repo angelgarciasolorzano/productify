@@ -5,7 +5,7 @@ import morgan from "morgan";
 import { customCorsOptions, mainRouter } from "@/core";
 import { errorHandler } from "@/infrastructure";
 
-const createApp = () => {
+export const createApp = () => {
   const app = express();
 
   app.use(cors(customCorsOptions));
@@ -18,5 +18,3 @@ const createApp = () => {
 
   return app;
 };
-
-export default createApp;
