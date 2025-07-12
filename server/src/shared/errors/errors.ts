@@ -26,8 +26,8 @@ class AppError extends Error implements AppErrorAttributes {
    * Crea una nueva instancia de AppError
    * 
    * @param {CodeError} type Tipo del error
-   * @param {HttpStatusCode} statusCode Codigo de estado del error personalizado
-   * @param {string} message Mensaje del error personalizado
+   * @param {HttpStatusCode} statusCode Codigo de estado del error
+   * @param {string} message Mensaje del error
   */
   constructor(type: CodeError, statusCode: HttpStatusCode, message: string) {
     super(message);
@@ -39,16 +39,30 @@ class AppError extends Error implements AppErrorAttributes {
 /**
  * Error utilizado para representar errores de validación de datos.
  * 
- * @class DatosError
+ * @class ValidationError
  * @extends AppError
 */
-class DatosError extends AppError {
+class ValidationError extends AppError {
   /**
-   * 
    * @param {string} message Mensaje del error (por defecto `Error de validación de datos`)
   */
   constructor(message: string = "Error de validación de datos") {
-    super(CodeError.DATOS_ERROR, HttpStatusCode.BAD_REQUEST, message);
+    super(CodeError.VALIDATION_ERROR, HttpStatusCode.BAD_REQUEST, message);
+  }
+};
+
+/**
+ * Error utilizado cuando ya se encuentra un recurso con el mismo identificador.
+ *
+ * @class ConflictError
+ * @extends AppError
+*/
+class ConflictError extends AppError {
+  /**
+   * @param {string} message Mensaje del error (por defecto `El recurso ya existe`)
+  */
+  constructor(message: string = "El recurso ya existe") {
+    super(CodeError.CONFLICT_ERROR, HttpStatusCode.CONFLICT, message);
   }
 };
 
@@ -82,4 +96,4 @@ class ServerError extends AppError {
   }
 };
 
-export { AppError, DatosError, NotFoundError, ServerError };
+export { AppError, ValidationError, ConflictError, NotFoundError, ServerError };
