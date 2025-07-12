@@ -1,20 +1,14 @@
-import { AppError, formatYupErrors, getMessageError, CodeError, HttpStatusCode } from "@/shared";
 import { ValidationError } from "yup";
 
-/**
- * Define la estructura de un objeto de respuesta de error HTTP.
-*/
-type ErrorResponse = {
-  statusCode: HttpStatusCode;
-  body: {
-    success: false;
-    error: {
-      code: CodeError;
-      message: string;
-      details?: { field: string; message: string }[];
-    };
-  };
-};
+import {
+  AppError, 
+  formatYupErrors, 
+  getMessageError, 
+  CodeError, 
+  HttpStatusCode, 
+  createResponseError, 
+  ErrorResponse 
+} from "@/shared";
 
 /**
  * Convierte un error capturado en un formato de respuesta HTTP estándar para la API.
@@ -30,40 +24,21 @@ export function formatResponseError(error: unknown): ErrorResponse {
   const messageError = getMessageError(error);
 
   if (error instanceof AppError) {
-    return {
-      statusCode: error.statusCode,
-      body: {
-        success: false,
-        error: {
-          code: error.type,
-          message: messageError
-        }
-      }
-    }
+    return createResponseError(error.statusCode, error.type, messageError);
   };
 
   if (error instanceof ValidationError) {
-    return {
-      statusCode: HttpStatusCode.BAD_REQUEST,
-      body: {
-        success: false,
-        error: {
-          code: CodeError.VALIDATION_ERROR,
-          message: messageError,
-          details: formatYupErrors(error)
-        }
-      }
-    }
+    return createResponseError(
+      HttpStatusCode.BAD_REQUEST, 
+      CodeError.VALIDATION_ERROR, 
+      messageError, 
+      formatYupErrors(error)
+    )
   };
 
-  return {
-    statusCode: HttpStatusCode.INTERNAL_SERVER_ERROR,
-    body: {
-      success: false,
-      error: {
-        code: CodeError.INTERNAL_SERVER_ERROR,
-        message: messageError
-      }
-    }
-  };
+  return createResponseError(
+    HttpStatusCode.INTERNAL_SERVER_ERROR, 
+    CodeError.INTERNAL_SERVER_ERROR, 
+    messageError
+  );
 };
