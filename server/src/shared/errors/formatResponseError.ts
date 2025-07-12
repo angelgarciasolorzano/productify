@@ -1,4 +1,4 @@
-import { AppError, formatYupErrors, getErrorMessage, ErrorCode } from "@/shared";
+import { AppError, formatYupErrors, getMessageError, CodeError } from "@/shared";
 import { ValidationError } from "yup";
 
 /**
@@ -26,8 +26,8 @@ type ErrorResponse = {
  * @param {unknown} error El objeto de error capturado.
  * @returns {ErrorResponse} Un objeto que representa la respuesta de error HTTP.
 */
-export function formatErrorResponse(error: unknown): ErrorResponse {
-  const messageError = getErrorMessage(error);
+export function formatResponseError(error: unknown): ErrorResponse {
+  const messageError = getMessageError(error);
 
   if (error instanceof AppError) {
     return {
@@ -48,7 +48,7 @@ export function formatErrorResponse(error: unknown): ErrorResponse {
       body: {
         success: false,
         error: {
-          code: ErrorCode.VALIDATION_ERROR,
+          code: CodeError.VALIDATION_ERROR,
           message: messageError,
           details: formatYupErrors(error)
         }
@@ -61,7 +61,7 @@ export function formatErrorResponse(error: unknown): ErrorResponse {
     body: {
       success: false,
       error: {
-        code: ErrorCode.INTERNAL_SERVER_ERROR,
+        code: CodeError.INTERNAL_SERVER_ERROR,
         message: messageError
       }
     }

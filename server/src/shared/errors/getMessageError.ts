@@ -11,7 +11,7 @@ import { ValidationError } from "yup";
  * @param {unknown} error El objeto de error capturado.
  * @returns {string} Mensaje de error dependiendo del tipo de error capturado.
 */
-export function getErrorMessage(error: unknown): string {
+export function getMessageError(error: unknown): string {
   if (error instanceof AppError) {
     return error instanceof ServerError
       ? "Ha ocurrido un error interno del servidor. Por favor, intente nuevamente más tarde."

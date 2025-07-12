@@ -1,7 +1,7 @@
 /**
  * Enumeracion de codigos estandar de error para respuestas de la API.
 */
-export enum ErrorCode {
+export enum CodeError {
   VALIDATION_ERROR = "VALIDATION_ERROR",
   NOT_FOUND_ERROR = "NOT_FOUND_ERROR",
   DATOS_ERROR = "DATOS_ERROR",
