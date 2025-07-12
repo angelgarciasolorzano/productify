@@ -3,8 +3,8 @@ import { ObjectSchema } from "yup";
 /**
  * Tipo utilitario que representa un esquema de validacion yup basado en un objeto.
  * 
- * @template T Tipo de objeto que representa el esquema
  * @type SchemaType
+ * @template T Tipo de objeto que representa el esquema
  * @example
  * interface Categoria {
  *   id: number;
@@ -20,6 +20,4 @@ import { ObjectSchema } from "yup";
  *   estado: boolean().required(),
  * });
 */
-type SchemaType<T extends object> = ObjectSchema<T>;
-
-export default SchemaType;
+export type SchemaType<T extends object> = ObjectSchema<T>;

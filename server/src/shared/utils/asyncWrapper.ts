@@ -8,9 +8,9 @@ import { NextFunction, Request, Response } from "express";
  * Permite el uso de tipos personalizados para las peticiones (Request), respuestas (Response) y
  * callback (NextFunction) mediante parametros genéricos.
  *
- * @template Req - Tipo de la petición (Request) por defecto
- * @template Res - Tipo de la respuesta (Response) por defecto
- * @template Next - Tipo de la función de callback (NextFunction) por defecto
+ * @template Req Tipo de la petición (Request) por defecto
+ * @template Res Tipo de la respuesta (Response) por defecto
+ * @template Next Tipo de la función de callback (NextFunction) por defecto
  * 
  * @param fn Función `async` del controlador que se va a envolver
  * @returns Funcion compatible con express que maneja las excepciones asíncronas
@@ -21,7 +21,7 @@ import { NextFunction, Request, Response } from "express";
  *   res.json(categorias);
  * }));
 */
-const asyncWrapper = <
+export const asyncWrapper = <
   Req extends Request = Request, 
   Res extends Response = Response, 
   Next extends NextFunction = NextFunction
@@ -32,5 +32,3 @@ const asyncWrapper = <
     fn(request, response, next).catch(next);
   };
 };
-
-export default asyncWrapper;

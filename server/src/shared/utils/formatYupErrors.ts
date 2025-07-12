@@ -1,5 +1,12 @@
 import { ValidationError } from "yup";
 
+/**
+ * Define la estructura de un objeto que representa un error de validación de un campo.
+ * 
+ * @interface FieldError
+ * @property field: Nombre del campo que contiene el error.
+ * @property message: Mensaje de error asociado al campo.
+*/
 interface FieldError {
   field: string;
   message: string;
@@ -7,12 +14,12 @@ interface FieldError {
 
 /**
  * Formatea los errores de validación de yup en un arreglo de objetos devolviendo
- * solor el primer error por cada campo.
+ * solo el primer error por cada campo.
  *
  * @param {ValidationError} errores Error de validacion de yup
  * @returns {FieldError[]} Arreglo de objetos con los campos y mensajes de error
 */
-const formatYupErrors = (errores: ValidationError): FieldError[] => {
+export const formatYupErrors = (errores: ValidationError): FieldError[] => {
   const uniqueErrors: Record<string, string> = {};
 
   errores.inner.forEach((error) => {
@@ -24,5 +31,3 @@ const formatYupErrors = (errores: ValidationError): FieldError[] => {
     message
   }));
 };
-
-export default formatYupErrors;

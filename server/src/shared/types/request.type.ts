@@ -76,9 +76,4 @@ type PublicRequest<
   TParams extends ParamsDictionary = ParamsDictionary
 > = TypedRequest<undefined, undefined, TParams>;
 
-export {
-  TypedRequest,
-  AuthenticatedRequest,
-  PublicRequestWithBody,
-  PublicRequest
-};
+export { AuthenticatedRequest, PublicRequestWithBody, PublicRequest };
