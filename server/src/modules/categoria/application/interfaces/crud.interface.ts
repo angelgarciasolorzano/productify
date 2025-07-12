@@ -9,7 +9,7 @@ import { CategoriaCreateDto, CategoriaUpdateDto, CategoriaResponseDto } from "@c
  *
  * @interface ICategoriaCrudService
 */
-interface ICategoriaCrudService {
+export interface ICategoriaCrudService {
   /**
    * Recupera una lista de todas las categorías existentes.
    *
@@ -40,5 +40,3 @@ interface ICategoriaCrudService {
   */
   updateCategoria(id: number, data: CategoriaUpdateDto): Promise<CategoriaResponseDto>;
 };
-
-export default ICategoriaCrudService;

@@ -8,7 +8,7 @@ import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@catego
  * 
  * @interface ICategoriaCrudRepository
 */
-interface ICategoriaCrudRepository {
+export interface ICategoriaCrudRepository {
   /**
    * Recupera una lista de todas las categorías existentes.
    *
@@ -36,5 +36,3 @@ interface ICategoriaCrudRepository {
   */
   updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<Categoria | null>;
 };
-
-export default ICategoriaCrudRepository;

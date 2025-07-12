@@ -8,6 +8,4 @@ import { ICategoriaFinderService, ICategoriaCrudService } from "@categoria/appli
  *
  * @interface ICategoriaService
 */
-interface ICategoriaService extends ICategoriaFinderService, ICategoriaCrudService {};
-
-export default ICategoriaService;
+export interface ICategoriaService extends ICategoriaFinderService, ICategoriaCrudService {};

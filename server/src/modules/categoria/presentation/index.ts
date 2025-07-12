@@ -1,7 +1,6 @@
-export { default as ICategoriaController } from "./controller/controller.interface";
-export { default as CategoriaController } from "./controller/categoria.controller";
+export * from "./controller/controller.interface";
+export * from "./controller/categoria.controller";
 
-export { default as CategoriaCreateSchema } from "./schemas/categoriaCreate.schema";
-export { default as CategoriaUpdateSchema } from "./schemas/categoriaUpdate.schema";
-
-export { default as categoriaBuildRouter } from "./routes/categoria.routes";
+export * from "./schemas/categoriaCreate.schema";
+export * from "./schemas/categoriaUpdate.schema";
+export * from "./routes/categoria.routes";

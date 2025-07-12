@@ -18,7 +18,7 @@ import {
  * @see ICategoriaFinderService Para operaciones de consulta/busqueda
  * @see ICategoriaCrudService Para operaciones CRUD basicas
 */
-class CategoriaService implements ICategoriaService {
+export class CategoriaService implements ICategoriaService {
   private finder: ICategoriaFinderService;
   private crud: ICategoriaCrudService;
 
@@ -64,5 +64,3 @@ class CategoriaService implements ICategoriaService {
     return await this.crud.updateCategoria(id, data);
   };
 };
-
-export default CategoriaService;

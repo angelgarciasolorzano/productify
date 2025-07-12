@@ -1,1 +1,1 @@
-export { default as categoriaRouter }  from "./categoria/categoria.module";
+export *  from "./categoria/categoria.module";

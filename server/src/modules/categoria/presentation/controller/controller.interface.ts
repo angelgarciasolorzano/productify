@@ -8,7 +8,7 @@ import { Request, Response, NextFunction } from "express";
  * 
  * @interface ICategoriaController
 */
-interface ICategoriaController {
+export interface ICategoriaController {
   /**
    * Maneja la petición HTTP para obtener una lista de todas las categorías.
    * 
@@ -55,5 +55,3 @@ interface ICategoriaController {
   */
   updateCategoria(request: Request, response: Response, next: NextFunction): void;
 };
-
-export default ICategoriaController;

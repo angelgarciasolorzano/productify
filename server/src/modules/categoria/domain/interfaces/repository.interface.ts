@@ -10,6 +10,4 @@ import { ICategoriaCrudRepository, ICategoriaFinderRepository } from "@categoria
  * @extends ICategoriaFinderRepository
  * @extends ICategoriaCrudRepository
 */
-interface ICategoriaRepository extends ICategoriaFinderRepository, ICategoriaCrudRepository {};
-
-export default ICategoriaRepository;
+export interface ICategoriaRepository extends ICategoriaFinderRepository, ICategoriaCrudRepository {};

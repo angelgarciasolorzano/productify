@@ -1,9 +1,7 @@
 export * from "./database/interface/categoriaDb.interface";
+export * from "./database/sequelize/categoria.model";
+export * from "./mappers/categoriaPersis.mapper";
 
-export { default as CategoriaSequelize } from "./database/sequelize/categoria.model";
-
-export { default as CategoriaPersistenceMapper } from "./mappers/categoriaPersis.mapper";
-
-export { default as CategoriaRepository } from "./repositories/categoria.repository";
-export { default as CategoriaFinderRepositorySequelize } from "./repositories/sequelize/finder.repository";
-export { default as CategoriaCrudRepositorySequelize } from "./repositories/sequelize/crud.repository";
+export * from "./repositories/categoria.repository";
+export * from "./repositories/sequelize/finder.repository";
+export * from "./repositories/sequelize/crud.repository";

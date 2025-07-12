@@ -6,7 +6,7 @@ import { ICategoriaDb, ICategoriaCreationDb } from "@categoria/infrastructure";
  * 
  * @class CategoriaPersistenceMapper
 */
-class CategoriaPersistenceMapper {
+export class CategoriaPersistenceMapper {
   /**
    * Metodo que mapea un objeto de modelo a un objeto de dominio.
    * 
@@ -95,5 +95,3 @@ class CategoriaPersistenceMapper {
     };
   };
 };
-
-export default CategoriaPersistenceMapper;

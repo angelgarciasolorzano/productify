@@ -9,7 +9,7 @@ import { CategoriaResponseDto } from "@categoria/application";
  *
  * @interface ICategoriaFinderService
 */
-interface ICategoriaFinderService {
+export interface ICategoriaFinderService {
   /**
    * Recupera una categoría por su id.
    *
@@ -19,5 +19,3 @@ interface ICategoriaFinderService {
   */
   getCategoriaId(id: number): Promise<CategoriaResponseDto>;
 };
-
-export default ICategoriaFinderService;

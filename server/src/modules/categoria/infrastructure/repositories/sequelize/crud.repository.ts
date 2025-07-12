@@ -62,4 +62,4 @@ class CategoriaCrudRepository implements ICategoriaCrudRepository {
   };
 };
 
-export default CategoriaCrudRepository;
+export { CategoriaCrudRepository as CategoriaCrudRepositorySequelize };

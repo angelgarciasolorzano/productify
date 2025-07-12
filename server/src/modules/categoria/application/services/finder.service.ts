@@ -18,7 +18,7 @@ import { ICategoriaRepository } from "@categoria/domain";
  * @implements ICategoriaFinderService
  * @see ICategoriaRepository Para acceder a los datos
 */
-class CategoriaFinderService implements ICategoriaFinderService {
+export class CategoriaFinderService implements ICategoriaFinderService {
   /**
    * @param {ICategoriaRepository} categoriaRepository Implementacion del repositorio
   */
@@ -32,5 +32,3 @@ class CategoriaFinderService implements ICategoriaFinderService {
     return CategoriaMapper.toResponseDto(categoria);
   };
 };
-
-export default CategoriaFinderService;

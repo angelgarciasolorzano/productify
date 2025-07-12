@@ -1,5 +1,5 @@
 export * from "./categoria";
 
-export { default as ICategoriaRepository } from "./interfaces/repository.interface";
-export { default as ICategoriaFinderRepository } from "./interfaces/finder.interface";
-export { default as ICategoriaCrudRepository } from "./interfaces/crud.interface";
+export * from "./interfaces/repository.interface";
+export * from "./interfaces/finder.interface";
+export * from "./interfaces/crud.interface";

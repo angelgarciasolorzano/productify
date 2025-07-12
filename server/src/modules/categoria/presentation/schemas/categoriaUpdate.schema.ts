@@ -1,6 +1,6 @@
 import { object, string } from "yup";
 
-const CategoriaUpdateSchema = object({
+export const CategoriaUpdateSchema = object({
   nombreCategoria: string()
   .required("El nombre es requerido")
   .min(3, "El nombre debe tener al menos 3 caracteres")
@@ -14,5 +14,3 @@ const CategoriaUpdateSchema = object({
   .required("El estado es requerido")
   .oneOf(["activo", "inactivo"], "El estado debe ser activo o inactivo")
 });
-
-export default CategoriaUpdateSchema;

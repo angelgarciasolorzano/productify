@@ -20,7 +20,7 @@ import { ICategoriaRepository, CategoriaUpdateDomain } from "@categoria/domain";
  * @implements ICategoriaCrudService
  * @see ICategoriaRepository Para acceder a los datos
 */
-class CategoriaCrudService implements ICategoriaCrudService {
+export class CategoriaCrudService implements ICategoriaCrudService {
   /**
    * @param {ICategoriaRepository} categoriaRepository Implementacion del repositorio
   */
@@ -73,5 +73,3 @@ class CategoriaCrudService implements ICategoriaCrudService {
     return CategoriaMapper.toResponseDto(savedCategoria);
   };
 };
-
-export default CategoriaCrudService;

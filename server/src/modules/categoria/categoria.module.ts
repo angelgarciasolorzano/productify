@@ -26,6 +26,6 @@ const categoriaService = new CategoriaService(categoriaFinderService, categoriaC
 
 const categoriaController = new CategoriaController(categoriaService);
 
-const router = categoriaBuildRouter(categoriaController);
+const categoriaRouter = categoriaBuildRouter(categoriaController);
 
-export default router;
+export { categoriaRouter };

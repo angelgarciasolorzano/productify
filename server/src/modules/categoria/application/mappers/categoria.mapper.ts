@@ -9,7 +9,7 @@ import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@catego
  *
  * @class CategoriaMapper
 */
-class CategoriaMapper {
+export class CategoriaMapper {
   /**
    * Transforma un objeto de dominio en un objeto DTO de tipo CategoriaResponseDto.
    *
@@ -75,5 +75,3 @@ class CategoriaMapper {
     };
   };
 };
-
-export default CategoriaMapper;

@@ -7,7 +7,7 @@ import { Categoria } from "@categoria/domain";
  * 
  * @interface ICategoriaFinderRepository
 */
-interface ICategoriaFinderRepository {
+export interface ICategoriaFinderRepository {
   /**
    * Recupera un registro de la tabla Categoria por su id.
    *
@@ -26,5 +26,3 @@ interface ICategoriaFinderRepository {
   */
   getCategoriaNombre(nombre: string): Promise<Categoria | null>;
 };
-
-export default ICategoriaFinderRepository;

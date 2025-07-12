@@ -16,7 +16,7 @@ import {
  * @see ICategoriaFinderRepository Para operaciones de consulta/busqueda
  * @see ICategoriaCrudRepository Para operaciones CRUD basicas
 */
-class CategoriaRepository implements ICategoriaRepository {
+export class CategoriaRepository implements ICategoriaRepository {
   private finder: ICategoriaFinderRepository;
   private crud: ICategoriaCrudRepository;
 
@@ -49,5 +49,3 @@ class CategoriaRepository implements ICategoriaRepository {
     return await this.crud.updateCategoria(id, data);
   };
 };
-
-export default CategoriaRepository;

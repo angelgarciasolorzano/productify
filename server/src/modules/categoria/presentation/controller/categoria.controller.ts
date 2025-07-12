@@ -13,7 +13,7 @@ import { ICategoriaController } from "@categoria/presentation";
  * @implements ICategoriaController
  * @see ICategoriaService Para operaciones de consulta/busqueda y CRUD
 */
-class CategoriaController implements ICategoriaController {
+export class CategoriaController implements ICategoriaController {
   /**
    * @param {ICategoriaService} categoriaService Implementacion del servicio de categorias
   */
@@ -50,5 +50,3 @@ class CategoriaController implements ICategoriaController {
     }
   );
 };
-
-export default CategoriaController;

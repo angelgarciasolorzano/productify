@@ -10,7 +10,7 @@ import { ICategoriaDb, ICategoriaCreationDb } from "@categoria/infrastructure";
  * @extends Model
  * @implements ICategoriaDb
 */
-class CategoriaSequelize extends Model<ICategoriaDb, ICategoriaCreationDb> implements ICategoriaDb {
+export class CategoriaSequelize extends Model<ICategoriaDb, ICategoriaCreationDb> implements ICategoriaDb {
 
   public readonly id_categoria!: number;
   public nombre_categoria!: string;
@@ -67,5 +67,3 @@ class CategoriaSequelize extends Model<ICategoriaDb, ICategoriaCreationDb> imple
     });
   };
 };
-
-export default CategoriaSequelize;

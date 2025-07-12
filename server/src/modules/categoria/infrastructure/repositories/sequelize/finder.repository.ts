@@ -37,4 +37,4 @@ class CategoriaFinderRepository implements ICategoriaFinderRepository {
   };
 };
 
-export default CategoriaFinderRepository;
+export { CategoriaFinderRepository as CategoriaFinderRepositorySequelize };
