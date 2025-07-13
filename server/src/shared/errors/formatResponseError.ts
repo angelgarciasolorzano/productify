@@ -1,44 +1,87 @@
-import { ValidationError } from "yup";
+import { ValidationError as ValidationErrorYup } from "yup";
 
 import {
-  AppError, 
+  AppError,
+  ServerError,
   formatYupErrors, 
-  getMessageError, 
   CodeError, 
   HttpStatusCode, 
-  createResponseError, 
-  ErrorResponse 
+  FieldError
 } from "@/shared";
 
 /**
- * Convierte un error capturado en un formato de respuesta HTTP estándar para la API.
+ * Contrato que define la estructura base de una respuesta de error.
+*/
+type IBaseResponseError = {
+  statusCode: HttpStatusCode;
+  body: {
+    success: false;
+    error: {
+      code: CodeError;
+      message: string;
+      details?: FieldError[];
+    };
+  };
+};
+
+/**
+ * Construye la estructura base de una respuesta de error.
  * 
- * Esta función evalúa el tipo de error (AppError, ValidationError de Yup o errores inesperados) 
- * y genera una respuesta consistente con el código de estado HTTP adecuado y un cuerpo 
- * de error estructurado.
- * 
+ * @param {HttpStatusCode} statusCode Codigo de estado HTTP.
+ * @param {CodeError} code Codigo de error.
+ * @param {string} message Mensaje de error.
+ * @param {FieldError[]} details Detalles del error (opcional).
+ * @returns {ErrorResponse} Objeto de respuesta de error HTTP.
+*/
+function buildBaseResponseError(
+  statusCode: HttpStatusCode, 
+  code: CodeError, 
+  message: string, 
+  details?: FieldError[]
+): IBaseResponseError {
+  return {
+    statusCode,
+    body: {
+      success: false,
+      error: {
+        code,
+        message,
+        details
+      }
+    }
+  }
+};
+
+/**
+ * Formatea un error en una respuesta estándar para la API.
+ *
+ * Determina el tipo de error y construye una respuesta con código HTTP, código interno
+ * y mensajes adecuados.
+ *
  * @param {unknown} error El objeto de error capturado.
  * @returns {ErrorResponse} Un objeto que representa la respuesta de error HTTP.
 */
-export function formatResponseError(error: unknown): ErrorResponse {
-  const messageError = getMessageError(error);
-
+export function formatResponseError(error: unknown): IBaseResponseError {
   if (error instanceof AppError) {
-    return createResponseError(error.statusCode, error.code, messageError);
+    const message = error instanceof ServerError
+      ? "Ha ocurrido un error interno del servidor. Por favor, intente nuevamente más tarde."
+    : error.message;
+
+    return buildBaseResponseError(error.statusCode, error.code, message);
   };
 
-  if (error instanceof ValidationError) {
-    return createResponseError(
+  if (error instanceof ValidationErrorYup) {
+    return buildBaseResponseError(
       HttpStatusCode.BAD_REQUEST, 
       CodeError.VALIDATION_ERROR, 
-      messageError, 
+      "Los datos enviados no son válidos",
       formatYupErrors(error)
-    )
+    );
   };
 
-  return createResponseError(
+  return buildBaseResponseError(
     HttpStatusCode.INTERNAL_SERVER_ERROR, 
     CodeError.INTERNAL_SERVER_ERROR, 
-    messageError
+    "Ocurrio un error inesperado. Intente nuevamente más tarde."
   );
 };
