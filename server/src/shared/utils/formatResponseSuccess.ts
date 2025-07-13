@@ -4,7 +4,7 @@ import { HttpStatusCode } from "@/shared";
 /**
  * Contrato que define la estructura base de una respuesta de éxito.
 */
-interface IBaseResponse<T> {
+interface IBaseResponseSuccess<T> {
   success: boolean;
   message: string;
   data: T;
@@ -20,14 +20,14 @@ interface IBaseResponse<T> {
  * @param {T} data Datos a retornar en la respuesta
  * @param {string} message Mensaje descriptivo de la operación realizada
  * @param {boolean} success Indica si la operación fue exitosa
- * @returns {IBaseResponse<T>} Objeto de respuesta formateada
+ * @returns {IBaseResponseSuccess<T>} Objeto de respuesta formateada
 */
-function buildBaseResponse<T>(
+function buildBaseResponseSuccess<T>(
   request: Request,
   data: T,
   message: string,
   success: boolean = true,
-): IBaseResponse<T> {
+): IBaseResponseSuccess<T> {
   return {
     success,
     message,
@@ -54,7 +54,7 @@ export function sendSuccess<T>(
   message: string = "Operacion realizada con exito",
   statusCode: HttpStatusCode = HttpStatusCode.OK
 ) {
-  return response.status(statusCode).json(buildBaseResponse(request, data, message))
+  return response.status(statusCode).json(buildBaseResponseSuccess(request, data, message))
 };
 
 /**
@@ -71,7 +71,7 @@ export function sendCreated<T>(
   data: T,
   message: string = "Recurso creado correctamente"
 ) {
-  return response.status(HttpStatusCode.CREATED).json(buildBaseResponse(request, data, message))
+  return response.status(HttpStatusCode.CREATED).json(buildBaseResponseSuccess(request, data, message))
 };
 
 /**
@@ -88,7 +88,7 @@ export function sendUpdated<T>(
   data: T,
   message: string = "Recurso actualizado correctamente"
 ) {
-  return response.status(HttpStatusCode.OK).json(buildBaseResponse(request, data, message))
+  return response.status(HttpStatusCode.OK).json(buildBaseResponseSuccess(request, data, message))
 };
 
 /**
@@ -105,5 +105,5 @@ export function sendNoChanges<T>(
   data: T,
   message: string = "No se realizaron cambios, los datos son iguales"
 ) {
-  return response.status(HttpStatusCode.OK).json(buildBaseResponse(request, data, message))
+  return response.status(HttpStatusCode.OK).json(buildBaseResponseSuccess(request, data, message))
 };
