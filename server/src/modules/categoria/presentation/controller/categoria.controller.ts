@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { asyncWrapper, PublicRequestWithBody, PublicRequest } from "@/shared";
+import { PublicRequestWithBody, PublicRequest } from "@/shared";
 import { ICategoriaService, CategoriaCreateDto, CategoriaUpdateDto } from "@categoria/application";
 import { ICategoriaController } from "@categoria/presentation";
 
@@ -17,36 +17,37 @@ export class CategoriaController implements ICategoriaController {
   /**
    * @param {ICategoriaService} categoriaService Implementacion del servicio de categorias
   */
-  constructor(private categoriaService: ICategoriaService) {};
+  constructor(private readonly categoriaService: ICategoriaService) {};
 
-  public getCategorias = asyncWrapper(
-    async (_request: PublicRequest, response: Response): Promise<void> => {
-      const categorias = await this.categoriaService.getCategorias();
-      response.json(categorias)
-    }
-  );
+  public async getCategorias(_request: PublicRequest, response: Response): Promise<void> {
+    const categorias = await this.categoriaService.getCategorias();
+    response.json(categorias)
+  };
 
-  public getCategoriaId = asyncWrapper(
-    async (request: PublicRequestWithBody<never, { id: string }>, response: Response): Promise<void> => {
-      const categoria = await this.categoriaService.getCategoriaId(Number(request.params.id));
-      response.json(categoria);
-    }
-  );
+  public async getCategoriaId(
+    request: PublicRequestWithBody<never, { id: string; }>, 
+    response: Response
+  ): Promise<void> {
+    const categoria = await this.categoriaService.getCategoriaId(Number(request.params.id));
+    response.json(categoria);
+  };
 
-  public createCategoria = asyncWrapper(
-    async (request: PublicRequestWithBody<CategoriaCreateDto>, response: Response): Promise<void> => {
-      const categoria = await this.categoriaService.createCategoria(request.body);
-      response.json(categoria);
-    }
-  );
+  public async createCategoria(
+    request: PublicRequestWithBody<CategoriaCreateDto>, 
+    response: Response
+  ): Promise<void> {
+    const categoria = await this.categoriaService.createCategoria(request.body);
+    response.json(categoria);
+  };
 
-  public updateCategoria = asyncWrapper(
-    async (request: PublicRequestWithBody<CategoriaUpdateDto, { id: string }>, response: Response): Promise<void> => {
-      const categoria = await this.categoriaService.updateCategoria(
-        Number(request.params.id), request.body
-      );
+  public async updateCategoria(
+    request: PublicRequestWithBody<CategoriaUpdateDto, { id: string; }>, 
+    response: Response
+  ): Promise<void> {
+    const categoria = await this.categoriaService.updateCategoria(
+      Number(request.params.id), request.body
+    );
 
-      response.json(categoria);
-    }
-  );
+    response.json(categoria);
+  };
 };

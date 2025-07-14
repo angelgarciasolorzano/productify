@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { validateRequestBody } from "@/infrastructure";
+import { asyncWrapper } from "@/shared";
 
 import { 
   ICategoriaController,
@@ -16,11 +17,23 @@ import {
 export function categoriaBuildRouter(controller: ICategoriaController): Router {
   const router = Router();
 
-  router
-    .get("/obtener-categorias", controller.getCategorias)
-    .get("/obtener-categoria/:id", controller.getCategoriaId)
-    .post("/registrar-categoria", validateRequestBody(CategoriaCreateSchema), controller.createCategoria)
-    .put("/actualizar-categoria/:id", validateRequestBody(CategoriaUpdateSchema), controller.updateCategoria);
+  router.get("/obtener-categorias", 
+    asyncWrapper(controller.getCategorias)
+  );
+
+  router.get("/obtener-categoria/:id", 
+    asyncWrapper(controller.getCategoriaId)
+  );
+
+  router.post("/registrar-categoria", 
+    validateRequestBody(CategoriaCreateSchema), 
+    asyncWrapper(controller.createCategoria)
+  );
+
+  router.put("/actualizar-categoria/:id", 
+    validateRequestBody(CategoriaUpdateSchema), 
+    asyncWrapper(controller.updateCategoria)
+  );
 
   return router;
 };
