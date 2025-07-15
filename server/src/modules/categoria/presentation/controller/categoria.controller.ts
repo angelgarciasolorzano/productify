@@ -19,35 +19,35 @@ export class CategoriaController implements ICategoriaController {
   */
   constructor(private readonly categoriaService: ICategoriaService) {};
 
-  public async getCategorias(_request: PublicRequest, response: Response): Promise<void> {
+  public getCategorias = async(_request: PublicRequest, response: Response): Promise<void> => {
     const categorias = await this.categoriaService.getCategorias();
     response.json(categorias)
   };
 
-  public async getCategoriaId(
+  public getCategoriaId = async(
     request: PublicRequestWithBody<never, { id: string; }>, 
     response: Response
-  ): Promise<void> {
+  ): Promise<void> => {
     const categoria = await this.categoriaService.getCategoriaId(Number(request.params.id));
     response.json(categoria);
   };
 
-  public async createCategoria(
+  public createCategoria = async(
     request: PublicRequestWithBody<CategoriaCreateDto>, 
     response: Response
-  ): Promise<void> {
+  ): Promise<void> => {
     const categoria = await this.categoriaService.createCategoria(request.body);
     response.json(categoria);
   };
 
-  public async updateCategoria(
+  public updateCategoria = async(
     request: PublicRequestWithBody<CategoriaUpdateDto, { id: string; }>, 
     response: Response
-  ): Promise<void> {
+  ): Promise<void> => {
     const categoria = await this.categoriaService.updateCategoria(
       Number(request.params.id), request.body
     );
-
-    response.json(categoria);
+    
+    response.json(categoria.data);
   };
 };

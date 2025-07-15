@@ -1,4 +1,4 @@
-import { ValidationError, ConflictError, NotFoundError } from "@/shared";
+import { ConflictError, NotFoundError, ServerError, UpdateResult } from "@/shared";
 
 import {
   ICategoriaCrudService,
@@ -50,7 +50,7 @@ export class CategoriaCrudService implements ICategoriaCrudService {
     return CategoriaMapper.toResponseDto(savedCategoria);
   };
 
-  public async updateCategoria(id: number, dto: CategoriaUpdateDto): Promise<CategoriaResponseDto> {
+  public async updateCategoria(id: number, dto: CategoriaUpdateDto): Promise<UpdateResult<CategoriaResponseDto>> {
     const categoriaExiste = await this.categoriaRepository.getCategoriaId(id);
     
     if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
@@ -62,14 +62,17 @@ export class CategoriaCrudService implements ICategoriaCrudService {
       return updatedCategoria[typedKey] === categoriaExiste[typedKey];
     });
     
-    if (hasNoChanges) throw new ValidationError("No hay cambios en los datos proporcionados");
-    
+    if (hasNoChanges) return { 
+      hasChanged: false, 
+      data: CategoriaMapper.toResponseDto(categoriaExiste) 
+    };
+
     const savedCategoria = await this.categoriaRepository.updateCategoria(
       id, updatedCategoria
     );
+
+    if (!savedCategoria) throw new ServerError("No se pudo actualizar la categoria");
     
-    if (!savedCategoria) throw new NotFoundError("No se pudo actualizar la categoria");
-    
-    return CategoriaMapper.toResponseDto(savedCategoria);
+    return { hasChanged: true, data: CategoriaMapper.toResponseDto(savedCategoria) };
   };
 };

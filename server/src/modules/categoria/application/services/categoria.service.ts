@@ -1,4 +1,4 @@
-import { ValidationError } from "@/shared";
+import { ValidationError, UpdateResult } from "@/shared";
 
 import { 
   ICategoriaService,
@@ -58,7 +58,7 @@ export class CategoriaService implements ICategoriaService {
     return await this.crud.createCategoria(data);
   };
 
-  public async updateCategoria(id: number, data: CategoriaUpdateDto): Promise<CategoriaResponseDto> {
+  public async updateCategoria(id: number, data: CategoriaUpdateDto): Promise<UpdateResult<CategoriaResponseDto>> {
     this.validateCategoriaId(id);
 
     return await this.crud.updateCategoria(id, data);

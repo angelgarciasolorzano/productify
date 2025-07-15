@@ -1,3 +1,4 @@
+import { UpdateResult } from "@/shared";
 import { CategoriaCreateDto, CategoriaUpdateDto, CategoriaResponseDto } from "@categoria/application";
 
 /**
@@ -33,10 +34,9 @@ export interface ICategoriaCrudService {
    * 
    * @param {number} id El id de la categoría a actualizar.
    * @param {CategoriaUpdateDto} data Nuevos datos de la categoría.
-   * @returns {Promise<CategoriaResponseDto>} Una promesa que resuelve con el objeto CategoriaResponseDto actualizado.
+   * @returns {Promise<UpdateResult<CategoriaResponseDto>>} Un objeto data con los datos de la categoria y un booleano que indica si se realizaron cambios o no.
    * @throws {NotFoundError} Si no se encuentra la categoría.
-   * @throws {DatosError} Si no hay cambios en los datos proporcionados.
-   * @throws {NotFoundError} Si no se pudo actualizar la categoría.
+   * @throws {ServerError} Si no se pudo actualizar la categoría.
   */
-  updateCategoria(id: number, data: CategoriaUpdateDto): Promise<CategoriaResponseDto>;
+  updateCategoria(id: number, data: CategoriaUpdateDto): Promise<UpdateResult<CategoriaResponseDto>>;
 };
