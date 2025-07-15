@@ -51,20 +51,30 @@ export class CategoriaCrudService implements ICategoriaCrudService {
   };
 
   public async updateCategoria(id: number, dto: CategoriaUpdateDto): Promise<UpdateResult<CategoriaDto>> {
-    const categoriaExiste = await this.categoriaRepository.getCategoriaId(id);
+    const categoriaExists = await this.categoriaRepository.getCategoriaId(id);
     
-    if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
-    
+    if (!categoriaExists) throw new NotFoundError("La categoria no existe");
+
+    if (dto.nombreCategoria) {
+      const categoriaWithSameName = await this.categoriaRepository.getCategoriaNombre(
+        dto.nombreCategoria
+      );
+
+      if (categoriaWithSameName && categoriaWithSameName.id !== id) {
+        throw new ConflictError("Ya existe una categoria con el mismo nombre");
+      };
+    };
+
     const updatedCategoria = CategoriaMapper.fromUpdateDtoToDomain(dto);
 
     const hasNoChanges = Object.keys(updatedCategoria).every(key => {
       const typedKey = key as keyof CategoriaUpdateDomain;
-      return updatedCategoria[typedKey] === categoriaExiste[typedKey];
+      return updatedCategoria[typedKey] === categoriaExists[typedKey];
     });
     
     if (hasNoChanges) return { 
       hasChanged: false, 
-      data: CategoriaMapper.toDataDto(categoriaExiste) 
+      data: CategoriaMapper.toDataDto(categoriaExists) 
     };
 
     const savedCategoria = await this.categoriaRepository.updateCategoria(
