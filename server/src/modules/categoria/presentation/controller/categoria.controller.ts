@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { PublicRequestWithBody, PublicRequest } from "@/shared";
+import { PublicRequestWithBody, PublicRequest, ResponseSuccess } from "@/shared";
 import { ICategoriaService, CategoriaCreateDto, CategoriaUpdateDto } from "@categoria/application";
 import { ICategoriaController } from "@categoria/presentation";
 
@@ -19,9 +19,11 @@ export class CategoriaController implements ICategoriaController {
   */
   constructor(private readonly categoriaService: ICategoriaService) {};
 
-  public getCategorias = async(_request: PublicRequest, response: Response): Promise<void> => {
+  public getCategorias = async(request: PublicRequest, response: Response): Promise<void> => {
     const categorias = await this.categoriaService.getCategorias();
-    response.json(categorias)
+    const responseHandler = new ResponseSuccess(request, response);
+
+    responseHandler.sendSuccess(categorias, "Lista de categorias obtenida correctamente");
   };
 
   public getCategoriaId = async(
@@ -29,7 +31,9 @@ export class CategoriaController implements ICategoriaController {
     response: Response
   ): Promise<void> => {
     const categoria = await this.categoriaService.getCategoriaId(Number(request.params.id));
-    response.json(categoria);
+    const responseHandler = new ResponseSuccess(request, response);
+
+    responseHandler.sendSuccess(categoria, "Categoría obtenida correctamente");
   };
 
   public createCategoria = async(
@@ -37,7 +41,9 @@ export class CategoriaController implements ICategoriaController {
     response: Response
   ): Promise<void> => {
     const categoria = await this.categoriaService.createCategoria(request.body);
-    response.json(categoria);
+    const responseHandler = new ResponseSuccess(request, response);
+
+    responseHandler.sendCreated(categoria, "Categoría creada correctamente");
   };
 
   public updateCategoria = async(
@@ -47,7 +53,14 @@ export class CategoriaController implements ICategoriaController {
     const categoria = await this.categoriaService.updateCategoria(
       Number(request.params.id), request.body
     );
-    
-    response.json(categoria.data);
+
+    const responseHandler = new ResponseSuccess(request, response);
+
+    if (!categoria.hasChanged) {
+      responseHandler.sendNoChanges(categoria.data);
+      return;
+    };
+
+    responseHandler.sendUpdated(categoria.data);
   };
 };
