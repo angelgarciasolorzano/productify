@@ -1,4 +1,4 @@
-import { CategoriaCreateDto, CategoriaUpdateDto, CategoriaResponseDto } from "@categoria/application";
+import { CategoriaCreateDto, CategoriaUpdateDto, CategoriaDto } from "@categoria/application";
 import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@categoria/domain";
 
 /**
@@ -11,12 +11,12 @@ import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@catego
 */
 export class CategoriaMapper {
   /**
-   * Transforma un objeto de dominio en un objeto DTO de tipo CategoriaResponseDto.
+   * Transforma un objeto de dominio en un objeto DTO de tipo CategoriaDto.
    *
    * @param {Categoria} domain Objeto de dominio de categoria.
-   * @returns {CategoriaResponseDto} Un objeto DTO de CategoriaResponseDto.
+   * @returns {CategoriaDto} Un objeto DTO de CategoriaDto.
   */
-  public static toResponseDto(domain: Categoria): CategoriaResponseDto {
+  public static toDataDto(domain: Categoria): CategoriaDto {
     return {
       id: domain.id,
       nombre: domain.nombre,
@@ -31,15 +31,15 @@ export class CategoriaMapper {
    * Transforma un arreglo de objetos del dominio en un arreglo de objetos DTO.
    * 
    * @param {Categoria[]} domain Arreglo de objetos de dominio de categoria.
-   * @returns {CategoriaResponseDto[]} Un arreglo de objetos DTO de CategoriaResponseDto.
+   * @returns {CategoriaDto[]} Un arreglo de objetos DTO de CategoriaDto.
    * @throws {Error} Si el arreglo de dominio es nulo o undefined.
   */
-  public static toListDto(domain: Categoria[]): CategoriaResponseDto[] {
+  public static toDataListDto(domain: Categoria[]): CategoriaDto[] {
     if (!domain) throw new Error("No se puede mapear un array de dominio nulo a un array de DTO");
 
     if (domain.length === 0) return [];
 
-    return domain.map(categoria => this.toResponseDto(categoria));
+    return domain.map(categoria => this.toDataDto(categoria));
   };
 
   /**

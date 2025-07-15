@@ -47,11 +47,9 @@ class CategoriaCrudRepository implements ICategoriaCrudRepository {
     try {
       const categoriaModel = CategoriaPersistenceMapper.toPersistenceFromUpdate(data);
 
-      const [affectedRows] = await CategoriaSequelize.update(categoriaModel, {
+      await CategoriaSequelize.update(categoriaModel, {
         where: { id_categoria: id }
       });
-
-      if (affectedRows === 0) return null;
 
       const categoria = await CategoriaSequelize.findByPk(id);
 

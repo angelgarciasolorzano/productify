@@ -1,4 +1,4 @@
-import { CategoriaResponseDto } from "@categoria/application";
+import { CategoriaDto } from "@categoria/application";
 
 /**
  * Define el contrato del servicio de la aplicacion para la busqueda de categorias.
@@ -14,8 +14,8 @@ export interface ICategoriaFinderService {
    * Recupera una categoría por su id.
    *
    * @param {number} id El id de la categoría
-   * @returns {Promise<CategoriaResponseDto>} Una promesa que resuelve con el objeto CategoriaResponseDto
+   * @returns {Promise<CategoriaDto>} Una promesa que resuelve con el objeto CategoriaDto
    * @throws {NotFoundError} Si no se encuentra la categoría
   */
-  getCategoriaId(id: number): Promise<CategoriaResponseDto>;
+  getCategoriaId(id: number): Promise<CategoriaDto>;
 };

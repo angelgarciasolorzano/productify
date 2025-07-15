@@ -4,7 +4,7 @@ import {
   ICategoriaCrudService,
   CategoriaCreateDto,
   CategoriaUpdateDto,
-  CategoriaResponseDto,
+  CategoriaDto,
   CategoriaMapper
 } from "@categoria/application";
 
@@ -26,17 +26,17 @@ export class CategoriaCrudService implements ICategoriaCrudService {
   */
   constructor(private categoriaRepository: ICategoriaRepository) {};
 
-  public async getCategorias(): Promise<CategoriaResponseDto[]> {
+  public async getCategorias(): Promise<CategoriaDto[]> {
     const categorias = await this.categoriaRepository.getCategorias();
     
     if (!categorias || categorias.length === 0) {
       throw new NotFoundError("No se encontraron categorias");
     };
     
-    return CategoriaMapper.toListDto(categorias);
+    return CategoriaMapper.toDataListDto(categorias);
   };
 
-  public async createCategoria(data: CategoriaCreateDto): Promise<CategoriaResponseDto> {
+  public async createCategoria(data: CategoriaCreateDto): Promise<CategoriaDto> {
     const categoriaExists = await this.categoriaRepository.getCategoriaNombre(data.nombreCategoria);
 
     if (categoriaExists) throw new ConflictError("La categoria ya existe");
@@ -47,10 +47,10 @@ export class CategoriaCrudService implements ICategoriaCrudService {
 
     if (!savedCategoria) throw new NotFoundError("No se pudo crear la categoria");
 
-    return CategoriaMapper.toResponseDto(savedCategoria);
+    return CategoriaMapper.toDataDto(savedCategoria);
   };
 
-  public async updateCategoria(id: number, dto: CategoriaUpdateDto): Promise<UpdateResult<CategoriaResponseDto>> {
+  public async updateCategoria(id: number, dto: CategoriaUpdateDto): Promise<UpdateResult<CategoriaDto>> {
     const categoriaExiste = await this.categoriaRepository.getCategoriaId(id);
     
     if (!categoriaExiste) throw new NotFoundError("La categotia no existe");
@@ -64,7 +64,7 @@ export class CategoriaCrudService implements ICategoriaCrudService {
     
     if (hasNoChanges) return { 
       hasChanged: false, 
-      data: CategoriaMapper.toResponseDto(categoriaExiste) 
+      data: CategoriaMapper.toDataDto(categoriaExiste) 
     };
 
     const savedCategoria = await this.categoriaRepository.updateCategoria(
@@ -73,6 +73,6 @@ export class CategoriaCrudService implements ICategoriaCrudService {
 
     if (!savedCategoria) throw new ServerError("No se pudo actualizar la categoria");
     
-    return { hasChanged: true, data: CategoriaMapper.toResponseDto(savedCategoria) };
+    return { hasChanged: true, data: CategoriaMapper.toDataDto(savedCategoria) };
   };
 };

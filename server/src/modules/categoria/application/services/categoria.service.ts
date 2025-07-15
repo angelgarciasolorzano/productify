@@ -6,7 +6,7 @@ import {
   ICategoriaCrudService,
   CategoriaCreateDto,
   CategoriaUpdateDto,
-  CategoriaResponseDto
+  CategoriaDto
 } from "@categoria/application";
 
 /**
@@ -44,21 +44,21 @@ export class CategoriaService implements ICategoriaService {
     };
   };
 
-  public async getCategoriaId(id: number): Promise<CategoriaResponseDto> {
+  public async getCategoriaId(id: number): Promise<CategoriaDto> {
     this.validateCategoriaId(id);
 
     return await this.finder.getCategoriaId(id);
   };
 
-  public async getCategorias(): Promise<CategoriaResponseDto[]> {
+  public async getCategorias(): Promise<CategoriaDto[]> {
     return await this.crud.getCategorias();
   };
 
-  public async createCategoria(data: CategoriaCreateDto): Promise<CategoriaResponseDto> {
+  public async createCategoria(data: CategoriaCreateDto): Promise<CategoriaDto> {
     return await this.crud.createCategoria(data);
   };
 
-  public async updateCategoria(id: number, data: CategoriaUpdateDto): Promise<UpdateResult<CategoriaResponseDto>> {
+  public async updateCategoria(id: number, data: CategoriaUpdateDto): Promise<UpdateResult<CategoriaDto>> {
     this.validateCategoriaId(id);
 
     return await this.crud.updateCategoria(id, data);

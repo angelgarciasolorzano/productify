@@ -2,7 +2,7 @@ import { NotFoundError } from "@/shared";
 
 import {
   ICategoriaFinderService,
-  CategoriaResponseDto,
+  CategoriaDto,
   CategoriaMapper
 } from "@categoria/application";
 
@@ -24,11 +24,11 @@ export class CategoriaFinderService implements ICategoriaFinderService {
   */
   constructor(private categoriaRepository: ICategoriaRepository) {};
 
-  public async getCategoriaId(id: number): Promise<CategoriaResponseDto> {
+  public async getCategoriaId(id: number): Promise<CategoriaDto> {
     const categoria = await this.categoriaRepository.getCategoriaId(id);
 
     if (!categoria) throw new NotFoundError("No se encontro la categoria");
 
-    return CategoriaMapper.toResponseDto(categoria);
+    return CategoriaMapper.toDataDto(categoria);
   };
 };

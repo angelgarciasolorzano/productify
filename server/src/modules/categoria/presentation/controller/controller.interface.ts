@@ -14,11 +14,11 @@ export interface ICategoriaController {
   /**
    * Maneja la petición HTTP para obtener una lista de todas las categorías.
    * 
-   * @param {PublicRequest} _request - El objeto de la petición Express (No se necesita).
+   * @param {PublicRequest} request - El objeto de la petición Express.
    * @param {Response} response - El objeto de la respuesta Express.
    * @returns {Promise<void>} Esta función no devuelve un valor directamente; la respuesta se envía a través del objeto `response`.
   */
-  getCategorias(_request: PublicRequest, response: Response): Promise<void>;
+  getCategorias(request: PublicRequest, response: Response): Promise<void>;
 
   /**
    * Maneja la petición HTTP para obtener una categoría específica por su ID.

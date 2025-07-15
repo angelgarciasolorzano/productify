@@ -50,17 +50,17 @@ export class CategoriaController implements ICategoriaController {
     request: PublicRequestWithBody<CategoriaUpdateDto, { id: string; }>, 
     response: Response
   ): Promise<void> => {
-    const categoria = await this.categoriaService.updateCategoria(
+    const { data, hasChanged } = await this.categoriaService.updateCategoria(
       Number(request.params.id), request.body
     );
 
     const responseHandler = new ResponseSuccess(request, response);
 
-    if (!categoria.hasChanged) {
-      responseHandler.sendNoChanges(categoria.data);
+    if (!hasChanged) {
+      responseHandler.sendNoChanges(data);
       return;
     };
 
-    responseHandler.sendUpdated(categoria.data);
+    responseHandler.sendUpdated(data, "Categoría actualizada correctamente");
   };
 };
