@@ -21,29 +21,29 @@ import { CategoriaSequelize, CategoriaPersistenceMapper } from "@categoria/infra
  * @implements ICategoriaCrudRepository
 */
 class CategoriaCrudRepository implements ICategoriaCrudRepository {
-  public async getCategorias(): Promise<Categoria[] | null> {
+  public async getCategorias(): Promise<Categoria[]> {
     try {
       const categorias = await CategoriaSequelize.findAll();
 
-      return categorias ? CategoriaPersistenceMapper.toDomainList(categorias) : null;
+      return CategoriaPersistenceMapper.toDomainList(categorias);
     } catch (error) {
       throw new ServerError("Error al obtener las categorias");
     }
   };
 
-  public async createCategoria(data: CategoriaCreateDomain): Promise<Categoria | null> {
+  public async createCategoria(data: CategoriaCreateDomain): Promise<Categoria> {
     try {
       const categoriaModel = CategoriaPersistenceMapper.toPersistenceFromCreate(data);
 
       const categoria = await CategoriaSequelize.create(categoriaModel);
 
-      return categoria ? CategoriaPersistenceMapper.toDomain(categoria) : null;
+      return CategoriaPersistenceMapper.toDomain(categoria);
     } catch (error) {
       throw new ServerError("Error al crear la categoria");
     }
   };
 
-  public async updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<Categoria | null> {
+  public async updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<Categoria> {
     try {
       const categoriaModel = CategoriaPersistenceMapper.toPersistenceFromUpdate(data);
 
@@ -53,7 +53,9 @@ class CategoriaCrudRepository implements ICategoriaCrudRepository {
 
       const categoria = await CategoriaSequelize.findByPk(id);
 
-      return categoria ? CategoriaPersistenceMapper.toDomain(categoria) : null;
+      if (!categoria) throw new ServerError("No se pudo recuperar la categoria tras la actualización");
+
+      return CategoriaPersistenceMapper.toDomain(categoria);
     } catch (error) {
       throw new ServerError("Error al actualizar la categoria");
     }

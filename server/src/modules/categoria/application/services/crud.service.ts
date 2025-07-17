@@ -1,4 +1,4 @@
-import { ConflictError, NotFoundError, ServerError, UpdateResult } from "@/shared";
+import { ConflictError, NotFoundError, UpdateResult } from "@/shared";
 
 import {
   ICategoriaCrudService,
@@ -24,7 +24,7 @@ export class CategoriaCrudService implements ICategoriaCrudService {
   /**
    * @param {ICategoriaRepository} categoriaRepository Implementacion del repositorio
   */
-  constructor(private categoriaRepository: ICategoriaRepository) {};
+  constructor(private readonly categoriaRepository: ICategoriaRepository) {};
 
   public async getCategorias(): Promise<CategoriaDto[]> {
     const categorias = await this.categoriaRepository.getCategorias();
@@ -44,8 +44,6 @@ export class CategoriaCrudService implements ICategoriaCrudService {
     const newCategoria = CategoriaMapper.fromCreateDtoToDomain(data);
 
     const savedCategoria = await this.categoriaRepository.createCategoria(newCategoria);
-
-    if (!savedCategoria) throw new NotFoundError("No se pudo crear la categoria");
 
     return CategoriaMapper.toDataDto(savedCategoria);
   };
@@ -81,8 +79,6 @@ export class CategoriaCrudService implements ICategoriaCrudService {
       id, updatedCategoria
     );
 
-    if (!savedCategoria) throw new ServerError("No se pudo actualizar la categoria");
-    
     return { hasChanged: true, data: CategoriaMapper.toDataDto(savedCategoria) };
   };
 };
