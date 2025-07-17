@@ -1,4 +1,4 @@
-import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@categoria/domain";
+import { Categoria, CategoriaCreate, CategoriaUpdate } from "@categoria/domain";
 
 /**
  * Define el contrato para realizar operaciones CRUD sobre la tabla categorias.
@@ -20,19 +20,19 @@ export interface ICategoriaCrudRepository {
   /**
    * Crea un nuevo registro en la tabla Categoria.
    * 
-   * @param {CategoriaCreateDomain} data Objeto de dominio con los datos del nuevo registro.
+   * @param {CategoriaCreate} data Objeto de dominio con los datos del nuevo registro.
    * @returns {Promise<Categoria>} Una promesa que resuelve con el objeto del dominio creado.
    * @throws {ServerError} Si la consulta a la base de datos falla.
   */
-  createCategoria(data: CategoriaCreateDomain): Promise<Categoria>;
+  createCategoria(data: CategoriaCreate): Promise<Categoria>;
 
   /**
    * Actualiza un registro existente en la tabla Categoria.
    *
    * @param {number} id El id del registro a actualizar.
-   * @param {CategoriaUpdateDomain} data Objeto de dominio con los nuevos datos.
+   * @param {CategoriaUpdate} data Objeto de dominio con los nuevos datos.
    * @returns {Promise<Categoria>} Una promesa que resuelve con el objeto del dominio actualizado.
    * @throws {ServerError} Si la consulta a la base de datos falla o si no se puede recuperar la categoria tras la actualización.
   */
-  updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<Categoria>;
+  updateCategoria(id: number, data: CategoriaUpdate): Promise<Categoria>;
 };

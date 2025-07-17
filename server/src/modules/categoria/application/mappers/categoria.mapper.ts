@@ -1,5 +1,5 @@
 import { CategoriaCreateDto, CategoriaUpdateDto, CategoriaDto } from "@categoria/application";
-import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@categoria/domain";
+import { Categoria, CategoriaCreate, CategoriaUpdate } from "@categoria/domain";
 
 /**
  * Clase encargada de mapear los objetos de dominio a objetos DTO y viceversa en la capa de la aplicacion.
@@ -46,10 +46,10 @@ export class CategoriaMapper {
    * Transforma un objeto de DTO de creacion en un objeto de dominio de creacion.
    *
    * @param {CategoriaCreateDto} dto Objeto recibido desde el controlador.
-   * @returns {CategoriaCreateDomain} Un objeto del dominio CategoriaCreateDomain.
+   * @returns {CategoriaCreate} Un objeto del dominio CategoriaCreate.
    * @throws {Error} Si el objeto DTO es nulo o undefined.
   */
-  public static fromCreateDtoToDomain(dto: CategoriaCreateDto): CategoriaCreateDomain {
+  public static fromCreateDtoToDomain(dto: CategoriaCreateDto): CategoriaCreate {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {
@@ -62,10 +62,10 @@ export class CategoriaMapper {
    * Transforma un objeto de DTO de actualizacion en un objeto de dominio de actualizacion.
    *
    * @param {CategoriaUpdateDto} dto Objeto recibido desde el controlador.
-   * @returns {CategoriaUpdateDomain} Un objeto del dominio CategoriaUpdateDomain.
+   * @returns {CategoriaUpdate} Un objeto del dominio CategoriaUpdate.
    * @throws {Error} Si el objeto DTO es nulo o undefined.
   */
-  public static fromUpdateDtoToDomain(dto: CategoriaUpdateDto): CategoriaUpdateDomain {
+  public static fromUpdateDtoToDomain(dto: CategoriaUpdateDto): CategoriaUpdate {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {

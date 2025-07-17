@@ -1,7 +1,7 @@
 import { 
   Categoria,
-  CategoriaCreateDomain,
-  CategoriaUpdateDomain,
+  CategoriaCreate,
+  CategoriaUpdate,
   ICategoriaRepository,
   ICategoriaFinderRepository,
   ICategoriaCrudRepository
@@ -37,15 +37,15 @@ export class CategoriaRepository implements ICategoriaRepository {
     return await this.finder.getCategoriaNombre(nombre);
   };
 
-  public async getCategorias(): Promise<Categoria[] | null> {
+  public async getCategorias(): Promise<Categoria[]> {
     return await this.crud.getCategorias();
   };
 
-  public async createCategoria(data: CategoriaCreateDomain): Promise<Categoria | null> {
+  public async createCategoria(data: CategoriaCreate): Promise<Categoria> {
     return await this.crud.createCategoria(data);
   };
 
-  public async updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<Categoria | null> {
+  public async updateCategoria(id: number, data: CategoriaUpdate): Promise<Categoria> {
     return await this.crud.updateCategoria(id, data);
   };
 };

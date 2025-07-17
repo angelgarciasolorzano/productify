@@ -8,7 +8,7 @@ import {
   CategoriaMapper
 } from "@categoria/application";
 
-import { ICategoriaRepository, CategoriaUpdateDomain } from "@categoria/domain";
+import { ICategoriaRepository, CategoriaUpdate } from "@categoria/domain";
 
 /**
  * Clase que encapsula la logica de negocio para operaciones CRUD.
@@ -53,20 +53,18 @@ export class CategoriaCrudService implements ICategoriaCrudService {
     
     if (!categoriaExists) throw new NotFoundError("La categoria no existe");
 
-    if (dto.nombreCategoria) {
-      const categoriaWithSameName = await this.categoriaRepository.getCategoriaNombre(
-        dto.nombreCategoria
-      );
+    const categoriaWithSameName = await this.categoriaRepository.getCategoriaNombre(
+      dto.nombreCategoria
+    );
 
-      if (categoriaWithSameName && categoriaWithSameName.id !== id) {
-        throw new ConflictError("Ya existe una categoria con el mismo nombre");
-      };
+    if (categoriaWithSameName && categoriaWithSameName.id !== id) {
+      throw new ConflictError("Ya existe una categoria con el mismo nombre");
     };
 
     const updatedCategoria = CategoriaMapper.fromUpdateDtoToDomain(dto);
 
     const hasNoChanges = Object.keys(updatedCategoria).every(key => {
-      const typedKey = key as keyof CategoriaUpdateDomain;
+      const typedKey = key as keyof CategoriaUpdate;
       return updatedCategoria[typedKey] === categoriaExists[typedKey];
     });
     

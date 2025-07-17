@@ -1,4 +1,4 @@
-import { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain } from "@categoria/domain";
+import { Categoria, CategoriaCreate, CategoriaUpdate } from "@categoria/domain";
 import { ICategoriaDb, ICategoriaCreationDb } from "@categoria/infrastructure";
 
 /**
@@ -65,11 +65,11 @@ export class CategoriaPersistenceMapper {
   /**
    * Metodo que mapea un objeto de dominio de creacion a un objeto de modelo.
    * 
-   * @param {CategoriaCreateDomain} domain Objeto de dominio de creacion de categoria.
+   * @param {CategoriaCreate} domain Objeto de dominio de creacion de categoria.
    * @returns {ICategoriaCreationDb} Objeto de modelo de la tabla categorias.
    * @throws {Error} Si no se puede mapear el objeto de dominio a un objeto de modelo.
   */
-  public static toPersistenceFromCreate(domain: CategoriaCreateDomain): ICategoriaCreationDb {
+  public static toPersistenceFromCreate(domain: CategoriaCreate): ICategoriaCreationDb {
     if (!domain) throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
     return {
@@ -81,11 +81,13 @@ export class CategoriaPersistenceMapper {
   /**
    * Metodo que mapea un objeto de dominio de actualizacion a un objeto de modelo.
    * 
-   * @param {CategoriaUpdateDomain} domain Objeto de dominio de actualizacion de categoria.
+   * @param {CategoriaUpdate} domain Objeto de dominio de actualizacion de categoria.
    * @returns {Partial<ICategoriaDb>} Objeto de modelo de la tabla categorias.
    * @throws {Error} Si no se puede mapear el objeto de dominio a un objeto de modelo.
   */
-  public static toPersistenceFromUpdate(domain: CategoriaUpdateDomain): Partial<ICategoriaDb> {
+  public static toPersistenceFromUpdate(
+    domain: CategoriaUpdate
+  ): Omit<ICategoriaDb, "id_categoria" | "createdAt" | "updatedAt"> {
     if (!domain) throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
     return {

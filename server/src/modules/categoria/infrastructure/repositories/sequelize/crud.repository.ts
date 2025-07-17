@@ -3,8 +3,8 @@ import { ServerError } from "@/shared";
 import { 
   ICategoriaCrudRepository, 
   Categoria, 
-  CategoriaCreateDomain, 
-  CategoriaUpdateDomain 
+  CategoriaCreate, 
+  CategoriaUpdate 
 } from "@categoria/domain";
 
 import { CategoriaSequelize, CategoriaPersistenceMapper } from "@categoria/infrastructure";
@@ -31,7 +31,7 @@ class CategoriaCrudRepository implements ICategoriaCrudRepository {
     }
   };
 
-  public async createCategoria(data: CategoriaCreateDomain): Promise<Categoria> {
+  public async createCategoria(data: CategoriaCreate): Promise<Categoria> {
     try {
       const categoriaModel = CategoriaPersistenceMapper.toPersistenceFromCreate(data);
 
@@ -43,7 +43,7 @@ class CategoriaCrudRepository implements ICategoriaCrudRepository {
     }
   };
 
-  public async updateCategoria(id: number, data: CategoriaUpdateDomain): Promise<Categoria> {
+  public async updateCategoria(id: number, data: CategoriaUpdate): Promise<Categoria> {
     try {
       const categoriaModel = CategoriaPersistenceMapper.toPersistenceFromUpdate(data);
 

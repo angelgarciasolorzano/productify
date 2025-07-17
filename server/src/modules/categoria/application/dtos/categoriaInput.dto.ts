@@ -11,13 +11,13 @@ interface CategoriaCreateDto {
 };
 
 /**
- * Objeto de transferencia que representa los datos necesarios para actualizar una categoria.
+ * Objeto de transferencia que representa los datos que pueden ser actualizados en una categoria.
  * 
- * Este DTO representa los datos minimos para actualizar una categoria en el sistema.
+ * Este DTO representa todos los datos que pueden ser actualizados en una categoria.
  *
  * @type CategoriaUpdateDto
 */
-type CategoriaUpdateDto = Partial<CategoriaCreateDto> & {
+type CategoriaUpdateDto = CategoriaCreateDto & {
   estadoCategoria: "activo" | "inactivo";
 };
 

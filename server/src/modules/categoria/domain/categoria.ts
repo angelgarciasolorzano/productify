@@ -15,15 +15,15 @@ interface Categoria {
 /**
  * Interfaz que representa la entidad de dominio de creación de categoria.
  * 
- * @interface CategoriaCreateDomain
+ * @interface CategoriaCreate
 */
-type CategoriaCreateDomain = Omit<Categoria, "id" | "estado" | "createdAt" | "updatedAt">;
+type CategoriaCreate = Omit<Categoria, "id" | "estado" | "createdAt" | "updatedAt">;
 
 /**
  * Interfaz que representa la entidad de dominio de actualización de categoria.
  * 
- * @interface CategoriaUpdateDomain
+ * @interface CategoriaUpdate
 */
-type CategoriaUpdateDomain = Partial<Omit<Categoria, "id" | "createdAt" | "updatedAt">>;
+type CategoriaUpdate = Omit<Categoria, "id" | "createdAt" | "updatedAt">;
 
-export { Categoria, CategoriaCreateDomain, CategoriaUpdateDomain };
+export { Categoria, CategoriaCreate, CategoriaUpdate };
