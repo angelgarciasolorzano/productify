@@ -1,5 +1,7 @@
 export * from "./constants/httpStatusCode";
 
+export * from "./schemas/paramsId.schema";
+
 export * from "./errors/errors";
 export * from "./errors/codeError";
 export * from "./errors/formatResponseError";

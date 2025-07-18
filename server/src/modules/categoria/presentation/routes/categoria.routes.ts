@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { validateRequestBody } from "@/infrastructure";
-import { asyncWrapper } from "@/shared";
+import { validateRequest } from "@/infrastructure";
+import { asyncWrapper, IdParamSchema } from "@/shared";
 
 import { 
   ICategoriaController,
@@ -26,12 +26,13 @@ export function categoriaBuildRouter(controller: ICategoriaController): Router {
   );
 
   router.post("/registrar-categoria", 
-    validateRequestBody(CategoriaCreateSchema), 
+    validateRequest(CategoriaCreateSchema), 
     asyncWrapper(controller.createCategoria)
   );
 
   router.put("/actualizar-categoria/:id", 
-    validateRequestBody(CategoriaUpdateSchema), 
+    validateRequest(IdParamSchema, "params"),
+    validateRequest(CategoriaUpdateSchema), 
     asyncWrapper(controller.updateCategoria)
   );
 
