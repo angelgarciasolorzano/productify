@@ -59,7 +59,7 @@ function buildBaseResponseError(
  * y mensajes adecuados.
  *
  * @param {unknown} error El objeto de error capturado.
- * @returns {ErrorResponse} Un objeto que representa la respuesta de error HTTP.
+ * @returns {ErrorResponse} Un objeto con codigo de estado (statusCode) y cuerpo de respuesta (body).
 */
 export function formatResponseError(error: unknown): IBaseResponseError {
   if (error instanceof AppError) {
