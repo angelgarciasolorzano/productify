@@ -6,7 +6,7 @@
 interface CategoriaDto {
   id: number;
   nombre: string;
-  descripcion?: string;
+  descripcion?: string | null;
   estado: "activo" | "inactivo";
   fechaCreacion?: Date;
   fechaModificacion?: Date;

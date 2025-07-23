@@ -6,7 +6,7 @@
 interface Categoria {
   id: number;
   nombre: string;
-  descripcion?: string;
+  descripcion?: string | null;
   estado: "activo" | "inactivo";
   createdAt: Date;
   updatedAt: Date;

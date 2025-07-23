@@ -6,7 +6,7 @@
 interface ICategoriaDb {
   id_categoria: number;
   nombre_categoria: string;
-  descripcion_categoria?: string;
+  descripcion_categoria?: string | null;
   estado_categoria: "activo" | "inactivo";
   createdAt: Date;
   updatedAt: Date;

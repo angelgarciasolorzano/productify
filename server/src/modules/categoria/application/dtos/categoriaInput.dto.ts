@@ -7,7 +7,7 @@
 */
 interface CategoriaCreateDto {
   nombreCategoria: string;
-  descripcionCategoria?: string;
+  descripcionCategoria?: string | null;
 };
 
 /**
