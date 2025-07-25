@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { SchemaType } from "@/shared";
+import { ObjectSchema } from "yup";
 
 type RequestPart = "params" | "query" | "body";
 
@@ -27,7 +27,7 @@ type RequestPart = "params" | "query" | "body";
 export const validateRequest = <
   T extends object
 >(
-  schema: SchemaType<T>,
+  schema: ObjectSchema<T>,
   requestPart: RequestPart = "body"
 ) => async (
   request: Request, 
