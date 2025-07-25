@@ -22,6 +22,7 @@ export class CategoriaFieldSchema {
 
   public static descripcionCategoriaField = (isRequired: boolean = false) => {
     const schema = string()
+    .nullable()
     .transform(value => {
       if (typeof value !== "string") return null;
 
@@ -29,9 +30,8 @@ export class CategoriaFieldSchema {
 
       return trimmed.length > 0 ? trimmed.replace(/\s+/g, " ") : null;
     })
-    .nullable()
     .max(50, "El campo debe tener 50 caracteres como máximo");
 
-    return isRequired ? schema.required("La descripción es requerida") : schema.optional();
+    return isRequired ? schema.required("El campo es requerido").nullable() : schema.optional();
   };
 };
