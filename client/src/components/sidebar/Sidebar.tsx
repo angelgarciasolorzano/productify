@@ -71,7 +71,7 @@ function SidebarHeader({ open, toggleSidebar, theme }: SidebarHeaderProps) {
       className="flex items-center justify-center m-4"
     >
       <RxHamburgerMenu 
-        className="flex-shrink-0 mr-2 cursor-pointer dark:text-white" 
+        className="shrink-0 mr-2 cursor-pointer dark:text-white" 
         size={20} 
         onClick={toggleSidebar} 
       />
@@ -136,7 +136,7 @@ function SidebarBody(props: SidebarBodyProps) {
                       )}
                       className={`flex items-center px-4 py-2 mt-2 text-sm rounded-lg
                         hover:bg-blue-500 hover:bg-opacity-10
-                        hover:text-blue-600 focus:outline-none group
+                        hover:text-blue-600 focus:outline-hidden group
                         ${isActive === linkItem.text
                           ? `bg-blue-500 bg-opacity-10 text-blue-600
                             dark:text-blue-400`
@@ -146,7 +146,7 @@ function SidebarBody(props: SidebarBodyProps) {
                     >
                       <linkItem.icon 
                         size={20} 
-                        className={`flex-shrink-0 mr-2 group-hover:text-blue-500
+                        className={`shrink-0 mr-2 group-hover:text-blue-500
                           dark:group-hover:text-blue-400
                           ${isActive === linkItem.text 
                             ? `text-blue-600 dark:text-blue-400`
@@ -197,7 +197,7 @@ function SidebarFooter({ open }: SidebarFooterProps) {
                 >
                   <linkItem.icon 
                     size={20} 
-                    className="flex-shrink-0 mr-2 text-gray-600 dark:text-gray-400" 
+                    className="shrink-0 mr-2 text-gray-600 dark:text-gray-400" 
                   />
                   
                   <span className={`whitespace-nowrap ${!open && "opacity-0 hidden"} 

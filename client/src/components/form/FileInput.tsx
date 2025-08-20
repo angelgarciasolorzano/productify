@@ -70,7 +70,7 @@ function FileInput<T extends FieldValues>(props: InputFileProps<T>) {
       <div
         onClick={handleImageClick}
         className="relative w-24 h-24 rounded-full overflow-hidden cursor-pointer 
-          bg-gray-200 flex items-center justify-center flex-shrink-0
+          bg-gray-200 flex items-center justify-center shrink-0
         "
       >
         {selectedImage ? (

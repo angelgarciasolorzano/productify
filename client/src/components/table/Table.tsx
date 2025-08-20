@@ -129,7 +129,7 @@ function TableFind() {
       <input 
         type="text" 
         placeholder="Buscar por nombre, descripción o código" 
-        className="pl-8 pr-4 py-2 border w-full border-gray-400 bg-transparent rounded-md shadow-sm
+        className="pl-8 pr-4 py-2 border w-full border-gray-400 bg-transparent rounded-md shadow-xs
           text-sm text-gray-800 placeholder:text-gray-500 focus:outline-blue-600 
           dark:focus:outline-gray-200 dark:text-gray-200 dark:border-dark-800 
           dark:placeholder:text-gray-400
@@ -154,7 +154,7 @@ function TablePaginacion() {
 
       <div className="flex gap-2 text-sm">
         <button className="bg-blue-100 border px-2 py-2 rounded-md border-transparent
-          shadow-sm hover:border-blue-600 hover:text-blue-700 hover:bg-transparent
+          shadow-xs hover:border-blue-600 hover:text-blue-700 hover:bg-transparent
           dark:bg-opacity-10 dark:hover:bg-transparent dark:hover:border-blue-500"
         >
           <MdOutlineKeyboardArrowLeft className="text-blue-800 dark:text-blue-400" />
@@ -164,7 +164,7 @@ function TablePaginacion() {
           pages.map((page) => (
             <button 
               key={page} 
-              className="border border-white-200 shadow-sm text-gray-800 px-4 py-2 rounded-md 
+              className="border border-white-200 shadow-xs text-gray-800 px-4 py-2 rounded-md 
                 hover:bg-blue-600 hover:text-white dark:border-dark-800 dark:text-gray-200 
                 dark:hover:bg-cyan-500 dark:hover:border-transparent
               "
@@ -175,7 +175,7 @@ function TablePaginacion() {
         }
 
         <button className="bg-blue-100 border px-2 py-2 rounded-md border-transparent 
-          shadow-sm hover:border-blue-600 hover:text-blue-700 hover:bg-transparent
+          shadow-xs hover:border-blue-600 hover:text-blue-700 hover:bg-transparent
           dark:bg-opacity-10 dark:hover:bg-transparent dark:hover:border-blue-500"
         >
           <MdOutlineKeyboardArrowRight className="text-blue-800 dark:text-blue-400" />

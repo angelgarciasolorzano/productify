@@ -18,7 +18,7 @@ function Profile({ toggleDropdown }: Props) {
           </span>
         </div>
 
-        <div className="flex-shrink-0 cursor-pointer">
+        <div className="shrink-0 cursor-pointer">
           <img
             src={fondoPrimary}
             alt="User"

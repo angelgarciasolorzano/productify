@@ -1,6 +1,53 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin 'tailwind-scrollbar';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-white-50: #f8fafc;
+  --color-white-100: #f1f5f9;
+  --color-white-200: #d1d5db;
+  --color-white: #ffffff;
+
+  --color-dark-700: #0f151b;
+  --color-dark-710: #061118;
+  --color-dark-720: #101720;
+  --color-dark-800: #374151;
+
+  --background-image-text-titulo-gradient: radial-gradient(
+    rgb(249, 115, 22),
+    rgb(234, 179, 8),
+    rgb(34, 197, 94)
+  );
+  --background-image-text-subtitulo-gradient: linear-gradient(
+    rgb(249, 115, 22),
+    rgb(253, 224, 71)
+  );
+  --background-image-text-gradient: radial-gradient(
+    rgb(254, 240, 138),
+    rgb(250, 204, 21),
+    rgb(161, 98, 7)
+  );
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 /* Estilos para autocompletado */
 input:-webkit-autofill,

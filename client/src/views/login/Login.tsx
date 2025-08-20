@@ -88,8 +88,8 @@ function LoginBody({ loading, onSubmit, register, errors, theme }: LoginBodyProp
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }} 
-        className="flex flex-col items-center content-stretch w-96 pt-4 shadow-sm 
-          min-h-[18rem] rounded-2xl bg-gray-50 border border-white-200 
+        className="flex flex-col items-center content-stretch w-96 pt-4 shadow-xs 
+          min-h-72 rounded-2xl bg-gray-50 border border-white-200 
           dark:bg-dark-720 dark:border-dark-800
         "
       >
@@ -99,7 +99,7 @@ function LoginBody({ loading, onSubmit, register, errors, theme }: LoginBodyProp
 
         <form 
           onSubmit={onSubmit} 
-          className="flex flex-col items-center flex-grow gap-4 mt-4 w-72"
+          className="flex flex-col items-center grow gap-4 mt-4 w-72"
         >
           <TextInput 
             {...register("correo_Usuario")}

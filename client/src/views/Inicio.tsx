@@ -13,7 +13,7 @@ function Inicio() {
     <main className="flex-1 duration-300 bg-white-50 dark:bg-dark-700">
       <section 
         id="inicio"
-        className="overflow-hidden max-w-screen-xl m-auto pt-5 pb-5 pl-4 pr-4
+        className="overflow-hidden max-w-(--breakpoint-xl) m-auto pt-5 pb-5 pl-4 pr-4
         dark:bg-dark-700"
       >
         <div className="grid grid-cols-2 items-center p-6 gap-8 md:p-10 lg:m-5 max-lg:grid-cols-1">
@@ -33,13 +33,13 @@ function Inicio() {
 
             <button className="min-w-[30%] bg-green-500 text-white font-bold py-2 px-4 rounded-full 
               hover:bg-emerald-700 transition-all duration-300 shadow-md 
-              dark:hover:bg-emerald-500 dark:hover:shadow-sm dark:hover:shadow-emerald-500"
+              dark:hover:bg-emerald-500 dark:hover:shadow-xs dark:hover:shadow-emerald-500"
             >
               Comenzar
             </button>
 
             <button className="min-w-[30%] border bg-transparent border-green-500 font-bold py-2 px-4 
-              rounded-full ml-4 hover:text-green-700 duration-300 shadow-sm dark:text-white
+              rounded-full ml-4 hover:text-green-700 duration-300 shadow-xs dark:text-white
               dark:hover:shadow-green-400 dark:hover:text-green-400"
             >
               Comenzar
@@ -49,7 +49,7 @@ function Inicio() {
           <div data-aos="fade-left">
             <img 
               src={fondoPrimary} 
-              className="flex w-full m-auto max-w-screen-sm object-cover rounded-3xl shadow-md" 
+              className="flex w-full m-auto max-w-(--breakpoint-sm) object-cover rounded-3xl shadow-md" 
             />
           </div>
         </div>
@@ -57,13 +57,13 @@ function Inicio() {
 
       <section 
         id="identidad" 
-        className="overflow-hidden max-w-screen-xl m-auto pt-5 pb-5 pl-4 pr-4"
+        className="overflow-hidden max-w-(--breakpoint-xl) m-auto pt-5 pb-5 pl-4 pr-4"
       >
         <div className="grid grid-cols-2 items-center p-6 gap-8 md:p-12 lg:m-5 max-lg:grid-cols-1">
           <div data-aos="fade-up">
             <img 
               src={fondoSecondary} 
-              className="flex w-full m-auto max-w-screen-sm object-cover rounded-3xl shadow-md" 
+              className="flex w-full m-auto max-w-(--breakpoint-sm) object-cover rounded-3xl shadow-md" 
             />
           </div>
 
@@ -97,7 +97,7 @@ function Inicio() {
             <button className="min-w-[30%] bg-yellow-400 text-white font-bold border border-transparent
               py-2 px-4 rounded-full hover:bg-yellow-500 duration-300 shadow-md
               dark:hover:bg-transparent dark:hover:border-yellow-400 dark:hover:text-yellow-400
-              dark:hover:shadow-sm dark:hover:shadow-yellow-500"
+              dark:hover:shadow-xs dark:hover:shadow-yellow-500"
             >
               Comenzar
             </button>
@@ -107,7 +107,7 @@ function Inicio() {
 
       <section 
         id="servicios" 
-        className="overflow-hidden max-w-screen-xl m-auto pt-5 pb-5 pl-4 pr-4 dark:bg-dark-700"
+        className="overflow-hidden max-w-(--breakpoint-xl) m-auto pt-5 pb-5 pl-4 pr-4 dark:bg-dark-700"
       >
         <div className="flex flex-col items-center p-8 gap-4 lg:m-5">
           <div className="w-full max-w-4xl" data-aos="flip-up">
@@ -191,7 +191,7 @@ function Inicio() {
 
       <section 
         id="comunidad" 
-        className="overflow-hidden max-w-screen-xl m-auto pt-5 pb-7 pl-4 pr-4 dark:bg-dark-700"
+        className="overflow-hidden max-w-(--breakpoint-xl) m-auto pt-5 pb-7 pl-4 pr-4 dark:bg-dark-700"
       >
         <div className="flex flex-col items-center p-8 gap-14 mb-8 lg:m-5">
           <div className="w-full max-w-4xl" data-aos="zoom-out">
@@ -217,10 +217,10 @@ function Inicio() {
               " 
             >
               <div className="flex flex-col gap-6 sm:flex-row max-sm:items-center">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <img 
                     src={perfilPrimary} 
-                    className="w-20 h-20 rounded-full object-cover aspect-[1/1]" 
+                    className="w-20 h-20 rounded-full object-cover aspect-square" 
                   />
                 </div>
 
@@ -254,10 +254,10 @@ function Inicio() {
               " 
             >
               <div className="flex flex-col sm:flex-row gap-6 max-sm:items-center">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <img 
                     src={perfilSecondary} 
-                    className="w-20 h-20 rounded-full object-cover aspect-[1/1]" 
+                    className="w-20 h-20 rounded-full object-cover aspect-square" 
                   />
                 </div>
 

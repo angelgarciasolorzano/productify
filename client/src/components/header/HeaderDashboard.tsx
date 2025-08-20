@@ -52,7 +52,7 @@ function HeaderDashboard() {
       initial="hidden"
       animate="visible"
       variants={headerDashboardContainerVariants}
-      className="flex justify-between items-center py-2 px-4 shadow-sm border-b bg-white 
+      className="flex justify-between items-center py-2 px-4 shadow-xs border-b bg-white 
         border-white-200 duration-300 dark:bg-dark-720 dark:border-dark-800
       "
     >
@@ -147,7 +147,7 @@ function Notifications(props: NotificacionProps) {
             <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center 
               justify-center dark:bg-gray-600 dark:text-white"
             >
-              <WiStars size={24} className={`${iconColors[index]} flex-shrink-0`} />
+              <WiStars size={24} className={`${iconColors[index]} shrink-0`} />
             </div>
 
             <span className="ml-3 truncate">{item.text}</span>
@@ -223,7 +223,7 @@ function Profile({toggleDropdown, isDropdownOpen}: ProfileProps) {
           >
             <item.icon 
               size={20} 
-              className={`flex-shrink-0 text-gray-600 dark:text-gray-400`} 
+              className={`shrink-0 text-gray-600 dark:text-gray-400`} 
             />
 
             <span className="ml-3 truncate">{item.text}</span>
