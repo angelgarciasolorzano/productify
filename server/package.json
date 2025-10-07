@@ -6,7 +6,15 @@
     "dev": "ts-node-dev src/index.ts",
     "start": "node build/index.js",
     "tsc": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:create": "npx sequelize-cli db:create --env ${NODE_ENV:-development}",
+    "db:drop": "npx sequelize-cli db:drop --require ts-node/register --require tsconfig-paths/register --env ${NODE_ENV:-development}",
+    "db:migrate": "npx sequelize-cli db:migrate --require ts-node/register --require tsconfig-paths/register --env ${NODE_ENV:-development}",
+    "db:migrate:undo": "npx sequelize-cli db:migrate:undo --require ts-node/register --require tsconfig-paths/register --env ${NODE_ENV:-development}",
+    "db:seed": "npx sequelize-cli db:seed:all --require ts-node/register --require tsconfig-paths/register --env ${NODE_ENV:-development}",
+    "db:seed:undo": "npx sequelize-cli db:seed:undo --require ts-node/register --require tsconfig-paths/register --env ${NODE_ENV:-development}",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:migrate && npm run db:seed",
+    "db:refresh": "npx sequelize-cli db:migrate:undo:all --require ts-node/register --require tsconfig-paths/register --env ${NODE_ENV:-development} && npm run db:migrate && npm run db:seed"
   },
   "_moduleAliases": {
     "@": "src",
@@ -23,6 +31,7 @@
     "@types/module-alias": "^2.0.4",
     "@types/morgan": "^1.9.9",
     "morgan": "^1.10.0",
+    "sequelize-cli": "^6.6.3",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.3"
   },
