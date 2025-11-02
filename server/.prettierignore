@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+prisma/*
+src/generated/*
+database
+tsconfig.json
+package-lock.json
+package.json

@@ -1,0 +1,72 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always"
+  },
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"],
+  "prettier.requireConfig": true,
+  "material-icon-theme.files.associations": {
+    "*.interface.ts": "typescript-def"
+  },
+  "material-icon-theme.folders.customClones": [
+    {
+      "name": "domain-colored",
+      "base": "class",
+      "color": "orange-500",
+      "lightColor": "orange-900",
+      "folderNames": ["domain"]
+    },
+    {
+      "name": "infrastructure-colored",
+      "base": "serverless",
+      "color": "gray-600",
+      "lightColor": "gray-800",
+      "folderNames": ["infrastructure"]
+    },
+    {
+      "name": "dtos-colored",
+      "base": "interface",
+      "color": "cyan-600",
+      "lightColor": "cyan-700",
+      "folderNames": ["dtos"]
+    },
+    {
+      "name": "mapper-colored",
+      "base": "class",
+      "color": "purple-400",
+      "lightColor": "purple-700",
+      "folderNames": ["mappers"]
+    }
+  ],
+  "material-icon-theme.files.customClones": [
+    {
+      "name": "repository-colored",
+      "base": "angular",
+      "color": "green-500",
+      "lightColor": "green-800",
+      "fileExtensions": ["repository.ts"]
+    },
+    {
+      "name": "schema-colored",
+      "base": "angular",
+      "color": "pink-500",
+      "lightColor": "pink-700",
+      "fileExtensions": ["schema.ts"]
+    },
+    {
+      "name": "model-colored",
+      "base": "database",
+      "color": "yellow-500",
+      "lightColor": "yellow-300",
+      "fileExtensions": ["model.ts", "entity.ts"]
+    },
+    {
+      "name": "mapper-colored",
+      "base": "angular",
+      "color": "purple-400",
+      "lightColor": "purple-700",
+      "fileExtensions": ["mapper.ts"]
+    }
+  ]
+}
