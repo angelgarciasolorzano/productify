@@ -30,6 +30,7 @@ export default defineConfig([
         { accessibility: "explicit" },
       ],
       "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/consistent-type-imports": "warn",
       "@typescript-eslint/no-non-null-assertion": "warn",
       "@typescript-eslint/no-inferrable-types": "warn",
       "@typescript-eslint/adjacent-overload-signatures": "error",
@@ -54,5 +55,6 @@ export default defineConfig([
     "build",
     "prisma/*",
     "src/generated/**",
+    "logs",
   ]),
 ]);
