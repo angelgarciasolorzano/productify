@@ -8,9 +8,10 @@
     "lib": ["ES2023"],
     "allowSyntheticDefaultImports": true,
 
-    "baseUrl": "./src",
+    //"baseUrl": "./src",
     "paths": {
-      "@productify/*": ["*"]
+      "@productify/*": ["./src/*"],
+      "@productify/init/*": ["./src/*"]
     },
 
     "strict": true,

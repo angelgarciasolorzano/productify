@@ -13,6 +13,7 @@ const config: Config = {
     "^\\u0000", // Importaciones de side-effect (ej: import "dotenv/config")
     "^node:", // Dependencias nativas de Node.js
     "<THIRD_PARTY_MODULES>", // Dependencias externas
+    "^@productify/init/",
     "^@productify/", // Rutas absolutas (ajusta si tu alias es diferente)
     "^[./]", // Rutas relativas
   ],
