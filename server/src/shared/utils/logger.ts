@@ -1,39 +1,72 @@
-import * as fs from "fs";
-import * as path from "path";
-import { format, loggers, transports } from "winston";
+import type { Logger as LoggerWinston } from "winston";
+import { loggers } from "winston";
 
-const logDir = process.env.LOG_DIR || "./logs";
+type LogLevel =
+  | "error"
+  | "warn"
+  | "info"
+  | "http"
+  | "verbose"
+  | "debug"
+  | "silly";
 
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir, { recursive: true });
+export class Logger {
+  public static info(level: LogLevel, message: string): LoggerWinston {
+    return loggers.get("systemLogger").log(level, message);
+  }
+
+  public static structured(
+    level: LogLevel,
+    message: string,
+    meta?: object,
+  ): LoggerWinston {
+    return loggers.get("systemLoggerStructured").log(level, message, meta);
+  }
+
+  public static error(message: string, meta?: object): LoggerWinston {
+    return loggers.get("systemErrorLogger").error(message, meta);
+  }
+
+  private static async errorAndExit(
+    message: string,
+    meta?: object,
+  ): Promise<void> {
+    const logger = this.error(message, meta);
+
+    logger.on("finish", () =>
+      this.info("info", "Terminando el proceso de registrar el log..."),
+    );
+
+    logger.end();
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    this.info("info", "Proceso terminado.");
+
+    process.exit(1);
+  }
+
+  public static async handleErrorAndExit(
+    context: string,
+    message: string,
+    error: unknown,
+  ): Promise<void> {
+    if (error instanceof Error) {
+      await this.errorAndExit(message, {
+        context,
+        error: {
+          name: error.name,
+          message: error.message,
+          stack: error.stack,
+        },
+      });
+    } else {
+      await this.errorAndExit(message, {
+        context,
+        error: {
+          value: error,
+        },
+      });
+    }
+  }
 }
-
-loggers.add("systemLogger", {
-  level: "info",
-  format: format.cli(),
-  transports: [new transports.Console()],
-});
-
-loggers.add("systemErrorLogger", {
-  level: "error",
-  format: format.combine(
-    format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-    format.errors({ stack: true }),
-    format.json(),
-  ),
-  transports: [
-    new transports.File({
-      filename: path.join(logDir, "standard.log.json"),
-    }),
-  ],
-  exceptionHandlers: [
-    new transports.File({
-      filename: path.join(logDir, "exceptions.log.json"),
-    }),
-  ],
-  rejectionHandlers: [
-    new transports.File({
-      filename: path.join(logDir, "rejections.log.json"),
-    }),
-  ],
-});

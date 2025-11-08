@@ -1,6 +1,7 @@
-import "module-alias/register";
 import "dotenv/config";
 
-import { serverStart } from "@/core";
+import "@productify/init/core/config/winston.js";
 
-serverStart();
+import { bootstrap } from "@productify/core/index.js";
+
+bootstrap();

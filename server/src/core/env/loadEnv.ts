@@ -1,11 +1,16 @@
-import { EnvSchema } from "@/core";
+import { EnvSchema } from "@productify/core/index.js";
+import { Logger } from "@productify/shared/index.js";
 
-export const loadEnv = (): void => {
+export const loadEnv = async (): Promise<void> => {
   try {
     EnvSchema.validateSync(process.env, { abortEarly: false });
-    console.log("Variables de entorno cargadas correctamente");
+
+    Logger.info("info", "Variables de entorno cargadas correctamente");
   } catch (error) {
-    console.log("Error al cargar las variables de entorno", error);
-    process.exit(1);
+    await Logger.handleErrorAndExit(
+      "loadEnv",
+      "Error al cargar las variables de entorno",
+      error,
+    );
   }
 };

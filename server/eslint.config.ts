@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import stylistic from "@stylistic/eslint-plugin";
 import importPlugin from "eslint-plugin-import";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import { defineConfig, globalIgnores } from "eslint/config";
@@ -8,7 +9,7 @@ import { configs } from "typescript-eslint";
 export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
-    plugins: { js },
+    plugins: { js, "@stylistic": stylistic },
     extends: ["js/recommended"],
     languageOptions: { globals: globals.browser },
     rules: {
@@ -20,6 +21,7 @@ export default defineConfig([
       "no-redeclare": "error",
       "no-console": "warn",
       "no-unused-vars": "off",
+      "@stylistic/lines-between-class-members": ["error", "always"],
       "@typescript-eslint/no-unused-vars": [
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
