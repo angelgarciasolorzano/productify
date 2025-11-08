@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
 import importPlugin from "eslint-plugin-import";
+import { jsdoc } from "eslint-plugin-jsdoc";
 import eslintPluginPrettier from "eslint-plugin-prettier/recommended";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
@@ -48,6 +49,37 @@ export default defineConfig([
     },
   },
   configs.recommended,
+  jsdoc({
+    config: "flat/recommended-typescript-error",
+    rules: {
+      "jsdoc/sort-tags": [
+        "warn",
+        {
+          tagSequence: [
+            {
+              tags: [
+                "description",
+                "param",
+                "returns",
+                "throws",
+                "deprecated",
+                "example",
+              ],
+            },
+          ],
+        },
+      ],
+      "jsdoc/tag-lines": [
+        "warn",
+        "any",
+        {
+          startLines: 1,
+        },
+      ],
+      "jsdoc/check-indentation": "warn",
+      "jsdoc/check-alignment": "warn",
+    },
+  }),
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
   eslintPluginPrettier,
