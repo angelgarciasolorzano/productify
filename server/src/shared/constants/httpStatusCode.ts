@@ -1,6 +1,3 @@
-/**
- * Enum que representa los códigos de estado HTTP.
-*/
 export enum HttpStatusCode {
   OK = 200,
   CREATED = 201,
@@ -12,4 +9,4 @@ export enum HttpStatusCode {
   NOT_FOUND = 404,
   CONFLICT = 409,
   INTERNAL_SERVER_ERROR = 500,
-};
+}
