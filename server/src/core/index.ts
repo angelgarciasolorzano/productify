@@ -1,8 +1,9 @@
-export * from "./app/app";
-export * from "./config/cors";
+export * from "./app/app.js";
 
-export * from "./env/env.schema";
-export * from "./env/loadEnv";
-export * from "./server/server";
+export * from "./config/cors.js";
 
-export { default as mainRouter } from "./routes/main.routes";
+export * from "./env/env.schema.js";
+export * from "./env/loadEnv.js";
+export * from "./bootstrap/bootstrap.js";
+
+//export { default as mainRouter } from "./routes/main.routes.js";
