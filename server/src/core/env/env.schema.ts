@@ -1,12 +1,14 @@
-import { object, string, number, InferType } from "yup";
+import type { InferType } from "yup";
+import { number, object, string } from "yup";
 
 export const EnvSchema = object({
   SERVER_HOST: string().required(),
   SERVER_PORT: number().required(),
-  DB_USUARIO: string().required(),
-  DB_PASSWORD: string().required(),
-  DB_DATABASE: string().required(),
   CLIENT_PORT: string().required(),
+  LOG_DIR: string().required(),
+  SYSTEM_LOG_LEVEL: string().required(),
+  SYSTEM_STRUCTURED_LOG_LEVEL: string().required(),
+  SYSTEM_ERROR_LOG_LEVEL: string().required(),
 });
 
 export type EnvType = InferType<typeof EnvSchema>;

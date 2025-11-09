@@ -1,4 +1,4 @@
-import { CorsOptions} from "cors";
+import type { CorsOptions } from "cors";
 
 export const customCorsOptions: CorsOptions = {
   origin: process.env.CLIENT_PORT,
