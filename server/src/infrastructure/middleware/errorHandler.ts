@@ -1,21 +1,22 @@
-import { Request, Response, NextFunction } from "express";
-import { formatResponseError } from "@/shared";
+import type { NextFunction, Request, Response } from "express";
+
+import { formatResponseError } from "@productify/shared/index.js";
 
 /**
- * Middleware de manejo de errores global para Express.
- * 
- * Este middleware maneja errores personalizados y cualquier otro error inesperado.
+ * Middleware global para manejar errores en Express.
  *
- * @param {unknown} error El objeto de error que fue lanzado por la aplicación
- * @param {Request} _request Objeto de la petición (no se usa en este caso)
- * @param {Response} response Objeto de la respuesta, para enviar una respuesta al cliente
- * @param {NextFunction} _next Objeto de la siguiente función (no se usa en este caso)
- * @returns {void} No devuelve nada directamente, sino que envia una respuesta al cliente
-*/
+ * Captura errores, los formatea en una respuesta estándar y envía JSON al cliente.
+ *
+ * @param error - Error capturado.
+ * @param _request - Solicitud (no utilizada).
+ * @param response - Respuesta para enviar al cliente.
+ * @param _next - Siguiente middleware (no utilizada).
+ */
 export const errorHandler = (
-  error: unknown, 
-  _request: Request, 
-  response: Response, _next: NextFunction
+  error: unknown,
+  _request: Request,
+  response: Response,
+  _next: NextFunction,
 ): void => {
   const { statusCode, body } = formatResponseError(error);
   response.status(statusCode).json(body);
