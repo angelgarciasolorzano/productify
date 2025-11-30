@@ -1,5 +1,9 @@
 import type { FieldError } from "@productify/shared/index.js";
-import { CodeError, HttpStatusCode } from "@productify/shared/index.js";
+import {
+  CodeError,
+  HttpStatusCode,
+  ResponseMessagesError,
+} from "@productify/shared/index.js";
 
 /**
  * Define las propiedades requeridas de un error personalizado.
@@ -46,11 +50,11 @@ class ValidationError extends AppError {
   public details?: FieldError[];
 
   /**
-   * @param message Mensaje del error (por defecto `Error de validación de datos`)
+   * @param message Mensaje del error (por defecto: ResponseMessagesError.UNPROCESSABLE_ENTITY)
    * @param details Detalles del error (opcional)
    */
   public constructor(
-    message = "Error de validación de datos",
+    message = ResponseMessagesError.UNPROCESSABLE_ENTITY,
     details?: FieldError[],
   ) {
     super(CodeError.VALIDATION_ERROR, HttpStatusCode.BAD_REQUEST, message);
@@ -64,9 +68,9 @@ class ValidationError extends AppError {
  */
 class ConflictError extends AppError {
   /**
-   * @param message Mensaje del error (por defecto `El recurso ya existe`)
+   * @param message Mensaje del error (por defecto: ResponseMessagesError.CONFLICT)
    */
-  public constructor(message = "El recurso ya existe") {
+  public constructor(message = ResponseMessagesError.CONFLICT) {
     super(CodeError.CONFLICT_ERROR, HttpStatusCode.CONFLICT, message);
   }
 }
@@ -77,9 +81,9 @@ class ConflictError extends AppError {
  */
 class NotFoundError extends AppError {
   /**
-   * @param message Mensaje del error (por defecto `No se encontro el recurso solicitado`)
+   * @param message Mensaje del error (por defecto: ResponseMessagesError.NOT_FOUND)
    */
-  public constructor(message = "No se encontro el recurso solicitado") {
+  public constructor(message = ResponseMessagesError.NOT_FOUND) {
     super(CodeError.NOT_FOUND_ERROR, HttpStatusCode.NOT_FOUND, message);
   }
 }
@@ -90,9 +94,9 @@ class NotFoundError extends AppError {
  */
 class ServerError extends AppError {
   /**
-   * @param message Mensaje del error (por defecto `Error interno del servidor`)
+   * @param message Mensaje del error (por defecto: ResponseMessagesError.INTERNAL_SERVER_ERROR)
    */
-  public constructor(message = "Error interno del servidor") {
+  public constructor(message = ResponseMessagesError.INTERNAL_SERVER_ERROR) {
     super(
       CodeError.INTERNAL_SERVER_ERROR,
       HttpStatusCode.INTERNAL_SERVER_ERROR,
