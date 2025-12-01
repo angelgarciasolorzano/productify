@@ -1,11 +1,13 @@
-import { ICategoriaFinderService, ICategoriaCrudService } from "@categoria/application";
+import type {
+  ICategorieCrudService,
+  ICategorieFinderService,
+} from "@productify/categorie/application/index.js";
 
 /**
- * Define el contrato general del servicio de la aplicacion para la gestion de categorias.
+ * Interfaz principal del servicio de categorías.
  *
- * Esta interfaz combina los métodos de la clase CategoriaFinderService
- * y la clase CategoriaCrudService.
- *
- * @interface ICategoriaService
-*/
-export interface ICategoriaService extends ICategoriaFinderService, ICategoriaCrudService {};
+ * Combina métodos de búsqueda y operaciones CRUD para gestionar categorías.
+ */
+export interface ICategorieService
+  extends ICategorieFinderService,
+    ICategorieCrudService {}

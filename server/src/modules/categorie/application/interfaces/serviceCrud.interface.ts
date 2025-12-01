@@ -1,42 +1,43 @@
-import { UpdateResult } from "@/shared";
-import { CategoriaCreateDto, CategoriaUpdateDto, CategoriaDto } from "@categoria/application";
+import type {
+  CategorieCreateDTO,
+  CategorieDTO,
+  CategorieUpdateDTO,
+} from "@productify/categorie/application/index.js";
+import type { UpdateResult } from "@productify/shared/index.js";
 
 /**
- * Define el contrato del servicio de la aplicacion para la gestion de las categorías.
- * 
- * Esta interfaz declara las operaciones disponibles en la capa de la aplicacion para
- * crear, obtener y actualizar registros de categoria, utilizando DTOs como puente
- * entre la capa de presentacion y la capa de dominio.
+ * Interfaz para operaciones CRUD de categorías.
  *
- * @interface ICategoriaCrudService
-*/
-export interface ICategoriaCrudService {
+ * Define métodos para crear, leer y actualizar categorías usando DTOs.
+ */
+export interface ICategorieCrudService {
   /**
-   * Recupera una lista de todas las categorías existentes.
+   * Obtiene todas las categorías.
    *
-   * @returns {Promise<CategoriaDto[]>} Una promesa que resuelve con una lista (array) de objetos CategoriaDto.
-   * @throws {NotFoundError} Si no se encuentran categorías.
-  */
-  getCategorias(): Promise<CategoriaDto[]>;
+   * @returns Lista de categorías.
+   * @throws {NotFoundError} Si no hay categorías.
+   */
+  getCategories(): Promise<CategorieDTO[]>;
 
   /**
-   * Crea una nueva categoria con los datos recibidos.
+   * Crea una nueva categoría.
    *
-   * @param {CategoriaCreateDto} data Datos del nuevo registro.
-   * @returns {Promise<CategoriaDto>} Una promesa que resuelve con el objeto CategoriaDto creado.
-   * @throws {DatosError} Si la categoría ya existe.
-   * @throws {NotFoundError} Si no se pudo crear la categoría.
-  */
-  createCategoria(data: CategoriaCreateDto): Promise<CategoriaDto>;
+   * @param data Datos para crear la categoría.
+   * @returns Categoría creada.
+   * @throws {ConflictError} Si la categoría ya existe.
+   */
+  createCategory(data: CategorieCreateDTO): Promise<CategorieDTO>;
 
   /**
-   * Actualiza una categoria existente segun su ID.
-   * 
-   * @param {number} id El id de la categoría a actualizar.
-   * @param {CategoriaUpdateDto} data Nuevos datos de la categoría.
-   * @returns {Promise<UpdateResult<CategoriaDto>>} Un objeto data con los datos de la categoria y un booleano que indica si se realizaron cambios o no.
+   * Actualiza una categoría por ID.
+   *
+   * @param id ID de la categoría.
+   * @param data Datos para actualizar.
+   * @returns Resultado de la actualización.
    * @throws {NotFoundError} Si no se encuentra la categoría.
-   * @throws {ServerError} Si no se pudo actualizar la categoría.
-  */
-  updateCategoria(id: number, data: CategoriaUpdateDto): Promise<UpdateResult<CategoriaDto>>;
-};
+   */
+  updateCategory(
+    id: number,
+    data: CategorieUpdateDTO,
+  ): Promise<UpdateResult<CategorieDTO>>;
+}

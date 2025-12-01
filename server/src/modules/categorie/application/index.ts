@@ -1,12 +1,11 @@
-export * from "./dtos/categoriaInput.dto";
-export * from "./dtos/categoriaOutput.dto";
+export * from "./dtos/categorieInput.dto.js";
+export * from "./dtos/categorieOutput.dto.js";
 
-export * from "./interfaces/service.interface";
-export * from "./interfaces/finder.interface";
-export * from "./interfaces/crud.interface";
+export * from "./interfaces/categorieService.interface.js";
+export * from "./interfaces/serviceFinder.interface.js";
+export * from "./interfaces/serviceCrud.interface.js";
+export * from "./mappers/categorie.mapper.js";
 
-export * from "./mappers/categoria.mapper";
-
-export * from "./services/categoria.service";
-export * from "./services/finder.service";
-export * from "./services/crud.service";
+export * from "./services/categorie.service.js";
+export * from "./services/finder.service.js";
+export * from "./services/crud.service.js";

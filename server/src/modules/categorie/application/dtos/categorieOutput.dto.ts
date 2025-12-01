@@ -1,15 +1,15 @@
 /**
- * Objeto de transferencia que representa los datos que se devuelven por la aplicacion.
+ * DTO de salida para categorías.
  *
- * @interface CategoriaDto
-*/
-interface CategoriaDto {
+ * Representa los datos de una categoría devueltos por la aplicación.
+ */
+interface CategorieDTO {
   id: number;
-  nombre: string;
-  descripcion?: string | null;
-  estado: "activo" | "inactivo";
-  fechaCreacion?: Date;
-  fechaModificacion?: Date;
-};
+  name: string;
+  description?: string | null;
+  status: "activo" | "inactivo";
+  createdAt?: Date;
+  updatedAt?: Date;
+}
 
-export { CategoriaDto };
+export { CategorieDTO };

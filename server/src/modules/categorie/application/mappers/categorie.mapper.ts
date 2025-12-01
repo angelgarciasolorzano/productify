@@ -1,77 +1,96 @@
-import { CategoriaCreateDto, CategoriaUpdateDto, CategoriaDto } from "@categoria/application";
-import { Categoria, CategoriaCreate, CategoriaUpdate } from "@categoria/domain";
+import type {
+  Categoria,
+  CategoriaCreate,
+  CategoriaUpdate,
+} from "@categoria/domain";
+
+import type {
+  CategorieCreateDTO,
+  CategorieDTO,
+  CategorieUpdateDTO,
+} from "../dtos/index.js";
 
 /**
- * Clase encargada de mapear los objetos de dominio a objetos DTO y viceversa en la capa de la aplicacion.
- * 
- * Este mapper facilita la transformacion de datos entre la representacion del negocio (entidad de dominio)
- * y la representacion que expone la API (DTO).
+ * Mapper para categorías.
  *
- * @class CategoriaMapper
-*/
-export class CategoriaMapper {
+ * Convierte entre objetos de dominio y DTOs.
+ */
+export class CategorieMapper {
   /**
-   * Transforma un objeto de dominio en un objeto DTO de tipo CategoriaDto.
+   * Convierte dominio a DTO.
    *
-   * @param {Categoria} domain Objeto de dominio de categoria.
-   * @returns {CategoriaDto} Un objeto DTO de CategoriaDto.
-  */
-  public static toDataDto(domain: Categoria): CategoriaDto {
+   * @param domain Objeto de dominio.
+   * @returns DTO correspondiente.
+   */
+  public static toDataDTO(domain: Categoria): CategorieDTO {
     return {
       id: domain.id,
-      nombre: domain.nombre,
-      descripcion: domain.descripcion,
-      estado: domain.estado,
-      fechaCreacion: domain.createdAt,
-      fechaModificacion: domain.updatedAt
+      name: domain.name,
+      description: domain.description,
+      status: domain.status,
+      createdAt: domain.createdAt,
+      updatedAt: domain.updatedAt,
     };
-  };
+  }
 
   /**
-   * Transforma un arreglo de objetos del dominio en un arreglo de objetos DTO.
-   * 
-   * @param {Categoria[]} domain Arreglo de objetos de dominio de categoria.
-   * @returns {CategoriaDto[]} Un arreglo de objetos DTO de CategoriaDto.
-   * @throws {Error} Si el arreglo de dominio es nulo o undefined.
-  */
-  public static toDataListDto(domain: Categoria[]): CategoriaDto[] {
-    if (!domain) throw new Error("No se puede mapear un array de dominio nulo a un array de DTO");
+   * Convierte lista de dominio a lista de DTOs.
+   *
+   * @param domain Lista de objetos de dominio.
+   * @returns Lista de DTOs.
+   * @throws {Error} Si la lista es nula.
+   */
+  public static toDataListDTO(domain: Categoria[]): CategorieDTO[] {
+    if (!domain)
+      throw new Error(
+        "No se puede mapear un array de dominio nulo a un array de DTO",
+      );
 
     if (domain.length === 0) return [];
 
-    return domain.map(categoria => this.toDataDto(categoria));
-  };
+    return domain.map((categoria) => this.toDataDTO(categoria));
+  }
 
   /**
-   * Transforma un objeto de DTO de creacion en un objeto de dominio de creacion.
+   * Convierte DTO de creación a dominio.
    *
-   * @param {CategoriaCreateDto} dto Objeto recibido desde el controlador.
-   * @returns {CategoriaCreate} Un objeto del dominio CategoriaCreate.
-   * @throws {Error} Si el objeto DTO es nulo o undefined.
-  */
-  public static fromCreateDtoToDomain(dto: CategoriaCreateDto): CategoriaCreate {
-    if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
+   * @param dto DTO de creación.
+   * @returns Objeto de dominio para creación.
+   * @throws {Error} Si el DTO es nulo.
+   */
+  public static fromCreateDTOtoDomain(
+    dto: CategorieCreateDTO,
+  ): CategoriaCreate {
+    if (!dto)
+      throw new Error(
+        "No se puede mapear un objeto DTO nulo a un objeto de dominio",
+      );
 
     return {
-      nombre: dto.nombreCategoria,
-      descripcion: dto.descripcionCategoria
+      nombre: dto.name,
+      descripcion: dto.description,
     };
-  };
+  }
 
   /**
-   * Transforma un objeto de DTO de actualizacion en un objeto de dominio de actualizacion.
+   * Convierte DTO de actualización a dominio.
    *
-   * @param {CategoriaUpdateDto} dto Objeto recibido desde el controlador.
-   * @returns {CategoriaUpdate} Un objeto del dominio CategoriaUpdate.
-   * @throws {Error} Si el objeto DTO es nulo o undefined.
-  */
-  public static fromUpdateDtoToDomain(dto: CategoriaUpdateDto): CategoriaUpdate {
-    if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
+   * @param dto DTO de actualización.
+   * @returns Objeto de dominio para actualización.
+   * @throws {Error} Si el DTO es nulo.
+   */
+  public static fromUpdateDTOtoDomain(
+    dto: CategorieUpdateDTO,
+  ): CategoriaUpdate {
+    if (!dto)
+      throw new Error(
+        "No se puede mapear un objeto DTO nulo a un objeto de dominio",
+      );
 
     return {
-      nombre: dto.nombreCategoria,
-      descripcion: dto.descripcionCategoria,
-      estado: dto.estadoCategoria
+      nombre: dto.name,
+      descripcion: dto.description,
+      estado: dto.status,
     };
-  };
-};
+  }
+}

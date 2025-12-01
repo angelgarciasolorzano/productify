@@ -1,21 +1,17 @@
-import { CategoriaDto } from "@categoria/application";
+import type { CategorieDTO } from "@productify/categorie/application/index.js";
 
 /**
- * Define el contrato del servicio de la aplicacion para la busqueda de categorias.
+ * Interfaz para búsqueda de categorías.
  *
- * Esta interfaz declara las operaciones disponibles en la capa de la aplicacion para
- * obtener una categoría por su id, utilizando DTOs como puente entre la capa de presentacion
- * y la capa de dominio.
- *
- * @interface ICategoriaFinderService
-*/
-export interface ICategoriaFinderService {
+ * Define métodos para obtener categorías por ID usando DTOs.
+ */
+export interface ICategorieFinderService {
   /**
-   * Recupera una categoría por su id.
+   * Obtiene una categoría por ID.
    *
-   * @param {number} id El id de la categoría
-   * @returns {Promise<CategoriaDto>} Una promesa que resuelve con el objeto CategoriaDto
-   * @throws {NotFoundError} Si no se encuentra la categoría
-  */
-  getCategoriaId(id: number): Promise<CategoriaDto>;
-};
+   * @param id ID de la categoría.
+   * @returns Categoría encontrada.
+   * @throws {NotFoundError} Si no se encuentra.
+   */
+  getCategorieId(id: number): Promise<CategorieDTO>;
+}
