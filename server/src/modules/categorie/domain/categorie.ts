@@ -19,7 +19,7 @@ interface Categorie {
  */
 type CategorieCreate = Omit<
   Categorie,
-  "id" | "estado" | "createdAt" | "updatedAt"
+  "id" | "status" | "createdAt" | "updatedAt"
 >;
 
 /**

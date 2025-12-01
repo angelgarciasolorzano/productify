@@ -1,82 +1,81 @@
-import { ConflictError, NotFoundError, UpdateResult } from "@/shared";
+import { ConflictError, NotFoundError } from "@productify/shared/index.js";
+import type { UpdateResult } from "@productify/shared/index.js";
 
-import {
-  ICategoriaCrudService,
-  CategoriaCreateDto,
-  CategoriaUpdateDto,
-  CategoriaDto,
-  CategoriaMapper
-} from "@categoria/application";
-
-import { ICategoriaRepository, CategoriaUpdate } from "@categoria/domain";
+import type { CategorieUpdate, ICategorieRepository } from "../../domain/index.js";
+import type { CategorieCreateDTO, CategorieDTO, CategorieUpdateDTO } from "../dtos/index.js";
+import type { ICategorieCrudService } from "../interfaces/index.js";
+import { CategorieMapper } from "../mappers/categorie.mapper.js";
 
 /**
- * Clase que encapsula la logica de negocio para operaciones CRUD.
- * 
- * Se comunica con la capa de repositorio para acceder a los datos y se encarga de transformar los datos
- * en DTOs para ser consumidos por el controlador.
+ * Servicio para operaciones CRUD de categorías.
  *
- * @class CategoriaCrudService
- * @implements ICategoriaCrudService
- * @see ICategoriaRepository Para acceder a los datos
-*/
-export class CategoriaCrudService implements ICategoriaCrudService {
+ * Encapsula la lógica de negocio para crear, leer, actualizar y eliminar categorías,
+ * comunicándose con el repositorio y transformando datos en DTOs para el controlador.
+ *
+ * @see ICategorieRepository Para acceder a los datos
+ */
+export class CategorieCrudService implements ICategorieCrudService {
   /**
-   * @param {ICategoriaRepository} categoriaRepository Implementacion del repositorio
-  */
-  constructor(private readonly categoriaRepository: ICategoriaRepository) {};
+   * Crea una instancia del servicio.
+   *
+   * @param categorieRepository Implementación del repositorio CRUD
+   */
+  public constructor(private readonly categorieRepository: ICategorieRepository) {}
 
-  public async getCategorias(): Promise<CategoriaDto[]> {
-    const categorias = await this.categoriaRepository.getCategorias();
-    
-    if (!categorias || categorias.length === 0) {
+  public async getCategories(): Promise<CategorieDTO[]> {
+    const categories = await this.categorieRepository.getCategories();
+
+    if (!categories || categories.length === 0) {
       throw new NotFoundError("No se encontraron categorias");
-    };
-    
-    return CategoriaMapper.toDataListDto(categorias);
-  };
+    }
 
-  public async createCategoria(data: CategoriaCreateDto): Promise<CategoriaDto> {
-    const categoriaExists = await this.categoriaRepository.getCategoriaNombre(data.nombreCategoria);
+    return CategorieMapper.toDataListDTO(categories);
+  }
 
-    if (categoriaExists) throw new ConflictError("La categoria ya existe");
+  public async createCategory(data: CategorieCreateDTO): Promise<CategorieDTO> {
+    const categoryExists = await this.categorieRepository.getCategorieName(data.name);
 
-    const newCategoria = CategoriaMapper.fromCreateDtoToDomain(data);
+    if (categoryExists) throw new ConflictError("La categoria ya existe");
+    const newCategory = CategorieMapper.fromCreateDTOtoDomain(data);
 
-    const savedCategoria = await this.categoriaRepository.createCategoria(newCategoria);
+    const savedCategory = await this.categorieRepository.createCategorie(newCategory);
 
-    return CategoriaMapper.toDataDto(savedCategoria);
-  };
+    return CategorieMapper.toDataDTO(savedCategory);
+  }
 
-  public async updateCategoria(id: number, dto: CategoriaUpdateDto): Promise<UpdateResult<CategoriaDto>> {
-    const categoriaExists = await this.categoriaRepository.getCategoriaId(id);
-    
-    if (!categoriaExists) throw new NotFoundError("La categoria no existe");
+  public async updateCategory(
+    id: number,
+    dto: CategorieUpdateDTO,
+  ): Promise<UpdateResult<CategorieDTO>> {
+    const categoryExists = await this.categorieRepository.getCategorieId(id);
 
-    const categoriaWithSameName = await this.categoriaRepository.getCategoriaNombre(
-      dto.nombreCategoria
-    );
+    if (!categoryExists) throw new NotFoundError("La categoria no existe");
 
-    if (categoriaWithSameName && categoriaWithSameName.id !== id) {
+    const categoryWithSameName = await this.categorieRepository.getCategorieName(dto.name);
+
+    if (categoryWithSameName && categoryWithSameName.id !== id) {
       throw new ConflictError("Ya existe una categoria con el mismo nombre");
-    };
+    }
 
-    const updatedCategoria = CategoriaMapper.fromUpdateDtoToDomain(dto);
+    const updatedCategory = CategorieMapper.fromUpdateDTOtoDomain(dto);
 
-    const hasNoChanges = Object.keys(updatedCategoria).every(key => {
-      const typedKey = key as keyof CategoriaUpdate;
-      return updatedCategoria[typedKey] === categoriaExists[typedKey];
+    const hasNoChanges = Object.keys(updatedCategory).every((key) => {
+      const typedKey = key as keyof CategorieUpdate;
+      return updatedCategory[typedKey] === categoryExists[typedKey];
     });
-    
-    if (hasNoChanges) return { 
-      hasChanged: false, 
-      data: CategoriaMapper.toDataDto(categoriaExists) 
+
+    if (hasNoChanges) {
+      return {
+        hasChanged: false,
+        data: CategorieMapper.toDataDTO(categoryExists),
+      };
+    }
+
+    const savedCategory = await this.categorieRepository.updateCategorie(id, updatedCategory);
+
+    return {
+      hasChanged: true,
+      data: CategorieMapper.toDataDTO(savedCategory),
     };
-
-    const savedCategoria = await this.categoriaRepository.updateCategoria(
-      id, updatedCategoria
-    );
-
-    return { hasChanged: true, data: CategoriaMapper.toDataDto(savedCategoria) };
-  };
-};
+  }
+}

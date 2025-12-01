@@ -2,7 +2,7 @@ import { type Config } from "prettier";
 
 const config: Config = {
   semi: true,
-  printWidth: 80,
+  printWidth: 100,
   singleQuote: false,
   tabWidth: 2,
   bracketSpacing: true,

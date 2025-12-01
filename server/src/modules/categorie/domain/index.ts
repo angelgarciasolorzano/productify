@@ -1,5 +1,5 @@
-export * from "./categoria";
+export * from "./categorie.js";
 
-export * from "./interfaces/repository.interface";
-export * from "./interfaces/finder.interface";
-export * from "./interfaces/crud.interface";
+export * from "./interfaces/categorieRepository.interface.js";
+export * from "./interfaces/repositoryCrud.interface.js";
+export * from "./interfaces/repositoryFinder.interface.js";

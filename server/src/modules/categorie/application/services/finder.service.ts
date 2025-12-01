@@ -1,34 +1,31 @@
-import { NotFoundError } from "@/shared";
+import { NotFoundError } from "@productify/shared/index.js";
 
-import {
-  ICategoriaFinderService,
-  CategoriaDto,
-  CategoriaMapper
-} from "@categoria/application";
-
-import { ICategoriaRepository } from "@categoria/domain";
+import type { ICategorieFinderRepository } from "../../domain/index.js";
+import type { CategorieDTO } from "../dtos/index.js";
+import type { ICategorieFinderService } from "../interfaces/index.js";
+import { CategorieMapper } from "../mappers/categorie.mapper.js";
 
 /**
- * Clase que encapsula la logica de negocio para operaciones de busqueda.
- * 
- * Se comunica con la capa de repositorio para acceder a los datos y se encarga de transformar los datos
- * en DTOs para ser consumidos por el controlador.
- * 
- * @class CategoriaFinderService
- * @implements ICategoriaFinderService
- * @see ICategoriaRepository Para acceder a los datos
-*/
-export class CategoriaFinderService implements ICategoriaFinderService {
+ * Servicio para operaciones de búsqueda de categorías.
+ *
+ * Encapsula la lógica de negocio para buscar categorías, comunicándose con el repositorio
+ * y transformando los datos en DTOs para el controlador.
+ *
+ * @see ICategorieFinderRepository Para acceder a los datos
+ */
+export class CategorieFinderService implements ICategorieFinderService {
   /**
-   * @param {ICategoriaRepository} categoriaRepository Implementacion del repositorio
-  */
-  constructor(private categoriaRepository: ICategoriaRepository) {};
+   * Crea una instancia del servicio.
+   *
+   * @param categorieRepository Implementación del repositorio de búsqueda
+   */
+  public constructor(private categorieRepository: ICategorieFinderRepository) {}
 
-  public async getCategoriaId(id: number): Promise<CategoriaDto> {
-    const categoria = await this.categoriaRepository.getCategoriaId(id);
+  public async getCategorieId(id: number): Promise<CategorieDTO> {
+    const categorie = await this.categorieRepository.getCategorieId(id);
 
-    if (!categoria) throw new NotFoundError("No se encontro la categoria");
+    if (!categorie) throw new NotFoundError("No se encontro la categoria");
 
-    return CategoriaMapper.toDataDto(categoria);
-  };
-};
+    return CategorieMapper.toDataDTO(categorie);
+  }
+}

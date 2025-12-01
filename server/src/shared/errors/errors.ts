@@ -54,7 +54,7 @@ class ValidationError extends AppError {
    * @param details Detalles del error (opcional)
    */
   public constructor(
-    message = ResponseMessagesError.UNPROCESSABLE_ENTITY,
+    message: string = ResponseMessagesError.UNPROCESSABLE_ENTITY,
     details?: FieldError[],
   ) {
     super(CodeError.VALIDATION_ERROR, HttpStatusCode.BAD_REQUEST, message);
@@ -70,7 +70,7 @@ class ConflictError extends AppError {
   /**
    * @param message Mensaje del error (por defecto: ResponseMessagesError.CONFLICT)
    */
-  public constructor(message = ResponseMessagesError.CONFLICT) {
+  public constructor(message: string = ResponseMessagesError.CONFLICT) {
     super(CodeError.CONFLICT_ERROR, HttpStatusCode.CONFLICT, message);
   }
 }
@@ -83,7 +83,7 @@ class NotFoundError extends AppError {
   /**
    * @param message Mensaje del error (por defecto: ResponseMessagesError.NOT_FOUND)
    */
-  public constructor(message = ResponseMessagesError.NOT_FOUND) {
+  public constructor(message: string = ResponseMessagesError.NOT_FOUND) {
     super(CodeError.NOT_FOUND_ERROR, HttpStatusCode.NOT_FOUND, message);
   }
 }
@@ -96,7 +96,9 @@ class ServerError extends AppError {
   /**
    * @param message Mensaje del error (por defecto: ResponseMessagesError.INTERNAL_SERVER_ERROR)
    */
-  public constructor(message = ResponseMessagesError.INTERNAL_SERVER_ERROR) {
+  public constructor(
+    message: string = ResponseMessagesError.INTERNAL_SERVER_ERROR,
+  ) {
     super(
       CodeError.INTERNAL_SERVER_ERROR,
       HttpStatusCode.INTERNAL_SERVER_ERROR,
