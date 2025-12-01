@@ -23,15 +23,9 @@ import {
 export function formatResponseError(error: unknown): IBaseResponseError {
   if (error instanceof AppError) {
     const message =
-      error instanceof ServerError
-        ? ResponseMessagesError.INTERNAL_SERVER_ERROR
-        : error.message;
+      error instanceof ServerError ? ResponseMessagesError.INTERNAL_SERVER_ERROR : error.message;
 
-    return ResponseErrorBuilder.baseResponse(
-      error.statusCode,
-      error.code,
-      message,
-    );
+    return ResponseErrorBuilder.baseResponse(error.statusCode, error.code, message);
   }
 
   if (error instanceof ValidationErrorYup) {

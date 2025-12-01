@@ -6,6 +6,4 @@ import type { ICategorieFinderService } from "./serviceFinder.interface.js";
  *
  * Combina métodos de búsqueda y operaciones CRUD para gestionar categorías.
  */
-export interface ICategorieService
-  extends ICategorieFinderService,
-    ICategorieCrudService {}
+export interface ICategorieService extends ICategorieFinderService, ICategorieCrudService {}

@@ -1,8 +1,4 @@
-import type {
-  Categorie,
-  CategorieCreate,
-  CategorieUpdate,
-} from "../categorie.js";
+import type { Categorie, CategorieCreate, CategorieUpdate } from "../categorie.js";
 
 /**
  * Interfaz para operaciones CRUD en categorías.

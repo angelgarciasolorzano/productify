@@ -57,7 +57,10 @@ type PublicRequestWithBody<
  *
  * @template TParams Tipo de los parámetros de la solicitud HTTP (por defecto: ParamsDictionary).
  */
-type PublicRequest<TParams extends ParamsDictionary = ParamsDictionary> =
-  TypedRequest<undefined, undefined, TParams>;
+type PublicRequest<TParams extends ParamsDictionary = ParamsDictionary> = TypedRequest<
+  undefined,
+  undefined,
+  TParams
+>;
 
 export { AuthenticatedRequest, PublicRequestWithBody, PublicRequest };

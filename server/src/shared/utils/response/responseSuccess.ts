@@ -1,17 +1,9 @@
 import type { Request, Response } from "express";
 
-import {
-  HttpStatusCode,
-  ResponseBuilder,
-  ResponseMessages,
-} from "@productify/shared/index.js";
+import { HttpStatusCode, ResponseBuilder, ResponseMessages } from "@productify/shared/index.js";
 
 interface IResponseSuccess {
-  sendSuccess<T>(
-    data: T,
-    message: string,
-    statusCode: HttpStatusCode,
-  ): Response;
+  sendSuccess<T>(data: T, message: string, statusCode: HttpStatusCode): Response;
   sendCreated<T>(data: T, message: string): Response;
   sendUpdated<T>(data: T, message: string): Response;
   sendNoChanges<T>(data: T, message: string): Response;
@@ -80,10 +72,7 @@ export class ResponseSuccess implements IResponseSuccess {
    * @param message Mensaje descriptivo de la operación realizada (default: "No se realizaron cambios, los datos son iguales")
    * @returns Objeto de respuesta HTTP
    */
-  public sendNoChanges<T>(
-    data: T,
-    message = ResponseMessages.NO_CHANGES,
-  ): Response {
+  public sendNoChanges<T>(data: T, message = ResponseMessages.NO_CHANGES): Response {
     return this.response
       .status(HttpStatusCode.OK)
       .json(ResponseBuilder.baseResponse(this.request, data, message));

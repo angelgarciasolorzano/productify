@@ -1,14 +1,7 @@
 import type { Logger as LoggerWinston } from "winston";
 import { loggers } from "winston";
 
-type LogLevel =
-  | "error"
-  | "warn"
-  | "info"
-  | "http"
-  | "verbose"
-  | "debug"
-  | "silly";
+type LogLevel = "error" | "warn" | "info" | "http" | "verbose" | "debug" | "silly";
 
 /**
  * Clase Logger para manejar logs estructurados y errores.
@@ -34,11 +27,7 @@ export class Logger {
    * @param meta - Metadatos adicionales para el log.
    * @returns Instancia del logger de Winston.
    */
-  public static structured(
-    level: LogLevel,
-    message: string,
-    meta?: object,
-  ): LoggerWinston {
+  public static structured(level: LogLevel, message: string, meta?: object): LoggerWinston {
     return loggers.get("systemLoggerStructured").log(level, message, meta);
   }
 
@@ -59,15 +48,10 @@ export class Logger {
    * @param message - Mensaje de error a registrar.
    * @param meta - Metadatos adicionales para el log.
    */
-  private static async errorAndExit(
-    message: string,
-    meta?: object,
-  ): Promise<void> {
+  private static async errorAndExit(message: string, meta?: object): Promise<void> {
     const logger = this.error(message, meta);
 
-    logger.on("finish", () =>
-      this.info("info", "Terminando el proceso de registrar el log..."),
-    );
+    logger.on("finish", () => this.info("info", "Terminando el proceso de registrar el log..."));
 
     logger.end();
 

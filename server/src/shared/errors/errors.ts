@@ -1,9 +1,5 @@
 import type { FieldError } from "@productify/shared/index.js";
-import {
-  CodeError,
-  HttpStatusCode,
-  ResponseMessagesError,
-} from "@productify/shared/index.js";
+import { CodeError, HttpStatusCode, ResponseMessagesError } from "@productify/shared/index.js";
 
 /**
  * Define las propiedades requeridas de un error personalizado.
@@ -31,11 +27,7 @@ class AppError extends Error implements AppErrorAttributes {
    * @param statusCode Codigo de estado del error
    * @param message Mensaje del error
    */
-  public constructor(
-    code: CodeError,
-    statusCode: HttpStatusCode,
-    message: string,
-  ) {
+  public constructor(code: CodeError, statusCode: HttpStatusCode, message: string) {
     super(message);
     this.code = code;
     this.statusCode = statusCode;
@@ -96,14 +88,8 @@ class ServerError extends AppError {
   /**
    * @param message Mensaje del error (por defecto: ResponseMessagesError.INTERNAL_SERVER_ERROR)
    */
-  public constructor(
-    message: string = ResponseMessagesError.INTERNAL_SERVER_ERROR,
-  ) {
-    super(
-      CodeError.INTERNAL_SERVER_ERROR,
-      HttpStatusCode.INTERNAL_SERVER_ERROR,
-      message,
-    );
+  public constructor(message: string = ResponseMessagesError.INTERNAL_SERVER_ERROR) {
+    super(CodeError.INTERNAL_SERVER_ERROR, HttpStatusCode.INTERNAL_SERVER_ERROR, message);
   }
 }
 

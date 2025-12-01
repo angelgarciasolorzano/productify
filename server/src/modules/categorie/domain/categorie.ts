@@ -17,10 +17,7 @@ interface Categorie {
  *
  * Excluye campos generados automáticamente.
  */
-type CategorieCreate = Omit<
-  Categorie,
-  "id" | "status" | "createdAt" | "updatedAt"
->;
+type CategorieCreate = Omit<Categorie, "id" | "status" | "createdAt" | "updatedAt">;
 
 /**
  * Datos para actualizar una categoría.
