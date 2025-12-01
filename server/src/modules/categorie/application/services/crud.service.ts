@@ -3,7 +3,7 @@ import type { UpdateResult } from "@productify/shared/index.js";
 
 import type { CategorieUpdate, ICategorieRepository } from "../../domain/index.js";
 import type { CategorieCreateDTO, CategorieDTO, CategorieUpdateDTO } from "../dtos/index.js";
-import type { ICategorieCrudService } from "../interfaces/index.js";
+import type { ICategorieCrudService } from "../interfaces/serviceCrud.interface.js";
 import { CategorieMapper } from "../mappers/categorie.mapper.js";
 
 /**

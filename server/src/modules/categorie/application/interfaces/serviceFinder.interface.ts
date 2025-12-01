@@ -1,4 +1,4 @@
-import type { CategorieDTO } from "../dtos/index.js";
+import type { CategorieDTO } from "../dtos/categorieOutput.dto.js";
 
 /**
  * Interfaz para búsqueda de categorías.
