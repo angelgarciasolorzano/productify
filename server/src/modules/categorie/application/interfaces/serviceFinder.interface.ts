@@ -1,4 +1,4 @@
-import type { CategorieDTO } from "@productify/categorie/application/index.js";
+import type { CategorieDTO } from "../dtos/index.js";
 
 /**
  * Interfaz para búsqueda de categorías.

@@ -1,13 +1,11 @@
-import { ICategoriaCrudRepository, ICategoriaFinderRepository } from "@categoria/domain";
+import type { ICategorieCrudRepository } from "./repositoryCrud.interface.js";
+import type { ICategorieFinderRepository } from "./repositoryFinder.interface.js";
 
 /**
- * Define el contrato general para operaciones relacionadas con la tabla categorias.
+ * Interfaz principal del repositorio de categorías.
  *
- * Esta interfaz combina los métodos de la clase CategoriaFinderRepository
- * y la clase CategoriaCRUDRepository.
- *
- * @interface ICategoriaRepository
- * @extends ICategoriaFinderRepository
- * @extends ICategoriaCrudRepository
-*/
-export interface ICategoriaRepository extends ICategoriaFinderRepository, ICategoriaCrudRepository {};
+ * Combina métodos de búsqueda y operaciones CRUD para gestionar categorías.
+ */
+export interface ICategorieRepository
+  extends ICategorieFinderRepository,
+    ICategorieCrudRepository {}

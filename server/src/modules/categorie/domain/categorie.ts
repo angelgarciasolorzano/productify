@@ -1,29 +1,32 @@
 /**
- * Interfaz que representa la entidad de dominio de categoria.
- * 
- * @interface Categoria
-*/
-interface Categoria {
+ * Entidad de dominio para categoría.
+ *
+ * Representa una categoría completa en el negocio.
+ */
+interface Categorie {
   id: number;
-  nombre: string;
-  descripcion?: string | null;
-  estado: "activo" | "inactivo";
+  name: string;
+  description?: string | null;
+  status: "activo" | "inactivo";
   createdAt: Date;
   updatedAt: Date;
-};
+}
 
 /**
- * Interfaz que representa la entidad de dominio de creación de categoria.
- * 
- * @interface CategoriaCreate
-*/
-type CategoriaCreate = Omit<Categoria, "id" | "estado" | "createdAt" | "updatedAt">;
+ * Datos para crear una categoría.
+ *
+ * Excluye campos generados automáticamente.
+ */
+type CategorieCreate = Omit<
+  Categorie,
+  "id" | "estado" | "createdAt" | "updatedAt"
+>;
 
 /**
- * Interfaz que representa la entidad de dominio de actualización de categoria.
- * 
- * @interface CategoriaUpdate
-*/
-type CategoriaUpdate = Omit<Categoria, "id" | "createdAt" | "updatedAt">;
+ * Datos para actualizar una categoría.
+ *
+ * Excluye campos inmutables.
+ */
+type CategorieUpdate = Omit<Categorie, "id" | "createdAt" | "updatedAt">;
 
-export { Categoria, CategoriaCreate, CategoriaUpdate };
+export { Categorie, CategorieCreate, CategorieUpdate };

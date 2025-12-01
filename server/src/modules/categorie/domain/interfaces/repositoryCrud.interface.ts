@@ -1,38 +1,39 @@
-import { Categoria, CategoriaCreate, CategoriaUpdate } from "@categoria/domain";
+import type {
+  Categorie,
+  CategorieCreate,
+  CategorieUpdate,
+} from "../categorie.js";
 
 /**
- * Define el contrato para realizar operaciones CRUD sobre la tabla categorias.
- * 
- * Esta interfaz proporciona metodos para crear, leer y actualizar
- * registros.
- * 
- * @interface ICategoriaCrudRepository
-*/
-export interface ICategoriaCrudRepository {
+ * Interfaz para operaciones CRUD en categorías.
+ *
+ * Define métodos para crear, leer y actualizar categorías en la base de datos.
+ */
+export interface ICategorieCrudRepository {
   /**
-   * Recupera una lista de todas las categorías existentes.
+   * Obtiene todas las categorías.
    *
-   * @returns {Promise<Categoria[]>} Una promesa que resuelve con un arreglo de objetos del dominio.
-   * @throws {ServerError} Si la consulta a la base de datos falla.
-  */
-  getCategorias(): Promise<Categoria[]>;
+   * @returns Lista de categorías.
+   * @throws {ServerError} Si falla la consulta.
+   */
+  getCategories(): Promise<Categorie[]>;
 
   /**
-   * Crea un nuevo registro en la tabla Categoria.
-   * 
-   * @param {CategoriaCreate} data Objeto de dominio con los datos del nuevo registro.
-   * @returns {Promise<Categoria>} Una promesa que resuelve con el objeto del dominio creado.
-   * @throws {ServerError} Si la consulta a la base de datos falla.
-  */
-  createCategoria(data: CategoriaCreate): Promise<Categoria>;
+   * Crea una nueva categoría.
+   *
+   * @param data Datos para crear la categoría.
+   * @returns Categoría creada.
+   * @throws {ServerError} Si falla la consulta.
+   */
+  createCategorie(data: CategorieCreate): Promise<Categorie>;
 
   /**
-   * Actualiza un registro existente en la tabla Categoria.
+   * Actualiza una categoría por ID.
    *
-   * @param {number} id El id del registro a actualizar.
-   * @param {CategoriaUpdate} data Objeto de dominio con los nuevos datos.
-   * @returns {Promise<Categoria>} Una promesa que resuelve con el objeto del dominio actualizado.
-   * @throws {ServerError} Si la consulta a la base de datos falla o si no se puede recuperar la categoria tras la actualización.
-  */
-  updateCategoria(id: number, data: CategoriaUpdate): Promise<Categoria>;
-};
+   * @param id ID de la categoría.
+   * @param data Datos para actualizar.
+   * @returns Categoría actualizada.
+   * @throws {ServerError} Si falla la consulta.
+   */
+  updateCategorie(id: number, data: CategorieUpdate): Promise<Categorie>;
+}

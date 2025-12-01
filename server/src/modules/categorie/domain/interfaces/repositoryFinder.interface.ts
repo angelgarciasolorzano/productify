@@ -1,28 +1,26 @@
-import { Categoria } from "@categoria/domain";
+import type { Categorie } from "../categorie.js";
 
 /**
- * Define el contrato para realizar operaciones de consulta sobre la tabla categorias.
- * 
- * Esta interfaz proporciona metodos para buscar una categoría por su id o nombre.
- * 
- * @interface ICategoriaFinderRepository
-*/
-export interface ICategoriaFinderRepository {
+ * Interfaz para consultas de categorías.
+ *
+ * Define métodos para buscar categorías por ID o nombre.
+ */
+export interface ICategorieFinderRepository {
   /**
-   * Recupera un registro de la tabla Categoria por su id.
+   * Busca una categoría por ID.
    *
-   * @param {number} id El id de la categoria a buscar.
-   * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto del dominio o null si no se encuentra.
-   * @throws {ServerError} Si la consulta a la base de datos falla.
-  */
-  getCategoriaId(id: number): Promise<Categoria | null>;
+   * @param id ID de la categoría.
+   * @returns Categoría encontrada o null.
+   * @throws {ServerError} Si falla la consulta.
+   */
+  getCategorieId(id: number): Promise<Categorie | null>;
 
   /**
-   * Recupera un registro de la tabla Categoria por su nombre.
+   * Busca una categoría por nombre.
    *
-   * @param {string} nombre nombre de la categoria a buscar.
-   * @returns {Promise<Categoria | null>} Una promesa que resuelve con el objeto del dominio o null si no se encuentra.
-   * @throws {ServerError} Si la consulta a la base de datos falla.
-  */
-  getCategoriaNombre(nombre: string): Promise<Categoria | null>;
-};
+   * @param name Nombre de la categoría.
+   * @returns Categoría encontrada o null.
+   * @throws {ServerError} Si falla la consulta.
+   */
+  getCategorieName(name: string): Promise<Categorie | null>;
+}

@@ -1,7 +1,5 @@
-import type {
-  ICategorieCrudService,
-  ICategorieFinderService,
-} from "@productify/categorie/application/index.js";
+import type { ICategorieCrudService } from "./serviceCrud.interface.js";
+import type { ICategorieFinderService } from "./serviceFinder.interface.js";
 
 /**
  * Interfaz principal del servicio de categorías.

@@ -1,9 +1,10 @@
+import type { UpdateResult } from "@productify/shared/index.js";
+
 import type {
   CategorieCreateDTO,
   CategorieDTO,
   CategorieUpdateDTO,
-} from "@productify/categorie/application/index.js";
-import type { UpdateResult } from "@productify/shared/index.js";
+} from "../dtos/index.js";
 
 /**
  * Interfaz para operaciones CRUD de categorías.
