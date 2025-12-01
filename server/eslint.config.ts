@@ -28,10 +28,7 @@ export default defineConfig([
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/explicit-function-return-type": "warn",
-      "@typescript-eslint/explicit-member-accessibility": [
-        "warn",
-        { accessibility: "explicit" },
-      ],
+      "@typescript-eslint/explicit-member-accessibility": ["warn", { accessibility: "explicit" }],
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/consistent-type-imports": "warn",
       "@typescript-eslint/no-non-null-assertion": "warn",
@@ -44,6 +41,11 @@ export default defineConfig([
         typescript: {
           alwaysTryTypes: true,
           project: "./tsconfig.json",
+          extensionAlias: {
+            ".js": [".js", ".ts", ".tsx", ".d.ts"],
+            ".mjs": [".mjs", ".mts", ".d.mts"],
+            ".cjs": [".cjs", ".cts", ".d.cts"],
+          },
         },
       },
     },
@@ -57,14 +59,7 @@ export default defineConfig([
         {
           tagSequence: [
             {
-              tags: [
-                "description",
-                "param",
-                "returns",
-                "throws",
-                "deprecated",
-                "example",
-              ],
+              tags: ["description", "param", "returns", "throws", "deprecated", "example"],
             },
           ],
         },
@@ -83,12 +78,5 @@ export default defineConfig([
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
   eslintPluginPrettier,
-  globalIgnores([
-    "node_modules",
-    "dist",
-    "build",
-    "prisma/*",
-    "src/generated/**",
-    "logs",
-  ]),
+  globalIgnores(["node_modules", "dist", "build", "prisma/*", "src/generated/**", "logs"]),
 ]);

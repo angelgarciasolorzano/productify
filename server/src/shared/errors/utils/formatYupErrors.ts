@@ -1,6 +1,6 @@
 import type { ValidationError } from "yup";
 
-import type { FieldError } from "@productify/shared/index.js";
+import type { FieldError } from "../types/field.type.js";
 
 /**
  * Formatea los errores de validación de yup en un arreglo de objetos devolviendo

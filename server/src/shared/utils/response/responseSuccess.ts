@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 
-import { HttpStatusCode, ResponseBuilder, ResponseMessages } from "@productify/shared/index.js";
+import { HttpStatusCode, ResponseMessages } from "../../constants/index.js";
+import { ResponseBuilder } from "./responseBuilder.js";
 
 interface IResponseSuccess {
   sendSuccess<T>(data: T, message: string, statusCode: HttpStatusCode): Response;

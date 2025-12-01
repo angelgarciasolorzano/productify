@@ -1,4 +1,6 @@
-import type { CodeError, FieldError, HttpStatusCode } from "@productify/shared/index.js";
+import type { HttpStatusCode } from "../../constants/httpStatusCode.js";
+import type { CodeError } from "../constants/codeError.js";
+import type { FieldError } from "./field.type.js";
 
 export interface IBaseResponseError {
   statusCode: HttpStatusCode;

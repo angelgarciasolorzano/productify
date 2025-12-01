@@ -1,15 +1,11 @@
 import { ValidationError as ValidationErrorYup } from "yup";
 
-import type { IBaseResponseError } from "@productify/shared/index.js";
-import {
-  AppError,
-  CodeError,
-  formatYupErrors,
-  HttpStatusCode,
-  ResponseErrorBuilder,
-  ResponseMessagesError,
-  ServerError,
-} from "@productify/shared/index.js";
+import { HttpStatusCode } from "../../constants/index.js";
+import { CodeError, ResponseMessagesError } from "../constants/index.js";
+import { AppError, ServerError } from "../errors.js";
+import { ResponseErrorBuilder } from "../response/responseBuilder.js";
+import type { IBaseResponseError } from "../types/baseResponse.type.js";
+import { formatYupErrors } from "../utils/formatYupErrors.js";
 
 /**
  * Convierte un error capturado en una respuesta estándar para la API.
