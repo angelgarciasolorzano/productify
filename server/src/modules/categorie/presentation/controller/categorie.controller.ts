@@ -1,57 +1,64 @@
-import { Response } from "express";
-import { PublicRequestWithBody, PublicRequest, ResponseSuccess } from "@/shared";
-import { ICategoriaService, CategoriaCreateDto, CategoriaUpdateDto } from "@categoria/application";
-import { ICategoriaController } from "@categoria/presentation";
+import type { Response } from "express";
+
+import type { PublicRequest, PublicRequestWithBody } from "@productify/shared/index.js";
+import { ResponseSuccess } from "@productify/shared/index.js";
+
+import type {
+  CategorieCreateDTO,
+  CategorieUpdateDTO,
+  ICategorieService,
+} from "../../application/index.js";
+import type { ICategorieController } from "./controller.interface.js";
 
 /**
- * Clase que representa el controlador de la aplicación para la gestión de las categorías.
- * 
- * Se comunica con la capa del servicio para acceder a los metodos y responder con la información 
- * solicitada.
- * 
- * @class CategoriaController
- * @implements ICategoriaController
- * @see ICategoriaService Para operaciones de consulta/busqueda y CRUD
-*/
-export class CategoriaController implements ICategoriaController {
+ * Controlador HTTP para la entidad categoría.
+ *
+ * Recibe peticiones, delega la lógica al servicio y envía respuestas formateadas.
+ *
+ * @see ICategorieService
+ */
+export class CategorieController implements ICategorieController {
   /**
-   * @param {ICategoriaService} categoriaService Implementacion del servicio de categorias
-  */
-  constructor(private readonly categoriaService: ICategoriaService) {};
+   * Crea una instancia del controlador.
+   *
+   * @param categorieService Servicio que implementa la lógica de negocio de categorías
+   */
+  public constructor(private readonly categorieService: ICategorieService) {}
 
-  public getCategorias = async(request: PublicRequest, response: Response): Promise<void> => {
-    const categorias = await this.categoriaService.getCategorias();
+  public getCategories = async (request: PublicRequest, response: Response): Promise<void> => {
+    const categories = await this.categorieService.getCategories();
     const responseHandler = new ResponseSuccess(request, response);
 
-    responseHandler.sendSuccess(categorias, "Lista de categorias obtenida correctamente");
+    responseHandler.sendSuccess(categories, "Lista de categorias obtenida correctamente");
   };
 
-  public getCategoriaId = async(
-    request: PublicRequestWithBody<never, { id: string; }>, 
-    response: Response
+  public getCategorieId = async (
+    request: PublicRequestWithBody<never, { id: string }>,
+    response: Response,
   ): Promise<void> => {
-    const categoria = await this.categoriaService.getCategoriaId(Number(request.params.id));
+    const categorie = await this.categorieService.getCategorieId(Number(request.params.id));
     const responseHandler = new ResponseSuccess(request, response);
 
-    responseHandler.sendSuccess(categoria, "Categoría obtenida correctamente");
+    responseHandler.sendSuccess(categorie, "Categoría obtenida correctamente");
   };
 
-  public createCategoria = async(
-    request: PublicRequestWithBody<CategoriaCreateDto>, 
-    response: Response
+  public createCategory = async (
+    request: PublicRequestWithBody<CategorieCreateDTO>,
+    response: Response,
   ): Promise<void> => {
-    const categoria = await this.categoriaService.createCategoria(request.body);
+    const categorie = await this.categorieService.createCategory(request.body);
     const responseHandler = new ResponseSuccess(request, response);
 
-    responseHandler.sendCreated(categoria, "Categoría creada correctamente");
+    responseHandler.sendCreated(categorie, "Categoría creada correctamente");
   };
 
-  public updateCategoria = async(
-    request: PublicRequestWithBody<CategoriaUpdateDto, { id: string; }>, 
-    response: Response
+  public updateCategory = async (
+    request: PublicRequestWithBody<CategorieUpdateDTO, { id: string }>,
+    response: Response,
   ): Promise<void> => {
-    const { data, hasChanged } = await this.categoriaService.updateCategoria(
-      Number(request.params.id), request.body
+    const { data, hasChanged } = await this.categorieService.updateCategory(
+      Number(request.params.id),
+      request.body,
     );
 
     const responseHandler = new ResponseSuccess(request, response);
@@ -59,8 +66,8 @@ export class CategoriaController implements ICategoriaController {
     if (!hasChanged) {
       responseHandler.sendNoChanges(data);
       return;
-    };
+    }
 
     responseHandler.sendUpdated(data, "Categoría actualizada correctamente");
   };
-};
+}

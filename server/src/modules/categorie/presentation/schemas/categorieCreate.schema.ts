@@ -1,7 +1,8 @@
 import { object } from "yup";
-import { CategoriaFieldSchema } from "@categoria/presentation";
 
-export const CategoriaCreateSchema = object({
-  nombreCategoria: CategoriaFieldSchema.nombreCategoriaField(),
-  descripcionCategoria: CategoriaFieldSchema.descripcionCategoriaField()
+import { CategorieFieldSchema } from "./categorieField.schema.js";
+
+export const CategorieCreateSchema = object({
+  name: CategorieFieldSchema.nameCategorieField(),
+  description: CategorieFieldSchema.descriptionCategorieField(),
 });

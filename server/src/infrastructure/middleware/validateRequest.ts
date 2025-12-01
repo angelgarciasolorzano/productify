@@ -17,15 +17,8 @@ import { RequestPart } from "@productify/shared/index.js";
  * router.get("/categoria/:id", validateRequest(idParamSchema, "params"));
  */
 export const validateRequest =
-  <T extends object>(
-    schema: ObjectSchema<T>,
-    requestPart: RequestPart = RequestPart.BODY,
-  ) =>
-  async (
-    request: Request,
-    _response: Response,
-    next: NextFunction,
-  ): Promise<void> => {
+  <T extends object>(schema: ObjectSchema<T>, requestPart: RequestPart = RequestPart.BODY) =>
+  async (request: Request, _response: Response, next: NextFunction): Promise<void> => {
     try {
       const result = await schema.validate(request[requestPart], {
         abortEarly: false,

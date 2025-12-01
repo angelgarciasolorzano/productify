@@ -1,64 +1,54 @@
-import { Response } from "express";
-import { PublicRequestWithBody, PublicRequest } from "@/shared";
-import { CategoriaUpdateDto, CategoriaCreateDto } from "@categoria/application";
+import type { Response } from "express";
+
+import type { PublicRequest, PublicRequestWithBody } from "@productify/shared/index.js";
+
+import type {
+  CategorieCreateDTO,
+  CategorieUpdateDTO,
+} from "../../application/dtos/categorieInput.dto.js";
 
 /**
- * Define el contrato del controlador de la aplicación para la gestión de las categorías.
- * 
- * Esta interfaz declara los métodos responsables de manejar las operaciones HTTP relacionadas 
- * con la entidad categoría.
- * 
- * @interface ICategoriaController
-*/
-export interface ICategoriaController {
+ * Contrato del controlador para gestionar operaciones HTTP de categorías.
+ */
+export interface ICategorieController {
   /**
-   * Maneja la petición HTTP para obtener una lista de todas las categorías.
-   * 
-   * @param {PublicRequest} request - El objeto de la petición Express.
-   * @param {Response} response - El objeto de la respuesta Express.
-   * @returns {Promise<void>} Esta función no devuelve un valor directamente; la respuesta se envía a través del objeto `response`.
-  */
-  getCategorias(request: PublicRequest, response: Response): Promise<void>;
+   * Obtiene todas las categorías.
+   *
+   * @param request Petición Express
+   * @param response Respuesta Express
+   */
+  getCategories(request: PublicRequest, response: Response): Promise<void>;
 
   /**
-   * Maneja la petición HTTP para obtener una categoría específica por su ID.
-   * 
-   * Extrae el ID de la categoría del parámetro de la petición.
+   * Obtiene una categoría por ID.
    *
-   * @param {PublicRequestWithBody<never, { id: string }>} request - El objeto de la petición Express, con `id` en `request.params`.
-   * @param {Response} response - El objeto de la respuesta Express.
-   * @returns {Promise<void>} Esta función no devuelve un valor directamente; la respuesta se envía a través del objeto `response`.
-  */
-  getCategoriaId(
-    request: PublicRequestWithBody<never, { id: string }>, 
-    response: Response
+   * @param request Petición con ID en params
+   * @param response Respuesta Express
+   */
+  getCategorieId(
+    request: PublicRequestWithBody<never, { id: string }>,
+    response: Response,
   ): Promise<void>;
 
   /**
-   * Maneja la petición HTTP para crear una nueva categoría.
-   * 
-   * Recibe los datos de la nueva categoría del cuerpo de la petición.
+   * Crea una nueva categoría.
    *
-   * @param {PublicRequestWithBody<CategoriaCreateDto>} request - El objeto de la petición Express, con los datos de la categoría en `request.body`.
-   * @param {Response} response - El objeto de la respuesta Express.
-   * @returns {Promise<void>} Esta función no devuelve un valor directamente; la respuesta se envía a través del objeto `response`.
-  */
-  createCategoria(
-    request: PublicRequestWithBody<CategoriaCreateDto>, 
-    response: Response
+   * @param request Petición con datos en body
+   * @param response Respuesta Express
+   */
+  createCategory(
+    request: PublicRequestWithBody<CategorieCreateDTO>,
+    response: Response,
   ): Promise<void>;
 
   /**
-   * Maneja la petición HTTP para actualizar una categoría existente.
-   * 
-   * Extrae el ID de la categoría del parámetro de la petición y los datos de actualización del cuerpo de la petición.
+   * Actualiza una categoría existente.
    *
-   * @param {PublicRequestWithBody<CategoriaUpdateDto, { id: string }>} request - El objeto de la petición Express, con `id` en `request.params` y los datos de actualización en `request.body`.
-   * @param {Response} response - El objeto de la respuesta Express.
-   * @returns {Promise<void>} Esta función no devuelve un valor directamente; la respuesta se envía a través del objeto `response`.
-  */
-  updateCategoria(
-    request: PublicRequestWithBody<CategoriaUpdateDto, { id: string }>, 
-    response: Response
+   * @param request Petición con ID en params y datos en body
+   * @param response Respuesta Express
+   */
+  updateCategory(
+    request: PublicRequestWithBody<CategorieUpdateDTO, { id: string }>,
+    response: Response,
   ): Promise<void>;
-};
+}
