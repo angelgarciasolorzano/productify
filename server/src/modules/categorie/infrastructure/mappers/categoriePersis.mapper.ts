@@ -2,16 +2,15 @@ import type { Categorie, CategorieCreate, CategorieUpdate } from "../../domain/i
 import type { CategorieCreationModel, CategorieModel } from "../interface/categorie.model.js";
 
 /**
- * Clase que mapea los objetos de dominio a los objetos de modelo y viceversa.
- *
+ * Mapeador para convertir entre objetos de dominio y modelos de persistencia de categorías.
  */
 export class CategoriePersistenceMapper {
   /**
-   * Metodo que mapea un objeto de modelo a un objeto de dominio.
+   * Convierte un modelo de persistencia a objeto de dominio.
    *
-   * @param model Objeto de modelo de la tabla categorias.
-   * @returns Objeto de la entidad de dominio de categoria.
-   * @throws {Error} Si no se puede mapear el modelo a un objeto de dominio.
+   * @param model Modelo de la base de datos
+   * @returns Objeto de dominio de categoría
+   * @throws {Error} Si el modelo es nulo
    */
   public static toDomain(model: CategorieModel): Categorie {
     if (!model)
@@ -28,11 +27,11 @@ export class CategoriePersistenceMapper {
   }
 
   /**
-   * Metodo que mapea un arreglo de objetos de modelo a un arreglo de objetos de dominio.
+   * Convierte una lista de modelos a objetos de dominio.
    *
-   * @param model Arreglo de modelo de la tabla categorias.
-   * @returns Arreglo de objetos de dominio de categoria.
-   * @throws {Error} Si no se puede mapear el modelo a un objeto de dominio.
+   * @param model Lista de modelos de la base de datos
+   * @returns Lista de objetos de dominio
+   * @throws {Error} Si la lista es nula
    */
   public static toDomainList(model: CategorieModel[]): Categorie[] {
     if (!model)
@@ -46,11 +45,11 @@ export class CategoriePersistenceMapper {
   }
 
   /**
-   * Metodo que mapea un objeto de dominio a un objeto de modelo.
+   * Convierte un objeto de dominio a modelo de persistencia.
    *
-   * @param domain Objeto de dominio de categoria.
-   * @returns Objeto de modelo de la tabla categorias.
-   * @throws {Error} Si no se puede mapear el modelo a un objeto de dominio.
+   * @param domain Objeto de dominio de categoría
+   * @returns Modelo para la base de datos
+   * @throws {Error} Si el dominio es nulo
    */
   public static toPersistence(domain: Categorie): CategorieModel {
     if (!domain)
@@ -67,11 +66,11 @@ export class CategoriePersistenceMapper {
   }
 
   /**
-   * Metodo que mapea un objeto de dominio de creacion a un objeto de modelo.
+   * Convierte un objeto de creación de dominio a modelo de persistencia.
    *
-   * @param domain Objeto de dominio de creacion de categoria.
-   * @returns Objeto de modelo de la tabla categorias.
-   * @throws {Error} Si no se puede mapear el objeto de dominio a un objeto de modelo.
+   * @param domain Objeto de creación de dominio
+   * @returns Modelo de creación para la base de datos
+   * @throws {Error} Si el dominio es nulo
    */
   public static toPersistenceFromCreate(domain: CategorieCreate): CategorieCreationModel {
     if (!domain)
@@ -84,11 +83,11 @@ export class CategoriePersistenceMapper {
   }
 
   /**
-   * Metodo que mapea un objeto de dominio de actualizacion a un objeto de modelo.
+   * Convierte un objeto de actualización de dominio a modelo de persistencia.
    *
-   * @param domain Objeto de dominio de actualizacion de categoria.
-   * @returns Objeto de modelo de la tabla categorias.
-   * @throws {Error} Si no se puede mapear el objeto de dominio a un objeto de modelo.
+   * @param domain Objeto de actualización de dominio
+   * @returns Modelo de actualización para la base de datos
+   * @throws {Error} Si el dominio es nulo
    */
   public static toPersistenceFromUpdate(
     domain: CategorieUpdate,
