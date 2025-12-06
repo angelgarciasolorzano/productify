@@ -1,20 +1,20 @@
 import type { UpdateResult } from "@productify/shared/index.js";
 
-import type { CategorieCreateDTO, CategorieDTO, CategorieUpdateDTO } from "../dtos/index.js";
+import type { CategoryCreateDTO, CategoryDTO, CategoryUpdateDTO } from "../dtos/index.js";
 
 /**
  * Interfaz para operaciones CRUD de categorías.
  *
  * Define métodos para crear, leer y actualizar categorías usando DTOs.
  */
-export interface ICategorieCrudService {
+export interface ICategoryCrudService {
   /**
    * Obtiene todas las categorías.
    *
    * @returns Lista de categorías.
    * @throws {NotFoundError} Si no hay categorías.
    */
-  getCategories(): Promise<CategorieDTO[]>;
+  getCategories(): Promise<CategoryUpdateDTO[]>;
 
   /**
    * Crea una nueva categoría.
@@ -23,7 +23,7 @@ export interface ICategorieCrudService {
    * @returns Categoría creada.
    * @throws {ConflictError} Si la categoría ya existe.
    */
-  createCategory(data: CategorieCreateDTO): Promise<CategorieDTO>;
+  createCategory(data: CategoryCreateDTO): Promise<CategoryUpdateDTO>;
 
   /**
    * Actualiza una categoría por ID.
@@ -33,5 +33,5 @@ export interface ICategorieCrudService {
    * @returns Resultado de la actualización.
    * @throws {NotFoundError} Si no se encuentra la categoría.
    */
-  updateCategory(id: number, data: CategorieUpdateDTO): Promise<UpdateResult<CategorieDTO>>;
+  updateCategory(id: number, data: CategoryDTO): Promise<UpdateResult<CategoryUpdateDTO>>;
 }

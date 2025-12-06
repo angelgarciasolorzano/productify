@@ -1,11 +1,11 @@
-import type { CategorieDTO } from "../dtos/categorieOutput.dto.js";
+import type { CategoryDTO } from "../dtos/categoryOutput.dto.js";
 
 /**
  * Interfaz para búsqueda de categorías.
  *
  * Define métodos para obtener categorías por ID usando DTOs.
  */
-export interface ICategorieFinderService {
+export interface ICategoryFinderService {
   /**
    * Obtiene una categoría por ID.
    *
@@ -13,5 +13,5 @@ export interface ICategorieFinderService {
    * @returns Categoría encontrada.
    * @throws {NotFoundError} Si no se encuentra.
    */
-  getCategorieId(id: number): Promise<CategorieDTO>;
+  getCategoryById(id: number): Promise<CategoryDTO>;
 }
