@@ -1,11 +1,11 @@
-import type { Categorie } from "../categorie.js";
+import type { Category } from "../category.js";
 
 /**
  * Interfaz para consultas de categorías.
  *
  * Define métodos para buscar categorías por ID o nombre.
  */
-export interface ICategorieFinderRepository {
+export interface ICategoryFinderRepository {
   /**
    * Busca una categoría por ID.
    *
@@ -13,7 +13,7 @@ export interface ICategorieFinderRepository {
    * @returns Categoría encontrada o null.
    * @throws {ServerError} Si falla la consulta.
    */
-  getCategorieId(id: number): Promise<Categorie | null>;
+  getCategoryId(id: number): Promise<Category | null>;
 
   /**
    * Busca una categoría por nombre.
@@ -22,5 +22,5 @@ export interface ICategorieFinderRepository {
    * @returns Categoría encontrada o null.
    * @throws {ServerError} Si falla la consulta.
    */
-  getCategorieName(name: string): Promise<Categorie | null>;
+  getCategoryName(name: string): Promise<Category | null>;
 }

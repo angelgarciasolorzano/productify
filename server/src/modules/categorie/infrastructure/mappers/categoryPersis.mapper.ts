@@ -1,10 +1,10 @@
-import type { Categorie, CategorieCreate, CategorieUpdate } from "../../domain/index.js";
-import type { CategorieCreationModel, CategorieModel } from "../interface/categorie.model.js";
+import type { Category, CategoryCreate, CategoryUpdate } from "../../domain/index.js";
+import type { CategoryCreationModel, CategoryModel } from "../interface/category.model.js";
 
 /**
  * Mapeador para convertir entre objetos de dominio y modelos de persistencia de categorías.
  */
-export class CategoriePersistenceMapper {
+export class CategoryPersistenceMapper {
   /**
    * Convierte un modelo de persistencia a objeto de dominio.
    *
@@ -12,7 +12,7 @@ export class CategoriePersistenceMapper {
    * @returns Objeto de dominio de categoría
    * @throws {Error} Si el modelo es nulo
    */
-  public static toDomain(model: CategorieModel): Categorie {
+  public static toDomain(model: CategoryModel): Category {
     if (!model)
       throw new Error("No se puede mapear un modelo Categoria nulo a un objeto de dominio");
 
@@ -21,8 +21,8 @@ export class CategoriePersistenceMapper {
       name: model.name,
       description: model.description,
       status: model.status,
-      createdAt: model.createdAt,
-      updatedAt: model.updatedAt,
+      createdAt: model.created_at,
+      updatedAt: model.updated_at,
     };
   }
 
@@ -33,7 +33,7 @@ export class CategoriePersistenceMapper {
    * @returns Lista de objetos de dominio
    * @throws {Error} Si la lista es nula
    */
-  public static toDomainList(model: CategorieModel[]): Categorie[] {
+  public static toDomainList(model: CategoryModel[]): Category[] {
     if (!model)
       throw new Error(
         "No se puede mapear un array de modelos Categoria nulo a un array de dominio",
@@ -51,7 +51,7 @@ export class CategoriePersistenceMapper {
    * @returns Modelo para la base de datos
    * @throws {Error} Si el dominio es nulo
    */
-  public static toPersistence(domain: Categorie): CategorieModel {
+  public static toPersistence(domain: Category): CategoryModel {
     if (!domain)
       throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
@@ -60,8 +60,8 @@ export class CategoriePersistenceMapper {
       name: domain.name,
       description: domain.description,
       status: domain.status,
-      createdAt: domain.createdAt,
-      updatedAt: domain.updatedAt,
+      created_at: domain.createdAt,
+      updated_at: domain.updatedAt,
     };
   }
 
@@ -72,7 +72,7 @@ export class CategoriePersistenceMapper {
    * @returns Modelo de creación para la base de datos
    * @throws {Error} Si el dominio es nulo
    */
-  public static toPersistenceFromCreate(domain: CategorieCreate): CategorieCreationModel {
+  public static toPersistenceFromCreate(domain: CategoryCreate): CategoryCreationModel {
     if (!domain)
       throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 
@@ -90,8 +90,8 @@ export class CategoriePersistenceMapper {
    * @throws {Error} Si el dominio es nulo
    */
   public static toPersistenceFromUpdate(
-    domain: CategorieUpdate,
-  ): Omit<CategorieModel, "id" | "createdAt" | "updatedAt"> {
+    domain: CategoryUpdate,
+  ): Omit<CategoryModel, "id" | "created_at" | "updated_at"> {
     if (!domain)
       throw new Error("No se puede mapear un objeto de dominio nulo a un modelo Categoria");
 

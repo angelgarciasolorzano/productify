@@ -1,40 +1,35 @@
-import { ServerError } from "@/shared";
-import { Categoria, ICategoriaFinderRepository } from "@categoria/domain";
-import { CategoriaSequelize, CategoriaPersistenceMapper } from "@categoria/infrastructure";
+import { prisma } from "@productify/infrastructure/index.js";
+import { ServerError } from "@productify/shared/index.js";
+
+import type { Category, ICategoryFinderRepository } from "../../domain/index.js";
+import { CategoryPersistenceMapper } from "../mappers/categoryPersis.mapper.js";
 
 /**
- * Esta clase encapsula la logica de acceso a datos para realizar operaciones de consulta y busqueda
- * sobre la tabla categorias.
- * 
- * Utiliza la ORM Sequelize para realizar las consultas.
- * 
- * Mapea los resultados de la consulta a un objeto de dominio de categoria.
- *
- * @class CategoriaFinderRepository
- * @implements ICategoriaFinderRepository
-*/
-class CategoriaFinderRepository implements ICategoriaFinderRepository {
-  public async getCategoriaId(id: number): Promise<Categoria | null> {
+ * Repositorio para buscar categorías en la base de datos.
+ * Usa Prisma ORM para consultar la tabla de categorías y mapea los resultados a objetos de dominio.
+ */
+export class CategoryFinderRepository implements ICategoryFinderRepository {
+  public async getCategoryId(id: number): Promise<Category | null> {
     try {
-      const categoriaModel = await CategoriaSequelize.findByPk(id);
-
-      return categoriaModel ? CategoriaPersistenceMapper.toDomain(categoriaModel) : null;
-    } catch (error) {
-      throw new ServerError("Error al obtener la categoria");
-    }
-  };
-
-  public async getCategoriaNombre(nombre: string): Promise<Categoria | null> {
-    try {
-      const categoriaModel = await CategoriaSequelize.findOne({ 
-        where: { nombre_categoria: nombre } 
+      const categoryModel = await prisma.categories.findFirst({
+        where: { id: id },
       });
 
-      return categoriaModel ? CategoriaPersistenceMapper.toDomain(categoriaModel) : null;
-    } catch (error) {
+      return categoryModel ? CategoryPersistenceMapper.toDomain(categoryModel) : null;
+    } catch (_error) {
+      throw new ServerError("Error al obtener la categoria");
+    }
+  }
+
+  public async getCategoryName(name: string): Promise<Category | null> {
+    try {
+      const categoryModel = await prisma.categories.findFirst({
+        where: { name: name },
+      });
+
+      return categoryModel ? CategoryPersistenceMapper.toDomain(categoryModel) : null;
+    } catch (_error) {
       throw new ServerError("Error al obtener el nombre de la categoria");
     }
-  };
-};
-
-export { CategoriaFinderRepository as CategoriaFinderRepositorySequelize };
+  }
+}

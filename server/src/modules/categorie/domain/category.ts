@@ -3,7 +3,7 @@
  *
  * Representa una categoría completa en el negocio.
  */
-interface Categorie {
+interface Category {
   id: number;
   name: string;
   description?: string | null;
@@ -17,13 +17,13 @@ interface Categorie {
  *
  * Excluye campos generados automáticamente.
  */
-type CategorieCreate = Omit<Categorie, "id" | "status" | "createdAt" | "updatedAt">;
+type CategoryCreate = Omit<Category, "id" | "status" | "createdAt" | "updatedAt">;
 
 /**
  * Datos para actualizar una categoría.
  *
  * Excluye campos inmutables.
  */
-type CategorieUpdate = Omit<Categorie, "id" | "createdAt" | "updatedAt">;
+type CategoryUpdate = Omit<Category, "id" | "createdAt" | "updatedAt">;
 
-export { Categorie, CategorieCreate, CategorieUpdate };
+export { Category, CategoryCreate, CategoryUpdate };
