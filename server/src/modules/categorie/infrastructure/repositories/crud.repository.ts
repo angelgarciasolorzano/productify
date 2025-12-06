@@ -1,65 +1,60 @@
-import { ServerError } from "@/shared";
+import { prisma } from "@productify/infrastructure/index.js";
+import { ServerError } from "@productify/shared/index.js";
 
-import { 
-  ICategoriaCrudRepository, 
-  Categoria, 
-  CategoriaCreate, 
-  CategoriaUpdate 
-} from "@categoria/domain";
-
-import { CategoriaSequelize, CategoriaPersistenceMapper } from "@categoria/infrastructure";
+import type {
+  Category,
+  CategoryCreate,
+  CategoryUpdate,
+  ICategoryCrudRepository,
+} from "../../domain/index.js";
+import { CategoryPersistenceMapper } from "../mappers/categoryPersis.mapper.js";
 
 /**
- * Esta clase encapsula la logica de acceso a datos para realizar operaciones CRUD
- * sobre la tabla categorias.
- * 
- * Utiliza la ORM Sequelize para realizar las consultas.
- * 
- * Mapea los resultados de la consulta a un objeto de dominio de categoria.
- * 
- * @class CategoriaCrudRepository
- * @implements ICategoriaCrudRepository
-*/
-class CategoriaCrudRepository implements ICategoriaCrudRepository {
-  public async getCategorias(): Promise<Categoria[]> {
+ * Repositorio para operaciones CRUD en categorías.
+ * Usa Prisma ORM para interactuar con la tabla de categorías y mapea los resultados a objetos de dominio.
+ */
+export class CategoryCrudRepository implements ICategoryCrudRepository {
+  public async getCategories(): Promise<Category[]> {
     try {
-      const categorias = await CategoriaSequelize.findAll();
+      const categories = await prisma.categories.findMany();
 
-      return CategoriaPersistenceMapper.toDomainList(categorias);
-    } catch (error) {
+      return CategoryPersistenceMapper.toDomainList(categories);
+    } catch (_error) {
       throw new ServerError("Error al obtener las categorias");
     }
-  };
+  }
 
-  public async createCategoria(data: CategoriaCreate): Promise<Categoria> {
+  public async createCategory(data: CategoryCreate): Promise<Category> {
     try {
-      const categoriaModel = CategoriaPersistenceMapper.toPersistenceFromCreate(data);
+      const categoryModel = CategoryPersistenceMapper.toPersistenceFromCreate(data);
 
-      const categoria = await CategoriaSequelize.create(categoriaModel);
+      const category = await prisma.categories.create({ data: categoryModel });
 
-      return CategoriaPersistenceMapper.toDomain(categoria);
-    } catch (error) {
+      return CategoryPersistenceMapper.toDomain(category);
+    } catch (_error) {
       throw new ServerError("Error al crear la categoria");
     }
-  };
+  }
 
-  public async updateCategoria(id: number, data: CategoriaUpdate): Promise<Categoria> {
+  public async updateCategory(id: number, data: CategoryUpdate): Promise<Category> {
     try {
-      const categoriaModel = CategoriaPersistenceMapper.toPersistenceFromUpdate(data);
+      const categoryModel = CategoryPersistenceMapper.toPersistenceFromUpdate(data);
 
-      await CategoriaSequelize.update(categoriaModel, {
-        where: { id_categoria: id }
+      await prisma.categories.update({
+        where: { id: id },
+        data: categoryModel,
       });
 
-      const categoria = await CategoriaSequelize.findByPk(id);
+      const category = await prisma.categories.findUnique({
+        where: { id: id },
+      });
 
-      if (!categoria) throw new ServerError("No se pudo recuperar la categoria tras la actualización");
+      if (!category)
+        throw new ServerError("No se pudo recuperar la categoria tras la actualización");
 
-      return CategoriaPersistenceMapper.toDomain(categoria);
-    } catch (error) {
+      return CategoryPersistenceMapper.toDomain(category);
+    } catch (_error) {
       throw new ServerError("Error al actualizar la categoria");
     }
-  };
-};
-
-export { CategoriaCrudRepository as CategoriaCrudRepositorySequelize };
+  }
+}
