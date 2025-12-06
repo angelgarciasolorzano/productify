@@ -19,10 +19,15 @@ model users {
 }
 
 model categories {
-  id          Int      @id @default(autoincrement())
-  name        String   @unique @db.VarChar(50)
-  description String?  @db.VarChar(200)
-  status      String   @default("activo")
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  id          Int            @id @default(autoincrement())
+  name        String         @unique @db.VarChar(50)
+  description String?        @db.VarChar(200)
+  status      CategoryStatus @default(activo)
+  created_at  DateTime       @default(now())
+  updated_at  DateTime       @updatedAt
+}
+
+enum CategoryStatus {
+  activo
+  inactivo
 }
