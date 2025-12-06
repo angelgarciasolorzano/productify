@@ -3,7 +3,7 @@ import { Router } from "express";
 import { validateRequest } from "@productify/infrastructure/index.js";
 import { asyncWrapper, IdParamSchema, RequestPart } from "@productify/shared/index.js";
 
-import type { ICategorieController } from "../controller/controller.interface.js";
+import type { ICategoryController } from "../controller/controller.interface.js";
 import { CategorieCreateSchema } from "../schemas/categorieCreate.schema.js";
 import { CategorieUpdateSchema } from "../schemas/categorieUpdate.schema.js";
 
@@ -15,12 +15,12 @@ import { CategorieUpdateSchema } from "../schemas/categorieUpdate.schema.js";
  * @param controller Implementación del controlador de categorías
  * @returns Router configurado con las rutas
  */
-export function categoriaBuildRouter(controller: ICategorieController): Router {
+export function categoryBuildRouter(controller: ICategoryController): Router {
   const router = Router();
 
   router.get("/obtener-categorias", asyncWrapper(controller.getCategories));
 
-  router.get("/obtener-categoria/:id", asyncWrapper(controller.getCategorieId));
+  router.get("/obtener-categoria/:id", asyncWrapper(controller.getCategoryById));
 
   router.post(
     "/registrar-categoria",
