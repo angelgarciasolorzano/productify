@@ -14,7 +14,7 @@ export interface ICategoryCrudService {
    * @returns Lista de categorías.
    * @throws {NotFoundError} Si no hay categorías.
    */
-  getCategories(): Promise<CategoryUpdateDTO[]>;
+  getCategories(): Promise<CategoryDTO[]>;
 
   /**
    * Crea una nueva categoría.
@@ -23,7 +23,7 @@ export interface ICategoryCrudService {
    * @returns Categoría creada.
    * @throws {ConflictError} Si la categoría ya existe.
    */
-  createCategory(data: CategoryCreateDTO): Promise<CategoryUpdateDTO>;
+  createCategory(data: CategoryCreateDTO): Promise<CategoryDTO>;
 
   /**
    * Actualiza una categoría por ID.
@@ -33,5 +33,5 @@ export interface ICategoryCrudService {
    * @returns Resultado de la actualización.
    * @throws {NotFoundError} Si no se encuentra la categoría.
    */
-  updateCategory(id: number, data: CategoryDTO): Promise<UpdateResult<CategoryUpdateDTO>>;
+  updateCategory(id: number, data: CategoryUpdateDTO): Promise<UpdateResult<CategoryDTO>>;
 }

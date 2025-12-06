@@ -1,11 +1,11 @@
 import type { UpdateResult } from "@productify/shared/index.js";
 import { ValidationError } from "@productify/shared/index.js";
 
-import type { CategorieCreateDTO, CategorieDTO, CategorieUpdateDTO } from "../dtos/index.js";
+import type { CategoryCreateDTO, CategoryDTO, CategoryUpdateDTO } from "../dtos/index.js";
 import type {
-  ICategorieCrudService,
-  ICategorieFinderService,
-  ICategorieService,
+  ICategoryCrudService,
+  ICategoryFinderService,
+  ICategoryService,
 } from "../interfaces/index.js";
 
 /**
@@ -13,13 +13,13 @@ import type {
  *
  * Delega operaciones de búsqueda y CRUD a servicios especializados.
  *
- * @see ICategorieFinderService
- * @see ICategorieCrudService
+ * @see ICategoryFinderService
+ * @see ICategoryCrudService
  */
-export class CategorieService implements ICategorieService {
-  private finder: ICategorieFinderService;
+export class CategoryService implements ICategoryService {
+  private finder: ICategoryFinderService;
 
-  private crud: ICategorieCrudService;
+  private crud: ICategoryCrudService;
 
   /**
    * Crea una instancia del servicio.
@@ -27,7 +27,7 @@ export class CategorieService implements ICategorieService {
    * @param finder Servicio de búsqueda
    * @param crud Servicio CRUD
    */
-  public constructor(finder: ICategorieFinderService, crud: ICategorieCrudService) {
+  public constructor(finder: ICategoryFinderService, crud: ICategoryCrudService) {
     this.finder = finder;
     this.crud = crud;
   }
@@ -44,24 +44,24 @@ export class CategorieService implements ICategorieService {
     }
   }
 
-  public async getCategorieId(id: number): Promise<CategorieDTO> {
+  public async getCategoryById(id: number): Promise<CategoryDTO> {
     this.validateCategorieId(id);
 
-    return await this.finder.getCategorieId(id);
+    return await this.finder.getCategoryById(id);
   }
 
-  public async getCategories(): Promise<CategorieDTO[]> {
+  public async getCategories(): Promise<CategoryDTO[]> {
     return await this.crud.getCategories();
   }
 
-  public async createCategory(data: CategorieCreateDTO): Promise<CategorieDTO> {
+  public async createCategory(data: CategoryCreateDTO): Promise<CategoryDTO> {
     return await this.crud.createCategory(data);
   }
 
   public async updateCategory(
     id: number,
-    data: CategorieUpdateDTO,
-  ): Promise<UpdateResult<CategorieDTO>> {
+    data: CategoryUpdateDTO,
+  ): Promise<UpdateResult<CategoryDTO>> {
     this.validateCategorieId(id);
     return await this.crud.updateCategory(id, data);
   }
