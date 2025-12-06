@@ -13,7 +13,7 @@ export interface ICategoryFinderRepository {
    * @returns Categoría encontrada o null.
    * @throws {ServerError} Si falla la consulta.
    */
-  getCategoryId(id: number): Promise<Category | null>;
+  getCategoryById(id: number): Promise<Category | null>;
 
   /**
    * Busca una categoría por nombre.

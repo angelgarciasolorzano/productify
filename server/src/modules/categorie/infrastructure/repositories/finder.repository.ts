@@ -9,7 +9,7 @@ import { CategoryPersistenceMapper } from "../mappers/categoryPersis.mapper.js";
  * Usa Prisma ORM para consultar la tabla de categorías y mapea los resultados a objetos de dominio.
  */
 export class CategoryFinderRepository implements ICategoryFinderRepository {
-  public async getCategoryId(id: number): Promise<Category | null> {
+  public async getCategoryById(id: number): Promise<Category | null> {
     try {
       const categoryModel = await prisma.categories.findFirst({
         where: { id: id },
