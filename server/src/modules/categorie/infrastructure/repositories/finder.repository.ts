@@ -21,7 +21,7 @@ export class CategoryFinderRepository implements ICategoryFinderRepository {
     }
   }
 
-  public async getCategoryName(name: string): Promise<Category | null> {
+  public async getCategoryByName(name: string): Promise<Category | null> {
     try {
       const categoryModel = await prisma.categories.findFirst({
         where: { name: name },

@@ -22,5 +22,5 @@ export interface ICategoryFinderRepository {
    * @returns Categoría encontrada o null.
    * @throws {ServerError} Si falla la consulta.
    */
-  getCategoryName(name: string): Promise<Category | null>;
+  getCategoryByName(name: string): Promise<Category | null>;
 }
