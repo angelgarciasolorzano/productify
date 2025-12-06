@@ -4,8 +4,8 @@ import { validateRequest } from "@productify/infrastructure/index.js";
 import { asyncWrapper, IdParamSchema, RequestPart } from "@productify/shared/index.js";
 
 import type { ICategoryController } from "../controller/controller.interface.js";
-import { CategorieCreateSchema } from "../schemas/categorieCreate.schema.js";
-import { CategorieUpdateSchema } from "../schemas/categorieUpdate.schema.js";
+import { CategoryCreateSchema } from "../schemas/categoryCreate.schema.js";
+import { CategoryUpdateSchema } from "../schemas/categoryUpdate.schema.js";
 
 /**
  * Construye un router Express con las rutas de la API de categorías.
@@ -24,14 +24,14 @@ export function categoryBuildRouter(controller: ICategoryController): Router {
 
   router.post(
     "/registrar-categoria",
-    validateRequest(CategorieCreateSchema),
+    validateRequest(CategoryCreateSchema),
     asyncWrapper(controller.createCategory),
   );
 
   router.put(
     "/actualizar-categoria/:id",
     validateRequest(IdParamSchema, RequestPart.PARAMS),
-    validateRequest(CategorieUpdateSchema),
+    validateRequest(CategoryUpdateSchema),
     asyncWrapper(controller.updateCategory),
   );
 
