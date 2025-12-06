@@ -1,10 +1,10 @@
 import { ConflictError, NotFoundError } from "@productify/shared/index.js";
 import type { UpdateResult } from "@productify/shared/index.js";
 
-import type { CategorieUpdate, ICategorieRepository } from "../../domain/index.js";
-import type { CategorieCreateDTO, CategorieDTO, CategorieUpdateDTO } from "../dtos/index.js";
-import type { ICategorieCrudService } from "../interfaces/serviceCrud.interface.js";
-import { CategorieMapper } from "../mappers/categorie.mapper.js";
+import type { CategoryUpdate, ICategoryRepository } from "../../domain/index.js";
+import type { CategoryCreateDTO, CategoryDTO, CategoryUpdateDTO } from "../dtos/index.js";
+import type { ICategoryCrudService } from "../interfaces/serviceCrud.interface.js";
+import { CategoryMapper } from "../mappers/category.mapper.js";
 
 /**
  * Servicio para operaciones CRUD de categorías.
@@ -12,70 +12,71 @@ import { CategorieMapper } from "../mappers/categorie.mapper.js";
  * Encapsula la lógica de negocio para crear, leer, actualizar y eliminar categorías,
  * comunicándose con el repositorio y transformando datos en DTOs para el controlador.
  *
- * @see ICategorieRepository Para acceder a los datos
+ * @see ICategoryRepository Para acceder a los datos
  */
-export class CategorieCrudService implements ICategorieCrudService {
+export class CategoryCrudService implements ICategoryCrudService {
   /**
    * Crea una instancia del servicio.
    *
-   * @param categorieRepository Implementación del repositorio CRUD
+   * @param categoryRepository Implementación del repositorio CRUD
    */
-  public constructor(private readonly categorieRepository: ICategorieRepository) {}
+  public constructor(private readonly categoryRepository: ICategoryRepository) {}
 
-  public async getCategories(): Promise<CategorieDTO[]> {
-    const categories = await this.categorieRepository.getCategories();
+  public async getCategories(): Promise<CategoryDTO[]> {
+    const categories = await this.categoryRepository.getCategories();
 
     if (!categories || categories.length === 0) {
       throw new NotFoundError("No se encontraron categorias");
     }
 
-    return CategorieMapper.toDataListDTO(categories);
+    return CategoryMapper.toDataListDTO(categories);
   }
 
-  public async createCategory(data: CategorieCreateDTO): Promise<CategorieDTO> {
-    const categoryExists = await this.categorieRepository.getCategorieName(data.name);
+  public async createCategory(data: CategoryCreateDTO): Promise<CategoryDTO> {
+    const categoryExists = await this.categoryRepository.getCategoryName(data.name);
 
     if (categoryExists) throw new ConflictError("La categoria ya existe");
-    const newCategory = CategorieMapper.fromCreateDTOtoDomain(data);
+    const newCategory = CategoryMapper.fromCreateDTOtoDomain(data);
 
-    const savedCategory = await this.categorieRepository.createCategorie(newCategory);
+    const savedCategory = await this.categoryRepository.createCategory(newCategory);
 
-    return CategorieMapper.toDataDTO(savedCategory);
+    return CategoryMapper.toDataDTO(savedCategory);
   }
 
   public async updateCategory(
     id: number,
-    dto: CategorieUpdateDTO,
-  ): Promise<UpdateResult<CategorieDTO>> {
-    const categoryExists = await this.categorieRepository.getCategorieId(id);
+    dto: CategoryUpdateDTO,
+  ): Promise<UpdateResult<CategoryDTO>> {
+    const categoryExists = await this.categoryRepository.getCategoryById(id);
 
     if (!categoryExists) throw new NotFoundError("La categoria no existe");
 
-    const categoryWithSameName = await this.categorieRepository.getCategorieName(dto.name);
+    const categoryWithSameName = await this.categoryRepository.getCategoryName(dto.name);
 
     if (categoryWithSameName && categoryWithSameName.id !== id) {
       throw new ConflictError("Ya existe una categoria con el mismo nombre");
     }
 
-    const updatedCategory = CategorieMapper.fromUpdateDTOtoDomain(dto);
+    const updatedCategory = CategoryMapper.fromUpdateDTOtoDomain(dto);
 
     const hasNoChanges = Object.keys(updatedCategory).every((key) => {
-      const typedKey = key as keyof CategorieUpdate;
+      const typedKey = key as keyof CategoryUpdate;
+
       return updatedCategory[typedKey] === categoryExists[typedKey];
     });
 
     if (hasNoChanges) {
       return {
         hasChanged: false,
-        data: CategorieMapper.toDataDTO(categoryExists),
+        data: CategoryMapper.toDataDTO(categoryExists),
       };
     }
 
-    const savedCategory = await this.categorieRepository.updateCategorie(id, updatedCategory);
+    const savedCategory = await this.categoryRepository.updateCategory(id, updatedCategory);
 
     return {
       hasChanged: true,
-      data: CategorieMapper.toDataDTO(savedCategory),
+      data: CategoryMapper.toDataDTO(savedCategory),
     };
   }
 }
