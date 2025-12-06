@@ -25,7 +25,7 @@ export default defineConfig([
       "@stylistic/lines-between-class-members": ["error", "always"],
       "@typescript-eslint/no-unused-vars": [
         "error",
-        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" },
       ],
       "@typescript-eslint/explicit-function-return-type": "warn",
       "@typescript-eslint/explicit-member-accessibility": ["warn", { accessibility: "explicit" }],
