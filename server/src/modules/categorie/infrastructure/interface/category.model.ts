@@ -1,18 +1,18 @@
 /**
  * Modelo de datos para una categoría en la base de datos.
  */
-interface CategorieModel {
+interface CategoryModel {
   id: number;
   name: string;
   description?: string | null;
   status: "activo" | "inactivo";
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 /**
  * Modelo para crear una nueva categoría.
  */
-type CategorieCreationModel = Omit<CategorieModel, "id" | "status" | "createdAt" | "updatedAt">;
+type CategoryCreationModel = Omit<CategoryModel, "id" | "status" | "created_at" | "updated_at">;
 
-export { CategorieModel, CategorieCreationModel };
+export { CategoryModel, CategoryCreationModel };
