@@ -3,7 +3,7 @@
  *
  * Representa los datos de una categoría devueltos por la aplicación.
  */
-interface CategorieDTO {
+interface CategoryDTO {
   id: number;
   name: string;
   description?: string | null;
@@ -12,4 +12,4 @@ interface CategorieDTO {
   updatedAt?: Date;
 }
 
-export { CategorieDTO };
+export { CategoryDTO };

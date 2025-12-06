@@ -1,2 +1,2 @@
-export * from "./categorieInput.dto.js";
-export * from "./categorieOutput.dto.js";
+export * from "./categoryInput.dto.js";
+export * from "./categoryOutput.dto.js";

@@ -3,7 +3,7 @@
  *
  * Contiene los datos mínimos requeridos para registrar una categoría.
  */
-interface CategorieCreateDTO {
+interface CategoryCreateDTO {
   name: string;
   description?: string | null;
 }
@@ -13,8 +13,8 @@ interface CategorieCreateDTO {
  *
  * Extiende los datos de creación y agrega el estado de la categoría.
  */
-type CategorieUpdateDTO = CategorieCreateDTO & {
+type CategoryUpdateDTO = CategoryCreateDTO & {
   status: "activo" | "inactivo";
 };
 
-export { CategorieCreateDTO, CategorieUpdateDTO };
+export { CategoryCreateDTO, CategoryUpdateDTO };
