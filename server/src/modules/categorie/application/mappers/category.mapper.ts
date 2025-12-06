@@ -1,19 +1,19 @@
-import type { Categorie, CategorieCreate, CategorieUpdate } from "../../domain/index.js";
-import type { CategorieCreateDTO, CategorieDTO, CategorieUpdateDTO } from "../dtos/index.js";
+import type { Category, CategoryCreate, CategoryUpdate } from "../../domain/index.js";
+import type { CategoryCreateDTO, CategoryDTO, CategoryUpdateDTO } from "../dtos/index.js";
 
 /**
  * Mapper para categorías.
  *
  * Convierte entre objetos de dominio y DTOs.
  */
-export class CategorieMapper {
+export class CategoryMapper {
   /**
    * Convierte dominio a DTO.
    *
    * @param domain Objeto de dominio.
    * @returns DTO correspondiente.
    */
-  public static toDataDTO(domain: Categorie): CategorieDTO {
+  public static toDataDTO(domain: Category): CategoryDTO {
     return {
       id: domain.id,
       name: domain.name,
@@ -31,7 +31,7 @@ export class CategorieMapper {
    * @returns Lista de DTOs.
    * @throws {Error} Si la lista es nula.
    */
-  public static toDataListDTO(domain: Categorie[]): CategorieDTO[] {
+  public static toDataListDTO(domain: Category[]): CategoryDTO[] {
     if (!domain) throw new Error("No se puede mapear un array de dominio nulo a un array de DTO");
 
     if (domain.length === 0) return [];
@@ -46,7 +46,7 @@ export class CategorieMapper {
    * @returns Objeto de dominio para creación.
    * @throws {Error} Si el DTO es nulo.
    */
-  public static fromCreateDTOtoDomain(dto: CategorieCreateDTO): CategorieCreate {
+  public static fromCreateDTOtoDomain(dto: CategoryCreateDTO): CategoryCreate {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {
@@ -62,7 +62,7 @@ export class CategorieMapper {
    * @returns Objeto de dominio para actualización.
    * @throws {Error} Si el DTO es nulo.
    */
-  public static fromUpdateDTOtoDomain(dto: CategorieUpdateDTO): CategorieUpdate {
+  public static fromUpdateDTOtoDomain(dto: CategoryUpdateDTO): CategoryUpdate {
     if (!dto) throw new Error("No se puede mapear un objeto DTO nulo a un objeto de dominio");
 
     return {
