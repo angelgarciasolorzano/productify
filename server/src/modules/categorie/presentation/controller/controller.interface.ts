@@ -3,14 +3,14 @@ import type { Response } from "express";
 import type { PublicRequest, PublicRequestWithBody } from "@productify/shared/index.js";
 
 import type {
-  CategorieCreateDTO,
-  CategorieUpdateDTO,
-} from "../../application/dtos/categorieInput.dto.js";
+  CategoryCreateDTO,
+  CategoryUpdateDTO,
+} from "../../application/dtos/categoryInput.dto.js";
 
 /**
  * Contrato del controlador para gestionar operaciones HTTP de categorías.
  */
-export interface ICategorieController {
+export interface ICategoryController {
   /**
    * Obtiene todas las categorías.
    *
@@ -25,7 +25,7 @@ export interface ICategorieController {
    * @param request Petición con ID en params
    * @param response Respuesta Express
    */
-  getCategorieId(
+  getCategoryById(
     request: PublicRequestWithBody<never, { id: string }>,
     response: Response,
   ): Promise<void>;
@@ -37,7 +37,7 @@ export interface ICategorieController {
    * @param response Respuesta Express
    */
   createCategory(
-    request: PublicRequestWithBody<CategorieCreateDTO>,
+    request: PublicRequestWithBody<CategoryCreateDTO>,
     response: Response,
   ): Promise<void>;
 
@@ -48,7 +48,7 @@ export interface ICategorieController {
    * @param response Respuesta Express
    */
   updateCategory(
-    request: PublicRequestWithBody<CategorieUpdateDTO, { id: string }>,
+    request: PublicRequestWithBody<CategoryUpdateDTO, { id: string }>,
     response: Response,
   ): Promise<void>;
 }
