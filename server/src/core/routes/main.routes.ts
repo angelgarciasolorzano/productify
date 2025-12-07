@@ -4,6 +4,6 @@ import { categoryRouter } from "@productify/modules/index.js";
 
 const router = Router();
 
-router.use("/api/category", categoryRouter);
+router.use("/api", categoryRouter);
 
 export default router;

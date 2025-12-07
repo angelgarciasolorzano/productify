@@ -17,18 +17,18 @@ import { CategoryCreateSchema, CategoryUpdateSchema } from "../schemas/index.js"
 export function categoryBuildRouter(controller: ICategoryController): Router {
   const router = Router();
 
-  router.get("/obtener-categorias", asyncWrapper(controller.getCategories));
+  router.get("/categories", asyncWrapper(controller.getCategories));
 
-  router.get("/obtener-categoria/:id", asyncWrapper(controller.getCategoryById));
+  router.get("/categories/:id", asyncWrapper(controller.getCategoryById));
 
   router.post(
-    "/registrar-categoria",
+    "/categories",
     validateRequest(CategoryCreateSchema),
     asyncWrapper(controller.createCategory),
   );
 
   router.put(
-    "/actualizar-categoria/:id",
+    "/categories/:id",
     validateRequest(IdParamSchema, RequestPart.PARAMS),
     validateRequest(CategoryUpdateSchema),
     asyncWrapper(controller.updateCategory),
