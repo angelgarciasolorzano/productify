@@ -4,11 +4,7 @@ import { format, loggers, transports } from "winston";
 
 const logDir = process.env.LOG_DIR || "./logs";
 
-const {
-  SYSTEM_LOG_LEVEL,
-  SYSTEM_ERROR_LOG_LEVEL,
-  SYSTEM_STRUCTURED_LOG_LEVEL,
-} = process.env;
+const { SYSTEM_LOG_LEVEL, SYSTEM_ERROR_LOG_LEVEL, SYSTEM_STRUCTURED_LOG_LEVEL } = process.env;
 
 if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir, { recursive: true });
@@ -22,10 +18,7 @@ loggers.add("systemLogger", {
 
 loggers.add("systemLoggerStructured", {
   level: SYSTEM_STRUCTURED_LOG_LEVEL || "info",
-  format: format.combine(
-    format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-    format.json(),
-  ),
+  format: format.combine(format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }), format.json()),
   transports: [new transports.Console()],
 });
 

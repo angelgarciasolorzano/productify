@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { categoriaRouter } from "@/modules"
+
+import { categoryRouter } from "@productify/modules/index.js";
 
 const router = Router();
 
-router.use("/api/categoria", categoriaRouter);
+router.use("/api/category", categoryRouter);
 
 export default router;

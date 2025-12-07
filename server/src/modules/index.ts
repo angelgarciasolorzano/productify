@@ -1,1 +1,1 @@
-export *  from "./categoria/categoria.module";
+export * from "./categorie/category.module.js";

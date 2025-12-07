@@ -1,5 +1,7 @@
-import { createApp, loadEnv } from "@productify/core/index.js";
 import { Logger } from "@productify/shared/index.js";
+
+import { createApp } from "../app/app.js";
+import { loadEnv } from "../env/loadEnv.js";
 
 export const bootstrap = async (): Promise<void> => {
   try {
@@ -8,16 +10,9 @@ export const bootstrap = async (): Promise<void> => {
     const app = createApp();
 
     app.listen(process.env.SERVER_PORT, () => {
-      Logger.info(
-        "info",
-        `Servidor corriendo en el puerto ${process.env.SERVER_PORT}`,
-      );
+      Logger.info("info", `Servidor corriendo en el puerto ${process.env.SERVER_PORT}`);
     });
   } catch (error) {
-    await Logger.handleErrorAndExit(
-      "bootstrap",
-      "Error al iniciar el servidor",
-      error,
-    );
+    await Logger.handleErrorAndExit("bootstrap", "Error al iniciar el servidor", error);
   }
 };

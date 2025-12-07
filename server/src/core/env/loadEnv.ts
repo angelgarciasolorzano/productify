@@ -1,5 +1,6 @@
-import { EnvSchema } from "@productify/core/index.js";
 import { Logger } from "@productify/shared/index.js";
+
+import { EnvSchema } from "./env.schema.js";
 
 export const loadEnv = async (): Promise<void> => {
   try {
@@ -7,10 +8,6 @@ export const loadEnv = async (): Promise<void> => {
 
     Logger.info("info", "Variables de entorno cargadas correctamente");
   } catch (error) {
-    await Logger.handleErrorAndExit(
-      "loadEnv",
-      "Error al cargar las variables de entorno",
-      error,
-    );
+    await Logger.handleErrorAndExit("loadEnv", "Error al cargar las variables de entorno", error);
   }
 };

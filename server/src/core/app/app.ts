@@ -2,8 +2,10 @@ import cors from "cors";
 import express, { type Application, json } from "express";
 import morgan from "morgan";
 
-import { customCorsOptions } from "@productify/core/index.js";
 import { errorHandler } from "@productify/infrastructure/index.js";
+
+import { customCorsOptions } from "../config/cors.js";
+import mainRoute from "../routes/main.routes.js";
 
 export const createApp = (): Application => {
   const app = express();
@@ -12,7 +14,7 @@ export const createApp = (): Application => {
   app.use(morgan("dev"));
   app.use(json());
 
-  //app.use(mainRouter);
+  app.use(mainRoute);
 
   app.use(errorHandler);
 
