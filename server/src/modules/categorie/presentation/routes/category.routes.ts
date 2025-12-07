@@ -4,8 +4,7 @@ import { validateRequest } from "@productify/infrastructure/index.js";
 import { asyncWrapper, IdParamSchema, RequestPart } from "@productify/shared/index.js";
 
 import type { ICategoryController } from "../controller/controller.interface.js";
-import { CategoryCreateSchema } from "../schemas/categoryCreate.schema.js";
-import { CategoryUpdateSchema } from "../schemas/categoryUpdate.schema.js";
+import { CategoryCreateSchema, CategoryUpdateSchema } from "../schemas/index.js";
 
 /**
  * Construye un router Express con las rutas de la API de categorías.
