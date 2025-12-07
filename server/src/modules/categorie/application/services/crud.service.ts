@@ -33,7 +33,7 @@ export class CategoryCrudService implements ICategoryCrudService {
   }
 
   public async createCategory(data: CategoryCreateDTO): Promise<CategoryDTO> {
-    const categoryExists = await this.categoryRepository.getCategoryName(data.name);
+    const categoryExists = await this.categoryRepository.getCategoryByName(data.name);
 
     if (categoryExists) throw new ConflictError("La categoria ya existe");
     const newCategory = CategoryMapper.fromCreateDTOtoDomain(data);
@@ -51,7 +51,7 @@ export class CategoryCrudService implements ICategoryCrudService {
 
     if (!categoryExists) throw new NotFoundError("La categoria no existe");
 
-    const categoryWithSameName = await this.categoryRepository.getCategoryName(dto.name);
+    const categoryWithSameName = await this.categoryRepository.getCategoryByName(dto.name);
 
     if (categoryWithSameName && categoryWithSameName.id !== id) {
       throw new ConflictError("Ya existe una categoria con el mismo nombre");

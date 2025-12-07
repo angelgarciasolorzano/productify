@@ -1,5 +1,7 @@
 import { ValidationError as ValidationErrorYup } from "yup";
 
+import { Logger } from "@productify/shared/utils/logger.js";
+
 import { HttpStatusCode } from "../../constants/index.js";
 import { CodeError, ResponseMessagesError } from "../constants/index.js";
 import { AppError, ServerError } from "../errors.js";
@@ -21,10 +23,18 @@ export function formatResponseError(error: unknown): IBaseResponseError {
     const message =
       error instanceof ServerError ? ResponseMessagesError.INTERNAL_SERVER_ERROR : error.message;
 
+    Logger.error(error.message, {
+      error,
+    });
+
     return ResponseErrorBuilder.baseResponse(error.statusCode, error.code, message);
   }
 
   if (error instanceof ValidationErrorYup) {
+    Logger.error(error.message, {
+      error,
+    });
+
     return ResponseErrorBuilder.baseResponse(
       HttpStatusCode.BAD_REQUEST,
       CodeError.VALIDATION_ERROR,
@@ -32,6 +42,10 @@ export function formatResponseError(error: unknown): IBaseResponseError {
       formatYupErrors(error),
     );
   }
+
+  Logger.error("Error desconocido capturado en el middleware de manejo de errores", {
+    value: error,
+  });
 
   return ResponseErrorBuilder.baseResponse(
     HttpStatusCode.INTERNAL_SERVER_ERROR,
