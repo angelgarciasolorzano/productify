@@ -3,9 +3,9 @@ datasource db {
 }
 
 generator client {
-  provider   = "prisma-client" 
+  provider   = "prisma-client"
   output     = "../src/generated/prisma"
-  engineType = "client" // enable Prisma ORM without Rust
+  engineType = "client"
 }
 
 model users {
