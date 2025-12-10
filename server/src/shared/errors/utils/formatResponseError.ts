@@ -25,6 +25,7 @@ export function formatResponseError(error: unknown): IBaseResponseError {
 
     Logger.error(error.message, {
       error,
+      stack: error.stack,
     });
 
     return ResponseErrorBuilder.baseResponse(error.statusCode, error.code, message);
@@ -33,6 +34,7 @@ export function formatResponseError(error: unknown): IBaseResponseError {
   if (error instanceof ValidationErrorYup) {
     Logger.error(error.message, {
       error,
+      stack: error.stack,
     });
 
     return ResponseErrorBuilder.baseResponse(
