@@ -4,6 +4,11 @@ import { number, object, string } from "yup";
 export const EnvSchema = object({
   SERVER_HOST: string().required(),
   SERVER_PORT: number().required(),
+  DATABASE_USER: string().required(),
+  DATABASE_PASSWORD: string().required(),
+  DATABASE_NAME: string().required(),
+  DATABASE_HOST: string().required(),
+  DATABASE_PORT: number().required(),
   CLIENT_PORT: string().required(),
   LOG_DIR: string().required(),
   SYSTEM_LOG_LEVEL: string().required(),
