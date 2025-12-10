@@ -9,7 +9,8 @@
     "dev": "node --import=tsx --watch src/index.ts",
     "start": "node build/index.js",
     "tsc": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
