@@ -12,6 +12,7 @@
       "@productify/*": ["./src/*"],
       "@productify/init/*": ["./src/*"],
       "@productify/categorie/*": ["./src/modules/categorie/*"],
+      "@tests/*": ["./tests/*"]
     },
 
     "strict": true,
@@ -26,8 +27,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
 
-    "types": ["node", "vitest/globals"]
+    "types": ["node"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+  "exclude": ["node_modules", "dist", "tests"]
 }

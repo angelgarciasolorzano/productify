@@ -7,7 +7,8 @@
   "eslint.validate": ["javascript", "typescript", "typescriptreact"],
   "prettier.requireConfig": true,
   "material-icon-theme.files.associations": {
-    "*.interface.ts": "typescript-def"
+    "*.interface.ts": "typescript-def",
+    "*.setup.ts": "vite"
   },
   "material-icon-theme.folders.customClones": [
     {

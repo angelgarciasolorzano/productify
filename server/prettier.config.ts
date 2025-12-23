@@ -14,7 +14,7 @@ const config: Config = {
     "^node:", // Dependencias nativas de Node.js
     "<THIRD_PARTY_MODULES>", // Dependencias externas
     "^@productify/init/",
-    "^@productify/", // Rutas absolutas (ajusta si tu alias es diferente)
+    "^@productify/", // Rutas absolutas
     "^[./]", // Rutas relativas
   ],
   importOrderSeparation: true,

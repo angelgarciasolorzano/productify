@@ -78,5 +78,13 @@ export default defineConfig([
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.typescript,
   eslintPluginPrettier,
-  globalIgnores(["node_modules", "dist", "build", "prisma/*", "src/generated/**", "logs"]),
+  globalIgnores([
+    "node_modules",
+    "dist",
+    "build",
+    "prisma/*",
+    "src/generated/**",
+    "logs",
+    "coverage",
+  ]),
 ]);

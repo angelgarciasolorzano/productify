@@ -9,7 +9,7 @@
     "dev": "node --import=tsx --watch src/index.ts",
     "start": "node build/index.js",
     "tsc": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "lint": "eslint ."
   },
   "keywords": [],
@@ -25,6 +25,8 @@
     "@types/module-alias": "^2.0.4",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.10.2",
+    "@types/supertest": "^6.0.3",
+    "@vitest/coverage-v8": "^4.0.15",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -35,9 +37,11 @@
     "morgan": "^1.10.1",
     "prettier": "^3.7.4",
     "prisma": "^7.1.0",
+    "supertest": "^7.1.4",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.49.0"
+    "typescript-eslint": "^8.49.0",
+    "vitest": "^4.0.15"
   },
   "dependencies": {
     "@prisma/adapter-mariadb": "^7.1.0",
