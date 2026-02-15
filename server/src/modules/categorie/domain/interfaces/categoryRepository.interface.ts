@@ -1,5 +1,5 @@
-import type { ICategoryCrudRepository } from "./repositoryCrud.interface.js";
-import type { ICategoryFinderRepository } from "./repositoryFinder.interface.js";
+import type { ICategoryCrudRepository } from "./categoryRepositoryCrud.interface.js";
+import type { ICategoryFinderRepository } from "./categoryRepositoryFinder.interface.js";
 
 /**
  * Interfaz principal del repositorio de categorías.
