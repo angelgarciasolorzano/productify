@@ -8,7 +8,7 @@ import type {
   CategoryUpdateDTO,
   ICategoryService,
 } from "../../application/index.js";
-import type { ICategoryController } from "./controller.interface.js";
+import type { ICategoryController } from "./categoryController.interface.js";
 
 /**
  * Controlador HTTP para la entidad categoría.

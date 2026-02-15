@@ -3,7 +3,7 @@ import { Router } from "express";
 import { validateRequest } from "@productify/infrastructure/index.js";
 import { asyncWrapper, IdParamSchema, RequestPart } from "@productify/shared/index.js";
 
-import type { ICategoryController } from "../controller/controller.interface.js";
+import type { ICategoryController } from "../controller/categoryController.interface.js";
 import { CategoryCreateSchema, CategoryUpdateSchema } from "../schemas/index.js";
 
 /**
