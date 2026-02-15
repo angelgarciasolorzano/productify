@@ -16,3 +16,5 @@ export const bootstrap = async (): Promise<void> => {
     await Logger.handleErrorAndExit("bootstrap", "Error al iniciar el servidor", error);
   }
 };
+
+export const app = createApp();
