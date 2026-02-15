@@ -1,7 +1,7 @@
-import { CategoryFinderService } from "@productify/categorie/application/services/finder.service.js";
+import { CategoryFinderService } from "@productify/categorie/application/services/categoryFinder.service.js";
 import { NotFoundError } from "@productify/shared/index.js";
 
-import { createCategoryFinderRepoMock } from "../infrastructure/mocks/categoryFinder.repo.mock.js";
+import { createCategoryFinderRepoMock } from "../infrastructure/mocks/categoryFinder.repository.mock.js";
 
 describe("CategoryFinderService", () => {
   it("throws NotFoundError if category does not exist", async () => {
