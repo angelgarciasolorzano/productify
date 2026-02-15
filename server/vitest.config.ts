@@ -28,10 +28,14 @@ export default defineConfig({
     clearMocks: true,
   },
   resolve: {
-    alias: {
-      "@productify/*": path.resolve(__dirname, "src/*"),
-      "@productify/categorie/*": path.resolve(__dirname, "src/modules/categorie/*"),
-      "@tests/*": path.resolve(__dirname, "tests"),
-    },
+    alias: [
+      {
+        find: /^@productify\/categorie\/(.*)$/,
+        replacement: path.resolve(__dirname, "src/modules/categorie/$1"),
+      },
+      { find: /^@productify\/(.*)$/, replacement: path.resolve(__dirname, "src/$1") },
+      { find: /^@tests\/(.*)$/, replacement: path.resolve(__dirname, "tests/$1") },
+      { find: "@tests", replacement: path.resolve(__dirname, "tests") },
+    ],
   },
 });
