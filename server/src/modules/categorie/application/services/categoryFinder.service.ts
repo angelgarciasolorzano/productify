@@ -2,7 +2,7 @@ import { NotFoundError } from "@productify/shared/index.js";
 
 import type { ICategoryFinderRepository } from "../../domain/index.js";
 import type { CategoryDTO } from "../dtos/categoryOutput.dto.js";
-import type { ICategoryFinderService } from "../interfaces/serviceFinder.interface.js";
+import type { ICategoryFinderService } from "../interfaces/categoryServiceFinder.interface.js";
 import { CategoryMapper } from "../mappers/category.mapper.js";
 
 /**

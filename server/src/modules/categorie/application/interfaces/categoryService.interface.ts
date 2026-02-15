@@ -1,5 +1,5 @@
-import type { ICategoryCrudService } from "./serviceCrud.interface.js";
-import type { ICategoryFinderService } from "./serviceFinder.interface.js";
+import type { ICategoryCrudService } from "./categoryServiceCrud.interface.js";
+import type { ICategoryFinderService } from "./categoryServiceFinder.interface.js";
 
 /**
  * Interfaz principal del servicio de categorías.
