@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 
-import { HttpStatusCode, ResponseMessages } from "../../constants/index.js";
+import { HttpStatusCode } from "../../constants/httpStatusCode.js";
+import { ResponseMessages } from "../../constants/responseMessages.js";
 import { ResponseBuilder } from "./responseBuilder.js";
 
 interface IResponseSuccess {

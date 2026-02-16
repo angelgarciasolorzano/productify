@@ -2,6 +2,7 @@ export * from "./constants/httpStatusCode.js";
 export * from "./constants/responseMessages.js";
 export * from "./errors/constants/responseMessagesError.js";
 export * from "./constants/requestParts.js";
+export * from "./constants/httpRoutes.js";
 
 export * from "./schemas/paramsId.schema.js";
 
