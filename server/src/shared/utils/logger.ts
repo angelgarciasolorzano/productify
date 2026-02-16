@@ -1,7 +1,8 @@
 import type { Logger as LoggerWinston } from "winston";
 import { loggers } from "winston";
 
-type LogLevel = "error" | "warn" | "info" | "http" | "verbose" | "debug" | "silly";
+import { LoggerName } from "../constants/loggerName.js";
+import type { LogLevel } from "../types/logLevel.js";
 
 /**
  * Clase Logger para manejar logs estructurados y errores.
@@ -16,7 +17,7 @@ export class Logger {
    * @returns Instancia del logger de Winston.
    */
   public static info(level: LogLevel, message: string): LoggerWinston {
-    return loggers.get("systemLogger").log(level, message);
+    return loggers.get(LoggerName.SYSTEM).log(level, message);
   }
 
   /**
@@ -28,7 +29,7 @@ export class Logger {
    * @returns Instancia del logger de Winston.
    */
   public static structured(level: LogLevel, message: string, meta?: object): LoggerWinston {
-    return loggers.get("systemLoggerStructured").log(level, message, meta);
+    return loggers.get(LoggerName.STRUCTURED).log(level, message, meta);
   }
 
   /**
@@ -39,7 +40,7 @@ export class Logger {
    * @returns Instancia del logger de Winston.
    */
   public static error(message: string, meta?: object): LoggerWinston {
-    return loggers.get("systemErrorLogger").error(message, meta);
+    return loggers.get(LoggerName.ERROR).error(message, meta);
   }
 
   /**

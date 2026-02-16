@@ -2,6 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 import { format, loggers, transports } from "winston";
 
+import { LoggerName } from "@productify/shared/index.js";
+
 import { AppConfig } from "../env/AppConfig.js";
 
 const config = AppConfig.getInstance();
@@ -12,19 +14,19 @@ if (!fs.existsSync(LOG_DIR)) {
   fs.mkdirSync(LOG_DIR, { recursive: true });
 }
 
-loggers.add("systemLogger", {
+loggers.add(LoggerName.SYSTEM, {
   level: SYSTEM_LOG_LEVEL || "info",
   format: format.cli(),
   transports: [new transports.Console()],
 });
 
-loggers.add("systemLoggerStructured", {
+loggers.add(LoggerName.STRUCTURED, {
   level: SYSTEM_STRUCTURED_LOG_LEVEL || "info",
   format: format.combine(format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }), format.json()),
   transports: [new transports.Console()],
 });
 
-loggers.add("systemErrorLogger", {
+loggers.add(LoggerName.ERROR, {
   level: SYSTEM_ERROR_LOG_LEVEL || "error",
   format: format.combine(
     format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
