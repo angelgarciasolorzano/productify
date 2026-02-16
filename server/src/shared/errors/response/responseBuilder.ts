@@ -1,6 +1,7 @@
 import type { HttpStatusCode } from "../../constants/httpStatusCode.js";
 import type { CodeError } from "../constants/codeError.js";
-import type { FieldError, IBaseResponseError } from "../types/index.js";
+import type { IBaseResponseError } from "../types/baseResponse.type.js";
+import type { FieldError } from "../types/field.type.js";
 
 export class ResponseErrorBuilder {
   /**

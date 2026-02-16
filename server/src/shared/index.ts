@@ -11,7 +11,6 @@ export * from "./errors/constants/codeError.js";
 export * from "./errors/constants/responseMessagesError.js";
 
 export * from "./errors/response/responseBuilder.js";
-export * from "./errors/response/responseError.js";
 
 export * from "./errors/utils/formatResponseError.js";
 export * from "./errors/utils/formatYupErrors.js";

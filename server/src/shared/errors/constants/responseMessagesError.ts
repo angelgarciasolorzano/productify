@@ -8,4 +8,5 @@ export enum ResponseMessagesError {
   CONFLICT = "El recurso ya existe. No se puede duplicar.",
   UNPROCESSABLE_ENTITY = "Los datos enviados no son válidos. Por favor, revise y corrija los errores.",
   TOO_MANY_REQUESTS = "Ha realizado demasiadas solicitudes. Por favor, intente más tarde.",
+  UNKNOWN_ERROR_MIDDLEWARE = "Error desconocido capturado en el middleware de manejo de errores",
 }

@@ -46,7 +46,7 @@ export function formatResponseError(error: unknown): IBaseResponseError {
     );
   }
 
-  Logger.error("Error desconocido capturado en el middleware de manejo de errores", {
+  Logger.error(ResponseMessagesError.UNKNOWN_ERROR_MIDDLEWARE, {
     value: error,
   });
 
