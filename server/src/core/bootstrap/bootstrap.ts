@@ -1,6 +1,7 @@
 import { Logger } from "@productify/shared/index.js";
 
 import { createApp } from "../app/app.js";
+import { AppConfig } from "../env/AppConfig.js";
 import { loadEnv } from "../env/loadEnv.js";
 
 export const bootstrap = async (): Promise<void> => {

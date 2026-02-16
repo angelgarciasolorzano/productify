@@ -33,17 +33,17 @@ loggers.add("systemErrorLogger", {
   ),
   transports: [
     new transports.File({
-      filename: path.join(logDir, "standard.log"),
+      filename: path.join(LOG_DIR, "standard.log"),
     }),
   ],
   exceptionHandlers: [
     new transports.File({
-      filename: path.join(logDir, "exceptions.log"),
+      filename: path.join(LOG_DIR, "exceptions.log"),
     }),
   ],
   rejectionHandlers: [
     new transports.File({
-      filename: path.join(logDir, "rejections.log"),
+      filename: path.join(LOG_DIR, "rejections.log"),
     }),
   ],
 });
