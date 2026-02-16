@@ -8,9 +8,11 @@ export const bootstrap = async (): Promise<void> => {
     await loadEnv();
 
     const app = createApp();
+    const config = AppConfig.getInstance();
 
-    app.listen(process.env.SERVER_PORT, () => {
-      Logger.info("info", `Servidor corriendo en el puerto ${process.env.SERVER_PORT}`);
+    app.listen(config.SERVER_PORT, () => {
+      Logger.info("info", `Servidor corriendo en el puerto ${config.SERVER_PORT}`);
+      Logger.info("info", `URL del servidor: ${config.SERVER_URL}`);
     });
   } catch (error) {
     await Logger.handleErrorAndExit("bootstrap", "Error al iniciar el servidor", error);

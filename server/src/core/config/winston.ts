@@ -2,12 +2,14 @@ import * as fs from "fs";
 import * as path from "path";
 import { format, loggers, transports } from "winston";
 
-const logDir = process.env.LOG_DIR || "./logs";
+import { AppConfig } from "../env/AppConfig.js";
 
-const { SYSTEM_LOG_LEVEL, SYSTEM_ERROR_LOG_LEVEL, SYSTEM_STRUCTURED_LOG_LEVEL } = process.env;
+const config = AppConfig.getInstance();
 
-if (!fs.existsSync(logDir)) {
-  fs.mkdirSync(logDir, { recursive: true });
+const { SYSTEM_LOG_LEVEL, SYSTEM_ERROR_LOG_LEVEL, SYSTEM_STRUCTURED_LOG_LEVEL, LOG_DIR } = config;
+
+if (!fs.existsSync(LOG_DIR)) {
+  fs.mkdirSync(LOG_DIR, { recursive: true });
 }
 
 loggers.add("systemLogger", {

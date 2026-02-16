@@ -1,13 +1,16 @@
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 
+import { AppConfig } from "@productify/core/index.js";
 import { PrismaClient } from "@productify/generated/prisma/index.js";
 
+const config = AppConfig.getInstance();
+
 const adapter = new PrismaMariaDb({
-  host: process.env.DATABASE_HOST,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
-  port: Number(process.env.DATABASE_PORT),
+  host: config.DATABASE_HOST,
+  user: config.DATABASE_USER,
+  password: config.DATABASE_PASSWORD,
+  database: config.DATABASE_NAME,
+  port: config.DATABASE_PORT,
 });
 
 export const prisma = new PrismaClient({ adapter });
