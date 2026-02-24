@@ -1,3 +1,4 @@
+import { connectPrisma } from "@productify/infrastructure/index.js";
 import { Logger } from "@productify/shared/index.js";
 
 import { createApp } from "../app/app.js";
@@ -7,6 +8,7 @@ import { loadEnv } from "../env/loadEnv.js";
 export const bootstrap = async (): Promise<void> => {
   try {
     await loadEnv();
+    await connectPrisma();
 
     const app = createApp();
     const config = AppConfig.getInstance();
