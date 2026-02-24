@@ -1,14 +1,19 @@
 import type { Request, Response } from "express";
 
 import { HttpStatusCode } from "../../constants/httpStatusCode.js";
+import type { ResponseMessageType } from "../../constants/responseMessages.js";
 import { ResponseMessages } from "../../constants/responseMessages.js";
 import { ResponseBuilder } from "./responseBuilder.js";
 
 interface IResponseSuccess {
-  sendSuccess<T>(data: T, message: string, statusCode: HttpStatusCode): Response;
-  sendCreated<T>(data: T, message: string): Response;
-  sendUpdated<T>(data: T, message: string): Response;
-  sendNoChanges<T>(data: T, message: string): Response;
+  sendSuccess<T>(
+    data: T,
+    message: string | ResponseMessageType,
+    statusCode: HttpStatusCode,
+  ): Response;
+  sendCreated<T>(data: T, message: string | ResponseMessageType): Response;
+  sendUpdated<T>(data: T, message: string | ResponseMessageType): Response;
+  sendNoChanges<T>(data: T, message: string | ResponseMessageType): Response;
 }
 
 export class ResponseSuccess implements IResponseSuccess {
@@ -33,7 +38,7 @@ export class ResponseSuccess implements IResponseSuccess {
    */
   public sendSuccess<T>(
     data: T,
-    message = ResponseMessages.SUCCESS,
+    message: ResponseMessageType | string = ResponseMessages.SUCCESS,
     statusCode: HttpStatusCode = HttpStatusCode.OK,
   ): Response {
     return this.response
@@ -48,7 +53,10 @@ export class ResponseSuccess implements IResponseSuccess {
    * @param message Mensaje descriptivo de la operación realizada (default: "Recurso creado correctamente")
    * @returns Objeto de respuesta HTTP
    */
-  public sendCreated<T>(data: T, message = ResponseMessages.CREATED): Response {
+  public sendCreated<T>(
+    data: T,
+    message: ResponseMessageType | string = ResponseMessages.CREATED,
+  ): Response {
     return this.response
       .status(HttpStatusCode.CREATED)
       .json(ResponseBuilder.baseResponse(this.request, data, message));
@@ -61,7 +69,10 @@ export class ResponseSuccess implements IResponseSuccess {
    * @param message Mensaje descriptivo de la operación realizada (default: "Recurso actualizado correctamente")
    * @returns Objeto de respuesta HTTP
    */
-  public sendUpdated<T>(data: T, message = ResponseMessages.UPDATED): Response {
+  public sendUpdated<T>(
+    data: T,
+    message: ResponseMessageType | string = ResponseMessages.UPDATED,
+  ): Response {
     return this.response
       .status(HttpStatusCode.OK)
       .json(ResponseBuilder.baseResponse(this.request, data, message));
@@ -74,7 +85,10 @@ export class ResponseSuccess implements IResponseSuccess {
    * @param message Mensaje descriptivo de la operación realizada (default: "No se realizaron cambios, los datos son iguales")
    * @returns Objeto de respuesta HTTP
    */
-  public sendNoChanges<T>(data: T, message = ResponseMessages.NO_CHANGES): Response {
+  public sendNoChanges<T>(
+    data: T,
+    message: ResponseMessageType | string = ResponseMessages.NO_CHANGES,
+  ): Response {
     return this.response
       .status(HttpStatusCode.OK)
       .json(ResponseBuilder.baseResponse(this.request, data, message));
