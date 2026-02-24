@@ -1,4 +1,4 @@
-import type { HttpStatusCode } from "../../constants/httpStatusCode.js";
+import type { HttpStatusCodeType } from "../../constants/httpStatusCode.js";
 import type { CodeError } from "../constants/codeError.js";
 import type { IBaseResponseError } from "../types/baseResponse.type.js";
 import type { FieldError } from "../types/field.type.js";
@@ -14,7 +14,7 @@ export class ResponseErrorBuilder {
    * @returns Un objeto que representa la respuesta de error estándar.
    */
   public static baseResponse(
-    statusCode: HttpStatusCode,
+    statusCode: HttpStatusCodeType,
     code: CodeError,
     message: string,
     details?: FieldError[],

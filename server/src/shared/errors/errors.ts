@@ -1,4 +1,4 @@
-import type { FieldError } from "@productify/shared/index.js";
+import type { FieldError, HttpStatusCodeType } from "@productify/shared/index.js";
 import { CodeError, HttpStatusCode, ResponseMessagesError } from "@productify/shared/index.js";
 
 /**
@@ -8,7 +8,7 @@ import { CodeError, HttpStatusCode, ResponseMessagesError } from "@productify/sh
 interface AppErrorAttributes {
   code: CodeError;
   message: string;
-  statusCode: HttpStatusCode;
+  statusCode: HttpStatusCodeType;
 }
 
 /**
@@ -16,7 +16,7 @@ interface AppErrorAttributes {
  *
  */
 class AppError extends Error implements AppErrorAttributes {
-  public statusCode: number;
+  public statusCode: HttpStatusCodeType;
 
   public code: CodeError;
 
@@ -27,7 +27,7 @@ class AppError extends Error implements AppErrorAttributes {
    * @param statusCode Codigo de estado del error
    * @param message Mensaje del error
    */
-  public constructor(code: CodeError, statusCode: HttpStatusCode, message: string) {
+  public constructor(code: CodeError, statusCode: HttpStatusCodeType, message: string) {
     super(message);
     this.code = code;
     this.statusCode = statusCode;

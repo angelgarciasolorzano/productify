@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 
+import type { HttpStatusCodeType } from "../../constants/httpStatusCode.js";
 import { HttpStatusCode } from "../../constants/httpStatusCode.js";
 import type { ResponseMessageType } from "../../constants/responseMessages.js";
 import { ResponseMessages } from "../../constants/responseMessages.js";
@@ -9,7 +10,7 @@ interface IResponseSuccess {
   sendSuccess<T>(
     data: T,
     message: string | ResponseMessageType,
-    statusCode: HttpStatusCode,
+    statusCode: HttpStatusCodeType,
   ): Response;
   sendCreated<T>(data: T, message: string | ResponseMessageType): Response;
   sendUpdated<T>(data: T, message: string | ResponseMessageType): Response;
@@ -39,7 +40,7 @@ export class ResponseSuccess implements IResponseSuccess {
   public sendSuccess<T>(
     data: T,
     message: ResponseMessageType | string = ResponseMessages.SUCCESS,
-    statusCode: HttpStatusCode = HttpStatusCode.OK,
+    statusCode: HttpStatusCodeType = HttpStatusCode.OK,
   ): Response {
     return this.response
       .status(statusCode)
