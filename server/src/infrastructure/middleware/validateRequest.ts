@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import type { ObjectSchema } from "yup";
 
-import { RequestPart } from "@productify/shared/index.js";
+import { getRequestPart, RequestPart, type RequestPartType } from "@productify/shared/index.js";
 
 /**
  * Middleware para validar partes de la solicitud HTTP con Yup.
@@ -17,15 +17,25 @@ import { RequestPart } from "@productify/shared/index.js";
  * router.get("/categoria/:id", validateRequest(idParamSchema, "params"));
  */
 export const validateRequest =
-  <T extends object>(schema: ObjectSchema<T>, requestPart: RequestPart = RequestPart.BODY) =>
+  <T extends object>(schema: ObjectSchema<T>, requestPart: RequestPartType = RequestPart.BODY) =>
   async (request: Request, _response: Response, next: NextFunction): Promise<void> => {
     try {
-      const result = await schema.validate(request[requestPart], {
+      const result = await schema.validate(getRequestPart(request, requestPart), {
         abortEarly: false,
         stripUnknown: true,
       });
 
-      request[requestPart] = result;
+      switch (requestPart) {
+        case RequestPart.PARAMS:
+          request.params = result;
+          break;
+        case RequestPart.QUERY:
+          request.query = result;
+          break;
+        case RequestPart.BODY:
+          request.body = result;
+          break;
+      }
 
       next();
     } catch (error) {

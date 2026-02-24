@@ -25,3 +25,4 @@ export * from "./utils/asyncWrapper.js";
 export * from "./utils/response/responseSuccess.js";
 export * from "./utils/response/responseBuilder.js";
 export * from "./utils/logger.js";
+export * from "./utils/getRequestPart.js";
