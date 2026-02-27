@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 
-import { formatResponseError } from "@productify/shared/index.js";
+import { formatResponseError } from "@productify/shared/errors/index.js";
 
 /**
  * Middleware global para manejar errores en Express.

@@ -1,4 +1,4 @@
-import { Logger } from "@productify/shared/index.js";
+import { Logger } from "@productify/shared/utils/logger.js";
 
 import { prisma } from "./prisma.js";
 

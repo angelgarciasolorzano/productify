@@ -1,7 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import type { ObjectSchema } from "yup";
 
-import { getRequestPart, RequestPart, type RequestPartType } from "@productify/shared/index.js";
+import { RequestPart, type RequestPartType } from "@productify/shared/constants/requestParts.js";
+import { getRequestPart } from "@productify/shared/utils/getRequestPart.js";
 
 /**
  * Middleware para validar partes de la solicitud HTTP con Yup.
