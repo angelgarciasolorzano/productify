@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import { categoryRouter } from "@productify/modules/index.js";
-import { RouterPrefix } from "@productify/shared/index.js";
+import { categoryRouter } from "@productify/modules/categorie/category.module.js";
+import { RouterPrefix } from "@productify/shared/constants/index.js";
 
 const router = Router();
 

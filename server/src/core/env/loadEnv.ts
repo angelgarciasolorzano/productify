@@ -1,4 +1,4 @@
-import { Logger } from "@productify/shared/index.js";
+import { Logger } from "@productify/shared/utils/index.js";
 
 import { EnvSchema } from "./env.schema.js";
 

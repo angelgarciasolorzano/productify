@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { format, loggers, transports } from "winston";
 
-import { LoggerName } from "@productify/shared/index.js";
+import { LoggerName } from "@productify/shared/constants/index.js";
 
 import { AppConfig } from "../env/AppConfig.js";
 
