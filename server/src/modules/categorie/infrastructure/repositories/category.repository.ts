@@ -15,18 +15,14 @@ import type {
  * @see ICategoryCrudRepository Para operaciones CRUD basicas
  */
 export class CategoryRepository implements ICategoryRepository {
-  private finder: ICategoryFinderRepository;
-
-  private crud: ICategoryCrudRepository;
-
   /**
    * @param finder Implementacion del repositorio de busqueda
    * @param crud Implementacion del repositorio Crud
    */
-  public constructor(finder: ICategoryFinderRepository, crud: ICategoryCrudRepository) {
-    this.finder = finder;
-    this.crud = crud;
-  }
+  public constructor(
+    private readonly finder: ICategoryFinderRepository,
+    private readonly crud: ICategoryCrudRepository,
+  ) {}
 
   public async getCategoryById(id: number): Promise<Category | null> {
     return await this.finder.getCategoryById(id);

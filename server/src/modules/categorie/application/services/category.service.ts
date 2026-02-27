@@ -17,20 +17,16 @@ import type {
  * @see ICategoryCrudService
  */
 export class CategoryService implements ICategoryService {
-  private finder: ICategoryFinderService;
-
-  private crud: ICategoryCrudService;
-
   /**
    * Crea una instancia del servicio.
    *
    * @param finder Servicio de búsqueda
    * @param crud Servicio CRUD
    */
-  public constructor(finder: ICategoryFinderService, crud: ICategoryCrudService) {
-    this.finder = finder;
-    this.crud = crud;
-  }
+  public constructor(
+    private readonly finder: ICategoryFinderService,
+    private readonly crud: ICategoryCrudService,
+  ) {}
 
   /**
    * Valida que el ID de la categoría sea válido.

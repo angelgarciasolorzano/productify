@@ -1,6 +1,9 @@
 import type { Response } from "express";
 
-import type { PublicRequest, PublicRequestWithBody } from "@productify/shared/index.js";
+import type {
+  PublicRequest,
+  PublicRequestWithBody,
+} from "@productify/shared/types/request.type.js";
 
 import type {
   CategoryCreateDTO,

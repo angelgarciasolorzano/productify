@@ -19,7 +19,7 @@ export class CategoryFinderService implements ICategoryFinderService {
    *
    * @param categoryRepository Implementación del repositorio de búsqueda
    */
-  public constructor(private categoryRepository: ICategoryFinderRepository) {}
+  public constructor(private readonly categoryRepository: ICategoryFinderRepository) {}
 
   public async getCategoryById(id: number): Promise<CategoryDTO> {
     const category = await this.categoryRepository.getCategoryById(id);
