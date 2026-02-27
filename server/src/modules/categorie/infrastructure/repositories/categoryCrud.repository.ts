@@ -1,4 +1,4 @@
-import { prisma } from "@productify/infrastructure/index.js";
+import { prisma } from "@productify/infrastructure/prisma/prisma.js";
 import { ServerError } from "@productify/shared/index.js";
 
 import type {

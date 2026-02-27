@@ -1,4 +1,4 @@
-import { connectPrisma } from "@productify/infrastructure/index.js";
+import { connectPrisma } from "@productify/infrastructure/prisma/index.js";
 import { Logger } from "@productify/shared/index.js";
 
 import { createApp } from "../app/app.js";

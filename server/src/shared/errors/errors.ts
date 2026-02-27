@@ -1,5 +1,9 @@
-import type { CodeErrorType, FieldError, HttpStatusCodeType } from "@productify/shared/index.js";
-import { CodeError, HttpStatusCode, ResponseMessagesError } from "@productify/shared/index.js";
+import type { HttpStatusCodeType } from "../constants/httpStatusCode.js";
+import { HttpStatusCode } from "../constants/httpStatusCode.js";
+import type { CodeErrorType } from "./constants/codeError.js";
+import { CodeError } from "./constants/codeError.js";
+import { ResponseMessagesError } from "./constants/responseMessagesError.js";
+import type { FieldError } from "./types/field.type.js";
 
 /**
  * Define las propiedades requeridas de un error personalizado.

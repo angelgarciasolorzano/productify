@@ -1,9 +1,4 @@
-export * from "./app/app.js";
-
-export * from "./config/cors.js";
-
-export * from "./env/env.schema.js";
-export * from "./env/loadEnv.js";
-export * from "./env/AppConfig.js";
-
-export * from "./bootstrap/bootstrap.js";
+export * from "./app/index.js";
+export * from "./config/index.js";
+export * from "./env/index.js";
+export * from "./bootstrap/index.js";

@@ -2,7 +2,7 @@ import cors from "cors";
 import express, { type Application, json } from "express";
 import morgan from "morgan";
 
-import { errorHandler } from "@productify/infrastructure/index.js";
+import { errorHandler } from "@productify/infrastructure/middleware/index.js";
 
 import { customCorsOptions } from "../config/cors.js";
 import mainRoute from "../routes/main.routes.js";
