@@ -1,5 +1,5 @@
 import { prisma } from "@productify/infrastructure/prisma/prisma.js";
-import { ServerError } from "@productify/shared/index.js";
+import { ServerError } from "@productify/shared/errors/errors.js";
 
 import type { Category, ICategoryFinderRepository } from "../../domain/index.js";
 import { CategoryPersistenceMapper } from "../mappers/categoryPersis.mapper.js";
