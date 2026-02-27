@@ -2,7 +2,7 @@ import { connectPrisma } from "@productify/infrastructure/prisma/index.js";
 import { Logger } from "@productify/shared/utils/index.js";
 
 import { createApp } from "../app/app.js";
-import { AppConfig } from "../env/AppConfig.js";
+import { AppConfig } from "../env/appConfig.js";
 import { loadEnv } from "../env/loadEnv.js";
 
 export const bootstrap = async (): Promise<void> => {

@@ -1,6 +1,6 @@
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 
-import { AppConfig } from "@productify/core/env/AppConfig.js";
+import { AppConfig } from "@productify/core/env/appConfig.js";
 import { PrismaClient } from "@productify/generated/prisma/index.js";
 
 const config = AppConfig.getInstance();

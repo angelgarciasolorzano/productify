@@ -4,7 +4,7 @@ import { format, loggers, transports } from "winston";
 
 import { LoggerName } from "@productify/shared/constants/index.js";
 
-import { AppConfig } from "../env/AppConfig.js";
+import { AppConfig } from "../env/appConfig.js";
 
 const config = AppConfig.getInstance();
 
