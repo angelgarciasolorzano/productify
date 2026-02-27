@@ -1,5 +1,5 @@
 import { CategoryFinderService } from "@productify/categorie/application/services/categoryFinder.service.js";
-import { NotFoundError } from "@productify/shared/index.js";
+import { NotFoundError } from "@productify/shared/errors/errors.js";
 
 import { createCategoryFinderRepoMock } from "../infrastructure/mocks/categoryFinder.repository.mock.js";
 

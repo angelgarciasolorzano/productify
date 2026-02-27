@@ -6,7 +6,7 @@ import type {
   CategoryUpdateDTO,
   ICategoryService,
 } from "@productify/categorie/application/index.js";
-import type { UpdateResult } from "@productify/shared/index.js";
+import type { UpdateResult } from "@productify/shared/types/updateResult.type.js";
 
 type CategoryServiceMock = {
   getCategories: ReturnType<typeof vi.fn<() => Promise<CategoryDTO[]>>>;

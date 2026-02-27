@@ -1,4 +1,4 @@
-import { NotFoundError } from "@productify/shared/index.js";
+import { NotFoundError } from "@productify/shared/errors/errors.js";
 
 import type { ICategoryFinderRepository } from "../../domain/index.js";
 import type { CategoryDTO } from "../dtos/categoryOutput.dto.js";

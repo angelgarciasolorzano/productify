@@ -7,21 +7,19 @@ import { vi } from "vitest";
 
 import type { CategoryDTO } from "@productify/categorie/application/index.js";
 import { CategoryController } from "@productify/categorie/presentation/index.js";
-import type { PublicRequest, PublicRequestWithBody } from "@productify/shared/index.js";
-import { ResponseSuccess } from "@productify/shared/index.js";
+import type {
+  PublicRequest,
+  PublicRequestWithBody,
+} from "@productify/shared/types/request.type.js";
+import { ResponseSuccess } from "@productify/shared/utils/response/responseSuccess.js";
 
 import { createCategoryServiceMock } from "../application/mocks/category.service.mock.js";
 
-vi.mock("@productify/shared/index.js", async () => {
-  const actual = await vi.importActual("@productify/shared/index.js");
-
-  return {
-    ...actual,
-    ResponseSuccess: vi.fn().mockImplementation(function (this: unknown) {
-      Object.assign(this as object, responseSuccessMock());
-    }),
-  };
-});
+vi.mock("@productify/shared/utils/response/responseSuccess.js", () => ({
+  ResponseSuccess: vi.fn().mockImplementation(function (this: unknown) {
+    Object.assign(this as object, responseSuccessMock());
+  }),
+}));
 
 describe("CategoryController", () => {
   it("getCategories: delegates to service and responds with success", async () => {

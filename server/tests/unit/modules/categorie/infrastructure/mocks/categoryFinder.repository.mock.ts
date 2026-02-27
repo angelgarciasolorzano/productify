@@ -1,7 +1,7 @@
 import { vi } from "vitest";
 
 import type { Category } from "@productify/modules/categorie/domain/category.js";
-import type { ICategoryFinderRepository } from "@productify/modules/categorie/domain/interfaces/repositoryFinder.interface.js";
+import type { ICategoryFinderRepository } from "@productify/modules/categorie/domain/interfaces/categoryRepositoryFinder.interface.js";
 
 type CategoryFinderRepoMock = {
   getCategoryById: ReturnType<typeof vi.fn<(id: number) => Promise<Category | null>>>;
