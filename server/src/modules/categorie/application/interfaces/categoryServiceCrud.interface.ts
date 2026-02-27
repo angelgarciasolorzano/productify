@@ -1,4 +1,4 @@
-import type { UpdateResult } from "@productify/shared/index.js";
+import type { UpdateResult } from "@productify/shared/types/updateResult.type.js";
 
 import type { CategoryCreateDTO, CategoryDTO, CategoryUpdateDTO } from "../dtos/index.js";
 

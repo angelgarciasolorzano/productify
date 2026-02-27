@@ -1,3 +1,5 @@
+import type { CategoryStatusType } from "../../domain/constants/categoryStatus.js";
+
 /**
  * DTO para crear una categoría.
  *
@@ -14,7 +16,7 @@ interface CategoryCreateDTO {
  * Extiende los datos de creación y agrega el estado de la categoría.
  */
 type CategoryUpdateDTO = CategoryCreateDTO & {
-  status: "activo" | "inactivo";
+  status: CategoryStatusType;
 };
 
 export { CategoryCreateDTO, CategoryUpdateDTO };

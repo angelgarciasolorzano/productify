@@ -1,3 +1,5 @@
+import type { CategoryStatusType } from "../../domain/constants/categoryStatus.js";
+
 /**
  * Modelo de datos para una categoría en la base de datos.
  */
@@ -5,7 +7,7 @@ interface CategoryModel {
   id: number;
   name: string;
   description?: string | null;
-  status: "activo" | "inactivo";
+  status: CategoryStatusType;
   created_at: Date;
   updated_at: Date;
 }

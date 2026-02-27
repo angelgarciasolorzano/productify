@@ -1,3 +1,5 @@
+import type { CategoryStatusType } from "../../domain/constants/categoryStatus.js";
+
 /**
  * DTO de salida para categorías.
  *
@@ -7,7 +9,7 @@ interface CategoryDTO {
   id: number;
   name: string;
   description?: string | null;
-  status: "activo" | "inactivo";
+  status: CategoryStatusType;
   createdAt?: Date;
   updatedAt?: Date;
 }
