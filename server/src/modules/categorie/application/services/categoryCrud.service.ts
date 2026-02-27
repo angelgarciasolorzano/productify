@@ -1,5 +1,5 @@
-import { ConflictError, NotFoundError } from "@productify/shared/index.js";
-import type { UpdateResult } from "@productify/shared/index.js";
+import { ConflictError, NotFoundError } from "@productify/shared/errors/errors.js";
+import type { UpdateResult } from "@productify/shared/types/updateResult.type.js";
 
 import type { CategoryUpdate, ICategoryRepository } from "../../domain/index.js";
 import type { CategoryCreateDTO, CategoryDTO, CategoryUpdateDTO } from "../dtos/index.js";
